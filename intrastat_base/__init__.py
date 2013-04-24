@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Report intrastat base module for OpenERP
-#    Copyright (C) 2011 Akretion (http://www.akretion.com). All Rights Reserved
+#    Copyright (C) 2011-2013 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@
 #
 ##############################################################################
 
-import country
-import product
-import tax
-import partner_address
-import intrastat_common
-
+from . import country
+from . import product
+from . import tax
+from . import partner
+from . import company
+from . import intrastat_common

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Report intrastat base module for Odoo
+#    Intrastat base module for Odoo
 #    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
@@ -23,23 +23,13 @@
 {
     'name': 'Intrastat Reporting Base',
     'version': '1.1',
-    'category': 'Localisation/Report Intrastat',
+    'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat reporting',
-    'description': """This module contains the common functions for 2 other modules :
-- l10n_fr_intrastat_service : the module for the "Déclaration Européenne des Services" (DES)
-- l10n_fr_intrastat_product : the module for the "Déclaration d'Echange de Biens" (DEB)
-This module is not usefull if it's not used together with one of those 2 modules or other country-specific intrastat modules.
-
-This module doesn't have any France-specific stuff. So it can be used as a basis for other intrastat modules for other EU countries.
-
-WARNING : this module conflicts with the module "report_intrastat" from the addons. If you have already installed the module "report_intrastat", you should uninstall it first before installing this module.
-
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
-    """,
-    'author': 'Akretion',
+    'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com',
     'depends': ['base_vat'],
+    'conflicts': ['report_intrastat'],
     'data': [
         'country_data.xml',
         'product_view.xml',
@@ -47,7 +37,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'country_view.xml',
         'tax_view.xml',
         'company_view.xml',
-        'intrastat_menu.xml',
+        'intrastat_view.xml',
     ],
     'demo': ['intrastat_demo.xml'],
     'installable': True,

@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2012-2015 Noviat nv/sa (www.noviat.com)
-#    Copyright (C) 2015 Akretion (http://www.akretion.com)
-#    @author Luc de Meyer <info@noviat.com>
+#    Intrastat Product module for Odoo
+#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
+#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
+#    @author Luc de Meyer <info@noviat.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -13,11 +14,11 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
@@ -27,14 +28,14 @@ from openerp import models, fields, api
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.model
-    def _default_intrastat_transaction(self):
-        """ placeholder for localisation modules """
-        return self.env['intrastat.transaction'].browse([])
-
+    incoterm_id = fields.Many2one(
+        'stock.incoterms', string='Incoterm',
+        help="International Commercial Terms are a series of predefined "
+             "commercial terms used in international transactions.")
     intrastat_transaction_id = fields.Many2one(
         'intrastat.transaction', string='Intrastat Transaction Type',
-        default=_default_intrastat_transaction, ondelete='restrict',
+        default=lambda self: self._default_intrastat_transaction(),
+        ondelete='restrict',
         help="Intrastat nature of transaction")
     intrastat_transport_id = fields.Many2one(
         'intrastat.transport_mode', string='Intrastat Transport Mode',
@@ -48,6 +49,11 @@ class AccountInvoice(models.Model):
     intrastat = fields.Char(
         string='Intrastat Declaration',
         related='company_id.intrastat', store=True, readonly=True)
+
+    @api.model
+    def _default_intrastat_transaction(self):
+        """ placeholder for localisation modules """
+        return self.env['intrastat.transaction'].browse([])
 
     @api.multi
     def onchange_partner_id(
@@ -82,7 +88,9 @@ class AccountInvoiceLine(models.Model):
 
         if product:
             product = self.env['product.product'].browse(product)
-            hs_code = product.get_hs_code_recursively()
+            hs_code = product.product_tmpl_id.get_hs_code_recursively()
             if hs_code:
                 res['value']['hs_code_id'] = hs_code.id
+            else:
+                res['value']['hs_code_id'] = False
         return res

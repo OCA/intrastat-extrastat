@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010-2015 Akretion (http://www.akretion.com)
+#    Intrastat Product module for Odoo
+#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
+#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
+#    @author Luc de Meyer <info@noviat.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,19 +25,25 @@
 from openerp import models, fields, api
 
 
-class StockPicking(models.Model):
-    _inherit = "stock.picking"
+class IntrastatTransportMode(models.Model):
+    _name = 'intrastat.transport_mode'
+    _description = "Intrastat Transport Mode"
+    _rec_name = 'display_name'
+    _order = 'code'
 
-    intrastat_transport_id = fields.Many2one(
-        'intrastat.transport_mode', string='Transport Mode',
-        help="This information is used in Intrastat reports")
-    intrastat = fields.Char(related='company_id.intrastat')
+    display_name = fields.Char(
+        string='Display Name', compute='_display_name', store=True,
+        readonly=True)
+    code = fields.Char(string='Code', required=True)
+    name = fields.Char(string='Name', required=True, translate=True)
+    description = fields.Char(string='Description', translate=True)
 
-    @api.model
-    def _create_invoice_from_picking(self, picking, vals):
-        '''Copy transport and department from picking to invoice'''
-        vals['intrastat_transport_id'] = picking.intrastat_transport_id.id
-        if picking.partner_id and picking.partner_id.country_id:
-            vals['src_dest_country_id'] = picking.partner_id.country_id.id
-        return super(StockPicking, self)._create_invoice_from_picking(
-            picking, vals)
+    @api.one
+    @api.depends('name', 'code')
+    def _display_name(self):
+        self.display_name = '%s. %s' % (self.code, self.name)
+
+    _sql_constraints = [(
+        'intrastat_transport_code_unique',
+        'UNIQUE(code)',
+        'Code must be unique.')]

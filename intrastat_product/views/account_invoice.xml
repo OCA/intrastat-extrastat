@@ -7,6 +7,10 @@
       <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_form"/>
       <field name="arch" type="xml">
+        <xpath expr="//field[@name='date_due']" position="after">
+          <field name="incoterm_id"
+                 attrs="{'invisible': [('intrastat', '!=', 'extended')]}"/>
+        </xpath>
         <xpath expr="//field[@name='move_id']" position="after">
           <field name="intrastat_transaction_id"/>
           <field name="intrastat" invisible="1"/>
@@ -26,6 +30,10 @@
       <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_supplier_form"/>
       <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term']" position="after">
+          <field name="incoterm_id"
+                 attrs="{'invisible': [('intrastat', '!=', 'extended')]}"/>
+        </xpath>
         <xpath expr="//field[@name='period_id']" position="after">
           <field name="intrastat_transaction_id"/>
           <field name="intrastat" invisible="1"/>

@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record id="intrastat_product_declaration_form" model="ir.ui.view">
+    <record id="intrastat_product_declaration_view_form" model="ir.ui.view">
       <field name="name">intrastat.product.declaration.form</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
@@ -40,6 +40,7 @@
                 <field name="num_decl_lines"/>
                 <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="company_country_code" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
               </group>
             </group>
@@ -74,6 +75,7 @@
                         <field name="reporting_level" invisible="1"/>
                         <field name="transport_id"
                                attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"/>
+                        <field name="incoterm_id" invisible="1"/>
                       </group>
                     </form>
                   </field>
@@ -91,6 +93,9 @@
                       <field name="suppl_unit_qty"/>
                       <field name="transaction_id"/>
                       <field name="reporting_level" invisible="1"/>
+                      <field name="transport_id"
+                             attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"/>
+                      <field name="incoterm_id" invisible="1"/>
                     </tree>
                   </field>
                 </group>
@@ -117,8 +122,8 @@
       <field name="description">Intrastat Product Declaration Validated</field>
     </record>
     
-    <record id="intrastat_product_tree" model="ir.ui.view">
-      <field name="name">intrastat.product.tree</field>
+    <record id="intrastat_product_declaration_view_tree" model="ir.ui.view">
+      <field name="name">intrastat.product.declaration.tree</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
         <tree string="Intrastat Product Declarations" colors="blue:state=='draft'">
@@ -133,8 +138,8 @@
       </field>
     </record>
 
-    <record id="intrastat_product_search" model="ir.ui.view">
-      <field name="name">intrastat.product.search</field>
+    <record id="intrastat_product_declaration_view_search" model="ir.ui.view">
+      <field name="name">intrastat.product.declaration.search</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
         <search string="Search Intrastat Product Declarations">
@@ -150,8 +155,8 @@
       </field>
     </record>
 
-    <record id="intrastat_product_graph" model="ir.ui.view">
-      <field name="name">intrastat.product.graph</field>
+    <record id="intrastat_product_declaration_view_graph" model="ir.ui.view">
+      <field name="name">intrastat.product.declaration.graph</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
         <graph string="Intrastat Product" type="bar">
@@ -162,16 +167,7 @@
       </field>
     </record>
 
-    <record id="intrastat_product_tree_action" model="ir.actions.act_window">
-      <field name="name">Intrastat Product Declaration</field>
-      <field name="res_model">intrastat.product.declaration</field>
-      <field name="view_mode">tree,form,graph</field>
-    </record>
-
-    <!-- TO BE REMOVED -->
-    <menuitem id="intrastat_product_menu"
-      parent="intrastat_base.menu_intrastat_base_root"
-      action="intrastat_product_tree_action"/>
+    <!-- No menuitem nor action since these are provided by the localization modules -->
 
   </data>
 </openerp>

@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2010-2015 Akretion (http://www.akretion.com)
+#    Report intrastat base module for Odoo
+#    Copyright (C) 2011-2014 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,22 +20,8 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-
-
-class StockPicking(models.Model):
-    _inherit = "stock.picking"
-
-    intrastat_transport_id = fields.Many2one(
-        'intrastat.transport_mode', string='Transport Mode',
-        help="This information is used in Intrastat reports")
-    intrastat = fields.Char(related='company_id.intrastat')
-
-    @api.model
-    def _create_invoice_from_picking(self, picking, vals):
-        '''Copy transport and department from picking to invoice'''
-        vals['intrastat_transport_id'] = picking.intrastat_transport_id.id
-        if picking.partner_id and picking.partner_id.country_id:
-            vals['src_dest_country_id'] = picking.partner_id.country_id.id
-        return super(StockPicking, self)._create_invoice_from_picking(
-            picking, vals)
+from . import res_country
+from . import product_template
+from . import account_tax
+from . import res_company
+from . import intrastat_common

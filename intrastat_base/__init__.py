@@ -20,8 +20,4 @@
 #
 ##############################################################################
 
-from . import country
-from . import product
-from . import tax
-from . import company
-from . import intrastat_common
+from . import models

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2015 Noviat (http://www.noviat.com)
+#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #    @author Luc de Meyer <info@noviat.com>
 #
@@ -30,23 +30,8 @@ class HSCode(models.Model):
     _order = "local_code"
     _rec_name = "display_name"
 
-    @api.one
-    @api.depends('local_code')
-    def _get_hs_code(self):
-        self.hs_code = self.local_code and self.local_code[:6]
-
-    @api.one
-    @api.depends('local_code', 'description')
-    def _compute_display_name(self):
-        display_name = self.local_code
-        if self.description:
-            display_name += ' ' + self.description
-        self.display_name = len(display_name) > 55 \
-            and display_name[:55] + '...' \
-            or display_name
-
     hs_code = fields.Char(
-        string='H.S. Code', compute='_get_hs_code', readonly=True,
+        string='H.S. Code', compute='_compute_hs_code', readonly=True,
         help="Harmonized System code (6 digits). Full list is "
         "available from the World Customs Organisation, see "
         "http://www.wcoomd.org")
@@ -66,6 +51,21 @@ class HSCode(models.Model):
         'res.company', string='Company', readonly=True, required=True,
         default=lambda self: self.env['res.company']._company_default_get(
             'hs.code'))
+
+    @api.one
+    @api.depends('local_code')
+    def _compute_hs_code(self):
+        self.hs_code = self.local_code and self.local_code[:6]
+
+    @api.one
+    @api.depends('local_code', 'description')
+    def _compute_display_name(self):
+        display_name = self.local_code
+        if self.description:
+            display_name += ' ' + self.description
+        self.display_name = len(display_name) > 55 \
+            and display_name[:55] + '...' \
+            or display_name
 
     _sql_constraints = [
         ('local_code_company_uniq', 'unique(local_code, company_id)',

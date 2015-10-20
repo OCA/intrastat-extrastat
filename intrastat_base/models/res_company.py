@@ -27,6 +27,15 @@ from openerp.exceptions import ValidationError
 class ResCompany(models.Model):
     _inherit = "res.company"
 
+    intrastat_remind_user_ids = fields.Many2many(
+        'res.users', column1='company_id', column2='user_id',
+        string="Users Receiving the Intrastat Reminder",
+        help="List of OpenERP users who will receive a notification to "
+        "remind them about the Intrastat declaration.")
+    intrastat_email_list = fields.Char(
+        compute='_compute_intrastat_email_list',
+        string='List of emails of Users Receiving the Intrastat Reminder')
+
     @api.one
     @api.depends(
         'intrastat_remind_user_ids', 'intrastat_remind_user_ids.email')
@@ -36,15 +45,6 @@ class ResCompany(models.Model):
             if user.email:
                 emails.append(user.email)
         self.intrastat_email_list = ','.join(emails)
-
-    intrastat_remind_user_ids = fields.Many2many(
-        'res.users', column1='company_id', column2='user_id',
-        string="Users Receiving the Intrastat Reminder",
-        help="List of OpenERP users who will receive a notification to "
-        "remind them about the Intrastat declaration.")
-    intrastat_email_list = fields.Char(
-        compute='_compute_intrastat_email_list',
-        string='List of emails of Users Receiving the Intrastat Reminder')
 
     @api.one
     @api.constrains('intrastat_remind_user_ids')

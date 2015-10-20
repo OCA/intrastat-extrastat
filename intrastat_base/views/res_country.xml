@@ -32,7 +32,7 @@
 </record>
 
 <!-- there is no native search view, so I can't inherit -->
-<record id="view_country_search" model="ir.ui.view">
+<record id="res_country_view_search" model="ir.ui.view">
     <field name="name">intrastat.base.country.search</field>
     <field name="model">res.country</field>
     <field name="arch" type="xml">

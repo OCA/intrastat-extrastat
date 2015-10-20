@@ -22,33 +22,22 @@
 #
 ##############################################################################
 
-{
-    'name': 'Intrastat Product',
-    'version': '1.4',
-    'category': 'Intrastat',
-    'license': 'AGPL-3',
-    'summary': 'Base module for Intrastat Product',
-    'author': 'Akretion, Noviat, Odoo Community Association (OCA)',
-    'depends': [
-        'intrastat_base',
-        'product_harmonized_system',
-        'stock',
-        ],
-    'conflicts': ['report_intrastat'],
-    'data': [
-        'views/hs_code.xml',
-        'views/intrastat_unit.xml',
-        'views/intrastat_transaction.xml',
-        'views/intrastat_transport_mode.xml',
-        'views/intrastat_product_declaration.xml',
-        'views/res_company.xml',
-        'views/account_invoice.xml',
-        'views/stock_picking.xml',
-        'security/intrastat_security.xml',
-        'security/ir.model.access.csv',
-        'data/intrastat_transport_mode.xml',
-        'data/intrastat_unit.xml',
-    ],
-    'demo': ['demo/intrastat_demo.xml'],
-    'installable': True,
-}
+from openerp import models, fields, api
+
+
+class StockPicking(models.Model):
+    _inherit = "stock.picking"
+
+    intrastat_transport_id = fields.Many2one(
+        'intrastat.transport_mode', string='Transport Mode',
+        help="This information is used in Intrastat reports")
+    intrastat = fields.Char(related='company_id.intrastat')
+
+    @api.model
+    def _create_invoice_from_picking(self, picking, vals):
+        '''Copy transport and department from picking to invoice'''
+        vals['intrastat_transport_id'] = picking.intrastat_transport_id.id
+        if picking.partner_id and picking.partner_id.country_id:
+            vals['src_dest_country_id'] = picking.partner_id.country_id.id
+        return super(StockPicking, self)._create_invoice_from_picking(
+            picking, vals)

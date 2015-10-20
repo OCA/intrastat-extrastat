@@ -22,33 +22,20 @@
 #
 ##############################################################################
 
-{
-    'name': 'Intrastat Product',
-    'version': '1.4',
-    'category': 'Intrastat',
-    'license': 'AGPL-3',
-    'summary': 'Base module for Intrastat Product',
-    'author': 'Akretion, Noviat, Odoo Community Association (OCA)',
-    'depends': [
-        'intrastat_base',
-        'product_harmonized_system',
-        'stock',
-        ],
-    'conflicts': ['report_intrastat'],
-    'data': [
-        'views/hs_code.xml',
-        'views/intrastat_unit.xml',
-        'views/intrastat_transaction.xml',
-        'views/intrastat_transport_mode.xml',
-        'views/intrastat_product_declaration.xml',
-        'views/res_company.xml',
-        'views/account_invoice.xml',
-        'views/stock_picking.xml',
-        'security/intrastat_security.xml',
-        'security/ir.model.access.csv',
-        'data/intrastat_transport_mode.xml',
-        'data/intrastat_unit.xml',
-    ],
-    'demo': ['demo/intrastat_demo.xml'],
-    'installable': True,
-}
+from openerp import models, fields
+
+
+class IntrastatUnit(models.Model):
+    _name = 'intrastat.unit'
+    _description = 'Intrastat Supplementary Units'
+
+    name = fields.Char(
+        string='Name', required=True)
+    description = fields.Char(
+        string='Description', required=True)
+    uom_id = fields.Many2one(
+        'product.uom', string='Regular UoM',
+        help="Select the regular Unit of Measure of Odoo that corresponds "
+        "to this Intrastat Supplementary Unit.")
+    active = fields.Boolean(
+        string='Active', default=True)

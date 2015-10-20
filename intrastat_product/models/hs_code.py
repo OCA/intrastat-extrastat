@@ -22,33 +22,27 @@
 #
 ##############################################################################
 
-{
-    'name': 'Intrastat Product',
-    'version': '1.4',
-    'category': 'Intrastat',
-    'license': 'AGPL-3',
-    'summary': 'Base module for Intrastat Product',
-    'author': 'Akretion, Noviat, Odoo Community Association (OCA)',
-    'depends': [
-        'intrastat_base',
-        'product_harmonized_system',
-        'stock',
-        ],
-    'conflicts': ['report_intrastat'],
-    'data': [
-        'views/hs_code.xml',
-        'views/intrastat_unit.xml',
-        'views/intrastat_transaction.xml',
-        'views/intrastat_transport_mode.xml',
-        'views/intrastat_product_declaration.xml',
-        'views/res_company.xml',
-        'views/account_invoice.xml',
-        'views/stock_picking.xml',
-        'security/intrastat_security.xml',
-        'security/ir.model.access.csv',
-        'data/intrastat_transport_mode.xml',
-        'data/intrastat_unit.xml',
-    ],
-    'demo': ['demo/intrastat_demo.xml'],
-    'installable': True,
-}
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
+
+
+class HSCode(models.Model):
+    _inherit = "hs.code"
+
+    intrastat_unit_id = fields.Many2one(
+        'intrastat.unit', string='Intrastat Supplementary Unit')
+
+    @api.constrains('local_code')
+    def _hs_code(self):
+        if self.company_id.country_id.intrastat:
+            if not self.local_code.isdigit():
+                raise ValidationError(
+                    _("Intrastat Codes should only contain digits. "
+                      "This is not the case for code '%s'.")
+                    % self.local_code)
+            if len(self.local_code) != 8:
+                raise ValidationError(
+                    _("Intrastat Codes should "
+                      "contain 8 digits. This is not the case for "
+                      "Intrastat Code '%s' which has %d digits.")
+                    % (self.local_code, len(self.local_code)))

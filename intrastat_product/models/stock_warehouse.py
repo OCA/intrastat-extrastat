@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class StockWarehouse(models.Model):
@@ -30,10 +30,16 @@ class StockWarehouse(models.Model):
         'intrastat.region',
         string='Intrastat region')
 
-    def get_region_from_location(self, location):
-        locations = location.search(
-            [('parent_left', '<=', location.parent_left),
-             ('parent_right', '>=', location.parent_right)])
+
+class StockLocation(models.Model):
+    _inherit = 'stock.location'
+
+    @api.multi
+    def get_intrastat_region(self):
+        self.ensure_one()
+        locations = self.search(
+            [('parent_left', '<=', self.parent_left),
+             ('parent_right', '>=', self.parent_right)])
         warehouses = self.search(
             [('lot_stock_id', 'in', [x.id for x in locations]),
              ('region_id', '!=', False)])

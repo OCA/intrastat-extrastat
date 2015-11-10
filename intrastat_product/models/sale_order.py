@@ -2,10 +2,8 @@
 ##############################################################################
 #
 #    Intrastat Product module for Odoo
-#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
+#    Copyright (C) 2010-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#    @author Luc de Meyer <info@noviat.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,28 +20,18 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, api
 
 
-class IntrastatTransportMode(models.Model):
-    _name = 'intrastat.transport_mode'
-    _description = "Intrastat Transport Mode"
-    _rec_name = 'display_name'
-    _order = 'code'
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
 
-    display_name = fields.Char(
-        string='Display Name', compute='_display_name', store=True,
-        readonly=True)
-    code = fields.Char(string='Code', required=True)
-    name = fields.Char(string='Name', required=True, translate=True)
-    description = fields.Char(string='Description', translate=True)
-
-    @api.one
-    @api.depends('name', 'code')
-    def _display_name(self):
-        self.display_name = '%s. %s' % (self.code, self.name)
-
-    _sql_constraints = [(
-        'intrastat_transport_code_unique',
-        'UNIQUE(code)',
-        'Code must be unique.')]
+    @api.model
+    def _prepare_invoice(self, order, lines):
+        '''Copy destination country to invoice'''
+        invoice_vals = super(SaleOrder, self)._prepare_invoice(
+            order, lines)
+        invoice_vals['src_dest_country_id'] = \
+            order.partner_shipping_id.country_id.id or False
+        invoice_vals['incoterm_id'] = order.incoterm.id or False
+        return invoice_vals

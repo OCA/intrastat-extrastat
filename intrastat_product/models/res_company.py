@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Intrastat Product module for Odoo
@@ -30,7 +30,7 @@ class ResCompany(models.Model):
 
     intrastat_incoterm_id = fields.Many2one(
         'stock.incoterms',
-        string='Default incoterm for Intrastat',
+        string='Default Incoterm for Intrastat',
         help="International Commercial Terms are a series of "
              "predefined commercial terms used in international "
              "transactions.")
@@ -48,7 +48,21 @@ class ResCompany(models.Model):
         compute='_compute_intrastat')
     intrastat_region_id = fields.Many2one(
         'intrastat.region',
-        string='Default Intrastat region')
+        string='Default Intrastat Region')
+    intrastat_transaction_out_invoice = fields.Many2one(
+        'intrastat.transaction',
+        string='Default Intrastat Transaction For Customer Invoice')
+    intrastat_transaction_out_refund = fields.Many2one(
+        'intrastat.transaction',
+        string='Default Intrastat Transaction for Customer Refunds')
+    intrastat_transaction_in_invoice = fields.Many2one(
+        'intrastat.transaction',
+        string='Default Intrastat Transaction For Supplier Invoices')
+    intrastat_transaction_in_refund = fields.Many2one(
+        'intrastat.transaction',
+        string='Default Intrastat Transaction For Supplier Refunds')
+    intrastat_accessory_costs = fields.Boolean(
+        string='Include Accessory Costs in Fiscal Value of Product')
 
     @api.model
     def _intrastat_arrivals(self):

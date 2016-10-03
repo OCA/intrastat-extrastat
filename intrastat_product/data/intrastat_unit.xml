@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data noupdate="1">
+<odoo noupdate="1">
 
     <!-- Extracted from the Official Journal of the European Union -->
 
@@ -121,5 +120,4 @@
       <field name="description">Terajoule (gross calorific value)</field>
     </record>
 
-  </data>
-</openerp>
+</odoo>

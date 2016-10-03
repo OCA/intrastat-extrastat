@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
-<openerp>
-  <data>
+<odoo>
 
-    <record id="view_company_form" model="ir.ui.view">
-      <field name="name">intrastat.company.form</field>
-      <field name="model">res.company</field>
-      <field name="inherit_id" ref="intrastat_base.view_company_form"/>
+    <record id="view_account_config_settings" model="ir.ui.view">
+      <field name="name">intrastat.account.config.settings.form</field>
+      <field name="model">account.config.settings</field>
+      <field name="inherit_id" ref="intrastat_base.view_account_config_settings"/>
       <field name="arch" type="xml">
-        <group name="intrastat-common" position="inside">
+        <group name="intrastat" position="inside">
           <field name="intrastat" invisible="1"/>
           <field name="intrastat_arrivals"/>
           <field name="intrastat_dispatches"/>
@@ -24,5 +23,4 @@
       </field>
     </record>
 
-  </data>
-</openerp>
+</odoo>

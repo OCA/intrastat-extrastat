@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="intrastat_product_declaration_view_form" model="ir.ui.view">
       <field name="name">intrastat.product.declaration.form</field>
@@ -73,14 +72,6 @@
           </div>
         </form>
       </field>
-    </record>
-
-    <!-- Notification in the chatter -->
-    <record id="intrastat_product_declaration_done" model="mail.message.subtype">
-      <field name="name">Intrastat Product Declaration Validated</field>
-      <field name="res_model">intrastat.product.declaration</field>
-      <field name="default" eval="False"/>
-      <field name="description">Intrastat Product Declaration Validated</field>
     </record>
 
     <record id="intrastat_product_declaration_view_tree" model="ir.ui.view">
@@ -259,5 +250,4 @@
     </record>
 
 
-  </data>
-</openerp>
+</odoo>

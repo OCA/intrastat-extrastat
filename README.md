@@ -3,9 +3,21 @@
 [![Coverage Status](https://coveralls.io/repos/OCA/${REPO_NAME}/badge.svg?branch=${BRANCH_NAME}&service=github)](https://coveralls.io/github/OCA/${REPO_NAME}?branch=${BRANCH_NAME})
 [![Code Climate](https://codeclimate.com/github/OCA/${REPO_NAME}/badges/gpa.svg)](https://codeclimate.com/github/OCA/${REPO_NAME})
 
-# ${REPO_NAME_VERBOSE}
+Intrastat Framework
+===================
 
-${REPO_DESCRIPTION}
+This repo contains a set of common modules for the Intrastat reporting and
+should be used in combination with country-specific reporting modules
+such as:
+
+- *l10n_fr_intrastat_service*:
+  the module for the *Déclaration Européenne des Services* (DES) for France
+- *l10n_fr_intrastat_product*:
+  the module for the *Déclaration d'Echange de Biens* (DEB) for France
+- *l10n_be_intrastat_product*:
+  the module for the Intrastat Declaration for Belgium.
+
+
 
 [//]: # (addons)
 [//]: # (end addons)

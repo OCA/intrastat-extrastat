@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Intrastat Product module for Odoo
 #    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
 #    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
@@ -22,23 +23,36 @@
 ##############################################################################
 
 {
-    'name': 'Product Harmonized System Codes',
-    'version': '8.0.0.2.0',
-    'category': 'Reporting',
+    'name': 'Intrastat Product',
+    'version': '8.0.1.4.1',
+    'category': 'Intrastat',
     'license': 'AGPL-3',
-    'summary': 'Base module for Product Import/Export reports',
+    'summary': 'Base module for Intrastat Product',
     'author': 'Akretion, Noviat, Odoo Community Association (OCA)',
-    'depends': ['product'],
+    'depends': [
+        'intrastat_base',
+        'product_harmonized_system',
+        'stock_picking_invoice_link',
+        'sale_stock',
+        'purchase',
+        ],
     'conflicts': ['report_intrastat'],
     'data': [
-        'security/product_hs_security.xml',
-        'security/ir.model.access.csv',
         'views/hs_code.xml',
-        'views/product_category.xml',
-        'views/product_template.xml',
+        'views/intrastat_region.xml',
+        'views/intrastat_unit.xml',
+        'views/intrastat_transaction.xml',
+        'views/intrastat_transport_mode.xml',
+        'views/intrastat_product_declaration.xml',
+        'views/res_company.xml',
+        'views/account_invoice.xml',
+        'views/stock_picking.xml',
+        'views/stock_warehouse.xml',
+        'security/intrastat_security.xml',
+        'security/ir.model.access.csv',
+        'data/intrastat_transport_mode.xml',
+        'data/intrastat_unit.xml',
     ],
-    'demo': [
-        'demo/product_demo.xml',
-    ],
-    'installable': True,
+    'demo': ['demo/intrastat_demo.xml'],
+    'installable': False,
 }

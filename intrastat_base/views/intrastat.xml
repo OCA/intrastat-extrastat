@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-    Copyright (C) 2011-2015 Akretion (http://www.akretion.com/)
-    Copyright (C) 2015 Noviat (http://www.noviat.com/)
-    The licence is in the file __openerp__.py
+  © 2011-2016 Akretion (http://www.akretion.com/)
+  © 2015-2016 Noviat (http://www.noviat.com/)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<openerp>
-  <data>
+<odoo>
 
     <!-- Menu entries for Intrastat -->
     <menuitem id="menu_intrastat_base_root"
               name="Intrastat"
-              parent="account.menu_finance_legal_statement"/>
+              parent="account.menu_finance_reports" sequence="50"/>
     <menuitem id="menu_intrastat_config_root" name="Intrastat"
               parent="account.menu_finance_configuration" sequence="50"/>
 
@@ -32,5 +30,4 @@
       </field>
     </record>
 
-  </data>
-</openerp>
+</odoo>

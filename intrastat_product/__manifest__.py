@@ -54,5 +54,5 @@
         'data/intrastat_unit.xml',
     ],
     'demo': ['demo/intrastat_demo.xml'],
-    'installable': True,
+    'installable': False,
 }

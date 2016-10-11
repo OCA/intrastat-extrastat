@@ -1,29 +1,13 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#    @author Luc de Meyer <info@noviat.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2011-2016 Akretion (http://www.akretion.com)
+# © 2009-2016 Noviat (http://www.noviat.com)
+# @author Alexis de Lattre <alexis.delattre@akretion.com>
+# @author Luc de Meyer <info@noviat.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Product Harmonized System Codes',
-    'version': '8.0.0.2.0',
+    'version': '10.0.1.0.0',
     'category': 'Reporting',
     'license': 'AGPL-3',
     'summary': 'Base module for Product Import/Export reports',
@@ -40,5 +24,5 @@
     'demo': [
         'demo/product_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

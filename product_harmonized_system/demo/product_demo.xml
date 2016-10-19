@@ -26,64 +26,55 @@
 <record id="product.product_product_3" model="product.product">
     <field name="hs_code_id" ref="84715000" />
     <field name="origin_country_id" ref="base.tw" />
-    <field name="weight_net">8</field>
     <field name="weight">8.7</field>
 </record>
 
 <record id="product.product_product_4" model="product.product">
     <field name="hs_code_id" ref="84715000" />
     <field name="origin_country_id" ref="base.cn" />
-    <field name="weight_net">0.5</field>
     <field name="weight">1.1</field>
 </record>
 
 <record id="product.product_product_5" model="product.product">
     <field name="hs_code_id" ref="84715000" />
     <field name="origin_country_id" ref="base.cn" />
-    <field name="weight_net">7.5</field>
     <field name="weight">8.2</field>
+</record>
+
+<record id="product.product_product_13" model="product.product">
+    <field name="hs_code_id" ref="84717050" />
+    <field name="origin_country_id" ref="base.sg" />
+    <field name="weight">0.01</field>
+</record>
+
+<record id="product.product_product_16" model="product.product">
+    <field name="hs_code_id" ref="84717050" />
+    <field name="origin_country_id" ref="base.sg" />
+    <field name="weight">0.67</field>
 </record>
 
 <record id="product.product_product_17" model="product.product">
     <field name="hs_code_id" ref="84717050" />
     <field name="origin_country_id" ref="base.sg" />
-    <field name="weight_net">0.45</field>
-    <field name="weight">0.7</field>
-</record>
-
-<record id="product.product_product_18" model="product.product">
-    <field name="hs_code_id" ref="84717050" />
-    <field name="origin_country_id" ref="base.sg" />
-    <field name="weight_net">0.42</field>
-    <field name="weight">0.67</field>
-</record>
-
-<record id="product.product_product_19" model="product.product">
-    <field name="hs_code_id" ref="84717050" />
-    <field name="origin_country_id" ref="base.sg" />
-    <field name="weight_net">0.52</field>
     <field name="weight">0.75</field>
 </record>
 
 <record id="product.product_product_20" model="product.product">
     <field name="hs_code_id" ref="85340090" />
     <field name="origin_country_id" ref="base.tw" />
-    <field name="weight_net">0.6</field>
     <field name="weight">1.05</field>
 </record>
 
-<record id="product.product_product_21" model="product.product">
+<record id="product.product_product_22" model="product.product">
     <field name="hs_code_id" ref="85340090" />
     <field name="origin_country_id" ref="base.tw" />
-    <field name="weight_net">0.65</field>
-    <field name="weight">1.1</field>
+    <field name="weight">0.3</field>
 </record>
 
 <record id="product.product_product_25" model="product.product">
     <field name="hs_code_id" ref="84715000" />
     <field name="origin_country_id" ref="base.be" />
-    <field name="weight_net">3.3</field>
-    <field name="weight">4.6</field>
+    <field name="weight">3.3</field>
 </record>
 
 

@@ -23,7 +23,7 @@ class HSCode(models.Model):
         'Description', translate=True,
         help="Short text description of the H.S. category")
     display_name = fields.Char(
-        compute='_compute_display_name', string="Display Name",
+        compute='_compute_display_name_field', string="Display Name",
         store=True, readonly=True)
     local_code = fields.Char(
         string='Local Code', required=True,
@@ -48,7 +48,7 @@ class HSCode(models.Model):
 
     @api.multi
     @api.depends('local_code', 'description')
-    def _compute_display_name(self):
+    def _compute_display_name_field(self):
         for this in self:
             display_name = this.local_code
             if this.description:

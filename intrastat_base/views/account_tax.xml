@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ © 2011-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+<!-- Add 'exclude_from_intrastat_if_present' on tax form view -->
+<record id="view_tax_form" model="ir.ui.view">
+    <field name="name">intrastat.base.tax</field>
+    <field name="model">account.tax</field>
+    <field name="inherit_id" ref="account.view_tax_form"/>
+    <field name="arch" type="xml">
+        <field name="active" position="before">
+            <field name="exclude_from_intrastat_if_present"/>
+        </field>
+    </field>
+</record>
+
+</odoo>

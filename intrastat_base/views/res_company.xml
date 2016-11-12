@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2013-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+<!-- TODO: move to res.config page -->
+<record id="view_company_form" model="ir.ui.view">
+    <field name="name">intrastat.company.form</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_form" />
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page name="intrastat" string="Intrastat">
+                <group name="intrastat-common" string="Intrastat Settings">
+                    <field name="intrastat_remind_user_ids" widget="many2many_tags" />
+                </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+
+</odoo>

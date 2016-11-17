@@ -5,7 +5,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). 
 -->
 
-<odoo>
+<openerp>
 
     <!-- Product category form view -->
     <record id="product_category_form_view" model="ir.ui.view">
@@ -21,4 +21,4 @@
       </field>
     </record>
 
-</odoo>
+</openerp>

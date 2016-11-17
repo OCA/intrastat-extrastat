@@ -5,7 +5,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo>
+<openerp>
 
     <!-- Search view for H.S. code -->
     <record id="hs_code_view_search" model="ir.ui.view">
@@ -69,4 +69,4 @@
         parent="product.prod_config_main" sequence="60"/>
     -->
 
-</odoo>
+</openerp>

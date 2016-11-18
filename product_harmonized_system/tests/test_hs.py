@@ -13,7 +13,7 @@ class TestHs(TransactionCase):
         code1 = self.hs_code.create({
             'local_code': 'TEST 6789'
         })
-        # - Test whether code is correctly de-spaced and limited to 6 characters
+        # - Test whether code is correctly de-spaced and truncated
         self.assertEquals(code1.hs_code, 'TEST67')
 
         # For the category 'Saleable':
@@ -33,7 +33,9 @@ class TestHs(TransactionCase):
         # - Test if the HS code is null
         self.assertFalse(product1.hs_code_id)
         # - Test if the recursive HS code is the one we set on Saleable
-        self.assertEquals(product1.product_tmpl_id.get_hs_code_recursively(), code1)
+        self.assertEquals(
+            product1.product_tmpl_id.get_hs_code_recursively(),
+            code1)
         # - Set HS code on it
         product1.hs_code_id = code1
         # - Set country to 'us'

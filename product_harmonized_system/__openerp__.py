@@ -7,7 +7,7 @@
 
 {
     'name': 'Product Harmonized System Codes',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Reporting',
     'license': 'AGPL-3',
     'summary': 'Base module for Product Import/Export reports',
@@ -24,5 +24,5 @@
     'demo': [
         'demo/product_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

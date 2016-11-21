@@ -5,8 +5,8 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo noupdate="1">
-
+<openerp>
+<data noupdate="1">
 
 <record id="84715000" model="hs.code">
     <field name="local_code">84715000</field>
@@ -77,5 +77,5 @@
     <field name="weight">3.3</field>
 </record>
 
-
-</odoo>
+</data>
+</openerp>

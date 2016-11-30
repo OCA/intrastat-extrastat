@@ -26,11 +26,6 @@ class TestIntrastatBase(TransactionCase):
         # then check if intrastat_email_list contains the email of the user
         self.assertEquals(demo_company.intrastat_email_list, demo_user.email)
 
-    def test_taxes_accessory_cost(self):
-        #Test if exclude_from_intrastat_if_present is false
-        accessory = self.env['account.tax'].search([('id', '=', 1)])
-        for item in accessory:
-            self.assertFalse(item.exclude_from_intrastat_if_present)
 
 
 

@@ -4,7 +4,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo>
+<openerp>
 
 <!-- TODO: move to res.config page -->
 <record id="view_company_form" model="ir.ui.view">
@@ -23,4 +23,4 @@
 </record>
 
 
-</odoo>
+</openerp>

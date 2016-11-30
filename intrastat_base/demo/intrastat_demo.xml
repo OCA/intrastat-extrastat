@@ -4,7 +4,9 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo noupdate="1">
+
+<openerp>
+<data noupdate="1">
 
 <record id="base.main_partner" model="res.partner">
     <field name="vat">FR58441019213</field>
@@ -23,5 +25,7 @@
     <field name="list_price">30</field>
     <field name="is_accessory_cost">True</field>
 </record>
+</data>
+</openerp>
 
-</odoo>
+

@@ -4,8 +4,7 @@
   © 2015-2016 Noviat (http://www.noviat.com/)
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-
-<odoo>
+<openerp>
 
     <!-- Menu entries for Intrastat -->
     <menuitem id="menu_intrastat_base_root"
@@ -29,5 +28,4 @@
         </form>
       </field>
     </record>
-
-</odoo>
+</openerp>

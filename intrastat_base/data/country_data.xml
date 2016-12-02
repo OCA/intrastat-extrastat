@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<openerp>
+<data noupdate="1">
 
     <record id="base.fr" model="res.country">
         <field name="intrastat" eval="True"/>
@@ -85,5 +86,5 @@
     <record id="base.hr" model="res.country">
         <field name="intrastat" eval="True"/>
     </record>
-
-</odoo>
+</data>
+</openerp>

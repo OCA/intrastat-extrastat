@@ -5,9 +5,6 @@ from openerp.tests.common import TransactionCase
 class TestIntrastatBase(TransactionCase):
     """Tests for this module"""
 
-    def setUp(self):
-        super(TestIntrastatBase, self).setUp()
-
     def test_10_countries(self):
         # check if only EU countries have the 'intrastat' bit set
         denmark = self.env.ref('base.dk')

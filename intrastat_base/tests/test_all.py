@@ -25,4 +25,3 @@ class TestIntrastatBase(TransactionCase):
         })
         # then check if intrastat_email_list contains the email of the user
         self.assertEquals(demo_company.intrastat_email_list, demo_user.email)
-

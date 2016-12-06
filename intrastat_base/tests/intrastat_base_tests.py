@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# © 2016 Sunflower IT (http://sunflowerweb.nl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.tests.common import TransactionCase
 
@@ -21,11 +23,3 @@ class TestIntrastatBase(TransactionCase):
         })
         # then check if intrastat_email_list contains the email of the user
         self.assertEquals(demo_company.intrastat_email_list, demo_user.email)
-
-
-
-
-
-
-
-

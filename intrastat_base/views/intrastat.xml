@@ -4,13 +4,12 @@
   © 2015-2016 Noviat (http://www.noviat.com/)
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-
-<odoo>
+<openerp>
 
     <!-- Menu entries for Intrastat -->
     <menuitem id="menu_intrastat_base_root"
               name="Intrastat"
-              parent="account.menu_finance_legal_statement"/>
+              parent="account.menu_finance_reports"/>
     <menuitem id="menu_intrastat_config_root" name="Intrastat"
               parent="account.menu_finance_configuration" sequence="50"/>
 
@@ -29,5 +28,4 @@
         </form>
       </field>
     </record>
-
-</odoo>
+</openerp>

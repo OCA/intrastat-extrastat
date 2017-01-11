@@ -4,7 +4,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo>
+<openerp>
 
 
 <record id="product_template_form_view" model="ir.ui.view">
@@ -25,4 +25,4 @@
 </record>
 
 
-</odoo>
+</openerp>

@@ -62,6 +62,7 @@ Contributors
 
 * Alexis de Lattre, Akretion <alexis.delattre@akretion.com>
 * Luc De Meyer, Noviat <info@noviat.com>
+* Tom Blauwendraat, Sunflower IT <info@sunflowerweb.nl>
 
 Maintainer
 ----------

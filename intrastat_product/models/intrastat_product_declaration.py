@@ -1,31 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Intrastat Product module for Odoo
-#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#    @author Luc de Meyer <info@noviat.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2011-2017 Akretion (http://www.akretion.com)
+# © 2009-2017 Noviat (http://www.noviat.com)
+# @author Alexis de Lattre <alexis.delattre@akretion.com>
+# @author Luc de Meyer <info@noviat.com>
 
-from openerp import models, fields, api, _
-from openerp.exceptions import RedirectWarning, ValidationError
-from openerp.exceptions import Warning as UserError
-import openerp.addons.decimal_precision as dp
+from odoo import models, fields, api, _
+from odoo.exceptions import RedirectWarning, ValidationError, UserError
+import odoo.addons.decimal_precision as dp
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 import logging
@@ -38,12 +19,6 @@ class IntrastatProductDeclaration(models.Model):
     _rec_name = 'year_month'
     _inherit = ['mail.thread', 'intrastat.common']
     _order = 'year_month desc, type, revision'
-    _track = {
-        'state': {
-            'intrastat_product.declaration_done':
-            lambda self, cr, uid, obj, ctx=None: obj['state'] == 'done',
-            }
-        }
 
     @api.model
     def _get_type(self):
@@ -410,7 +385,7 @@ class IntrastatProductDeclaration(models.Model):
         return transport
 
     def _get_incoterm(self, inv_line):
-        incoterm = inv_line.invoice_id.incoterm_id \
+        incoterm = inv_line.invoice_id.incoterms_id \
             or self.company_id.intrastat_incoterm_id
         if not incoterm:
                 msg = _(

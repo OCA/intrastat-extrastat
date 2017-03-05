@@ -18,7 +18,7 @@
         'views/res_partner.xml',
         'views/res_country.xml',
         'views/account_tax.xml',
-        'views/res_company.xml',
+        'views/account_config_settings.xml',
         'views/intrastat.xml',
     ],
     'demo': [

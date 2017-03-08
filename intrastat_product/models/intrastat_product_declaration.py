@@ -237,7 +237,7 @@ class IntrastatProductDeclaration(models.Model):
         product = inv_line.product_id
         invoice = inv_line.invoice_id
         intrastat_unit_id = hs_code.intrastat_unit_id
-        source_uom = inv_line.uos_id
+        source_uom = inv_line.uom_id
         weight_uom_categ = self._get_uom_refs('weight_uom_categ')
         kg_uom = self._get_uom_refs('kg_uom')
         pce_uom_categ = self._get_uom_refs('pce_uom_categ')
@@ -269,8 +269,8 @@ class IntrastatProductDeclaration(models.Model):
                 self._note += note
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
-                suppl_unit_qty = self.env['product.uom']._compute_qty_obj(
-                    source_uom, line_qty, target_uom)
+                suppl_unit_qty = source_uom._compute_quantity(
+                    line_qty, target_uom)
             else:
                 note = "\n" + _(
                     "Conversion from unit of measure '%s' to '%s' "
@@ -286,10 +286,9 @@ class IntrastatProductDeclaration(models.Model):
         if source_uom == kg_uom:
             weight = line_qty
         elif source_uom.category_id == weight_uom_categ:
-            weight = self.env['product.uom']._compute_qty_obj(
-                source_uom, line_qty, kg_uom)
+            weight = source_uom._compute_quantity(line_qty, kg_uom)
         elif source_uom.category_id == pce_uom_categ:
-            if not product.weight_net:
+            if not product.weight:  # re-create weight_net ?
                 note = "\n" + _(
                     "Missing net weight on product %s."
                     ) % product.name_get()[0][1]
@@ -299,13 +298,13 @@ class IntrastatProductDeclaration(models.Model):
                 self._note += note
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
-                weight = product.weight_net * line_qty
+                weight = product.weight * line_qty  # product.weight_net
             else:
                 # Here, I suppose that, on the product, the
                 # weight is per PCE and not per uom_id
-                weight = product.weight_net * \
-                    self.env['product.uom']._compute_qty_obj(
-                        source_uom, line_qty, pce_uom)
+                # product.weight_net
+                weight = product.weight * \
+                    source_uom._compute_quantity(line_qty, pce_uom)
         else:
             note = "\n" + _(
                 "Conversion from unit of measure '%s' to 'Kg' "
@@ -349,24 +348,18 @@ class IntrastatProductDeclaration(models.Model):
         """
         region = False
         inv_type = inv_line.invoice_id.type
-        if inv_line.move_line_ids:
-            if inv_type in ('in_invoice', 'out_refund'):
-                region = inv_line.move_line_ids[0].location_id.\
-                    get_intrastat_region()
-            else:
-                region = inv_line.move_line_ids[0].location_dest_id.\
-                    get_intrastat_region()
-        elif inv_type in ('in_invoice', 'in_refund'):
+        if inv_type in ('in_invoice', 'in_refund'):
             po_lines = self.env['purchase.order.line'].search(
                 [('invoice_lines', 'in', inv_line.id)])
             if po_lines:
-                po = po_lines.order_id
-                region = po.location_id.get_intrastat_region()
-        elif inv_line.invoice_id.type in ('out_invoice', 'out_refund'):
+                if po_lines[0].move_ids:
+                    region = po_lines[0].move_ids[0].location_id\
+                        .get_intrastat_region()
+        elif inv_type in ('out_invoice', 'out_refund'):
             so_lines = self.env['sale.order.line'].search(
                 [('invoice_lines', 'in', inv_line.id)])
             if so_lines:
-                so = so_lines.order_id
+                so = so_lines[0].order_id
                 region = so.warehouse_id.region_id
         if not region:
             if self.company_id.intrastat_region_id:
@@ -474,7 +467,7 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
-            for inv_line in invoice.invoice_line:
+            for inv_line in invoice.invoice_line_ids:
 
                 if (
                         accessory_costs and
@@ -505,7 +498,7 @@ class IntrastatProductDeclaration(models.Model):
 
                 if any([
                         tax.exclude_from_intrastat_if_present
-                        for tax in inv_line.invoice_line_tax_id]):
+                        for tax in inv_line.invoice_line_tax_ids]):
                     _logger.info(
                         'Skipping invoice line %s '
                         'qty %s of invoice %s. Reason: '

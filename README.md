@@ -18,6 +18,7 @@ such as:
   the module for the Intrastat Declaration for Belgium.
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary

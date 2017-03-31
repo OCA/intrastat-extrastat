@@ -14,14 +14,8 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [intrastat_base](intrastat_base/) | 10.0.1.0.0 | Base module for Intrastat reporting
+[intrastat_product](intrastat_product/) | 10.0.1.0.0 | Base module for Intrastat Product
 [product_harmonized_system](product_harmonized_system/) | 10.0.1.0.0 | Base module for Product Import/Export reports
-
-
-Unported addons
----------------
-addon | version | summary
---- | --- | ---
-[intrastat_product](intrastat_product/) | 8.0.1.4.1 (unported) | Base module for Intrastat Product
 
 [//]: # (end addons)
 

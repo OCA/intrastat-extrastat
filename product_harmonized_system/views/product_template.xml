@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  © 2010-2016 Akretion (http://www.akretion.com/)
+  Copyright 2010-2016 Akretion (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -11,10 +11,9 @@
     <record id="product_template_form_view" model="ir.ui.view">
       <field name="name">hs_code.product.template.form</field>
       <field name="model">product.template</field>
-      <field name="inherit_id" ref="product.product_template_form_view" />
+      <field name="inherit_id" ref="delivery.product_template_hs_code" />
       <field name="arch" type="xml">
-        <field name="list_price" position="after">
-          <field name="hs_code_id" attrs="{'invisible': [('type', '=', 'service')]}"/>
+        <field name="hs_code" position="after">
           <field name="origin_country_id" attrs="{'invisible': [('type', '=', 'service')]}"/>
         </field>
       </field>

@@ -67,8 +67,8 @@ msgstr "Nom affiché"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_hs_code
-#: field:product.category,hs_code_id:0
-#: field:product.template,hs_code_id:0
+#: field:product.category,hs_code:0
+#: field:product.template,hs_code:0
 msgid "H.S. Code"
 msgstr "Code S.H."
 
@@ -85,12 +85,12 @@ msgid "HS Codes"
 msgstr "Codes S.H."
 
 #. module: product_harmonized_system
-#: help:product.category,hs_code_id:0
+#: help:product.category,hs_code:0
 msgid "Harmonised System Code. If this code is not set on the product itself, it will be read here, on the related product category."
 msgstr ""
 
 #. module: product_harmonized_system
-#: help:product.template,hs_code_id:0
+#: help:product.template,hs_code:0
 msgid "Harmonised System Code. Nomenclature is available from the World Customs Organisation, see http://www.wcoomd.org/. You can leave this field empty and configure the H.S. code on the product category."
 msgstr ""
 

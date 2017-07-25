@@ -51,6 +51,7 @@ Contributors
 
 * Alexis de Lattre, Akretion <alexis.delattre@akretion.com>
 * Luc De Meyer, Noviat <info@noviat.com>
+* Denis Leemann, Camptocamp SA <denis.leemann@camptocamp.com>
 
 Maintainer
 ----------

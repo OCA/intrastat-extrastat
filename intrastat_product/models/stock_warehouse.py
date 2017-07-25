@@ -29,6 +29,8 @@ class StockWarehouse(models.Model):
     region_id = fields.Many2one(
         'intrastat.region',
         string='Intrastat region')
+    country_code = fields.Char(
+        related='company_id.country_id.code')
 
 
 class StockLocation(models.Model):

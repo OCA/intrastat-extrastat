@@ -46,6 +46,8 @@ class ResCompany(models.Model):
     intrastat = fields.Char(
         string='Intrastat Declaration', store=True, readonly=True,
         compute='_compute_intrastat')
+    country_code = fields.Char(
+        related='country_id.code')
     intrastat_region_id = fields.Many2one(
         'intrastat.region',
         string='Default Intrastat Region')

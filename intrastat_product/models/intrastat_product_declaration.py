@@ -236,6 +236,11 @@ class IntrastatProductDeclaration(models.Model):
     def _get_partner_country(self, inv_line):
         country = inv_line.invoice_id.src_dest_country_id \
             or inv_line.invoice_id.partner_id.country_id
+        if not country:
+            _logger.info(
+                'Skipping invoice line %s qty %s '
+                'of invoice %s. Reason: no partner country'
+                % (inv_line.name, inv_line.quantity, invoice.number))
         if not country.intrastat:
             country = False
         elif country == self.company_id.country_id:
@@ -522,10 +527,6 @@ class IntrastatProductDeclaration(models.Model):
 
                 partner_country = self._get_partner_country(inv_line)
                 if not partner_country:
-                    _logger.info(
-                        'Skipping invoice line %s qty %s '
-                        'of invoice %s. Reason: no partner_country'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
                     continue
 
                 if any([

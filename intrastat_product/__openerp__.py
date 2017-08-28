@@ -16,7 +16,7 @@
         'stock_picking_invoice_link',
         'sale_stock',
         'purchase',
-        ],
+    ],
     'conflicts': ['report_intrastat'],
     'data': [
         'views/hs_code.xml',

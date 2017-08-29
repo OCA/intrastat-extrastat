@@ -18,9 +18,9 @@
                  attrs="{'invisible': [('intrastat', '!=', 'extended')]}"
                  widget="selection"/>
           <field name="src_dest_country_id" string="Destination Country"/>
-          <field name="src_dest_country_code" invisible="1"/>
+          <field name="company_country_code" invisible="1"/>
           <field name="src_dest_region_id" string="Origin/Destination Region"
-                 attrs="{'invisible': [('src_dest_country_code', 'not in', ['BE'])]}"/>
+                 attrs="{'invisible': [('company_country_code', 'not in', ['BE'])]}"/>
         </xpath>
         <xpath expr="//field[@name='invoice_line']//field[@name='account_id']" position="after">
           <field name="hs_code_id"/>
@@ -44,9 +44,9 @@
                  attrs="{'invisible': [('intrastat', '!=', 'extended')]}"
                  widget="selection"/>
           <field name="src_dest_country_id" string="Origin/Destination Country"/>
-          <field name="src_dest_country_code" invisible="1"/>
+          <field name="company_country_code" invisible="1"/>
           <field name="src_dest_region_id" string="Origin/Destination Region"
-                 attrs="{'invisible': [('src_dest_country_code', 'not in', ['BE'])]}"/>
+                 attrs="{'invisible': [('company_country_code', 'not in', ['BE'])]}"/>
         </xpath>
         <xpath expr="//field[@name='invoice_line']//field[@name='account_id']" position="after">
           <field name="hs_code_id"/>

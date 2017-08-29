@@ -24,7 +24,7 @@ class AccountInvoice(models.Model):
     src_dest_country_id = fields.Many2one(
         'res.country', string='Origin/Destination Country',
         ondelete='restrict')
-    src_dest_country_code = fields.Char(
+    company_country_code = fields.Char(
         related='company_id.country_id.code', readonly=True)
     src_dest_region_id = fields.Many2one(
         'intrastat.region', string='Origin/Destination Region',

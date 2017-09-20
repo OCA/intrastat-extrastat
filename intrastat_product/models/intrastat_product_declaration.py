@@ -177,6 +177,9 @@ class IntrastatProductDeclaration(models.Model):
     def _compute_company_country_code(self):
         for this in self:
             if this.company_id:
+                if not this.company_id.country_id:
+                    raise ValidationError(
+                        _("You must set company's country !"))
                 this.company_country_code = \
                     this.company_id.country_id.code.lower()
 

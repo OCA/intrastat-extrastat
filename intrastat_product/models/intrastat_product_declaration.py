@@ -501,7 +501,7 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_weight = 0.0
             for inv_line in invoice.invoice_line:
 
-                if not inv_line.price_unit:
+                if not inv_line.price_subtotal:
                     continue
                 
                 if (

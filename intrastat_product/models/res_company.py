@@ -20,7 +20,7 @@ class ResCompany(models.Model):
         '_intrastat_arrivals', string='Arrivals',
         default='extended', required=True)
     intrastat_dispatches = fields.Selection(
-        '_intrastat_arrivals', string='Dispatches',
+        '_intrastat_dispatches', string='Dispatches',
         default='extended', required=True)
     intrastat_transport_id = fields.Many2one(
         'intrastat.transport_mode',

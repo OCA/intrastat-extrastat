@@ -57,14 +57,14 @@ class IntrastatCommon(models.AbstractModel):
     def _check_xml_schema(self, xml_string, xsd_file):
         '''Validate the XML file against the XSD'''
         from lxml import etree
-        from StringIO import StringIO
+        from io import StringIO
         xsd_etree_obj = etree.parse(
             tools.file_open(xsd_file))
         official_schema = etree.XMLSchema(xsd_etree_obj)
         try:
             t = etree.parse(StringIO(xml_string))
             official_schema.assertValid(t)
-        except Exception, e:
+        except Exception as e:
             # if the validation of the XSD fails, we arrive here
             logger = logging.getLogger(__name__)
             logger.warning(
@@ -115,7 +115,7 @@ class IntrastatCommon(models.AbstractModel):
             'nodestroy': True,
             'target': 'current',
             'res_id': attach_id,
-            }
+        }
         return action
 
     @api.multi

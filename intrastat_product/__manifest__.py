@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
 # © 2011-2017 Akretion (http://www.akretion.com)
 # © 2009-2017 Noviat (http://www.noviat.com)
+# © 2018 brain-tec AG (http://www.braintec-group.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
+# @author Kumar Aberer <kumar.aberer@braintec-group.com>
 
 {
     'name': 'Intrastat Product',
-    'version': '10.0.1.1.0',
+    'version': '11.0.1.1.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat Product',
-    'author': 'Akretion, Noviat, Odoo Community Association (OCA)',
+    'author': 'brain-tec AG, Akretion, Noviat, '
+              'Odoo Community Association (OCA)',
     'depends': [
         'intrastat_base',
         'product_harmonized_system',
         'sale_stock',
         'purchase',
-        ],
+    ],
     'conflicts': ['report_intrastat'],
     'data': [
         'views/hs_code.xml',
@@ -25,7 +28,7 @@
         'views/intrastat_transaction.xml',
         'views/intrastat_transport_mode.xml',
         'views/intrastat_product_declaration.xml',
-        'views/account_config_settings.xml',
+        'views/res_config_settings.xml',
         'views/account_invoice.xml',
         'views/sale_order.xml',
         'views/stock_warehouse.xml',

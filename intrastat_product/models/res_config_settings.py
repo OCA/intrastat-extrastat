@@ -5,8 +5,8 @@
 from odoo import models, fields
 
 
-class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
 
     intrastat_incoterm_id = fields.Many2one(
         related='company_id.intrastat_incoterm_id')

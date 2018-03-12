@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+  © 2018 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_res_config_settings" model="ir.ui.view">
+        <field name="name">intrastat.account.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="intrastat_base.view_intrastat_res_config_settings"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//div[@id='intrastat']" position="inside">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="intrastat_arrivals" class="col-md-5 o_light_label"/>
+                                <field name="intrastat_arrivals"/>
+
+                                <label for="intrastat_dispatches" class="col-md-5 o_light_label"/>
+                                <field name="intrastat_dispatches"/>
+
+                                <label for="intrastat_transport_id" class="col-md-5 o_light_label"/>
+                                <field name="intrastat_transport_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+            <xpath expr="//div[@id='intrastat']" position="after">
+                <div class="row mt16 o_settings_container" id="intrastat_ext">
+                    <label for="intrastat_incoterm_id" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_incoterm_id"/>
+
+                    <label for="intrastat_transaction_out_invoice" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_transaction_out_invoice"/>
+
+                    <label for="intrastat_transaction_out_refund" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_transaction_out_refund"/>
+
+                    <label for="intrastat_transaction_in_invoice" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_transaction_in_invoice"/>
+
+                    <label for="intrastat_transaction_in_refund" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_transaction_in_refund"/>
+
+                    <label for="intrastat_accessory_costs" class="col-md-5 o_light_label"/>
+                    <field name="intrastat_accessory_costs"/>
+
+                    <field name="intrastat_region_id" invisible="1"/>
+                </div>
+            </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>

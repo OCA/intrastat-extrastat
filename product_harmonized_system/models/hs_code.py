@@ -60,7 +60,7 @@ class HSCode(models.Model):
     _sql_constraints = [
         ('local_code_company_uniq', 'unique(local_code, company_id)',
          'This code already exists for this company !'),
-        ]
+    ]
 
     @api.model
     def create(self, vals):

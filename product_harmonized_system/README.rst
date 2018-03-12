@@ -31,7 +31,7 @@ Then you will be able to set the H.S. code on an product (under the *Information
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/227/10.0
+   :target: https://runbot.odoo-community.org/runbot/227/11.0
 
 
 Bug Tracker
@@ -51,6 +51,7 @@ Contributors
 
 * Alexis de Lattre, Akretion <alexis.delattre@akretion.com>
 * Luc De Meyer, Noviat <info@noviat.com>
+* Kumar Aberer, brain-tec AG <kumar.aberer@braintec-group.com>
 
 Maintainer
 ----------

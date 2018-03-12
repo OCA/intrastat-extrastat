@@ -102,7 +102,7 @@ class IntrastatProductDeclaration(models.Model):
         (10, '10'),
         (11, '11'),
         (12, '12')
-        ], string='Month', required=True,
+    ], string='Month', required=True,
         default=_get_month)
     year_month = fields.Char(
         compute='_compute_year_month', string='Period', readonly=True,
@@ -142,7 +142,7 @@ class IntrastatProductDeclaration(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('done', 'Done'),
-        ], string='State', readonly=True, track_visibility='onchange',
+    ], string='State', readonly=True, track_visibility='onchange',
         copy=False, default='draft',
         help="State of the declaration. When the state is set to 'Done', "
         "the parameters become read-only.")
@@ -251,7 +251,7 @@ class IntrastatProductDeclaration(models.Model):
             note = "\n" + _(
                 "Missing unit of measure on the line with %d "
                 "product(s) '%s' on invoice '%s'."
-                ) % (line_qty, product.name_get()[0][1], invoice.number)
+            ) % (line_qty, product.name_get()[0][1], invoice.number)
             note += "\n" + _(
                 "Please adjust this line manually.")
             self._note += note
@@ -263,12 +263,12 @@ class IntrastatProductDeclaration(models.Model):
                 note = "\n" + _(
                     "Conversion from Intrastat Supplementary Unit '%s' to "
                     "Unit of Measure is not implemented yet."
-                    ) % intrastat_unit_id.name
+                ) % intrastat_unit_id.name
                 note += "\n" + _(
                     "Please correct the Intrastat Supplementary Unit "
                     "settings and regenerate the lines or adjust the lines "
                     "with Intrastat Code '%s' manually"
-                    ) % hs_code.display_name
+                ) % hs_code.display_name
                 self._note += note
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
@@ -278,7 +278,7 @@ class IntrastatProductDeclaration(models.Model):
                 note = "\n" + _(
                     "Conversion from unit of measure '%s' to '%s' "
                     "is not implemented yet."
-                    ) % (source_uom.name, target_uom.name)
+                ) % (source_uom.name, target_uom.name)
                 note += "\n" + _(
                     "Please correct the unit of measure settings and "
                     "regenerate the lines or adjust the impacted "
@@ -294,7 +294,7 @@ class IntrastatProductDeclaration(models.Model):
             if not product.weight:  # re-create weight_net ?
                 note = "\n" + _(
                     "Missing net weight on product %s."
-                    ) % product.name_get()[0][1]
+                ) % product.name_get()[0][1]
                 note += "\n" + _(
                     "Please correct the product record and regenerate "
                     "the lines or adjust the impacted lines manually")
@@ -312,7 +312,7 @@ class IntrastatProductDeclaration(models.Model):
             note = "\n" + _(
                 "Conversion from unit of measure '%s' to 'Kg' "
                 "is not implemented yet. It is needed for product '%s'."
-                ) % (source_uom.name, product.name_get()[0][1])
+            ) % (source_uom.name, product.name_get()[0][1])
             note += "\n" + _(
                 "Please correct the unit of measure settings and "
                 "regenerate the lines or adjust the impacted lines "
@@ -373,22 +373,22 @@ class IntrastatProductDeclaration(models.Model):
         transport = inv_line.invoice_id.intrastat_transport_id \
             or self.company_id.intrastat_transport_id
         if not transport:
-                msg = _(
-                    "The default Intrastat Transport Mode "
-                    "of the Company is not set, "
-                    "please configure it first.")
-                self._company_warning(msg)
+            msg = _(
+                "The default Intrastat Transport Mode "
+                "of the Company is not set, "
+                "please configure it first.")
+            self._company_warning(msg)
         return transport
 
     def _get_incoterm(self, inv_line):
         incoterm = inv_line.invoice_id.incoterms_id \
             or self.company_id.intrastat_incoterm_id
         if not incoterm:
-                msg = _(
-                    "The default Incoterm "
-                    "of the Company is not set, "
-                    "please configure it first.")
-                self._company_warning(msg)
+            msg = _(
+                "The default Incoterm "
+                "of the Company is not set, "
+                "please configure it first.")
+            self._company_warning(msg)
         return incoterm
 
     def _get_product_origin_country(self, inv_line):
@@ -558,14 +558,14 @@ class IntrastatProductDeclaration(models.Model):
                     'product_origin_country_id':
                     product_origin_country.id or False,
                     'region_id': region and region.id or False,
-                    }
+                }
 
                 # extended declaration
                 if self._extended:
                     transport = self._get_transport(inv_line)
                     line_vals.update({
                         'transport_id': transport.id,
-                        })
+                    })
 
                 self._update_computation_line_vals(inv_line, line_vals)
 
@@ -601,7 +601,7 @@ class IntrastatProductDeclaration(models.Model):
             'kg_uom': self.env.ref('product.product_uom_kgm'),
             'pce_uom_categ': self.env.ref('product.product_uom_categ_unit'),
             'pce_uom': self.env.ref('product.product_uom_unit')
-            }
+        }
         return uom_refs[ref]
 
     @api.multi
@@ -662,11 +662,11 @@ class IntrastatProductDeclaration(models.Model):
             'region': computation_line.region_id.id or False,
             'product_origin_country':
                 computation_line.product_origin_country_id.id or False,
-            }
+        }
 
     def group_line_hashcode(self, computation_line):
         hc_fields = self._group_line_hashcode_fields(computation_line)
-        hashcode = '-'.join([unicode(f) for f in hc_fields.itervalues()])
+        hashcode = '-'.join([str(f) for f in hc_fields.values()])
         return hashcode
 
     @api.multi
@@ -686,7 +686,7 @@ class IntrastatProductDeclaration(models.Model):
             else:
                 dl_group[hashcode] = [cl]
         ipdl = self.declaration_line_ids
-        for cl_lines in dl_group.values():
+        for cl_lines in list(dl_group.values()):
             vals = ipdl._prepare_declaration_line(cl_lines)
             declaration_line = ipdl.create(vals)
             for cl in cl_lines:
@@ -893,7 +893,7 @@ class IntrastatProductDeclarationLine(models.Model):
             'product_origin_country_id':
             computation_line.product_origin_country_id.id,
             'amount_company_currency': 0.0,
-            }
+        }
         for field in fields_to_sum:
             vals[field] = 0.0
         return vals
@@ -902,7 +902,7 @@ class IntrastatProductDeclarationLine(models.Model):
         fields_to_sum = [
             'weight',
             'suppl_unit_qty',
-            ]
+        ]
         return fields_to_sum
 
     @api.model

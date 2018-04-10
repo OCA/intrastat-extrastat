@@ -29,3 +29,5 @@ class AccountConfigSettings(models.TransientModel):
         related='company_id.intrastat_transaction_in_refund')
     intrastat_accessory_costs = fields.Boolean(
         related='company_id.intrastat_accessory_costs')
+    country_id = fields.Many2one(
+        related='company_id.country_id')

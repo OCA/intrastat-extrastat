@@ -553,7 +553,7 @@ class IntrastatProductDeclaration(models.Model):
                         continue
                 else:
                     _logger.info(
-                        'Skipping invoice line %s qty %s'
+                        'Skipping invoice line %s qty %s '
                         'of invoice %s. Reason: no product nor hs_code'
                         % (inv_line.name, inv_line.quantity, invoice.number))
                     continue

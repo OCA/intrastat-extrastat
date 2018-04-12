@@ -206,10 +206,19 @@ class IntrastatProductDeclaration(models.Model):
         return super(IntrastatProductDeclaration, self).copy(default)
 
     def _company_warning(self, msg):
-        action = self.env.ref('base.action_res_company_form')
+        """
+        Deprecated function.
+        """
+        _logger.warning(
+            'intrastat.product.declaration, _company_warning() is deprecated.'
+        )
+        self._account_config_warning(msg)
+
+    def _account_config_warning(self, msg):
+        action = self.env.ref('account.action_account_config')
         raise RedirectWarning(
             msg, action.id,
-            _('Go to company configuration screen'))
+            _('Go to Accounting Configuration Settings screen'))
 
     def _get_partner_country(self, inv_line):
         country = inv_line.invoice_id.src_dest_country_id \
@@ -377,7 +386,7 @@ class IntrastatProductDeclaration(models.Model):
                     "The default Intrastat Transport Mode "
                     "of the Company is not set, "
                     "please configure it first.")
-                self._company_warning(msg)
+                self._account_config_warning(msg)
         return transport
 
     def _get_incoterm(self, inv_line):
@@ -388,7 +397,7 @@ class IntrastatProductDeclaration(models.Model):
                     "The default Incoterm "
                     "of the Company is not set, "
                     "please configure it first.")
-                self._company_warning(msg)
+                self._account_config_warning(msg)
         return incoterm
 
     def _get_product_origin_country(self, inv_line):
@@ -524,7 +533,7 @@ class IntrastatProductDeclaration(models.Model):
                         continue
                 else:
                     _logger.info(
-                        'Skipping invoice line %s qty %s'
+                        'Skipping invoice line %s qty %s '
                         'of invoice %s. Reason: no product nor hs_code'
                         % (inv_line.name, inv_line.quantity, invoice.number))
                     continue

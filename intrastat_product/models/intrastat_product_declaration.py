@@ -816,7 +816,7 @@ class IntrastatProductComputationLine(models.Model):
             self.intrastat_unit_id =\
                 self.product_id.intrastat_id.intrastat_unit_id
             if not self.intrastat_unit_id:
-                self.weight = self.product_id.weight_net
+                self.weight = self.product_id.weight
 
 
 class IntrastatProductDeclarationLine(models.Model):

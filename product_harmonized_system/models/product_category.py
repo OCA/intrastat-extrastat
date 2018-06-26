@@ -25,5 +25,5 @@ class ProductCategory(models.Model):
         elif self.parent_id:
             res = self.parent_id.get_hs_code_recursively()
         else:
-            res = None
+            res = self.env['hs.code']
         return res

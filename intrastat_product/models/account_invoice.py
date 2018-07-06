@@ -14,8 +14,7 @@ class AccountInvoice(models.Model):
     # Odoo v8 name: incoterm_id
     intrastat_transaction_id = fields.Many2one(
         'intrastat.transaction', string='Intrastat Transaction Type',
-        default=lambda self: self._default_intrastat_transaction_id(),
-        ondelete='restrict',
+        ondelete='restrict', track_visibility='onchange',
         help="Intrastat nature of transaction")
     intrastat_transport_id = fields.Many2one(
         'intrastat.transport_mode', string='Intrastat Transport Mode',
@@ -49,22 +48,6 @@ class AccountInvoice(models.Model):
                 country = inv.company_id.country_id
             inv.src_dest_country_id = country.id
             inv.intrastat_country = country.intrastat
-
-    @api.model
-    def _default_intrastat_transaction_id(self):
-        rco = self.env['res.company']
-        company = rco._company_default_get('account.invoice')
-        inv_type = self._context.get('type')
-        if inv_type == 'out_invoice':
-            return company.intrastat_transaction_out_invoice
-        elif inv_type == 'out_refund':
-            return company.intrastat_transaction_out_refund
-        elif inv_type == 'in_invoice':
-            return company.intrastat_transaction_in_invoice
-        elif inv_type == 'in_refund':
-            return company.intrastat_transaction_in_refund
-        else:
-            return self.env['intrastat.transaction']
 
     @api.model
     def _default_src_dest_region_id(self):

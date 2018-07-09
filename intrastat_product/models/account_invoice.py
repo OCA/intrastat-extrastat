@@ -22,12 +22,12 @@ class AccountInvoice(models.Model):
     src_dest_country_id = fields.Many2one(
         'res.country', string='Origin/Destination Country',
         compute='_compute_intrastat_country',
-        store=True,
+        store=True, compute_sudo=True,
         help="Destination country for dispatches. Origin country for "
         "arrivals.")
     intrastat_country = fields.Boolean(
         compute='_compute_intrastat_country',
-        store=True, string='Intrastat Country', readonly=True)
+        store=True, string='Intrastat Country', readonly=True, compute_sudo=True)
     src_dest_region_id = fields.Many2one(
         'intrastat.region', string='Origin/Destination Region',
         default=lambda self: self._default_src_dest_region_id(),
@@ -36,7 +36,7 @@ class AccountInvoice(models.Model):
         ondelete='restrict')
     intrastat = fields.Char(
         string='Intrastat Declaration',
-        related='company_id.intrastat', readonly=True)
+        related='company_id.intrastat', readonly=True, compute_sudo=True)
 
     @api.multi
     @api.depends('partner_shipping_id.country_id', 'partner_id.country_id')

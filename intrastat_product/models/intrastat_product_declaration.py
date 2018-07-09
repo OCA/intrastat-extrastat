@@ -153,7 +153,7 @@ class IntrastatProductDeclaration(models.Model):
         '_get_reporting_level',
         string='Reporting Level')
     valid = fields.Boolean(
-        compute='_check_validity',
+        compute='_compute_check_validity',
         string='Valid')
 
     @api.model
@@ -193,7 +193,7 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.multi
     @api.depends('month')
-    def _check_validity(self):
+    def _compute_check_validity(self):
         """ TO DO: logic based upon computation lines """
         for this in self:
             this.valid = True
@@ -750,7 +750,7 @@ class IntrastatProductComputationLine(models.Model):
         string='Reporting Level',
         readonly=True)
     valid = fields.Boolean(
-        compute='_check_validity',
+        compute='_compute_check_validity',
         string='Valid')
     invoice_line_id = fields.Many2one(
         'account.invoice.line', string='Invoice Line', readonly=True)
@@ -809,7 +809,7 @@ class IntrastatProductComputationLine(models.Model):
 
     @api.multi
     @api.depends('transport_id')
-    def _check_validity(self):
+    def _compute_check_validity(self):
         """ TO DO: logic based upon fields """
         for this in self:
             this.valid = True

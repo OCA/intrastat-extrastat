@@ -26,8 +26,8 @@ class AccountInvoice(models.Model):
         help="Destination country for dispatches. Origin country for "
         "arrivals.")
     intrastat_country = fields.Boolean(
-        compute='_compute_intrastat_country',
-        store=True, string='Intrastat Country', readonly=True, compute_sudo=True)
+        compute='_compute_intrastat_country', string='Intrastat Country',
+        store=True, readonly=True, compute_sudo=True)
     src_dest_region_id = fields.Many2one(
         'intrastat.region', string='Origin/Destination Region',
         default=lambda self: self._default_src_dest_region_id(),

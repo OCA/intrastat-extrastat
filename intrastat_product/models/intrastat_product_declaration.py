@@ -365,7 +365,7 @@ class IntrastatProductDeclaration(models.Model):
                 [('invoice_lines', 'in', inv_line.id)])
             if po_lines:
                 if po_lines[0].move_ids:
-                    region = po_lines[0].move_ids[0].location_id\
+                    region = po_lines[0].move_ids[0].location_dest_id\
                         .get_intrastat_region()
         elif inv_type in ('out_invoice', 'out_refund'):
             so_lines = self.env['sale.order.line'].search(

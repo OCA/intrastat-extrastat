@@ -616,7 +616,7 @@ class IntrastatProductDeclaration(models.Model):
     @api.multi
     def action_gather(self):
         self.ensure_one()
-        self.message_post(_("Generate Lines from Invoices"))
+        self.message_post(body=_("Generate Lines from Invoices"))
         self._check_generate_lines()
         self._note = ''
         if (
@@ -683,7 +683,7 @@ class IntrastatProductDeclaration(models.Model):
         """ generate declaration lines """
         self.ensure_one()
         assert self.valid, 'Computation lines are not valid'
-        self.message_post(_("Generate Declaration Lines"))
+        self.message_post(body=_("Generate Declaration Lines"))
         # Delete existing declaration lines
         self.declaration_line_ids.unlink()
         # Regenerate declaration lines from computation lines
@@ -706,7 +706,7 @@ class IntrastatProductDeclaration(models.Model):
     def generate_xml(self):
         """ generate the INTRASTAT Declaration XML file """
         self.ensure_one()
-        self.message_post(_("Generate XML Declaration File"))
+        self.message_post(body=_("Generate XML Declaration File"))
         self._check_generate_xml()
         self._unlink_attachments()
         xml_string = self._generate_xml()

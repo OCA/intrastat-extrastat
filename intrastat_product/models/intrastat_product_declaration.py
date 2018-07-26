@@ -153,7 +153,7 @@ class IntrastatProductDeclaration(models.Model):
         '_get_reporting_level',
         string='Reporting Level')
     valid = fields.Boolean(
-        compute='_check_validity',
+        compute='_compute_check_validity',
         string='Valid')
 
     @api.model
@@ -193,7 +193,7 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.multi
     @api.depends('month')
-    def _check_validity(self):
+    def _compute_check_validity(self):
         """ TO DO: logic based upon computation lines """
         for this in self:
             this.valid = True
@@ -365,7 +365,7 @@ class IntrastatProductDeclaration(models.Model):
                 [('invoice_lines', 'in', inv_line.id)])
             if po_lines:
                 if po_lines[0].move_ids:
-                    region = po_lines[0].move_ids[0].location_id\
+                    region = po_lines[0].move_ids[0].location_dest_id\
                         .get_intrastat_region()
         elif inv_type in ('out_invoice', 'out_refund'):
             so_lines = self.env['sale.order.line'].search(
@@ -616,7 +616,7 @@ class IntrastatProductDeclaration(models.Model):
     @api.multi
     def action_gather(self):
         self.ensure_one()
-        self.message_post(_("Generate Lines from Invoices"))
+        self.message_post(body=_("Generate Lines from Invoices"))
         self._check_generate_lines()
         self._note = ''
         if (
@@ -683,7 +683,7 @@ class IntrastatProductDeclaration(models.Model):
         """ generate declaration lines """
         self.ensure_one()
         assert self.valid, 'Computation lines are not valid'
-        self.message_post(_("Generate Declaration Lines"))
+        self.message_post(body=_("Generate Declaration Lines"))
         # Delete existing declaration lines
         self.declaration_line_ids.unlink()
         # Regenerate declaration lines from computation lines
@@ -706,7 +706,7 @@ class IntrastatProductDeclaration(models.Model):
     def generate_xml(self):
         """ generate the INTRASTAT Declaration XML file """
         self.ensure_one()
-        self.message_post(_("Generate XML Declaration File"))
+        self.message_post(body=_("Generate XML Declaration File"))
         self._check_generate_xml()
         self._unlink_attachments()
         xml_string = self._generate_xml()
@@ -750,7 +750,7 @@ class IntrastatProductComputationLine(models.Model):
         string='Reporting Level',
         readonly=True)
     valid = fields.Boolean(
-        compute='_check_validity',
+        compute='_compute_check_validity',
         string='Valid')
     invoice_line_id = fields.Many2one(
         'account.invoice.line', string='Invoice Line', readonly=True)
@@ -809,7 +809,7 @@ class IntrastatProductComputationLine(models.Model):
 
     @api.multi
     @api.depends('transport_id')
-    def _check_validity(self):
+    def _compute_check_validity(self):
         """ TO DO: logic based upon fields """
         for this in self:
             this.valid = True

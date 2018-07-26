@@ -15,7 +15,6 @@ class AccountInvoice(models.Model):
              "commercial terms used in international transactions.")
     intrastat_transaction_id = fields.Many2one(
         'intrastat.transaction', string='Intrastat Transaction Type',
-        default=lambda self: self._default_intrastat_transaction_id(),
         ondelete='restrict',
         help="Intrastat nature of transaction")
     intrastat_transport_id = fields.Many2one(
@@ -46,23 +45,6 @@ class AccountInvoice(models.Model):
             country = inv.src_dest_country_id \
                 or inv.partner_id.country_id
             inv.intrastat_country = country.intrastat
-
-    @api.model
-    def _default_intrastat_transaction_id(self):
-        company = self.env['res.company']
-        company_id = company._company_default_get('account.invoice')
-        company = company.browse(company_id)
-        inv_type = self._context.get('type')
-        if inv_type == 'out_invoice':
-            return company.intrastat_transaction_out_invoice
-        elif inv_type == 'out_refund':
-            return company.intrastat_transaction_out_refund
-        elif inv_type == 'in_invoice':
-            return company.intrastat_transaction_in_invoice
-        elif inv_type == 'in_refund':
-            return company.intrastat_transaction_in_refund
-        else:
-            return self.env['intrastat.transaction']
 
     @api.model
     def _default_src_dest_region_id(self):

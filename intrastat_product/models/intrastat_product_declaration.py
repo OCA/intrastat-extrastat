@@ -376,10 +376,10 @@ class IntrastatProductDeclaration(models.Model):
         inv_type = inv_line.invoice_id.type
         if inv_line.move_line_ids:
             if inv_type in ('in_invoice', 'out_refund'):
-                region = inv_line.move_line_ids[0].location_id.\
+                region = inv_line.move_line_ids[0].location_dest_id.\
                     get_intrastat_region()
             else:
-                region = inv_line.move_line_ids[0].location_dest_id.\
+                region = inv_line.move_line_ids[0].location_id.\
                     get_intrastat_region()
         elif inv_type in ('in_invoice', 'in_refund'):
             po_lines = self.env['purchase.order.line'].search(

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2011-2016 Akretion (http://www.akretion.com)
 # © 2009-2016 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>

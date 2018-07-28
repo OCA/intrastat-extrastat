@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2011-2016 Akretion (http://www.akretion.com)
 # © 2018 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -9,8 +8,8 @@
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat reporting',
-    'author': 'Akretion,Odoo Community Association (OCA), brain-tec AG',
-    'website': 'http://www.akretion.com',
+    'author': 'Akretion,Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/intrastat',
     'depends': ['base_vat', 'account'],
     'conflicts': ['report_intrastat'],
     'data': [

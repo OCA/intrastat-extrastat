@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2018 brain-tec AG (http://www.braintec-group.com)
 # © 2011-2016 Akretion (http://www.akretion.com)
 # © 2009-2016 Noviat (http://www.noviat.com)

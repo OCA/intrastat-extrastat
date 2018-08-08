@@ -696,7 +696,7 @@ class IntrastatProductDeclaration(models.Model):
                 dl_group[hashcode] = [cl]
         ipdl = self.declaration_line_ids
         for cl_lines in dl_group.values():
-            vals = ipdl._prepare_declaration_line(cl_lines)
+            vals = ipdl._prepare_declaration_line(cl_lines, self)
             declaration_line = ipdl.create(vals)
             for cl in cl_lines:
                 cl.write({'declaration_line_id': declaration_line.id})
@@ -890,7 +890,8 @@ class IntrastatProductDeclarationLine(models.Model):
         help="Country of origin of the product i.e. product 'made in ____'")
 
     @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+    def _prepare_grouped_fields(self, computation_line, fields_to_sum,
+                                declaration):
         vals = {
             'src_dest_country_id': computation_line.src_dest_country_id.id,
             'intrastat_unit_id': computation_line.intrastat_unit_id.id,
@@ -915,10 +916,10 @@ class IntrastatProductDeclarationLine(models.Model):
         return fields_to_sum
 
     @api.model
-    def _prepare_declaration_line(self, computation_lines):
+    def _prepare_declaration_line(self, computation_lines, declaration):
         fields_to_sum = self._fields_to_sum()
         vals = self._prepare_grouped_fields(
-            computation_lines[0], fields_to_sum)
+            computation_lines[0], fields_to_sum, declaration)
         for computation_line in computation_lines:
             for field in fields_to_sum:
                 vals[field] += computation_line[field]

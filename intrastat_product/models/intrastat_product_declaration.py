@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2017 Noviat (http://www.noviat.com)
+# © 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -717,6 +717,47 @@ class IntrastatProductDeclaration(models.Model):
         else:
             raise UserError(
                 _("No XML File has been generated."))
+
+    @api.multi
+    def create_xls(self):
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_type': 'xlsx',
+            'report_name': 'intrastat.product.declaration.xlsx',
+            'context': dict(self._context, xlsx_export=True),
+        }
+
+    @api.model
+    def _xls_computation_line_fields(self):
+        """
+        Update list in custom module to add/drop columns or change order
+        """
+        return [
+            'product', 'product_origin_country',
+            'hs_code', 'src_dest_country',
+            'amount_company_currency', 'accessory_cost',
+            'transaction', 'weight', 'suppl_unit_qty', 'suppl_unit',
+            'transport', 'invoice',
+        ]
+
+    @api.model
+    def _xls_declaration_line_fields(self):
+        """
+        Update list in custom module to add/drop columns or change order
+        """
+        return [
+            'hs_code', 'src_dest_country', 'amount_company_currency',
+            'transaction', 'weight', 'suppl_unit_qty', 'suppl_unit',
+            'transport',
+        ]
+
+    @api.model
+    def _xls_template(self):
+        """
+        Placeholder for excel report template updates
+
+        """
+        return {}
 
     @api.multi
     def done(self):

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2017 Noviat (http://www.noviat.com)
+# © 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
 {
     'name': 'Intrastat Product',
-    'version': '10.0.1.2.1',
+    'version': '10.0.1.3.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat Product',
@@ -16,6 +16,7 @@
         'product_harmonized_system',
         'sale_stock',
         'purchase',
+        'report_xlsx_helper',
         ],
     'conflicts': ['report_intrastat'],
     'data': [

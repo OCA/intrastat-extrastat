@@ -31,20 +31,16 @@
             </div>
             <group name="top-block">
               <group name="properties-1">
-                <group col="4" colspan="2">
-                  <field name="year"/>
-                  <field name="month"/>
-                </group>
-                <group>
-                  <field name="type"/>
-                  <field name="action"/>
-                  <field name="revision"/>
-                  <field name="reporting_level" invisible="1"/>
-                </group>
+                <field name="year"/>
+                <field name="month"/>
+                <field name="type"/>
+                <field name="reporting_level" invisible="1"/>
               </group>
               <group name="properties-2">
-                <field name="num_decl_lines"/>
+                <field name="action"/>
+                <field name="revision"/>
                 <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="num_decl_lines"/>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="company_country_code" invisible="1"/>
                 <field name="currency_id" invisible="1"/>

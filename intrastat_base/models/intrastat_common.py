@@ -37,11 +37,6 @@ class IntrastatCommon(models.AbstractModel):
                 raise UserError(
                     _("The country is not set on the company '%s'.")
                     % company.name)
-            if company.currency_id.name != 'EUR':
-                raise UserError(
-                    _("The company currency must be 'EUR', but is currently "
-                      "'%s'.")
-                    % company.currency_id.name)
         return True
 
     @api.multi

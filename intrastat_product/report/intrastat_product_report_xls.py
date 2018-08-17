@@ -6,7 +6,6 @@ import logging
 
 from odoo.addons.report_xlsx_helper.report.abstract_report_xlsx \
     import AbstractReportXlsx
-# from odoo.exceptions import UserError
 from odoo.report import report_sxw
 from odoo.tools.translate import translate, _
 
@@ -255,7 +254,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
 
     def _intrastat_report(self, workbook, ws, ws_params, data, declaration):
 
-        ws.set_portrait()
+        ws.set_landscape()
         ws.fit_to_pages(1, 0)
         ws.set_header(self.xls_headers['standard'])
         ws.set_footer(self.xls_footers['standard'])

@@ -7,7 +7,7 @@ Generic Intrastat Product Declaration
 =====================================
 
 This module adds a menu entry for a Generic Intrastat Product Declaration.
-This is usefull to cover countries for which there is no localization module.
+This is useful to cover countries for which there is no localization module.
 
 Installation
 ============

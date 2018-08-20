@@ -23,6 +23,10 @@ class ProductTemplate(models.Model):
         help="Country of origin of the product i.e. product "
         "'made in ____'.")
 
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
     @api.multi
     def get_hs_code_recursively(self):
         res = self.env['hs.code']

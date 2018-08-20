@@ -19,13 +19,13 @@ class HSCode(models.Model):
         "available from the World Customs Organisation, see "
         "http://www.wcoomd.org")
     description = fields.Char(
-        'Description', translate=True,
+        translate=True,
         help="Short text description of the H.S. category")
     display_name = fields.Char(
-        compute='_compute_display_name_field', string="Display Name",
+        compute='_compute_display_name_field',
         store=True, readonly=True)
     local_code = fields.Char(
-        string='Local Code', required=True,
+        required=True,
         help="Code used for the national Import/Export declaration. "
         "The national code starts with the 6 digits of the H.S. and often "
         "has a few additional digits to extend the H.S. code.")

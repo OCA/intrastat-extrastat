@@ -391,28 +391,28 @@ msgid "Followers"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:706
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:705
 #: view:intrastat.product.declaration:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:639
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:638
 #: view:intrastat.product.declaration:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:729
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:728
 #: view:intrastat.product.declaration:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:671
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:670
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr ""
@@ -721,7 +721,7 @@ msgid "Messages and communication history"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:547
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:546
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
@@ -762,13 +762,13 @@ msgid "Net weight in Kg"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:739
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:738
 #, python-format
 msgid "No XML File has been generated."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:658
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:657
 #, python-format
 msgid "No records found for the selected period !"
 msgstr ""
@@ -1005,7 +1005,7 @@ msgid "Supplementary Units Quantity"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:659
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:658
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr ""

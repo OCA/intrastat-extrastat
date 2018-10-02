@@ -80,7 +80,9 @@ msgid "A declaration of the same type already exists for this month !\n"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:92
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_amount_accessory_cost_company_currency
+#, python-format
 msgid "Accessory Costs"
 msgstr ""
 
@@ -173,7 +175,10 @@ msgid "Company currency"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:237
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:248
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_computation_line_ids
+#, python-format
 msgid "Computation Lines"
 msgstr ""
 
@@ -204,14 +209,18 @@ msgid "Country"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:43
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_product_origin_country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_product_origin_country_id
+#, python-format
 msgid "Country of Origin of the Product"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:67
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line_src_dest_country_id
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line_src_dest_country_id
+#, python-format
 msgid "Country of Origin/Destination"
 msgstr ""
 
@@ -264,7 +273,10 @@ msgid "Declaration Line"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:239
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:250
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+#, python-format
 msgid "Declaration Lines"
 msgstr ""
 
@@ -377,14 +389,21 @@ msgid "Draft"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Excel Export"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:39
 #, python-format
 msgid "Extended"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:79
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_amount_company_currency
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_amount_company_currency
+#, python-format
 msgid "Fiscal Value"
 msgstr ""
 
@@ -399,28 +418,28 @@ msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:686
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:730
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:619
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:618
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:709
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:753
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:651
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:650
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr ""
@@ -466,8 +485,10 @@ msgid "Include Accessory Costs in Fiscal Value of Product"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:158
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_incoterm_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_incoterm_id
+#, python-format
 msgid "Incoterm"
 msgstr ""
 
@@ -488,9 +509,11 @@ msgid "International Commercial Terms are a series of predefined commercial term
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:55
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice_line_hs_code_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_hs_code_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_hs_code_id
+#, python-format
 msgid "Intrastat Code"
 msgstr ""
 
@@ -568,12 +591,14 @@ msgid "Intrastat Product Report Base Object"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:178
 #: model:ir.model,name:intrastat_product.model_intrastat_region
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_region_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_region_id
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse_region_id
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_region_view_form
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_region_view_tree
+#, python-format
 msgid "Intrastat Region"
 msgstr ""
 
@@ -598,10 +623,12 @@ msgid "Intrastat Supplementary Units"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:106
 #: model:ir.model,name:intrastat_product.model_intrastat_transaction
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_transaction_id
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
+#, python-format
 msgid "Intrastat Transaction"
 msgstr ""
 
@@ -645,8 +672,10 @@ msgid "Inventory Locations"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:188
 #: model:ir.model,name:intrastat_product.model_account_invoice
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_invoice_id
+#, python-format
 msgid "Invoice"
 msgstr ""
 
@@ -696,7 +725,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:527
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:526
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
@@ -737,13 +766,19 @@ msgid "Net weight in Kg"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:719
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:251
+#, python-format
+msgid "No"
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:763
 #, python-format
 msgid "No XML File has been generated."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:638
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:637
 #, python-format
 msgid "No records found for the selected period !"
 msgstr ""
@@ -835,7 +870,9 @@ msgid "Postal consignments"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:32
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_product_id
+#, python-format
 msgid "Product"
 msgstr ""
 
@@ -952,14 +989,18 @@ msgid "State of the declaration. When the state is set to 'Done', the parameters
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:147
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_intrastat_unit_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_intrastat_unit_id
+#, python-format
 msgid "Suppl. Unit"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:131
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_suppl_unit_qty
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_suppl_unit_qty
+#, python-format
 msgid "Suppl. Unit Qty"
 msgstr ""
 
@@ -976,7 +1017,7 @@ msgid "Supplementary Units Quantity"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:639
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:638
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr ""
@@ -1031,9 +1072,11 @@ msgid "Transactions"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:168
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_transport_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_transport_id
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order_intrastat_transport_id
+#, python-format
 msgid "Transport Mode"
 msgstr ""
 
@@ -1073,8 +1116,10 @@ msgid "Warehouse"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:117
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_weight
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_weight
+#, python-format
 msgid "Weight"
 msgstr ""
 
@@ -1102,5 +1147,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_account_config_settings
 msgid "account.config.settings"
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:251
+#, python-format
+msgid "for period %s"
 msgstr ""
 

@@ -65,5 +65,5 @@ class AccountInvoiceLine(models.Model):
     @api.onchange('product_id')
     def intrastat_product_id_change(self):
         if self.product_id:
-            hs_code = self.product_id.product_tmpl_id.get_hs_code_recursively()
+            hs_code = self.product_id.get_hs_code_recursively()
             self.hs_code_id = hs_code and hs_code.id or False

@@ -17,7 +17,8 @@
             <button name="generate_xml"
                     string="Generate XML Declaration File"
                     type="object"
-                    attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    attrs="{'invisible': [('state', '!=', 'draft')]}"
+                    invisible="context.get('generic_intrastat_product_declaration')"/>
             <button name="done" string="Done" type="object" class="oe_highlight" states="draft"/>
             <button name="back2draft" string="Back to Draft" type="object" states="done"/>
             <field name="state" widget="statusbar"/>
@@ -31,7 +32,7 @@
             </div>
             <group name="top-block">
               <group name="properties-1">
-                <field name="year"/>
+                <field name="year" widget="char"/>
                 <field name="month"/>
                 <field name="type"/>
                 <field name="reporting_level" invisible="1"/>
@@ -48,11 +49,19 @@
             </group>
             <notebook>
               <page string="Transactions">
+                <header>
+                  <button name="create_xls" type="object" string="Excel Export"
+                          context="{'computation_lines': 1}"/>
+                </header>
                 <group name="computation_lines">
                   <field name="computation_line_ids" nolabel="1"/>
                 </group>
               </page>
               <page string="Declaration Lines">
+                <header>
+                  <button name="create_xls" type="object" string="Excel Export"
+                          context="{'declaration_lines': 1}"/>
+                </header>
                 <group name="declaration_lines">
                   <field name="declaration_line_ids" nolabel="1"/>
                 </group>

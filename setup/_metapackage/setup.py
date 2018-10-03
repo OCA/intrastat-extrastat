@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo10-addon-hs_code_link',
         'odoo10-addon-intrastat_base',
         'odoo10-addon-intrastat_product',
+        'odoo10-addon-intrastat_product_generic',
         'odoo10-addon-product_harmonized_system',
     ],
     classifiers=[

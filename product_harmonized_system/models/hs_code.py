@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2011-2016 Akretion (http://www.akretion.com)
-# © 2009-2016 Noviat (http://www.noviat.com)
+# © 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -36,9 +36,15 @@ class HSCode(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'hs.code'))
     product_categ_ids = fields.One2many(
-        'product.category', 'hs_code_id', string='Product Categories')
+        comodel_name='product.category',
+        inverse_name='hs_code_id',
+        string='Product Categories',
+        readonly=True)
     product_tmpl_ids = fields.One2many(
-        'product.template', 'hs_code_id', string='Products')
+        comodel_name='product.template',
+        inverse_name='hs_code_id',
+        string='Products',
+        readonly=True)
 
     @api.multi
     @api.depends('local_code')

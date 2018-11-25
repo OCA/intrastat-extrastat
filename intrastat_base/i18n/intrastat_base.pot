@@ -19,7 +19,7 @@ msgid "Activate this option for shipping costs, packaging costs and all services
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:173
+#: code:addons/intrastat_base/models/intrastat_common.py:168
 #, python-format
 msgid "Cannot delete the declaration %s because it is in Done state"
 msgstr ""
@@ -173,15 +173,9 @@ msgid "Tax"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:70
+#: code:addons/intrastat_base/models/intrastat_common.py:65
 #, python-format
 msgid "The VAT number is not set for the partner '%s'."
-msgstr ""
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:60
-#, python-format
-msgid "The company currency must be 'EUR', but is currently '%s'."
 msgstr ""
 
 #. module: intrastat_base
@@ -191,7 +185,7 @@ msgid "The country is not set on the company '%s'."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:93
+#: code:addons/intrastat_base/models/intrastat_common.py:88
 #, python-format
 msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s."
 msgstr ""

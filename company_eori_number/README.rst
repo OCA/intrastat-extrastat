@@ -3,42 +3,19 @@
     :alt: License: AGPL-3
 
 ===================
-company_eori_number
+Company EORI number
 ===================
 
 This module was written to extend the functionality of the company form to support EORI number (Economic Operators Registration and Identification number) .
 
-
-Installation
-============
-
-To install this module, you need to:
-
-
-#. Install the module.
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-#. No need for configuration
-
 Usage
 =====
 
-To use this module, you need to:
-
-#. After installation of the module a new field 'EORI number' will be added to the company form.
+After installation of the module a new field 'EORI number' will be added to the company form.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot
     :target: https://runbot.odoo-community.org/runbot//8.0
-
-
-Known issues / Roadmap
-======================
-
 
 Bug Tracker
 ============
@@ -60,7 +37,7 @@ Images
 Contributors
 ------------
 
-* lfreeke <lfreeke@therp.nl>
+* Lara Freeke <lfreeke@therp.nl>
 
 Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
 

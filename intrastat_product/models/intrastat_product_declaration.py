@@ -503,7 +503,7 @@ class IntrastatProductDeclaration(models.Model):
 
                 if not inv_line.price_subtotal:
                     continue
-                
+
                 if (
                         accessory_costs and
                         inv_line.product_id and

@@ -4,8 +4,8 @@ with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
 
 setuptools.setup(
-    name="odoo9-addons-oca-intrastat",
-    description="Meta package for oca-intrastat Odoo addons",
+    name="odoo9-addons-oca-intrastat-extrastat",
+    description="Meta package for oca-intrastat-extrastat Odoo addons",
     version=version,
     install_requires=[
         'odoo9-addon-intrastat_base',

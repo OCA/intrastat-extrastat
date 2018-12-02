@@ -23,6 +23,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[company_eori_number](company_eori_number/) | 8.0.1.0.0 | Add EORI number to company form
 [intrastat_base](intrastat_base/) | 8.0.1.3.0 | Base module for Intrastat reporting
 [intrastat_product](intrastat_product/) | 8.0.1.5.0 | Base module for Intrastat Product
 [product_harmonized_system](product_harmonized_system/) | 8.0.0.2.0 | Base module for Product Import/Export reports

@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-intrastat-extrastat Odoo addons",
     version=version,
     install_requires=[
+        'odoo8-addon-company_eori_number',
         'odoo8-addon-intrastat_base',
         'odoo8-addon-intrastat_product',
         'odoo8-addon-product_harmonized_system',

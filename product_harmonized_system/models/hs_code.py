@@ -48,7 +48,7 @@ class HSCode(models.Model):
         "has a few additional digits to extend the H.S. code.")
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
-        'res.company', string='Company', readonly=True, required=True,
+        'res.company', string='Company',
         default=lambda self: self.env['res.company']._company_default_get(
             'hs.code'))
     product_categ_ids = fields.One2many(

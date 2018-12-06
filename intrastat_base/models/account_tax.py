@@ -12,3 +12,13 @@ class AccountTax(models.Model):
         help="If this tax is present on an invoice line, this invoice "
         "line will be skipped when generating Intrastat Product or "
         "Service lines from invoices.")
+
+
+class AccountTaxTemplate(models.Model):
+    _inherit = "account.tax.template"
+
+    exclude_from_intrastat_if_present = fields.Boolean(
+        string='Exclude invoice line from intrastat if this tax is present',
+        help="If this tax is present on an invoice line, this invoice "
+        "line will be skipped when generating Intrastat Product or "
+        "Service lines from invoices.")

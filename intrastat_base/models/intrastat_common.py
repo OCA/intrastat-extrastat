@@ -3,6 +3,8 @@
 
 from odoo import models, fields, api, tools, _
 from odoo.exceptions import UserError
+import base64
+from lxml import etree
 import logging
 
 logger = logging.getLogger(__name__)
@@ -48,29 +50,29 @@ class IntrastatCommon(models.AbstractModel):
         return True
 
     @api.model
-    def _check_xml_schema(self, xml_string, xsd_file):
+    def _check_xml_schema(self, xml_etree, xsd_file):
         '''Validate the XML file against the XSD'''
-        from lxml import etree
-        from io import StringIO
         xsd_etree_obj = etree.parse(
             tools.file_open(xsd_file))
         official_schema = etree.XMLSchema(xsd_etree_obj)
         try:
-            t = etree.parse(StringIO(xml_string))
-            official_schema.assertValid(t)
+            official_schema.assertValid(xml_etree)
         except Exception as e:
             # if the validation of the XSD fails, we arrive here
             logger = logging.getLogger(__name__)
             logger.warning(
                 "The XML file is invalid against the XML Schema Definition")
+            xml_string = etree.tostring(
+                xml_etree, pretty_print=True, encoding='UTF-8',
+                xml_declaration=True).decode()
             logger.warning(xml_string)
             logger.warning(e)
-            raise UserError(
-                _("The generated XML file is not valid against the official "
-                    "XML Schema Definition. The generated XML file and the "
-                    "full error have been written in the server logs. "
-                    "Here is the error, which may give you an idea on the "
-                    "cause of the problem : %s.")
+            raise UserError(_(
+                "The generated XML file is not valid against the official "
+                "XML Schema Definition. The generated XML file and the "
+                "full error have been written in the server logs. "
+                "Here is the error, which may give you an idea on the "
+                "cause of the problem : %s.")
                 % str(e))
         return True
 
@@ -79,13 +81,12 @@ class IntrastatCommon(models.AbstractModel):
         '''Attach the XML file to the report_intrastat_product/service
         object'''
         self.ensure_one()
-        import base64
         filename = '%s_%s.xml' % (self.year_month, declaration_name)
         attach = self.env['ir.attachment'].create({
             'name': filename,
             'res_id': self.id,
             'res_model': self._name,
-            'datas': base64.encodestring(xml_string),
+            'datas': base64.b64encode(xml_string),
             'datas_fname': filename})
         return attach.id
 

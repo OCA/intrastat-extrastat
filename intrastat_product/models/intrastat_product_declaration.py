@@ -428,13 +428,18 @@ class IntrastatProductDeclaration(models.Model):
                         total_inv_accessory_costs_cc *
                         ac_line_vals['amount_company_currency'] /
                         total_inv_product_cc)
-            else:
+            elif total_inv_weight:
                 # pro-rata of the weight
                 for ac_line_vals in lines_current_invoice:
                     ac_line_vals['amount_accessory_cost_company_currency'] = (
                         total_inv_accessory_costs_cc *
                         ac_line_vals['weight'] /
                         total_inv_weight)
+            else:
+                for ac_line_vals in lines_current_invoice:
+                    ac_line_vals['amount_accessory_cost_company_currency'] = (
+                        total_inv_accessory_costs_cc /
+                        len(lines_current_invoice))
 
     def _prepare_invoice_domain(self):
         """

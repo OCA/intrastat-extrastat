@@ -34,6 +34,7 @@ class HSCode(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env['res.company']._company_default_get()
+    )
     product_categ_ids = fields.One2many(
         comodel_name='product.category',
         inverse_name='hs_code_id',

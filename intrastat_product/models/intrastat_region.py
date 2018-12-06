@@ -16,8 +16,7 @@ class IntrastatRegion(models.Model):
     description = fields.Char(string='Description')
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get(
-            'intrastat.region'))
+        default=lambda self: self.env['res.company']._company_default_get())
 
     _sql_constraints = [
         ('intrastat_region_code_unique',

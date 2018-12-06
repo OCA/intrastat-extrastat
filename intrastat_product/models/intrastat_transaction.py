@@ -20,8 +20,7 @@ class IntrastatTransaction(models.Model):
         readonly=True, store=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get(
-            'intrastat.transaction'))
+        default=lambda self: self.env['res.company']._company_default_get())
 
     @api.multi
     @api.depends('code', 'description')

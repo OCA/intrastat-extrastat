@@ -53,7 +53,7 @@ class AccountInvoice(models.Model):
     @api.model
     def _default_intrastat_transaction_id(self):
         rco = self.env['res.company']
-        company = rco._company_default_get('account.invoice')
+        company = rco._company_default_get()
         inv_type = self._context.get('type')
         if inv_type == 'out_invoice':
             return company.intrastat_transaction_out_invoice
@@ -69,7 +69,7 @@ class AccountInvoice(models.Model):
     @api.model
     def _default_src_dest_region_id(self):
         rco = self.env['res.company']
-        company = rco._company_default_get('account.invoice')
+        company = rco._company_default_get()
         return company.intrastat_region_id
 
 

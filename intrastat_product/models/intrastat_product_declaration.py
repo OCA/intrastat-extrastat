@@ -80,8 +80,7 @@ class IntrastatProductDeclaration(models.Model):
 
     company_id = fields.Many2one(
         'res.company', string='Company', readonly=True,
-        default=lambda self: self.env['res.company']._company_default_get(
-            'intrastat.product.declaration'))
+        default=lambda self: self.env['res.company']._company_default_get())
     company_country_code = fields.Char(
         compute='_compute_company_country_code',
         string='Company Country Code', readonly=True, store=True,
@@ -923,29 +922,6 @@ class IntrastatProductDeclarationLine(models.Model):
     product_origin_country_id = fields.Many2one(
         'res.country', string='Country of Origin of the Product',
         help="Country of origin of the product i.e. product 'made in ____'")
-
-    @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        """
-        This method is DEPRECATED.
-        You should use the _prepare_grouped_fields method on the
-        IntrastatProductDeclaration class.
-        """
-        vals = {
-            'src_dest_country_id': computation_line.src_dest_country_id.id,
-            'intrastat_unit_id': computation_line.intrastat_unit_id.id,
-            'hs_code_id': computation_line.hs_code_id.id,
-            'transaction_id': computation_line.transaction_id.id,
-            'transport_id': computation_line.transport_id.id,
-            'region_id': computation_line.region_id.id,
-            'parent_id': computation_line.parent_id.id,
-            'product_origin_country_id':
-            computation_line.product_origin_country_id.id,
-            'amount_company_currency': 0.0,
-        }
-        for field in fields_to_sum:
-            vals[field] = 0.0
-        return vals
 
     def _fields_to_sum(self):
         """

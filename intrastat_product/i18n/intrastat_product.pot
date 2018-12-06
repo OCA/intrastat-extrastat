@@ -418,28 +418,28 @@ msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:730
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:735
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:618
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:623
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:753
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:758
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:650
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:655
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr ""
@@ -725,7 +725,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:526
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:531
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
@@ -772,13 +772,13 @@ msgid "No"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:763
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:768
 #, python-format
 msgid "No XML File has been generated."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:637
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:642
 #, python-format
 msgid "No records found for the selected period !"
 msgstr ""
@@ -1017,7 +1017,7 @@ msgid "Supplementary Units Quantity"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:638
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:643
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr ""

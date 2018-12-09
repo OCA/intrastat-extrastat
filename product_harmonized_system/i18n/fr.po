@@ -148,6 +148,12 @@ msgid "Printed circuits"
 msgstr ""
 
 #. module: product_harmonized_system
+#: model:ir.model,name:product_harmonized_system.model_product_product
+#, fuzzy
+msgid "Product"
+msgstr "Catégorie d'articles"
+
+#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code_product_categ_ids
 #: model:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 #, fuzzy

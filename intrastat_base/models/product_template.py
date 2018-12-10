@@ -19,9 +19,8 @@ class ProductTemplate(models.Model):
     def _check_accessory_cost(self):
         for this in self:
             if this.is_accessory_cost and this.type != 'service':
-                raise ValidationError(
-                    _("The option 'Is accessory cost?' should only be "
-                        "activated on 'Service' products. You have activated "
-                        "this option for the product '%s' which is of type "
-                        "'%s'") %
-                    (this.name, this.type))
+                raise ValidationError(_(
+                    "The option 'Is accessory cost' should only be "
+                    "activated on 'Service' products. You have activated "
+                    "this option for the product '%s' which is of type "
+                    "'%s'") % (this.name, this.type))

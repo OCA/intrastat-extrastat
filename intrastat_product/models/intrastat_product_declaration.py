@@ -79,15 +79,15 @@ class IntrastatProductDeclaration(models.Model):
         return 'replace'
 
     company_id = fields.Many2one(
-        'res.company', string='Company', readonly=True,
+        'res.company', string='Company', readonly=True, required=True,
         default=lambda self: self.env['res.company']._company_default_get())
     company_country_code = fields.Char(
         compute='_compute_company_country_code',
         string='Company Country Code', readonly=True, store=True,
         help="Used in views and methods of localization modules.")
     year = fields.Integer(
-        string='Year', required=True,
-        default=_get_year)
+        string='Year', required=True, default=_get_year,
+        states={'done': [('readonly', True)]})
     month = fields.Selection([
         (1, '01'),
         (2, '02'),
@@ -101,8 +101,8 @@ class IntrastatProductDeclaration(models.Model):
         (10, '10'),
         (11, '11'),
         (12, '12')
-    ], string='Month', required=True,
-        default=_get_month)
+        ], string='Month', required=True, default=_get_month,
+        states={'done': [('readonly', True)]})
     year_month = fields.Char(
         compute='_compute_year_month', string='Period', readonly=True,
         track_visibility='onchange', store=True,
@@ -136,12 +136,11 @@ class IntrastatProductDeclaration(models.Model):
         compute='_compute_numbers', string='Total Fiscal Amount', store=True,
         help="Total fiscal amount in company currency of the declaration.")
     currency_id = fields.Many2one(
-        'res.currency', related='company_id.currency_id', readonly=True,
-        string='Currency')
+        related='company_id.currency_id', readonly=True, string='Company Currency')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('done', 'Done'),
-    ], string='State', readonly=True, track_visibility='onchange',
+        ], string='State', readonly=True, track_visibility='onchange',
         copy=False, default='draft',
         help="State of the declaration. When the state is set to 'Done', "
         "the parameters become read-only.")
@@ -149,13 +148,12 @@ class IntrastatProductDeclaration(models.Model):
         string='Notes',
         help="You can add some comments here if you want.")
     reporting_level = fields.Selection(
-        '_get_reporting_level',
-        string='Reporting Level')
+        '_get_reporting_level', string='Reporting Level',
+        states={'done': [('readonly', True)]})
     valid = fields.Boolean(
         compute='_check_validity',
         string='Valid')
 
-    @api.model
     @api.constrains('year')
     def _check_year(self):
         for this in self:
@@ -178,7 +176,7 @@ class IntrastatProductDeclaration(models.Model):
             if this.company_id:
                 if not this.company_id.country_id:
                     raise ValidationError(
-                        _("You must set company's country !"))
+                        _("You must set the country of the company!"))
                 this.company_country_code = \
                     this.company_id.country_id.code.lower()
 
@@ -292,7 +290,7 @@ class IntrastatProductDeclaration(models.Model):
         elif source_uom.category_id == pce_uom_categ:
             if not product.weight:  # re-create weight_net ?
                 note = "\n" + _(
-                    "Missing net weight on product %s."
+                    "Missing weight on product %s."
                 ) % product.name_get()[0][1]
                 note += "\n" + _(
                     "Please correct the product record and regenerate "
@@ -418,13 +416,18 @@ class IntrastatProductDeclaration(models.Model):
                         total_inv_accessory_costs_cc *
                         ac_line_vals['amount_company_currency'] /
                         total_inv_product_cc)
-            else:
+            elif total_inv_weight:
                 # pro-rata of the weight
                 for ac_line_vals in lines_current_invoice:
                     ac_line_vals['amount_accessory_cost_company_currency'] = (
                         total_inv_accessory_costs_cc *
                         ac_line_vals['weight'] /
                         total_inv_weight)
+            else:
+                for ac_line_vals in lines_current_invoice:
+                    ac_line_vals['amount_accessory_cost_company_currency'] = (
+                        total_inv_accessory_costs_cc /
+                        len(lines_current_invoice))
 
     def _prepare_invoice_domain(self):
         """
@@ -763,34 +766,27 @@ class IntrastatProductDeclaration(models.Model):
 
 class IntrastatProductComputationLine(models.Model):
     _name = 'intrastat.product.computation.line'
-    _description = "Intrastat Product Computataion Lines"
+    _description = "Intrastat Product Computation Lines"
 
     parent_id = fields.Many2one(
         'intrastat.product.declaration',
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     company_id = fields.Many2one(
-        'res.company', related='parent_id.company_id',
-        string="Company", readonly=True)
+        related='parent_id.company_id', readonly=True)
     company_currency_id = fields.Many2one(
-        'res.currency', related='company_id.currency_id',
-        string="Company currency", readonly=True)
+        related='company_id.currency_id', readonly=True)
     type = fields.Selection(
-        related='parent_id.type',
-        string='Type',
-        readonly=True)
+        related='parent_id.type', readonly=True)
     reporting_level = fields.Selection(
-        related='parent_id.reporting_level',
-        string='Reporting Level',
-        readonly=True)
+        related='parent_id.reporting_level', readonly=True)
     valid = fields.Boolean(
         compute='_check_validity',
         string='Valid')
     invoice_line_id = fields.Many2one(
         'account.invoice.line', string='Invoice Line', readonly=True)
     invoice_id = fields.Many2one(
-        'account.invoice', related='invoice_line_id.invoice_id',
-        string='Invoice', readonly=True)
+        related='invoice_line_id.invoice_id', string='Invoice', readonly=True)
     declaration_line_id = fields.Many2one(
         'intrastat.product.declaration.line',
         string='Declaration Line', readonly=True)
@@ -799,12 +795,11 @@ class IntrastatProductComputationLine(models.Model):
         help="Country of Origin/Destination",
         domain=[('intrastat', '=', True)])
     product_id = fields.Many2one(
-        'product.product', related='invoice_line_id.product_id',
-        string='Product', readonly=True)
+        related='invoice_line_id.product_id', readonly=True)
     hs_code_id = fields.Many2one(
         'hs.code', string='Intrastat Code')
     intrastat_unit_id = fields.Many2one(
-        'intrastat.unit', related='hs_code_id.intrastat_unit_id',
+        related='hs_code_id.intrastat_unit_id',
         string='Suppl. Unit', readonly=True,
         help="Intrastat Supplementary Unit")
     weight = fields.Float(
@@ -871,19 +866,12 @@ class IntrastatProductDeclarationLine(models.Model):
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     company_id = fields.Many2one(
-        'res.company', related='parent_id.company_id',
-        string="Company", readonly=True)
+        related='parent_id.company_id', readonly=True)
     company_currency_id = fields.Many2one(
-        'res.currency', related='company_id.currency_id',
-        string="Company currency", readonly=True)
-    type = fields.Selection(
-        related='parent_id.type',
-        string='Type',
-        readonly=True)
+        related='company_id.currency_id', readonly=True)
+    type = fields.Selection(related='parent_id.type', readonly=True)
     reporting_level = fields.Selection(
-        related='parent_id.reporting_level',
-        string='Reporting Level',
-        readonly=True)
+        related='parent_id.reporting_level', readonly=True)
     computation_line_ids = fields.One2many(
         'intrastat.product.computation.line', 'declaration_line_id',
         string='Computation Lines', readonly=True)

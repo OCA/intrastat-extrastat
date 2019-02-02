@@ -156,6 +156,7 @@
             </div>
             <field name="suppl_unit_qty"/>
             <field name="intrastat_unit_id"/>
+            <field name="type" invisible="1"/>
             <field name="reporting_level" invisible="1"/>
             <field name="transport_id"
               attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"/>
@@ -193,6 +194,7 @@
           <field name="region_id" invisible="1"/>
           <field name="product_origin_country_id" invisible="1" string="Product C/O"/>
           <field name="invoice_id"/>
+          <field name="type" invisible="1"/>
           <field name="reporting_level" invisible="1"/>
         </tree>
       </field>
@@ -220,6 +222,7 @@
             </div>
             <field name="suppl_unit_qty"/>
             <field name="intrastat_unit_id"/>
+            <field name="type" invisible="1"/>
             <field name="reporting_level" invisible="1"/>
             <field name="transport_id"
               attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"/>
@@ -248,6 +251,7 @@
           <field name="weight"/>
           <field name="suppl_unit_qty"/>
           <field name="intrastat_unit_id"/>
+          <field name="type" invisible="1"/>
           <field name="reporting_level" invisible="1"/>
           <field name="transport_id"
             attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"/>

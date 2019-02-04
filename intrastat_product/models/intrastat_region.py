@@ -1,7 +1,7 @@
-# © 2009-2018 Noviat nv/sa (www.noviat.com).
+# Copyright 2009-2018 Noviat nv/sa (www.noviat.com).
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class IntrastatRegion(models.Model):

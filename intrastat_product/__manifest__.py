@@ -1,6 +1,6 @@
-# © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2018 Noviat (http://www.noviat.com)
-# © 2018 brain-tec AG (http://www.braintec-group.com)
+# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2018 brain-tec AG (http://www.braintec-group.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # @author Kumar Aberer <kumar.aberer@braintec-group.com>

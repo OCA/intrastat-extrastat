@@ -1,4 +1,4 @@
-# © 2010-2017 Akretion (http://www.akretion.com)
+# Copyright 2010-2017 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 
 from odoo import api, fields, models

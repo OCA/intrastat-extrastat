@@ -1,9 +1,9 @@
-# © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):

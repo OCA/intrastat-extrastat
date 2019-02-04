@@ -35,9 +35,15 @@ class HSCode(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'hs.code'))
     product_categ_ids = fields.One2many(
-        'product.category', 'hs_code_id', string='Product Categories')
+        comodel_name='product.category',
+        inverse_name='hs_code_id',
+        string='Product Categories',
+        readonly=True)
     product_tmpl_ids = fields.One2many(
-        'product.template', 'hs_code_id', string='Products')
+        comodel_name='product.template',
+        inverse_name='hs_code_id',
+        string='Products',
+        readonly=True)
 
     @api.multi
     @api.depends('local_code')

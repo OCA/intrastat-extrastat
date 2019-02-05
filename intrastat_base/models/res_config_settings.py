@@ -1,8 +1,8 @@
-# © 2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
-# © 2018 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
+# Copyright 2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2018 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):

@@ -20,7 +20,7 @@ msgid "Activate this option for shipping costs, packaging costs and all services
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:154
+#: code:addons/intrastat_base/models/intrastat_common.py:150
 #, python-format
 msgid "Cannot delete the declaration %s because it is in Done state"
 msgstr ""
@@ -36,7 +36,7 @@ msgid "Companies"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:33
+#: code:addons/intrastat_base/models/intrastat_common.py:39
 #, python-format
 msgid "Company not yet set on intrastat report."
 msgstr ""
@@ -177,33 +177,27 @@ msgid "Tax"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:51
+#: code:addons/intrastat_base/models/intrastat_common.py:52
 #, python-format
 msgid "The VAT number is not set for the partner '%s'."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:41
-#, python-format
-msgid "The company currency must be 'EUR', but is currently '%s'."
-msgstr ""
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:37
+#: code:addons/intrastat_base/models/intrastat_common.py:43
 #, python-format
 msgid "The country is not set on the company '%s'."
-msgstr ""
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:74
-#, python-format
-msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s."
 msgstr ""
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/product_template.py:23
 #, python-format
 msgid "The option 'Is accessory cost?' should only be activated on 'Service' products. You have activated this option for the product '%s' which is of type '%s'"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:72
+#, python-format
+msgid "Unknown Error"
 msgstr ""
 
 #. module: intrastat_base

@@ -209,10 +209,8 @@ msgid "Country"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:43
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line_product_origin_country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line_product_origin_country_id
-#, python-format
 msgid "Country of Origin of the Product"
 msgstr ""
 
@@ -877,8 +875,10 @@ msgid "Product"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:43
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_tree
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
+#, python-format
 msgid "Product C/O"
 msgstr ""
 

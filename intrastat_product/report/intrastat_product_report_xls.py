@@ -23,7 +23,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
             self.env.cr, IR_TRANSLATION_NAME, 'report', lang, src) or src
         return val
 
-    def _get_template(self):
+    def _get_template(self, declaration):
 
         template = {
             'product': {
@@ -40,7 +40,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
             'product_origin_country': {
                 'header': {
                     'type': 'string',
-                    'value': self._('Country of Origin of the Product'),
+                    'value': self._('Product C/O'),
                 },
                 'line': {
                     'type': 'string',
@@ -194,7 +194,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
             },
         }
         template.update(
-            self.env['intrastat.product.declaration']._xls_template())
+            declaration._xls_template())
 
         return template
 
@@ -209,7 +209,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
         return declaration
 
     def _get_ws_params(self, wb, data, declaration):
-        template = self._get_template()
+        template = self._get_template(declaration)
         if self.env.context.get('computation_lines'):
             wl = declaration._xls_computation_line_fields()
             report = 'computation'

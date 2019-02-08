@@ -40,7 +40,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
             'product_origin_country': {
                 'header': {
                     'type': 'string',
-                    'value': self._('Country of Origin of the Product'),
+                    'value': self._('Product C/O'),
                 },
                 'line': {
                     'type': 'string',

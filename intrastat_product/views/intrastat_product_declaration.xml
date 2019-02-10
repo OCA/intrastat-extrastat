@@ -54,7 +54,9 @@
                           context="{'computation_lines': 1}"/>
                 </header>
                 <group name="computation_lines">
-                  <field name="computation_line_ids" nolabel="1"/>
+                  <field name="computation_line_ids"
+                         context="{'type': type, 'reporting_level': reporting_level}"
+                         nolabel="1"/>
                 </group>
               </page>
               <page string="Declaration Lines">
@@ -63,7 +65,9 @@
                           context="{'declaration_lines': 1}"/>
                 </header>
                 <group name="declaration_lines">
-                  <field name="declaration_line_ids" nolabel="1"/>
+                  <field name="declaration_line_ids"
+                         context="{'type': type, 'reporting_level': reporting_level}"
+                         nolabel="1"/>
                 </group>
               </page>
               <page string="Notes">

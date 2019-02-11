@@ -67,7 +67,8 @@ class IntrastatCommon(models.AbstractModel):
                 "The XML file is invalid against the XML Schema Definition")
             logger.warning(xml_string)
             logger.warning(e)
-            raise UserError('%s\n\n%s' % (e.__class__.__name__, str(e)))
+            usererror = '%s\n\n%s' % (e.__class__.__name__, str(e))
+            raise UserError(usererror)
         except Exception:
             error = _("Unknown Error")
             tb = ''.join(format_exception(*exc_info()))

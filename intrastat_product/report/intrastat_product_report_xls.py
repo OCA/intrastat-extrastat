@@ -192,8 +192,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 'width': 18,
             },
         }
-        template.update(
-             declaration._xls_template())
+        template.update(declaration._xls_template())
 
         return template
 

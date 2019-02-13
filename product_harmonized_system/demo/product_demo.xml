@@ -53,12 +53,6 @@
     <field name="weight">0.67</field>
 </record>
 
-<record id="product.product_product_17" model="product.product">
-    <field name="hs_code_id" ref="84717050" />
-    <field name="origin_country_id" ref="base.sg" />
-    <field name="weight">0.75</field>
-</record>
-
 <record id="product.product_product_20" model="product.product">
     <field name="hs_code_id" ref="85340090" />
     <field name="origin_country_id" ref="base.tw" />

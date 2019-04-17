@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-# © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2017 Noviat (http://www.noviat.com)
+# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import models, fields, api, _
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 
@@ -12,7 +11,8 @@ class HSCode(models.Model):
     _inherit = "hs.code"
 
     intrastat_unit_id = fields.Many2one(
-        'intrastat.unit', string='Intrastat Supplementary Unit')
+        comodel_name='intrastat.unit',
+        string='Intrastat Supplementary Unit')
 
     @api.constrains('local_code')
     def _hs_code(self):

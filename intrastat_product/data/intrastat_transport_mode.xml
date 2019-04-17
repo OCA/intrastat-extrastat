@@ -30,7 +30,6 @@
       <field name="code">7</field>
       <field name="name">Fixed installations</field>
       <field name="description">Fixed transport installations (e.g. pipelines, high-tension cables)</field>
-      <field name="description"></field>
     </record>
     <record id="intrastat_transport_8" model="intrastat.transport_mode">
       <field name="code">8</field>

@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
-# © 2009-2017 Noviat nv/sa (www.noviat.com).
+# Copyright 2009-2018 Noviat nv/sa (www.noviat.com).
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class StockWarehouse(models.Model):
     _inherit = 'stock.warehouse'
 
-    region_id = fields.Many2one('intrastat.region', string='Intrastat Region')
+    region_id = fields.Many2one(
+        comodel_name='intrastat.region', string='Intrastat Region')
 
 
 class StockLocation(models.Model):

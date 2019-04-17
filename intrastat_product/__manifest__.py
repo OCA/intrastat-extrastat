@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-# © 2011-2017 Akretion (http://www.akretion.com)
-# © 2009-2017 Noviat (http://www.noviat.com)
-# © 2018 brain-tec AG (http://www.braintec-group.com)
+# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2009-2019 Noviat (http://www.noviat.com)
+# Copyright 2018 brain-tec AG (http://www.braintec-group.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # @author Kumar Aberer <kumar.aberer@braintec-group.com>
 
 {
     'name': 'Intrastat Product',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.2.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat Product',
@@ -19,8 +18,9 @@
         'product_harmonized_system',
         'sale_stock',
         'purchase',
+        'report_xlsx_helper',
     ],
-    'conflicts': ['report_intrastat'],
+    'excludes': ['report_intrastat'],
     'data': [
         'views/hs_code.xml',
         'views/intrastat_region.xml',

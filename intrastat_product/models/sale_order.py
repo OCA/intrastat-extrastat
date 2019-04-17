@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
-# © 2010-2017 Akretion (http://www.akretion.com)
+# Copyright 2010-2017 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     intrastat_transport_id = fields.Many2one(
-        'intrastat.transport_mode', string='Transport Mode',
+        comodel_name='intrastat.transport_mode', string='Transport Mode',
         help="This information is used in Intrastat reports")
     intrastat = fields.Selection(
         string='Intrastat Declaration',

@@ -1,11 +1,15 @@
-# © 2010-2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2010-2016 Akretion (<alexis.delattre@akretion.com>)
+# Copyright 2009-2019 Noviat (http://www.noviat.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, tools, _
-from odoo.exceptions import UserError
-import base64
+from io import BytesIO
 from lxml import etree
+from sys import exc_info
+from traceback import format_exception
 import logging
+
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
@@ -50,43 +54,40 @@ class IntrastatCommon(models.AbstractModel):
         return True
 
     @api.model
-    def _check_xml_schema(self, xml_etree, xsd_file):
+    def _check_xml_schema(self, xml_string, xsd_file):
         '''Validate the XML file against the XSD'''
         xsd_etree_obj = etree.parse(
-            tools.file_open(xsd_file))
+            tools.file_open(xsd_file, mode='rb'))
         official_schema = etree.XMLSchema(xsd_etree_obj)
         try:
-            official_schema.assertValid(xml_etree)
-        except Exception as e:
-            # if the validation of the XSD fails, we arrive here
-            logger = logging.getLogger(__name__)
+            t = etree.parse(BytesIO(xml_string))
+            official_schema.assertValid(t)
+        except (etree.XMLSchemaParseError, etree.DocumentInvalid) as e:
             logger.warning(
                 "The XML file is invalid against the XML Schema Definition")
-            xml_string = etree.tostring(
-                xml_etree, pretty_print=True, encoding='UTF-8',
-                xml_declaration=True).decode()
             logger.warning(xml_string)
             logger.warning(e)
-            raise UserError(_(
-                "The generated XML file is not valid against the official "
-                "XML Schema Definition. The generated XML file and the "
-                "full error have been written in the server logs. "
-                "Here is the error, which may give you an idea on the "
-                "cause of the problem : %s.")
-                % str(e))
-        return True
+            usererror = '%s\n\n%s' % (e.__class__.__name__, str(e))
+            raise UserError(usererror)
+        except Exception:
+            error = _("Unknown Error")
+            tb = ''.join(format_exception(*exc_info()))
+            error += '\n%s' % tb
+            logger.warning(error)
+            raise UserError(error)
 
     @api.multi
     def _attach_xml_file(self, xml_string, declaration_name):
         '''Attach the XML file to the report_intrastat_product/service
         object'''
         self.ensure_one()
+        import base64
         filename = '%s_%s.xml' % (self.year_month, declaration_name)
         attach = self.env['ir.attachment'].create({
             'name': filename,
             'res_id': self.id,
             'res_model': self._name,
-            'datas': base64.b64encode(xml_string),
+            'datas': base64.encodestring(xml_string),
             'datas_fname': filename})
         return attach.id
 

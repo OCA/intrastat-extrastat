@@ -12,9 +12,9 @@
     <field name="model">account.tax</field>
     <field name="inherit_id" ref="account.view_tax_form"/>
     <field name="arch" type="xml">
-        <group name="advanced_booleans" position="inside">
+        <field name="active" position="before">
             <field name="exclude_from_intrastat_if_present"/>
-        </group>
+        </field>
     </field>
 </record>
 

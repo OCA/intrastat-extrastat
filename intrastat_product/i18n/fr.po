@@ -573,10 +573,6 @@ msgstr "DEB"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
-msgid "Intrastat Product Computation Lines"
-msgstr "Lignes de calcul de la DEB"
-
-#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_computation_line_ids
 msgid "Intrastat Product Computation Lines"
 msgstr "Lignes de calcul de la DEB"

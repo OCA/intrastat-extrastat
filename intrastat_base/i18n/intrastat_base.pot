@@ -70,6 +70,7 @@ msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_tax_exclude_from_intrastat_if_present
+#: model:ir.model.fields,field_description:intrastat_base.field_account_tax_template_exclude_from_intrastat_if_present
 msgid "Exclude invoice line from intrastat if this tax is present"
 msgstr ""
 
@@ -81,6 +82,7 @@ msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_tax_exclude_from_intrastat_if_present
+#: model:ir.model.fields,help:intrastat_base.field_account_tax_template_exclude_from_intrastat_if_present
 msgid "If this tax is present on an invoice line, this invoice line will be skipped when generating Intrastat Product or Service lines from invoices."
 msgstr ""
 
@@ -174,6 +176,11 @@ msgstr ""
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_tax
 msgid "Tax"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_tax_template
+msgid "Templates for Taxes"
 msgstr ""
 
 #. module: intrastat_base

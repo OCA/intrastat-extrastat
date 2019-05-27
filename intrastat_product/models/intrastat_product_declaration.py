@@ -1,26 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Intrastat Product module for Odoo
-#    Copyright (C) 2011-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2009-2015 Noviat (http://www.noviat.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#    @author Luc de Meyer <info@noviat.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright (C) 2011-2019 Akretion (http://www.akretion.com)
+# Copyright (C) 2009-2019 Noviat (http://www.noviat.com)
+# @author Alexis de Lattre <alexis.delattre@akretion.com>
+# @author Luc de Meyer <info@noviat.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
 from openerp.exceptions import RedirectWarning, ValidationError
@@ -42,8 +25,8 @@ class IntrastatProductDeclaration(models.Model):
         'state': {
             'intrastat_product.declaration_done':
             lambda self, cr, uid, obj, ctx=None: obj['state'] == 'done',
-            }
         }
+    }
 
     @api.model
     def _get_type(self):
@@ -126,8 +109,8 @@ class IntrastatProductDeclaration(models.Model):
         (9, '09'),
         (10, '10'),
         (11, '11'),
-        (12, '12')
-        ], string='Month', required=True,
+        (12, '12')],
+        string='Month', required=True,
         default=_get_month)
     year_month = fields.Char(
         compute='_compute_year_month', string='Period', readonly=True,
@@ -166,8 +149,8 @@ class IntrastatProductDeclaration(models.Model):
         string='Currency')
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('done', 'Done'),
-        ], string='State', readonly=True, track_visibility='onchange',
+        ('done', 'Done')],
+        string='State', readonly=True, track_visibility='onchange',
         copy=False, default='draft',
         help="State of the declaration. When the state is set to 'Done', "
         "the parameters become read-only.")
@@ -236,6 +219,12 @@ class IntrastatProductDeclaration(models.Model):
     def _get_partner_country(self, inv_line):
         country = inv_line.invoice_id.src_dest_country_id \
             or inv_line.invoice_id.partner_id.country_id
+        if not country:
+            _logger.info(
+                'Skipping invoice line %s qty %s '
+                'of invoice %s. Reason: no partner country'
+                % (inv_line.name, inv_line.quantity,
+                   inv_line.invoice_id.number))
         if not country.intrastat:
             country = False
         elif country == self.company_id.country_id:
@@ -273,7 +262,7 @@ class IntrastatProductDeclaration(models.Model):
             note = "\n" + _(
                 "Missing unit of measure on the line with %d "
                 "product(s) '%s' on invoice '%s'."
-                ) % (line_qty, product.name_get()[0][1], invoice.number)
+            ) % (line_qty, product.name_get()[0][1], invoice.number)
             note += "\n" + _(
                 "Please adjust this line manually.")
             self._note += note
@@ -285,12 +274,12 @@ class IntrastatProductDeclaration(models.Model):
                 note = "\n" + _(
                     "Conversion from Intrastat Supplementary Unit '%s' to "
                     "Unit of Measure is not implemented yet."
-                    ) % intrastat_unit_id.name
+                ) % intrastat_unit_id.name
                 note += "\n" + _(
                     "Please correct the Intrastat Supplementary Unit "
                     "settings and regenerate the lines or adjust the lines "
                     "with Intrastat Code '%s' manually"
-                    ) % hs_code.display_name
+                ) % hs_code.display_name
                 self._note += note
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
@@ -300,7 +289,7 @@ class IntrastatProductDeclaration(models.Model):
                 note = "\n" + _(
                     "Conversion from unit of measure '%s' to '%s' "
                     "is not implemented yet."
-                    ) % (source_uom.name, target_uom.name)
+                ) % (source_uom.name, target_uom.name)
                 note += "\n" + _(
                     "Please correct the unit of measure settings and "
                     "regenerate the lines or adjust the impacted "
@@ -317,7 +306,7 @@ class IntrastatProductDeclaration(models.Model):
             if not product.weight_net:
                 note = "\n" + _(
                     "Missing net weight on product %s."
-                    ) % product.name_get()[0][1]
+                ) % product.name_get()[0][1]
                 note += "\n" + _(
                     "Please correct the product record and regenerate "
                     "the lines or adjust the impacted lines manually")
@@ -332,6 +321,8 @@ class IntrastatProductDeclaration(models.Model):
                     self.env['product.uom']._compute_qty_obj(
                         source_uom, line_qty, pce_uom)
         else:
+            # in case of product records with e.g. uom 'liter' and the weight
+            # correctly filled in we should report back the weight
             if not product.weight_net:
                 note = "\n" + _(
                     "Missing net weight on product %s."
@@ -390,10 +381,10 @@ class IntrastatProductDeclaration(models.Model):
         inv_type = inv_line.invoice_id.type
         if inv_line.move_line_ids:
             if inv_type in ('in_invoice', 'out_refund'):
-                region = inv_line.move_line_ids[0].location_id.\
+                region = inv_line.move_line_ids[0].location_dest_id.\
                     get_intrastat_region()
             else:
-                region = inv_line.move_line_ids[0].location_dest_id.\
+                region = inv_line.move_line_ids[0].location_id.\
                     get_intrastat_region()
         elif inv_type in ('in_invoice', 'in_refund'):
             po_lines = self.env['purchase.order.line'].search(
@@ -515,6 +506,9 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_weight = 0.0
             for inv_line in invoice.invoice_line:
 
+                if not inv_line.price_subtotal:
+                    continue
+
                 if (
                         accessory_costs and
                         inv_line.product_id and
@@ -536,10 +530,6 @@ class IntrastatProductDeclaration(models.Model):
 
                 partner_country = self._get_partner_country(inv_line)
                 if not partner_country:
-                    _logger.info(
-                        'Skipping invoice line %s qty %s '
-                        'of invoice %s. Reason: no partner_country'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
                     continue
 
                 if any([
@@ -555,8 +545,7 @@ class IntrastatProductDeclaration(models.Model):
                 if inv_line.hs_code_id:
                     hs_code = inv_line.hs_code_id
                 elif inv_line.product_id and self._is_product(inv_line):
-                    hs_code = inv_line.product_id.product_tmpl_id.\
-                        get_hs_code_recursively()
+                    hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:
                         note = "\n" + _(
                             "Missing H.S. code on product %s. "
@@ -567,7 +556,7 @@ class IntrastatProductDeclaration(models.Model):
                         continue
                 else:
                     _logger.info(
-                        'Skipping invoice line %s qty %s'
+                        'Skipping invoice line %s qty %s '
                         'of invoice %s. Reason: no product nor hs_code'
                         % (inv_line.name, inv_line.quantity, invoice.number))
                     continue
@@ -601,14 +590,14 @@ class IntrastatProductDeclaration(models.Model):
                     'product_origin_country_id':
                     product_origin_country.id or False,
                     'region_id': region and region.id or False,
-                    }
+                }
 
                 # extended declaration
                 if self._extended:
                     transport = self._get_transport(inv_line)
                     line_vals.update({
                         'transport_id': transport.id,
-                        })
+                    })
 
                 self._update_computation_line_vals(inv_line, line_vals)
 
@@ -644,7 +633,7 @@ class IntrastatProductDeclaration(models.Model):
             'kg_uom': self.env.ref('product.product_uom_kgm'),
             'pce_uom_categ': self.env.ref('product.product_uom_categ_unit'),
             'pce_uom': self.env.ref('product.product_uom_unit')
-            }
+        }
         return uom_refs[ref]
 
     @api.multi
@@ -705,12 +694,57 @@ class IntrastatProductDeclaration(models.Model):
             'region': computation_line.region_id.id or False,
             'product_origin_country':
                 computation_line.product_origin_country_id.id or False,
-            }
+        }
 
     def group_line_hashcode(self, computation_line):
         hc_fields = self._group_line_hashcode_fields(computation_line)
         hashcode = '-'.join([unicode(f) for f in hc_fields.itervalues()])
         return hashcode
+
+    @api.model
+    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+        vals = {
+            'src_dest_country_id': computation_line.src_dest_country_id.id,
+            'intrastat_unit_id': computation_line.intrastat_unit_id.id,
+            'hs_code_id': computation_line.hs_code_id.id,
+            'transaction_id': computation_line.transaction_id.id,
+            'transport_id': computation_line.transport_id.id,
+            'region_id': computation_line.region_id.id,
+            'parent_id': computation_line.parent_id.id,
+            'product_origin_country_id':
+            computation_line.product_origin_country_id.id,
+            'amount_company_currency': 0.0,
+        }
+        for field in fields_to_sum:
+            vals[field] = 0.0
+        return vals
+
+    def _fields_to_sum(self):
+        fields_to_sum = [
+            'weight',
+            'suppl_unit_qty',
+        ]
+        return fields_to_sum
+
+    @api.model
+    def _prepare_declaration_line(self, computation_lines):
+        fields_to_sum = self._fields_to_sum()
+        vals = self._prepare_grouped_fields(
+            computation_lines[0], fields_to_sum)
+        for computation_line in computation_lines:
+            for field in fields_to_sum:
+                vals[field] += computation_line[field]
+            vals['amount_company_currency'] += (
+                computation_line['amount_company_currency'] +
+                computation_line['amount_accessory_cost_company_currency'])
+        # round, otherwise odoo with truncate (6.7 -> 6... instead of 7 !)
+        for field in fields_to_sum:
+            vals[field] = int(round(vals[field]))
+        if not vals['weight']:
+            vals['weight'] = 1
+        vals['amount_company_currency'] = int(round(
+            vals['amount_company_currency']))
+        return vals
 
     @api.multi
     def generate_declaration(self):
@@ -730,7 +764,7 @@ class IntrastatProductDeclaration(models.Model):
                 dl_group[hashcode] = [cl]
         ipdl = self.declaration_line_ids
         for cl_lines in dl_group.values():
-            vals = ipdl._prepare_declaration_line(cl_lines)
+            vals = self._prepare_declaration_line(cl_lines)
             declaration_line = ipdl.create(vals)
             for cl in cl_lines:
                 cl.write({'declaration_line_id': declaration_line.id})
@@ -925,6 +959,11 @@ class IntrastatProductDeclarationLine(models.Model):
 
     @api.model
     def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+        """
+        This method is DEPRECATED.
+        You should use the _prepare_grouped_fields method on the
+        IntrastatProductDeclaration class.
+        """
         vals = {
             'src_dest_country_id': computation_line.src_dest_country_id.id,
             'intrastat_unit_id': computation_line.intrastat_unit_id.id,
@@ -936,20 +975,30 @@ class IntrastatProductDeclarationLine(models.Model):
             'product_origin_country_id':
             computation_line.product_origin_country_id.id,
             'amount_company_currency': 0.0,
-            }
+        }
         for field in fields_to_sum:
             vals[field] = 0.0
         return vals
 
     def _fields_to_sum(self):
+        """
+        This method is DEPRECATED.
+        You should use the _prepare_grouped_fields method on the
+        IntrastatProductDeclaration class.
+        """
         fields_to_sum = [
             'weight',
             'suppl_unit_qty',
-            ]
+        ]
         return fields_to_sum
 
     @api.model
     def _prepare_declaration_line(self, computation_lines):
+        """
+        This method is DEPRECATED.
+        You should use the _fields_to_sum method on the
+        IntrastatProductDeclaration class.
+        """
         fields_to_sum = self._fields_to_sum()
         vals = self._prepare_grouped_fields(
             computation_lines[0], fields_to_sum)

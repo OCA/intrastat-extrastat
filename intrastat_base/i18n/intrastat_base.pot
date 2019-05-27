@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-27 18:43+0000\n"
-"PO-Revision-Date: 2015-05-27 18:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,18 +19,13 @@ msgid "Activate this option for shipping costs, packaging costs and all services
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:165
+#: code:addons/intrastat_base/models/intrastat_common.py:168
 #, python-format
 msgid "Cannot delete the declaration %s because it is in Done state"
 msgstr ""
 
 #. module: intrastat_base
-#: view:res.company:intrastat_base.view_company_form
-msgid "Common Intrastat Settings"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_report_intrastat_common
+#: model:ir.model,name:intrastat_base.model_intrastat_common
 msgid "Common functions for intrastat reports for products "
 msgstr ""
 
@@ -42,7 +35,7 @@ msgid "Companies"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:68
+#: code:addons/intrastat_base/models/intrastat_common.py:52
 #, python-format
 msgid "Company not yet set on intrastat report."
 msgstr ""
@@ -53,14 +46,25 @@ msgid "Country"
 msgstr ""
 
 #. module: intrastat_base
-#: view:res.country:intrastat_base.view_country_search
-#: field:res.country,intrastat:0
-msgid "EU Country"
+#: field:intrastat.result.view,create_uid:0
+msgid "Created by"
 msgstr ""
 
 #. module: intrastat_base
-#: field:product.template,exclude_from_intrastat:0
-msgid "Exclude from Intrastat reports"
+#: field:intrastat.result.view,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: intrastat_base
+#: field:intrastat.common,display_name:0
+#: field:intrastat.result.view,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: intrastat_base
+#: view:res.country:intrastat_base.res_country_view_search
+#: field:res.country,intrastat:0
+msgid "EU Country"
 msgstr ""
 
 #. module: intrastat_base
@@ -69,13 +73,9 @@ msgid "Exclude invoice line from intrastat if this tax is present"
 msgstr ""
 
 #. module: intrastat_base
-#: field:report.intrastat.common,id:0
+#: field:intrastat.common,id:0
+#: field:intrastat.result.view,id:0
 msgid "ID"
-msgstr ""
-
-#. module: intrastat_base
-#: help:product.template,exclude_from_intrastat:0
-msgid "If set to True, the product or service will not be taken into account for Intrastat Product or Service reports. So you should leave this field to False unless you have a very good reason."
 msgstr ""
 
 #. module: intrastat_base
@@ -84,13 +84,20 @@ msgid "If this tax is present on an invoice line, this invoice line will be skip
 msgstr ""
 
 #. module: intrastat_base
+#: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
+#: model:ir.ui.menu,name:intrastat_base.menu_intrastat_config_root
+#: view:res.company:intrastat_base.view_company_form
+msgid "Intrastat"
+msgstr ""
+
+#. module: intrastat_base
 #: view:product.template:intrastat_base.product_template_form_view
 msgid "Intrastat Properties"
 msgstr ""
 
 #. module: intrastat_base
-#: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
-msgid "Intrastat Reporting"
+#: view:intrastat.result.view:intrastat_base.intrastat_result_view_form
+msgid "Intrastat Result View"
 msgstr ""
 
 #. module: intrastat_base
@@ -104,14 +111,40 @@ msgid "Is accessory cost"
 msgstr ""
 
 #. module: intrastat_base
+#: field:intrastat.common,__last_update:0
+#: field:intrastat.result.view,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: intrastat_base
+#: field:intrastat.result.view,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: intrastat_base
+#: field:intrastat.result.view,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: intrastat_base
 #: help:res.company,intrastat_remind_user_ids:0
 msgid "List of OpenERP users who will receive a notification to remind them about the Intrastat declaration."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/company.py:55
+#: field:res.company,intrastat_email_list:0
+msgid "List of emails of Users Receiving the Intrastat Reminder"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/res_company.py:57
 #, python-format
 msgid "Missing e-mail address on user '%s'."
+msgstr ""
+
+#. module: intrastat_base
+#: field:intrastat.result.view,note:0
+msgid "Notes"
 msgstr ""
 
 #. module: intrastat_base
@@ -120,7 +153,7 @@ msgid "Product Template"
 msgstr ""
 
 #. module: intrastat_base
-#: view:res.country:intrastat_base.view_country_search
+#: view:res.country:intrastat_base.res_country_view_search
 msgid "Search Countries"
 msgstr ""
 
@@ -140,39 +173,27 @@ msgid "Tax"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:84
+#: code:addons/intrastat_base/models/intrastat_common.py:65
 #, python-format
 msgid "The VAT number is not set for the partner '%s'."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:76
-#, python-format
-msgid "The company currency must be 'EUR', but is currently '%s'."
-msgstr ""
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:72
+#: code:addons/intrastat_base/models/intrastat_common.py:56
 #, python-format
 msgid "The country is not set on the company '%s'."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:105
+#: code:addons/intrastat_base/models/intrastat_common.py:88
 #, python-format
 msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s."
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/product.py:51
+#: code:addons/intrastat_base/models/product_template.py:42
 #, python-format
 msgid "The option 'Is accessory cost?' should only be activated on 'Service' products. You have activated this option for the product '%s' which is of type '%s'"
-msgstr ""
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/intrastat_common.py:62
-#, python-format
-msgid "The start date must be the first day of the month"
 msgstr ""
 
 #. module: intrastat_base

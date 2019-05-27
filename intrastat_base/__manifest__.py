@@ -25,5 +25,5 @@
     'demo': [
         'demo/intrastat_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

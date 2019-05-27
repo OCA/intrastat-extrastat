@@ -11,6 +11,6 @@
     'author': 'Akretion, Odoo Community Association (OCA)',
     'depends': ['delivery', 'product_harmonized_system'],
     'data': ['views/product_template.xml'],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

@@ -158,6 +158,7 @@ class IntrastatResultView(models.TransientModel):
     Transient Model to display Intrastat Report results
     """
     _name = 'intrastat.result.view'
+    _description = 'Intrastat Result View'
 
     note = fields.Text(
         string='Notes', readonly=True,

@@ -5,6 +5,7 @@
 from io import BytesIO
 from lxml import etree
 from sys import exc_info
+import base64
 from traceback import format_exception
 import logging
 
@@ -19,7 +20,6 @@ class IntrastatCommon(models.AbstractModel):
     _description = "Common functions for intrastat reports for products "
     "and services"
 
-    @api.multi
     @api.depends('declaration_line_ids.amount_company_currency')
     def _compute_numbers(self):
         for this in self:
@@ -31,7 +31,6 @@ class IntrastatCommon(models.AbstractModel):
             this.num_decl_lines = num_lines
             this.total_amount = total_amount
 
-    @api.multi
     def _check_generate_lines(self):
         """Check wether all requirements are met for generating lines."""
         for this in self:
@@ -44,7 +43,6 @@ class IntrastatCommon(models.AbstractModel):
                     % company.name)
         return True
 
-    @api.multi
     def _check_generate_xml(self):
         for this in self:
             if not this.company_id.partner_id.vat:
@@ -76,12 +74,10 @@ class IntrastatCommon(models.AbstractModel):
             logger.warning(error)
             raise UserError(error)
 
-    @api.multi
     def _attach_xml_file(self, xml_string, declaration_name):
         '''Attach the XML file to the report_intrastat_product/service
         object'''
         self.ensure_one()
-        import base64
         filename = '%s_%s.xml' % (self.year_month, declaration_name)
         attach = self.env['ir.attachment'].create({
             'name': filename,
@@ -91,7 +87,6 @@ class IntrastatCommon(models.AbstractModel):
             'datas_fname': filename})
         return attach.id
 
-    @api.multi
     def _unlink_attachments(self):
         atts = self.env['ir.attachment'].search(
             [('res_model', '=', self._name),
@@ -114,7 +109,6 @@ class IntrastatCommon(models.AbstractModel):
         }
         return action
 
-    @api.multi
     def _generate_xml(self):
         """
         Inherit this method in the localization module
@@ -128,7 +122,6 @@ class IntrastatCommon(models.AbstractModel):
         """
         return False
 
-    @api.multi
     def send_reminder_email(self, mail_template_xmlid):
         mail_template = self.env.ref(mail_template_xmlid)
         for this in self:
@@ -143,7 +136,6 @@ class IntrastatCommon(models.AbstractModel):
                     'empty on company %s' % this.company_id.name)
         return True
 
-    @api.multi
     def unlink(self):
         for intrastat in self:
             if intrastat.state == 'done':
@@ -158,6 +150,7 @@ class IntrastatResultView(models.TransientModel):
     Transient Model to display Intrastat Report results
     """
     _name = 'intrastat.result.view'
+    _description = 'Pop-up to show errors on intrastat report generation'
 
     note = fields.Text(
         string='Notes', readonly=True,

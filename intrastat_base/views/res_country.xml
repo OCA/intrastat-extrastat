@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  © 2011-2016 Akretion (http://www.akretion.com)
+  Copyright 2011-2016 Akretion France (http://www.akretion.com)
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
@@ -36,10 +36,14 @@
     <field name="model">res.country</field>
     <field name="arch" type="xml">
         <search string="Search Countries">
-            <field name="name" />
+            <field name="name" filter_domain="['|', ('name', 'ilike', self), ('code', '=', self)]" string="Name or Code"/>
             <field name="code" />
+            <field name="currency_id"/>
             <filter name="intrastat" string="EU Country"
-                domain="[('intrastat', '=', True)]" />
+                    domain="[('intrastat', '=', True)]" />
+            <group string="Group By" name="groupby">
+                <filter name="currency_groupby" string="Currency" context="{'group_by': 'currency_id'}"/>
+            </group>
         </search>
     </field>
 </record>

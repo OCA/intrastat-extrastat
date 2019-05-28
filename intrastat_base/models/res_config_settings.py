@@ -9,4 +9,4 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     intrastat_remind_user_ids = fields.Many2many(
-        related='company_id.intrastat_remind_user_ids')
+        related='company_id.intrastat_remind_user_ids', readonly=False)

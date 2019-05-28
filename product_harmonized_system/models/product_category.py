@@ -1,4 +1,4 @@
-# Copyright 2011-2016 Akretion (http://www.akretion.com)
+# Copyright 2011-2016 Akretion France (http://www.akretion.com)
 # Copyright 2009-2016 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
@@ -17,7 +17,6 @@ class ProductCategory(models.Model):
         "set on the product itself, it will be read here, on the "
         "related product category.")
 
-    @api.multi
     def get_hs_code_recursively(self):
         self.ensure_one()
         if self.hs_code_id:

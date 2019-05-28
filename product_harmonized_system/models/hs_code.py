@@ -1,4 +1,4 @@
-# Copyright 2011-2016 Akretion (http://www.akretion.com)
+# Copyright 2011-2016 Akretion France (http://www.akretion.com)
 # Copyright 2009-2016 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
@@ -11,7 +11,7 @@ class HSCode(models.Model):
     _name = "hs.code"
     _description = "H.S. Code"
     _order = "local_code"
-    _rec_name = "display_name"
+    _rec_name = "local_code"
 
     hs_code = fields.Char(
         string='H.S. Code', compute='_compute_hs_code', readonly=True,
@@ -21,9 +21,6 @@ class HSCode(models.Model):
     description = fields.Char(
         translate=True,
         help="Short text description of the H.S. category")
-    display_name = fields.Char(
-        compute='_compute_display_name_field',
-        store=True, readonly=True)
     local_code = fields.Char(
         required=True,
         help="Code used for the national Import/Export declaration. "
@@ -32,8 +29,7 @@ class HSCode(models.Model):
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         'res.company', string='Company', readonly=True, required=True,
-        default=lambda self: self.env['res.company']._company_default_get(
-            'hs.code'))
+        default=lambda self: self.env['res.company']._company_default_get())
     product_categ_ids = fields.One2many(
         comodel_name='product.category',
         inverse_name='hs_code_id',
@@ -44,23 +40,39 @@ class HSCode(models.Model):
         inverse_name='hs_code_id',
         string='Products',
         readonly=True)
+    product_categ_count = fields.Integer(
+        compute='_compute_product_categ_count')
+    product_tmpl_count = fields.Integer(compute='_compute_product_tmpl_count')
 
-    @api.multi
     @api.depends('local_code')
     def _compute_hs_code(self):
         for this in self:
             this.hs_code = this.local_code and this.local_code[:6]
 
-    @api.multi
+    @api.depends('product_categ_ids')
+    def _compute_product_categ_count(self):
+        # hs_code_id on product.category is company_dependent=True
+        # so we can't use a read_group()
+        for code in self:
+            code.product_categ_count = len(code.product_categ_ids)
+
+    @api.depends('product_tmpl_ids')
+    def _compute_product_tmpl_count(self):
+        # hs_code_id on product.template is company_dependent=True
+        # so we can't use a read_group()
+        for code in self:
+            code.product_tmpl_count = len(code.product_tmpl_ids)
+
     @api.depends('local_code', 'description')
-    def _compute_display_name_field(self):
+    def name_get(self):
+        res = []
         for this in self:
-            display_name = this.local_code
+            name = this.local_code
             if this.description:
-                display_name += ' ' + this.description
-            this.display_name = len(display_name) > 55 \
-                and display_name[:55] + '...' \
-                or display_name
+                name += ' ' + this.description
+            name = len(name) > 55 and name[:55] + '...' or name
+            res.append((this.id, name))
+        return res
 
     _sql_constraints = [
         ('local_code_company_uniq', 'unique(local_code, company_id)',
@@ -73,7 +85,6 @@ class HSCode(models.Model):
             vals['local_code'] = vals['local_code'].replace(' ', '')
         return super(HSCode, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if vals.get('local_code'):
             vals['local_code'] = vals['local_code'].replace(' ', '')

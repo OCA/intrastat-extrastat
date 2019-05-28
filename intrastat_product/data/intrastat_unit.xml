@@ -18,7 +18,7 @@
     <record id="intrastat_unit_g" model="intrastat.unit">
       <field name="name">g</field>
       <field name="description">Gram</field>
-      <field name="uom_id" ref="product.product_uom_gram"/>
+      <field name="uom_id" ref="uom.product_uom_gram"/>
     </record>
     <record id="intrastat_unit_gi_FS" model="intrastat.unit">
       <field name="name">gi F/S</field>
@@ -71,7 +71,7 @@
     <record id="intrastat_unit_l" model="intrastat.unit">
       <field name="name">l</field>
       <field name="description">Litre</field>
-      <field name="uom_id" ref="product.product_uom_litre"/>
+      <field name="uom_id" ref="uom.product_uom_litre"/>
     </record>
     <record id="intrastat_unit_1000l" model="intrastat.unit">
       <field name="name">1000 l</field>
@@ -84,7 +84,7 @@
     <record id="intrastat_unit_m" model="intrastat.unit">
       <field name="name">m</field>
       <field name="description">Metre</field>
-      <field name="uom_id" ref="product.product_uom_meter"/>
+      <field name="uom_id" ref="uom.product_uom_meter"/>
     </record>
     <record id="intrastat_unit_m2" model="intrastat.unit">
       <field name="name">m2</field>
@@ -105,7 +105,7 @@
     <record id="intrastat_unit_pce" model="intrastat.unit">
       <field name="name">items</field>
       <field name="description">Number of items</field>
-      <field name="uom_id" ref="product.product_uom_unit"/>
+      <field name="uom_id" ref="uom.product_uom_unit"/>
     </record>
     <record id="intrastat_unit_100pce" model="intrastat.unit">
       <field name="name">100 items</field>

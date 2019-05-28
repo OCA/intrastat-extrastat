@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  © 2010-2016 Akretion (http://www.akretion.com/)
+  Copyright 2010-2019 Akretion France (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -14,7 +14,8 @@
       <field name="arch" type="xml">
         <search string="Search H.S. Codes">
           <field name="local_code"
-                 filter_domain="['|', ('local_code', 'like', self), ('description', 'ilike', self)]"/>
+                filter_domain="['|', ('local_code', 'like', self), ('description', 'ilike', self)]"/>
+          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
         </search>
       </field>
     </record>
@@ -33,24 +34,57 @@
       </field>
     </record>
 
+    <!-- Action used in the form view for HS codes -->
+    <record id="product_categ_hs_code_action" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+    </record>
+
+    <record id="product_template_hs_code_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+    </record>
+
     <!-- Form view for H.S. code -->
     <record id="hs_code_view_form" model="ir.ui.view">
       <field name="name">hs.code.form</field>
       <field name="model">hs.code</field>
       <field name="arch" type="xml">
         <form string="H.S. Code">
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button"
+                name="%(product_categ_hs_code_action)d"
+                icon="fa-th-list"
+                type="action">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_value"><field name="product_categ_count"/></span>
+                <span class="o_stat_text"> Product Categs</span>
+              </div>
+            </button>
+            <button class="oe_stat_button"
+                name="%(product_template_hs_code_action)d"
+                icon="fa-th-list"
+                type="action">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_value"><field name="product_tmpl_count"/></span>
+                <span class="o_stat_text"> Products</span>
+              </div>
+            </button>
+            <button name="toggle_active" type="object"
+                    class="oe_stat_button" icon="fa-archive">
+                <field name="active" widget="boolean_button"
+                        options='{"terminology": "archive"}'/>
+            </button>
+          </div>
           <group name="main">
             <field name="local_code" />
             <field name="hs_code"/>
             <field name="description"/>
             <field name="company_id" groups="base.group_multi_company"/>
-            <field name="active"/>
-          </group>
-          <group name="product-categ" string="Product Categories">
-            <field name="product_categ_ids" nolabel="1"/>
-          </group>
-          <group name="product-tmpl" string="Products">
-            <field name="product_tmpl_ids" nolabel="1"/>
           </group>
         </form>
       </field>
@@ -63,10 +97,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu entry for H.S. code -->
-    <!-- TODO: find a way to put a menu entry without depending on another module ?
-    <menuitem id="hs_code_menu" action="hs_code_action"
-        parent="product.prod_config_main" sequence="60"/>
-    -->
+    <!-- The menu entry for H.S. code is now provided by the module
+         product_harmonized_system_stock -->
 
 </odoo>

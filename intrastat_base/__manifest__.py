@@ -5,14 +5,14 @@
 
 {
     'name': 'Intrastat Reporting Base',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat reporting',
     'author': 'Akretion,Noviat,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/intrastat',
     'depends': ['base_vat', 'account'],
-    'conflicts': ['report_intrastat'],
+    'excludes': ['account_intrastat'],
     'data': [
         'data/country_data.xml',
         'views/product_template.xml',
@@ -25,5 +25,5 @@
     'demo': [
         'demo/intrastat_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

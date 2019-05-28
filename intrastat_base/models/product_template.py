@@ -14,7 +14,6 @@ class ProductTemplate(models.Model):
         "costs and all services related to the sale of products. "
         "This option is used for Intrastat reports.")
 
-    @api.multi
     @api.constrains('type', 'is_accessory_cost')
     def _check_accessory_cost(self):
         for this in self:

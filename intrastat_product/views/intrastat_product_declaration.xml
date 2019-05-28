@@ -120,13 +120,26 @@
       <field name="name">intrastat.product.declaration.graph</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
-        <graph string="Intrastat Product" type="bar">
+        <graph string="Intrastat Product" type="bar" stacked="False">
           <field name="year_month" type="row"/>
           <field name="type" type="row"/>
           <field name="total_amount" type="measure"/>
         </graph>
       </field>
     </record>
+
+    <record id="intrastat_product_declaration_view_pivot" model="ir.ui.view">
+      <field name="name">intrastat.product.declaration.pivot</field>
+      <field name="model">intrastat.product.declaration</field>
+      <field name="arch" type="xml">
+        <pivot string="Intrastat Product">
+          <field name="year_month" type="row"/>
+          <field name="type" type="col"/>
+          <field name="total_amount" type="measure"/>
+        </pivot>
+      </field>
+    </record>
+
 
     <!-- No menuitem nor action since these are provided by the localization modules -->
 
@@ -150,9 +163,8 @@
             <field name="company_currency_id" invisible="1"/>
             <field name="transaction_id"/>
             <label for="weight"/>
-            <div>
-                <field name="weight" class="oe_inline"/>
-                <label string=" Kg" class="oe_inline"/>
+            <div name="weight">
+                <field name="weight" class="oe_inline"/> Kg
             </div>
             <field name="suppl_unit_qty"/>
             <field name="intrastat_unit_id"/>
@@ -216,9 +228,8 @@
             <field name="company_currency_id" invisible="1"/>
             <field name="transaction_id"/>
             <label for="weight"/>
-            <div>
-                <field name="weight" class="oe_inline"/>
-                <label string=" Kg" class="oe_inline"/>
+            <div name="weight">
+                <field name="weight" class="oe_inline"/> Kg
             </div>
             <field name="suppl_unit_qty"/>
             <field name="intrastat_unit_id"/>

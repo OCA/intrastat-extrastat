@@ -9,7 +9,7 @@
     'author': 'Noviat,'
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'installable': False,
+    'installable': True,
     'depends': [
         'intrastat_product',
     ],

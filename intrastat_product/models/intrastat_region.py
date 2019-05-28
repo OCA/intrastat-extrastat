@@ -20,5 +20,4 @@ class IntrastatRegion(models.Model):
     description = fields.Char(string='Description')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get(
-            'intrastat.region'))
+        default=lambda self: self.env['res.company']._company_default_get())

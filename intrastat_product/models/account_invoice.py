@@ -1,4 +1,4 @@
-# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2011-2017 Akretion France (http://www.akretion.com)
 # Copyright 2009-2018 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
@@ -9,8 +9,6 @@ from odoo import api, fields, models
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    # in v10, the sale_stock module defines an incoterms_id
-    # Odoo v8 name: incoterm_id
     intrastat_transaction_id = fields.Many2one(
         comodel_name='intrastat.transaction',
         string='Intrastat Transaction Type',
@@ -29,7 +27,7 @@ class AccountInvoice(models.Model):
         "arrivals.")
     intrastat_country = fields.Boolean(
         compute='_compute_intrastat_country', string='Intrastat Country',
-        store=True, readonly=True, compute_sudo=True)
+        store=True, compute_sudo=True)
     src_dest_region_id = fields.Many2one(
         comodel_name='intrastat.region',
         string='Origin/Destination Region',
@@ -39,9 +37,8 @@ class AccountInvoice(models.Model):
         ondelete='restrict')
     intrastat = fields.Char(
         string='Intrastat Declaration',
-        related='company_id.intrastat', readonly=True, compute_sudo=True)
+        related='company_id.intrastat')
 
-    @api.multi
     @api.depends('partner_shipping_id.country_id', 'partner_id.country_id')
     def _compute_intrastat_country(self):
         for inv in self:
@@ -55,7 +52,7 @@ class AccountInvoice(models.Model):
     @api.model
     def _default_src_dest_region_id(self):
         rco = self.env['res.company']
-        company = rco._company_default_get('account.invoice')
+        company = rco._company_default_get()
         return company.intrastat_region_id
 
 

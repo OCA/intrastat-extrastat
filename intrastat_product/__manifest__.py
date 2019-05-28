@@ -7,7 +7,7 @@
 
 {
     'name': 'Intrastat Product',
-    'version': '11.0.1.2.0',
+    'version': '12.0.1.0.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat Product',
@@ -17,10 +17,10 @@
         'intrastat_base',
         'product_harmonized_system',
         'sale_stock',
-        'purchase',
+        'purchase_stock',
         'report_xlsx_helper',
     ],
-    'excludes': ['report_intrastat'],
+    'excludes': ['account_intrastat'],
     'data': [
         'views/hs_code.xml',
         'views/intrastat_region.xml',
@@ -38,5 +38,5 @@
         'data/intrastat_unit.xml',
     ],
     'demo': ['demo/intrastat_demo.xml'],
-    'installable': False,
+    'installable': True,
 }

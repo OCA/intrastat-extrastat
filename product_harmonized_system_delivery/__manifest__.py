@@ -4,13 +4,14 @@
 
 {
     'name': 'Product Harmonized System Codes - Delivery',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Reporting',
     'license': 'AGPL-3',
-    'summary': 'Hide native hs_code field provided by the delivery module',
+    'summary': 'Hide native hs_code field provided by the delivery_hs_code '
+               'module',
     'author': 'Akretion, Odoo Community Association (OCA)',
-    'depends': ['delivery', 'product_harmonized_system'],
+    'depends': ['delivery_hs_code', 'product_harmonized_system'],
     'data': ['views/product_template.xml'],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
 }

@@ -18,7 +18,7 @@
 <record id="base.main_company" model="res.company">
     <field name="intrastat_arrivals">extended</field>
     <field name="intrastat_dispatches">extended</field>
-    <field name="intrastat_incoterm_id" ref="stock.incoterm_DDU"/>
+    <field name="intrastat_incoterm_id" ref="account.incoterm_DDU"/>
     <field name="intrastat_transport_id" ref="intrastat_transport_3"/>
 </record>
 

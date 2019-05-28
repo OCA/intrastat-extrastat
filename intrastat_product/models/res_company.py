@@ -10,7 +10,7 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     intrastat_incoterm_id = fields.Many2one(
-        comodel_name='stock.incoterms',
+        comodel_name='account.incoterms',
         string='Default Incoterm for Intrastat',
         help="International Commercial Terms are a series of "
              "predefined commercial terms used in international "
@@ -59,7 +59,6 @@ class ResCompany(models.Model):
             ('standard', 'Standard'),
             ('extended', 'Extended')]
 
-    @api.multi
     @api.depends('intrastat_arrivals', 'intrastat_dispatches')
     def _compute_intrastat(self):
         for this in self:

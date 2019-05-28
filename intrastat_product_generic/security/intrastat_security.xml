@@ -5,7 +5,7 @@
     <field name="name">Generic Intrastat Product Declaration</field>
   </record>
 
-  <record id="base.user_root" model="res.users">
+  <record id="base.user_admin" model="res.users">
     <field eval="[(4, ref('group_intrastat_product_generic'))]" name="groups_id"/>
   </record>
 

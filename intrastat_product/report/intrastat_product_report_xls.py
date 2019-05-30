@@ -205,8 +205,9 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             wl = declaration._xls_declaration_line_fields()
             report = 'declaration'
 
-        title = self._get_title(declaration, report, format='normal')
-        title_short = self._get_title(declaration, report, format='short')
+        title = self._get_title(declaration, report, title_format='normal')
+        title_short = self._get_title(declaration, report,
+                                      title_format='short')
         sheet_name = title_short[:31].replace('/', '-')
 
         params = {
@@ -218,9 +219,9 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
         }
         return [params]
 
-    def _get_title(self, declaration, report, format='normal'):
+    def _get_title(self, declaration, report, title_format='normal'):
         title = declaration.year_month
-        if format == 'normal':
+        if title_format == 'normal':
             if report == 'computation':
                 title += ' : ' + _('Computation Lines')
             else:

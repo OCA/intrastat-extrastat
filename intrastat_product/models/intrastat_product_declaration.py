@@ -321,15 +321,31 @@ class IntrastatProductDeclaration(models.Model):
                     self.env['product.uom']._compute_qty_obj(
                         source_uom, line_qty, pce_uom)
         else:
-            note = "\n" + _(
-                "Conversion from unit of measure '%s' to 'Kg' "
-                "is not implemented yet. It is needed for product '%s'."
-            ) % (source_uom.name, product.name_get()[0][1])
-            note += "\n" + _(
-                "Please correct the unit of measure settings and "
-                "regenerate the lines or adjust the impacted lines "
-                "manually")
-            self._note += note
+            # in case of product records with e.g. uom 'liter' and the weight
+            # correctly filled in we should report back the weight
+            if not product.weight_net:
+                note = "\n" + _(
+                    "Missing net weight on product %s."
+                    ) % product.name_get()[0][1]
+                note += "\n" + _(
+                    "Please correct the product record and regenerate "
+                    "the lines or adjust the impacted lines manually")
+                self._note += note
+                return weight, suppl_unit_qty
+            if invoice.type[0] == 'o':
+                coeff = product.uos_coeff or 1.0
+                qty = line_qty / coeff
+                from_unit = product.uom_id
+                to_unit = product.uom_id
+            else:
+                qty = line_qty
+                from_unit = source_uom
+                to_unit = product.uom_id
+            qty = self.env['product.uom']._compute_qty_obj(
+                from_unit, qty, to_unit)
+            # Here, I suppose that, on the product, the
+            # weight is per PCE and not per uom_id
+            weight = product.weight_net * qty
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty

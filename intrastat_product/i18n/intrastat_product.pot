@@ -123,6 +123,12 @@ msgid "Amount in company currency to write in the declaration. Amount in company
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:152
+#, python-format
+msgid "Append"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company_intrastat_arrivals
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings_intrastat_arrivals
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
@@ -777,6 +783,12 @@ msgid "Net weight in Kg"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:153
+#, python-format
+msgid "Nihil"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:239
 #, python-format
 msgid "No"
@@ -919,6 +931,12 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Related Transactions"
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:151
+#, python-format
+msgid "Replace"
 msgstr ""
 
 #. module: intrastat_product

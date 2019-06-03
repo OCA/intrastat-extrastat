@@ -15,11 +15,17 @@
       <field name="model">intrastat.unit</field>
       <field name="arch" type="xml">
         <form string="Intrastat Supplementary Unit">
-          <group>
+          <div class="oe_button_box" name="button_box">
+            <button name="toggle_active" type="object"
+                class="oe_stat_button" icon="fa-archive">
+              <field name="active" widget="boolean_button"
+                    options='{"terminology": "archive"}'/>
+            </button>
+          </div>
+          <group name="main">
             <field name="name"/>
             <field name="uom_id" required="1"/>
             <field name="description"/>
-            <field name="active"/>
           </group>
         </form>
       </field>
@@ -43,11 +49,12 @@
       <field name="arch" type="xml">
         <search string="Search Intrastat Supplementary Units">
           <field name="name"
-              filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"/>
-            <group string="Group By" name="groupby">
-                <filter name="uom_groupby" string="Regular UoM"
-                    context="{'group_by': 'uom_id'}"/>
-            </group>
+                  filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"/>
+          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+          <group string="Group By" name="groupby">
+            <filter name="uom_groupby" string="Regular UoM"
+                context="{'group_by': 'uom_id'}"/>
+          </group>
         </search>
       </field>
     </record>

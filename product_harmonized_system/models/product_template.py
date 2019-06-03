@@ -4,7 +4,7 @@
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
@@ -26,15 +26,12 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def get_hs_code_recursively(self):
         res = self.env['hs.code']
-        if not self:
-            return res
-        else:
+        if self:
             self.ensure_one()
             if self.hs_code_id:
                 res = self.hs_code_id
             elif self.categ_id:
                 res = self.categ_id.get_hs_code_recursively()
-            return res
+        return res

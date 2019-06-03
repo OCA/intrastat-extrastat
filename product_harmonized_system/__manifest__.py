@@ -8,14 +8,14 @@
 
 {
     'name': 'Product Harmonized System Codes',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Reporting',
     'license': 'AGPL-3',
     'summary': 'Base module for Product Import/Export reports',
     'author': 'brain-tec AG, Akretion, Noviat, '
               'Odoo Community Association (OCA)',
     'depends': ['product'],
-    'conflicts': ['report_intrastat'],
+    'excludes': ['account_intrastat'],
     'data': [
         'security/product_hs_security.xml',
         'security/ir.model.access.csv',
@@ -26,5 +26,5 @@
     'demo': [
         'demo/product_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

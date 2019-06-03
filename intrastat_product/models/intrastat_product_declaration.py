@@ -135,9 +135,9 @@ class IntrastatProductDeclaration(models.Model):
     @api.model
     def _get_action(self):
         return [
-            ('replace', 'Replace'),
-            ('append', 'Append'),
-            ('nihil', 'Nihil')]
+            ('replace', _('Replace')),
+            ('append', _('Append')),
+            ('nihil', _('Nihil'))]
 
     @api.depends('company_id')
     def _compute_company_country_code(self):

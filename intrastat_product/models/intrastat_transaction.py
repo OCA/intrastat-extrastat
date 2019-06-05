@@ -29,5 +29,5 @@ class IntrastatTransaction(models.Model):
             if this.description:
                 name += ' ' + this.description
             name = len(name) > 55 and name[:55] + '...' or name
-            res.append((this.id, this.name))
+            res.append((this.id, name))
         return res

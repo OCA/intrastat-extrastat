@@ -1,8 +1,7 @@
 This module is used in combination with the country-specific
 localization module(s).
 
-Coding guidelines for localization module:
-------------------------------------------
+**Coding guidelines for localization module:**
 
 We recommend to start by copying an existing module, e.g. l10n_be_intrastat_product
 and adapt the code for the specific needs of your country.

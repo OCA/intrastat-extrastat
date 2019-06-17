@@ -19,8 +19,11 @@ Product Harmonized System Codes - Delivery
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/intrastat-extrastat-11-0/intrastat-extrastat-11-0-product_harmonized_system_delivery
     :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/227/11.0
+    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 The OCA module *product_harmonized_system* adds a many2one field *hs_code_id* on product templates that points to an *H.S. Code* object. But the *delivery* module from the official addons adds a char field *hs_code* on product templates, which has the same purpose, but we can't use it because we need structured data for H.S. codes. This module hides the *hs_code* field added by the *delivery* module, to avoid confusion.
 

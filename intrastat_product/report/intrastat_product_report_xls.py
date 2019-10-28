@@ -33,7 +33,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
                 },
                 'line': {
                     'value': self._render(
-                        "line.product_id and line.product_id.name"),
+                        "line.product_id.display_name or ''"),
                 },
                 'width': 36,
             },
@@ -57,7 +57,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
                 'line': {
                     'type': 'string',
                     'value': self._render(
-                        "line.hs_code_id.local_code"),
+                        "line.hs_code_id.local_code or ''"),
                 },
                 'width': 14,
             },
@@ -69,7 +69,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
                 'line': {
                     'type': 'string',
                     'value': self._render(
-                        "line.src_dest_country_id.name"),
+                        "line.src_dest_country_id.name or ''"),
                 },
                 'width': 28,
             },
@@ -107,7 +107,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
                 },
                 'line': {
                     'value': self._render(
-                        "line.transaction_id.display_name"),
+                        "line.transaction_id.display_name or ''"),
                 },
                 'width': 36,
             },
@@ -188,7 +188,7 @@ class IntrastatProductDeclarationXlsx(AbstractReportXlsx):
                     'value': self._('Invoice'),
                 },
                 'line': {
-                    'value': self._render("line.invoice_id.number"),
+                    'value': self._render("line.invoice_id.number or ''"),
                 },
                 'width': 18,
             },

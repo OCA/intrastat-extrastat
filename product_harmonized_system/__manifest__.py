@@ -7,24 +7,24 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Product Harmonized System Codes',
-    'version': '13.0.1.0.0',
-    'category': 'Reporting',
-    'license': 'AGPL-3',
-    'summary': 'Base module for Product Import/Export reports',
-    'author': 'brain-tec AG, Akretion, Noviat, '
-              'Odoo Community Association (OCA)',
-    'depends': ['product'],
-    'excludes': ['account_intrastat'],
-    'data': [
-        'security/product_hs_security.xml',
-        'security/ir.model.access.csv',
-        'views/hs_code.xml',
-        'views/product_category.xml',
-        'views/product_template.xml',
+    "name": "Product Harmonized System Codes",
+    "version": "13.0.1.0.0",
+    "category": "Reporting",
+    "license": "AGPL-3",
+    "summary": "Base module for Product Import/Export reports",
+    "author": "brain-tec AG, Akretion, Noviat, "
+              "Odoo Community Association (OCA)",
+    "depends": ["product"],
+    "excludes": ["account_intrastat"],
+    "data": [
+        "security/product_hs_security.xml",
+        "security/ir.model.access.csv",
+        "views/hs_code.xml",
+        "views/product_category.xml",
+        "views/product_template.xml",
     ],
-    'demo': [
-        'demo/product_demo.xml',
+    "demo": [
+        "demo/product_demo.xml",
     ],
-    'installable': True,
+    "installable": True,
 }

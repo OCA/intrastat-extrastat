@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_delivery_carrier_is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_product_is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template_is_accessory_cost
 msgid "Activate this option for shipping costs, packaging costs and all services related to the sale of products. This option is used for Intrastat reports."
@@ -102,6 +103,7 @@ msgid "Intrastat Result View"
 msgstr ""
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_delivery_carrier_is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product_is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template_is_accessory_cost
 msgid "Is accessory cost"

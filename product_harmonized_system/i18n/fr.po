@@ -40,12 +40,14 @@ msgid "Company"
 msgstr "Société"
 
 #. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_delivery_carrier_origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product_origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template_origin_country_id
 msgid "Country of Origin"
 msgstr "Pays d'origine"
 
 #. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_delivery_carrier_origin_country_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product_origin_country_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template_origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
@@ -73,6 +75,7 @@ msgstr "Nom affiché"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_hs_code
+#: model:ir.model.fields,field_description:product_harmonized_system.field_delivery_carrier_hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code_hs_code
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_category_hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product_hs_code_id
@@ -96,6 +99,7 @@ msgid ""
 msgstr ""
 
 #. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_delivery_carrier_hs_code_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product_hs_code_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template_hs_code_id
 msgid ""

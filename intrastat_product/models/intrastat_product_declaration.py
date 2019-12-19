@@ -354,8 +354,7 @@ class IntrastatProductDeclaration(models.Model):
                     "the lines or adjust the impacted lines manually")
                 self._note += note
                 return weight, suppl_unit_qty
-            qty = source_uom._compute_quantity(
-                line_qty, product.uom_id, raise_if_failure=False)
+            qty = source_uom._compute_quantity(line_qty, product.uom_id)
             weight = product.weight * qty
 
         return weight, suppl_unit_qty

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-01-07 11:13+0000\n"
+"PO-Revision-Date: 2020-01-07 15:13+0000\n"
 "Last-Translator: alvaro-domatix <alvaro@domatix.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -1058,7 +1058,7 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:138
 #, python-format
 msgid "Replace"
-msgstr ""
+msgstr "Reemplazar"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__reporting_level
@@ -1075,22 +1075,22 @@ msgstr ""
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_3
 msgid "Road"
-msgstr ""
+msgstr "Carretera"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_3
 msgid "Road Transport"
-msgstr ""
+msgstr "Transporte por carretera"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Pedido de venta"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_1
 msgid "Sea"
-msgstr ""
+msgstr "Mar"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
@@ -1122,7 +1122,7 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__type
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__type
 msgid "Select the declaration type."
-msgstr ""
+msgstr "Seleccione tipo de declaración."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_unit__uom_id
@@ -1133,12 +1133,12 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:132
 #, python-format
 msgid "Standard"
-msgstr ""
+msgstr "Estándar"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state

@@ -6,8 +6,8 @@ from odoo import fields, models
 
 
 class ResCountry(models.Model):
-    _inherit = 'res.country'
+    _inherit = "res.country"
 
     intrastat = fields.Boolean(
-        string='EU Country',
-        help="Set to True for all European Union countries.")
+        string="EU Country", help="Set to True for all European Union countries."
+    )

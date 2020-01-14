@@ -6,7 +6,8 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     intrastat_remind_user_ids = fields.Many2many(
-        related='company_id.intrastat_remind_user_ids', readonly=False)
+        related="company_id.intrastat_remind_user_ids", readonly=False
+    )

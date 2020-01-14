@@ -13,7 +13,6 @@
 
 <record id="base.res_partner_2" model="res.partner"> <!-- Deco Addict -->
     <field name="vat">BE0884025633</field>
-    <field name="supplier">True</field>
 </record>
 
 <record id="shipping_costs_exclude" model="product.product">

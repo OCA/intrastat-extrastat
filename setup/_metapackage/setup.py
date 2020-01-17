@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-intrastat-extrastat Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-intrastat_base',
         'odoo13-addon-product_harmonized_system',
         'odoo13-addon-product_harmonized_system_delivery',
         'odoo13-addon-product_harmonized_system_stock',

@@ -1,0 +1,252 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* intrastat_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
+#: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
+msgid "Activate this option for shipping costs, packaging costs and all services related to the sale of products. This option is used for Intrastat reports."
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:143
+#, python-format
+msgid "Cannot delete the declaration %s because it is in Done state"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_intrastat_common
+msgid "Common functions for intrastat reports for products "
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:38
+#, python-format
+msgid "Company not yet set on intrastat report."
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_res_country
+msgid "Country"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
+msgid "Currency"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_res_country__intrastat
+#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
+msgid "EU Country"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_tax__exclude_from_intrastat_if_present
+#: model:ir.model.fields,field_description:intrastat_base.field_account_tax_template__exclude_from_intrastat_if_present
+msgid "Exclude invoice line from intrastat if this tax is present"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__id
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__id
+msgid "ID"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_account_tax__exclude_from_intrastat_if_present
+#: model:ir.model.fields,help:intrastat_base.field_account_tax_template__exclude_from_intrastat_if_present
+msgid "If this tax is present on an invoice line, this invoice line will be skipped when generating Intrastat Product or Service lines from invoices."
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
+#: model:ir.ui.menu,name:intrastat_base.menu_intrastat_config_root
+#: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
+msgid "Intrastat"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.product_template_form_view
+msgid "Intrastat Properties"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
+msgid "Intrastat Result View"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
+msgid "Is accessory cost"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_res_company__intrastat_remind_user_ids
+#: model:ir.model.fields,help:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
+msgid "List of Odoo users who will receive a notification to remind them about the Intrastat declaration."
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_email_list
+msgid "List of emails of Users Receiving the Intrastat Reminder"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/res_company.py:37
+#, python-format
+msgid "Missing e-mail address on user '%s'."
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
+msgid "Name or Code"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__note
+msgid "Notes"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
+msgid "Ok"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_intrastat_result_view
+msgid "Pop-up to show errors on intrastat report generation"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: intrastat_base
+#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
+msgid "Search Countries"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_res_country__intrastat
+msgid "Set to True for all European Union countries."
+msgstr ""
+
+#. module: intrastat_base
+#: model:product.product,name:intrastat_base.shipping_costs_exclude
+#: model:product.template,name:intrastat_base.shipping_costs_exclude_product_template
+msgid "Shipping costs"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_tax_template
+msgid "Templates for Taxes"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:50
+#, python-format
+msgid "The VAT number is not set for the partner '%s'."
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:42
+#, python-format
+msgid "The country is not set on the company '%s'."
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/product_template.py:22
+#, python-format
+msgid "The option 'Is accessory cost?' should only be activated on 'Service' products. You have activated this option for the product '%s' which is of type '%s'"
+msgstr ""
+
+#. module: intrastat_base
+#: model:product.product,uom_name:intrastat_base.shipping_costs_exclude
+#: model:product.template,uom_name:intrastat_base.shipping_costs_exclude_product_template
+msgid "Unit(s)"
+msgstr ""
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/intrastat_common.py:71
+#, python-format
+msgid "Unknown Error"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_remind_user_ids
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
+msgid "Users Receiving the Intrastat Reminder"
+msgstr ""
+
+#. module: intrastat_base
+#: model:product.product,weight_uom_name:intrastat_base.shipping_costs_exclude
+#: model:product.template,weight_uom_name:intrastat_base.shipping_costs_exclude_product_template
+msgid "kg"
+msgstr ""
+

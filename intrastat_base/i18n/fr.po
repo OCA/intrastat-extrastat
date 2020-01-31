@@ -28,7 +28,7 @@ msgstr ""
 "la DEB et la DES."
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:143
+#: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "Cannot delete the declaration %s because it is in Done state"
 msgstr ""
@@ -46,7 +46,7 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:38
+#: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "Company not yet set on intrastat report."
 msgstr "Société non configurée sur le rapport DEB/DES."
@@ -172,7 +172,7 @@ msgid "List of emails of Users Receiving the Intrastat Reminder"
 msgstr "Liste des emails des utilisateurs qui reçoivent le rappel DEB/DES"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/res_company.py:37
+#: code:addons/intrastat_base/models/res_company.py:0
 #, python-format
 msgid "Missing e-mail address on user '%s'."
 msgstr "Adresse e-mail manquante pour l'utilisateur '%s'."
@@ -229,19 +229,19 @@ msgid "Templates for Taxes"
 msgstr "Modèles pour les taxes"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:50
+#: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "The VAT number is not set for the partner '%s'."
 msgstr "Numéro de TVA non renseigné sur le partenaire '%s'."
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:42
+#: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "The country is not set on the company '%s'."
 msgstr "Pays non renseigné sur la société '%s'."
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/product_template.py:22
+#: code:addons/intrastat_base/models/product_template.py:0
 #, python-format
 msgid ""
 "The option 'Is accessory cost?' should only be activated on 'Service' "
@@ -255,11 +255,11 @@ msgstr ""
 #. module: intrastat_base
 #: model:product.product,uom_name:intrastat_base.shipping_costs_exclude
 #: model:product.template,uom_name:intrastat_base.shipping_costs_exclude_product_template
-msgid "Unit(s)"
+msgid "Units"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:71
+#: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "Unknown Error"
 msgstr ""
@@ -269,12 +269,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
 msgid "Users Receiving the Intrastat Reminder"
 msgstr "Utilisateurs qui reçoivent le rappel DEB/DES"
-
-#. module: intrastat_base
-#: model:product.product,weight_uom_name:intrastat_base.shipping_costs_exclude
-#: model:product.template,weight_uom_name:intrastat_base.shipping_costs_exclude_product_template
-msgid "kg"
-msgstr ""
 
 #~ msgid "intrastat.result.view"
 #~ msgstr "intrastat.result.view"

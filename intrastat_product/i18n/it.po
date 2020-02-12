@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* intrastat_product
+# 	* intrastat_product
 #
 msgid ""
 msgstr ""
@@ -83,8 +83,10 @@ msgstr ""
 
 #. module: intrastat_product
 #: sql_constraint:intrastat.product.declaration:0
-msgid "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+msgid ""
+"A declaration of the same type already exists for this month !\n"
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 
 #. module: intrastat_product
@@ -121,13 +123,19 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
-msgid "Amount in company currency of the accessory costs related to this invoice line (by default, these accessory costs are computed at the pro-rata of the amount of each invoice line."
+msgid ""
+"Amount in company currency of the accessory costs related to this invoice "
+"line (by default, these accessory costs are computed at the pro-rata of the "
+"amount of each invoice line."
 msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount in company currency to write in the declaration. Amount in company currency = amount in invoice currency converted to company currency with the rate of the invoice date."
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 
 #. module: intrastat_product
@@ -166,8 +174,7 @@ msgid "Code"
 msgstr ""
 
 #. module: intrastat_product
-#: sql_constraint:intrastat.region:0
-#: sql_constraint:intrastat.transaction:0
+#: sql_constraint:intrastat.region:0 sql_constraint:intrastat.transaction:0
 #: sql_constraint:intrastat.transport_mode:0
 msgid "Code must be unique."
 msgstr ""
@@ -217,21 +224,17 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:244
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:246
 #, python-format
-msgid "Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not implemented yet."
+msgid ""
+"Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not "
+"implemented yet."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:259
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:284
 #, python-format
 msgid "Conversion from unit of measure '%s' to '%s' is not implemented yet."
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:293
-#, python-format
-msgid "Conversion from unit of measure '%s' to 'Kg' is not implemented yet. It is needed for product '%s'."
 msgstr ""
 
 #. module: intrastat_product
@@ -471,28 +474,28 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:708
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:739
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:597
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:628
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:730
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:761
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:629
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:660
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr ""
@@ -574,7 +577,9 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_company__intrastat_incoterm_id
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__intrastat_incoterm_id
-msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
 msgstr ""
 
 #. module: intrastat_product
@@ -589,13 +594,17 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:26
 #, python-format
-msgid "Intrastat Codes should contain 8 digits. This is not the case for Intrastat Code '%s' which has %d digits."
+msgid ""
+"Intrastat Codes should contain 8 digits. This is not the case for Intrastat "
+"Code '%s' which has %d digits."
 msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:21
 #, python-format
-msgid "Intrastat Codes should only contain digits. This is not the case for code '%s'."
+msgid ""
+"Intrastat Codes should only contain digits. This is not the case for code "
+"'%s'."
 msgstr ""
 
 #. module: intrastat_product
@@ -816,19 +825,21 @@ msgid "Messages"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:506
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:535
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:232
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
 #, python-format
-msgid "Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
+msgid ""
+"Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:276
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:301
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:321
 #, python-format
 msgid "Missing weight on product %s."
 msgstr ""
@@ -869,13 +880,13 @@ msgid "No"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:740
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:771
 #, python-format
 msgid "No XML File has been generated."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:616
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:647
 #, python-format
 msgid "No records found for the selected period !"
 msgstr ""
@@ -928,7 +939,9 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_invoice__src_dest_region_id
-msgid "Origin region for dispatches, destination region for arrivals. This field is used for the Intrastat Declaration."
+msgid ""
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 
 #. module: intrastat_product
@@ -948,7 +961,9 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_9
-msgid "Own propulsion (imported or exported means of transport crossing the border under their own power, e.g. aircraft, lorries, boats, etc.)"
+msgid ""
+"Own propulsion (imported or exported means of transport crossing the border "
+"under their own power, e.g. aircraft, lorries, boats, etc.)"
 msgstr ""
 
 #. module: intrastat_product
@@ -957,28 +972,35 @@ msgid "Period"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:236
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:238
 #, python-format
 msgid "Please adjust this line manually."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:248
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:250
 #, python-format
-msgid "Please correct the Intrastat Supplementary Unit settings and regenerate the lines or adjust the lines with Intrastat Code '%s' manually"
+msgid ""
+"Please correct the Intrastat Supplementary Unit settings and regenerate the "
+"lines or adjust the lines with Intrastat Code '%s' manually"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:279
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:276
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:304
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:324
 #, python-format
-msgid "Please correct the product record and regenerate the lines or adjust the impacted lines manually"
+msgid ""
+"Please correct the product record and regenerate the lines or adjust the "
+"impacted lines manually"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:263
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:297
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:288
 #, python-format
-msgid "Please correct the unit of measure settings and regenerate the lines or adjust the impacted lines manually"
+msgid ""
+"Please correct the unit of measure settings and regenerate the lines or "
+"adjust the impacted lines manually"
 msgstr ""
 
 #. module: intrastat_product
@@ -997,6 +1019,17 @@ msgstr ""
 #, python-format
 msgid "Product"
 msgstr "Prodotto"
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:265
+#, python-format
+msgid ""
+"Product '%s' has an Intrastat Supplementary Unit in the 'volume' Unit of "
+"Measure (UoM) category. The Supplementary Unit Quantity calculation has "
+"failed since the product has been sold/purchased with a UoM without volume "
+"conversion. There is also no 'volume' specificied on the product record "
+"which also allows to calculate the Intrastat Supplementary Unit."
+msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:42
@@ -1067,7 +1100,9 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
-msgid "Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and lighters on board of a ship)"
+msgid ""
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 
 #. module: intrastat_product
@@ -1099,7 +1134,9 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_unit__uom_id
-msgid "Select the regular Unit of Measure of Odoo that corresponds to this Intrastat Supplementary Unit."
+msgid ""
+"Select the regular Unit of Measure of Odoo that corresponds to this "
+"Intrastat Supplementary Unit."
 msgstr ""
 
 #. module: intrastat_product
@@ -1115,7 +1152,9 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid "State of the declaration. When the state is set to 'Done', the parameters become read-only."
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
 msgstr ""
 
 #. module: intrastat_product
@@ -1147,27 +1186,31 @@ msgid "Supplementary Units Quantity"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:617
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:648
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__country_code
-msgid "The ISO country code in two chars. \n"
+msgid ""
+"The ISO country code in two chars. \n"
 "You can use this field for quick search."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:370
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:399
 #, python-format
-msgid "The default Incoterm of the Company is not set, please configure it first."
+msgid ""
+"The default Incoterm of the Company is not set, please configure it first."
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:356
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:385
 #, python-format
-msgid "The default Intrastat Transport Mode of the Company is not set, please configure it first."
+msgid ""
+"The default Intrastat Transport Mode of the Company is not set, please "
+"configure it first."
 msgstr ""
 
 #. module: intrastat_product
@@ -1304,6 +1347,11 @@ msgstr ""
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:240
 #, python-format
 msgid "for period %s"
+msgstr ""
+
+#. module: intrastat_product
+#: model:uom.uom,name:intrastat_product.product_uom_m3
+msgid "m3"
 msgstr ""
 
 #. module: intrastat_product

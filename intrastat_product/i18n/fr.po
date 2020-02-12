@@ -240,7 +240,7 @@ msgid "Config Settings"
 msgstr "res.config.settings"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:244
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:246
 #, python-format
 msgid ""
 "Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not "
@@ -250,21 +250,11 @@ msgstr ""
 "mesure Odoo n'est pas encore implémenté."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:259
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:284
 #, python-format
 msgid "Conversion from unit of measure '%s' to '%s' is not implemented yet."
 msgstr ""
 "La conversion de l'unité de mesure '%s' vers '%s' n'est pas implémenté."
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:293
-#, python-format
-msgid ""
-"Conversion from unit of measure '%s' to 'Kg' is not implemented yet. It is "
-"needed for product '%s'."
-msgstr ""
-"La conversion de l'unité de mesure '%s' vers 'Kg' n'est pas encore "
-"implémenté. Elle est requise pour l'article '%s'."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__src_dest_country_id
@@ -507,28 +497,28 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:708
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:739
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr "Générer les lignes de DEB"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:597
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:628
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr "Générer les lignes à partir des factures"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:730
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:761
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr "Générer le fichier XML de la DEB"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:629
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:660
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr "Génération des lignes à partir des factures: résultats"
@@ -867,7 +857,7 @@ msgid "Messages"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:506
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:535
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
@@ -875,7 +865,7 @@ msgstr ""
 "%s."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:232
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
 #, python-format
 msgid ""
 "Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
@@ -884,7 +874,8 @@ msgstr ""
 "facture '%s'."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:276
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:301
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:321
 #, python-format
 msgid "Missing weight on product %s."
 msgstr "Poids manquant sur l'article %s."
@@ -925,13 +916,13 @@ msgid "No"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:740
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:771
 #, python-format
 msgid "No XML File has been generated."
 msgstr "Fichier XML non généré."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:616
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:647
 #, python-format
 msgid "No records found for the selected period !"
 msgstr "Aucun enregistrement trouvé pour la période sélectionnée !"
@@ -1026,13 +1017,13 @@ msgid "Period"
 msgstr "Période"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:236
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:238
 #, python-format
 msgid "Please adjust this line manually."
 msgstr "Ligne à finaliser manuellement."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:248
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:250
 #, python-format
 msgid ""
 "Please correct the Intrastat Supplementary Unit settings and regenerate the "
@@ -1043,7 +1034,9 @@ msgstr ""
 "DEB '%s'"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:279
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:276
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:304
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:324
 #, python-format
 msgid ""
 "Please correct the product record and regenerate the lines or adjust the "
@@ -1053,8 +1046,7 @@ msgstr ""
 "manuellement les lignes concernées."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:263
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:297
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:288
 #, python-format
 msgid ""
 "Please correct the unit of measure settings and regenerate the lines or "
@@ -1079,6 +1071,17 @@ msgstr "Envois postaux"
 #, python-format
 msgid "Product"
 msgstr "Article"
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:265
+#, python-format
+msgid ""
+"Product '%s' has an Intrastat Supplementary Unit in the 'volume' Unit of "
+"Measure (UoM) category. The Supplementary Unit Quantity calculation has "
+"failed since the product has been sold/purchased with a UoM without volume "
+"conversion. There is also no 'volume' specificied on the product record "
+"which also allows to calculate the Intrastat Supplementary Unit."
+msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:42
@@ -1239,7 +1242,7 @@ msgid "Supplementary Units Quantity"
 msgstr "Quantité exprimée en unité supplémentaire"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:617
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:648
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr "L'action de la déclaration a été mise à 'néant'."
@@ -1252,7 +1255,7 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:370
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:399
 #, python-format
 msgid ""
 "The default Incoterm of the Company is not set, please configure it first."
@@ -1261,7 +1264,7 @@ msgstr ""
 "préalable."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:356
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:385
 #, python-format
 msgid ""
 "The default Intrastat Transport Mode of the Company is not set, please "
@@ -1414,11 +1417,23 @@ msgid "for period %s"
 msgstr ""
 
 #. module: intrastat_product
+#: model:uom.uom,name:intrastat_product.product_uom_m3
+msgid "m3"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_report_intrastat_product_product_declaration_xls
 #, fuzzy
 #| msgid "Intrastat Product Declarations"
 msgid "report.intrastat_product.product_declaration_xls"
 msgstr "DEBs"
+
+#~ msgid ""
+#~ "Conversion from unit of measure '%s' to 'Kg' is not implemented yet. It "
+#~ "is needed for product '%s'."
+#~ msgstr ""
+#~ "La conversion de l'unité de mesure '%s' vers 'Kg' n'est pas encore "
+#~ "implémenté. Elle est requise pour l'article '%s'."
 
 #~ msgid "Quotation"
 #~ msgstr "Devis"

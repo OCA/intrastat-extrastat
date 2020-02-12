@@ -226,6 +226,8 @@ class IntrastatProductDeclaration(models.Model):
         kg_uom = self._get_uom_refs('kg_uom')
         pce_uom_categ = self._get_uom_refs('pce_uom_categ')
         pce_uom = self._get_uom_refs('pce_uom')
+        volume_uom_categ = self._get_uom_refs('volume_uom_categ')
+        m3_uom = self._get_uom_refs('m3_uom')
         weight = suppl_unit_qty = 0.0
 
         if not source_uom:
@@ -255,6 +257,29 @@ class IntrastatProductDeclaration(models.Model):
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(
                     line_qty, target_uom)
+            elif target_uom.category_id == volume_uom_categ:
+                # in case of product records with the volume field
+                # correctly filled in we should report back this
+                # volume (converted to the target_uom)
+                if not product.volume:
+                    note = "\n" + _(
+                        "Product '%s' has an Intrastat Supplementary Unit "
+                        "in the 'volume' Unit of Measure (UoM) category. "
+                        "The Supplementary Unit Quantity calculation "
+                        "has failed since the product "
+                        "has been sold/purchased with a UoM without "
+                        "volume conversion. "
+                        "There is also no 'volume' specificied on the "
+                        "product record which also allows to calculate the "
+                        "Intrastat Supplementary Unit."
+                    ) % product.name_get()[0][1]
+                    note += "\n" + _(
+                        "Please correct the product record and regenerate "
+                        "the lines or adjust the impacted lines manually")
+                    self._note += note
+                    return weight, suppl_unit_qty
+                suppl_unit_qty = m3_uom._compute_quantity(
+                    line_qty * product.volume, target_uom)
             else:
                 note = "\n" + _(
                     "Conversion from unit of measure '%s' to '%s' "
@@ -290,16 +315,20 @@ class IntrastatProductDeclaration(models.Model):
                 weight = product.weight * \
                     source_uom._compute_quantity(line_qty, pce_uom)
         else:
-            note = "\n" + _(
-                "Conversion from unit of measure '%s' to 'Kg' "
-                "is not implemented yet. It is needed for product '%s'."
-            ) % (source_uom.name, product.name_get()[0][1])
-            note += "\n" + _(
-                "Please correct the unit of measure settings and "
-                "regenerate the lines or adjust the impacted lines "
-                "manually")
-            self._note += note
-            return weight, suppl_unit_qty
+            # in case of product records with e.g. uom 'liter' and the weight
+            # correctly filled in we should report back the weight
+            if not product.weight:
+                note = "\n" + _(
+                    "Missing weight on product %s."
+                    ) % product.name_get()[0][1]
+                note += "\n" + _(
+                    "Please correct the product record and regenerate "
+                    "the lines or adjust the impacted lines manually")
+                self._note += note
+                return weight, suppl_unit_qty
+            qty = source_uom._compute_quantity(
+                line_qty, product.uom_id, raise_if_failure=False)
+            weight = product.weight * qty
 
         return weight, suppl_unit_qty
 
@@ -588,7 +617,9 @@ class IntrastatProductDeclaration(models.Model):
             'weight_uom_categ': self.env.ref('uom.product_uom_categ_kgm'),
             'kg_uom': self.env.ref('uom.product_uom_kgm'),
             'pce_uom_categ': self.env.ref('uom.product_uom_categ_unit'),
-            'pce_uom': self.env.ref('uom.product_uom_unit')
+            'pce_uom': self.env.ref('uom.product_uom_unit'),
+            'volume_uom_categ': self.env.ref('uom.product_uom_categ_vol'),
+            'm3_uom': self.env.ref('intrastat_product.product_uom_m3'),
         }
         return uom_refs[ref]
 

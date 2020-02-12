@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
 
+    <!--
+    The standard addons do not have a uom for m3 although there is a
+    volume field in m3 on the product record.
+    By adding this uom we can use the standard product.product,volume
+    field to convert volume to weigth
+    -->
+    <record id="product_uom_m3" model="uom.uom">
+      <field name="name">m3</field>
+      <field name="category_id" ref="uom.product_uom_categ_vol"/>
+      <field name="factor_inv" eval="1000"/>
+      <field name="uom_type">bigger</field>
+    </record>
+    
     <!-- Extracted from the Official Journal of the European Union -->
 
     <record id="intrastat_unit_c_k" model="intrastat.unit">
@@ -93,6 +106,7 @@
     <record id="intrastat_unit_m3" model="intrastat.unit">
       <field name="name">m3</field>
       <field name="description">Cubic metre</field>
+      <field name="uom_id" ref="product_uom_m3"/>
     </record>
     <record id="intrastat_unit_1000m3" model="intrastat.unit">
       <field name="name">1000 m3</field>

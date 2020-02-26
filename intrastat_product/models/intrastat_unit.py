@@ -7,13 +7,15 @@ from odoo import fields, models
 
 
 class IntrastatUnit(models.Model):
-    _name = 'intrastat.unit'
-    _description = 'Intrastat Supplementary Units'
+    _name = "intrastat.unit"
+    _description = "Intrastat Supplementary Units"
 
-    name = fields.Char(string='Name', required=True)
-    description = fields.Char(string='Description', required=True)
+    name = fields.Char(string="Name", required=True)
+    description = fields.Char(string="Description", required=True)
     uom_id = fields.Many2one(
-        comodel_name='uom.uom', string='Regular UoM',
+        comodel_name="uom.uom",
+        string="Regular UoM",
         help="Select the regular Unit of Measure of Odoo that corresponds "
-        "to this Intrastat Supplementary Unit.")
+        "to this Intrastat Supplementary Unit.",
+    )
     active = fields.Boolean(default=True)

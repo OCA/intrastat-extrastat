@@ -10,60 +10,57 @@
 <odoo>
 
     <!-- Intrastat Supplementary Unit -->
-   <record id="intrastat_unit_form" model="ir.ui.view">
-      <field name="name">intrastat.unit.form</field>
-      <field name="model">intrastat.unit</field>
-      <field name="arch" type="xml">
-        <form string="Intrastat Supplementary Unit">
-          <div class="oe_button_box" name="button_box">
-            <button name="toggle_active" type="object"
-                class="oe_stat_button" icon="fa-archive">
-              <field name="active" widget="boolean_button"
-                    options='{"terminology": "archive"}'/>
-            </button>
-          </div>
-          <group name="main">
-            <field name="name"/>
-            <field name="uom_id" required="1"/>
-            <field name="description"/>
-          </group>
-        </form>
-      </field>
+    <record id="intrastat_unit_form" model="ir.ui.view">
+        <field name="name">intrastat.unit.form</field>
+        <field name="model">intrastat.unit</field>
+        <field name="arch" type="xml">
+            <form string="Intrastat Supplementary Unit">
+                <field name="active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"/>
+                <group name="main">
+                    <field name="name"/>
+                    <field name="uom_id" required="1"/>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
     </record>
 
     <record id="intrastat_unit_tree" model="ir.ui.view">
-      <field name="name">intrastat.unit.tree</field>
-      <field name="model">intrastat.unit</field>
-      <field name="arch" type="xml">
-        <tree string="Intrastat Supplementary Units">
-          <field name="name"/>
-          <field name="uom_id"/>
-          <field name="description"/>
-        </tree>
-      </field>
+        <field name="name">intrastat.unit.tree</field>
+        <field name="model">intrastat.unit</field>
+        <field name="arch" type="xml">
+            <tree string="Intrastat Supplementary Units">
+                <field name="name"/>
+                <field name="uom_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
     </record>
 
     <record id="intrastat_unit_search" model="ir.ui.view">
-      <field name="name">intrastat.unit.search</field>
-      <field name="model">intrastat.unit</field>
-      <field name="arch" type="xml">
-        <search string="Search Intrastat Supplementary Units">
-          <field name="name"
-                  filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"/>
-          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-          <group string="Group By" name="groupby">
-            <filter name="uom_groupby" string="Regular UoM"
-                context="{'group_by': 'uom_id'}"/>
-          </group>
-        </search>
-      </field>
+        <field name="name">intrastat.unit.search</field>
+        <field name="model">intrastat.unit</field>
+        <field name="arch" type="xml">
+            <search string="Search Intrastat Supplementary Units">
+                <field name="name"
+                        filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group string="Group By" name="groupby">
+                    <filter name="uom_groupby" string="Regular UoM"
+                        context="{'group_by': 'uom_id'}"/>
+                </group>
+            </search>
+        </field>
     </record>
 
 
     <record id="intrastat_unit_action" model="ir.actions.act_window">
-      <field name="name">Supplementary Units</field>
-      <field name="res_model">intrastat.unit</field>
-      <field name="view_mode">tree,form</field>
+        <field name="name">Supplementary Units</field>
+        <field name="res_model">intrastat.unit</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem id="intrastat_unit_menu"

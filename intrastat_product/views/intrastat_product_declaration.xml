@@ -87,7 +87,7 @@
       <field name="name">intrastat.product.declaration.tree</field>
       <field name="model">intrastat.product.declaration</field>
       <field name="arch" type="xml">
-        <tree string="Intrastat Product Declarations" colors="blue:state=='draft'">
+        <tree string="Intrastat Product Declarations" decoration-info="state=='draft'">
           <field name="year_month"/>
           <field name="revision"/>
           <field name="type"/>

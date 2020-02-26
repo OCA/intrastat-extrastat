@@ -34,10 +34,6 @@
                 <label for="intrastat_transport_id" class="col-md-5 o_light_label"/>
                 <field name="intrastat_transport_id"/>
               </div>
-              <div class="row" attrs="{'invisible': [('country_code', 'in', ['FR'])]}">
-                <label for="intrastat_incoterm_id" class="col-md-5 o_light_label"/>
-                <field name="intrastat_incoterm_id"/>
-              </div>
               <div class="row">
                 <label for="intrastat_transaction_out_invoice" class="col-md-5 o_light_label"/>
                 <field name="intrastat_transaction_out_invoice"/>

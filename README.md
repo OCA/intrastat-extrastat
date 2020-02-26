@@ -14,7 +14,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [hs_code_link](hs_code_link/) | 10.0.1.0.0 | HS Code Link
-[intrastat_base](intrastat_base/) | 10.0.1.0.0 | Base module for Intrastat reporting
+[intrastat_base](intrastat_base/) | 10.0.1.1.0 | Base module for Intrastat reporting
 [intrastat_product](intrastat_product/) | 10.0.1.3.1 | Base module for Intrastat Product
 [intrastat_product_generic](intrastat_product_generic/) | 10.0.1.0.0 | Generic Intrastat Product Declaration
 [product_harmonized_system](product_harmonized_system/) | 10.0.1.0.0 | Base module for Product Import/Export reports

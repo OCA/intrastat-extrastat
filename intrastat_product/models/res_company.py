@@ -1,5 +1,5 @@
 # Copyright 2011-2017 Akretion (http://www.akretion.com)
-# Copyright 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -9,13 +9,6 @@ from odoo import api, fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    intrastat_incoterm_id = fields.Many2one(
-        comodel_name="account.incoterms",
-        string="Default Incoterm for Intrastat",
-        help="International Commercial Terms are a series of "
-        "predefined commercial terms used in international "
-        "transactions.",
-    )
     intrastat_arrivals = fields.Selection(
         selection="_intrastat_arrivals",
         string="Arrivals",

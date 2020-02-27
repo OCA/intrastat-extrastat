@@ -1,4 +1,4 @@
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2020 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -15,6 +15,7 @@ IR_TRANSLATION_NAME = "intrastat.product.report"
 class IntrastatProductDeclarationXlsx(models.AbstractModel):
     _name = "report.intrastat_product.product_declaration_xls"
     _inherit = "report.report_xlsx.abstract"
+    _description = "Intrastat declaration"
 
     def _(self, src):
         lang = self.env.context.get("lang", "en_US")
@@ -141,7 +142,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             },
             "invoice": {
                 "header": {"type": "string", "value": self._("Invoice")},
-                "line": {"value": self._render("line.invoice_id.number")},
+                "line": {"value": self._render("line.invoice_id.name")},
                 "width": 18,
             },
         }

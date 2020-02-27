@@ -5,6 +5,7 @@
 
 import logging
 from datetime import date, datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models

@@ -1,7 +1,7 @@
-# Copyright 2009-2018 Noviat nv/sa (www.noviat.com).
+# Copyright 2009-2020 Noviat nv/sa (www.noviat.com).
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class IntrastatRegion(models.Model):
@@ -24,5 +24,9 @@ class IntrastatRegion(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self._default_company_id(),
     )
+
+    @api.model
+    def _default_company_id(self):
+        return self.env.company

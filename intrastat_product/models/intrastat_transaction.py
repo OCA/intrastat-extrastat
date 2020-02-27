@@ -1,5 +1,5 @@
 # Copyright 2011-2017 Akretion France (http://www.akretion.com)
-# Copyright 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -23,8 +23,12 @@ class IntrastatTransaction(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self._default_company_id(),
     )
+
+    @api.model
+    def _default_company_id(self):
+        return self.env.company
 
     @api.depends("code", "description")
     def name_get(self):

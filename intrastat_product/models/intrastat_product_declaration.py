@@ -5,6 +5,7 @@
 
 import logging
 from datetime import date, datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
@@ -40,7 +41,7 @@ class IntrastatProductDeclaration(models.Model):
         comodel_name="res.company",
         string="Company",
         readonly=True,
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self._default_company_id(),
     )
     company_country_code = fields.Char(
         compute="_compute_company_country_code",
@@ -147,6 +148,10 @@ class IntrastatProductDeclaration(models.Model):
         states={"done": [("readonly", True)]},
     )
     valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
+
+    @api.model
+    def _default_company_id(self):
+        return self.env.company
 
     @api.model
     def _get_type(self):

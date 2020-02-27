@@ -1,5 +1,5 @@
 # Copyright 2011-2017 Akretion France (http://www.akretion.com)
-# Copyright 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -58,9 +58,7 @@ class AccountMove(models.Model):
 
     @api.model
     def _default_src_dest_region_id(self):
-        rco = self.env["res.company"]
-        company = rco._company_default_get()
-        return company.intrastat_region_id
+        return self.env.company.intrastat_region_id
 
 
 class AccountMoveLine(models.Model):

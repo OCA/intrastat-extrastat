@@ -1,11 +1,10 @@
 # Copyright 2011-2017 Akretion France (http://www.akretion.com)
-# Copyright 2009-2018 Noviat (http://www.noviat.com)
+# Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
 from datetime import date, datetime
-
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
@@ -417,11 +416,8 @@ class IntrastatProductDeclaration(models.Model):
         return transport
 
     def _get_incoterm(self, inv_line):
-        # WARNING for v12: there are 2 incoterm fields on account.invoice
-        # cf https://github.com/odoo/odoo/issues/31641
-        # the field to use is 'incoterm_id' defined in the 'account' module
         incoterm = (
-            inv_line.invoice_id.incoterm_id or self.company_id.intrastat_incoterm_id
+            inv_line.invoice_id.invoice_incoterm_id or self.company_id.incoterm_id
         )
         if not incoterm:
             msg = _(

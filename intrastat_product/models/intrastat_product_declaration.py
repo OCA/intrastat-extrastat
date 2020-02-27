@@ -34,7 +34,9 @@ class IntrastatProductDeclaration(models.Model):
     def default_get(self, fields_list):
         res = super(IntrastatProductDeclaration, self).default_get(fields_list)
         decl_date = fields.Date.context_today(self) - relativedelta(months=1)
-        res.update({"year": str(decl_date.year), "month": decl_date.month})
+        res.update(
+            {"year": str(decl_date.year), "month": str(decl_date.month).rjust(2, "0")}
+        )
         return res
 
     company_id = fields.Many2one(
@@ -233,8 +235,8 @@ class IntrastatProductDeclaration(models.Model):
 
     def _get_partner_country(self, inv_line):
         country = (
-            inv_line.invoice_id.src_dest_country_id
-            or inv_line.invoice_id.partner_id.country_id
+            inv_line.move_id.src_dest_country_id
+            or inv_line.move_id.partner_id.country_id
         )
         if not country.intrastat:
             country = False
@@ -243,7 +245,7 @@ class IntrastatProductDeclaration(models.Model):
         return country
 
     def _get_intrastat_transaction(self, inv_line):
-        invoice = inv_line.invoice_id
+        invoice = inv_line.move_id
         if invoice.intrastat_transaction_id:
             return invoice.intrastat_transaction_id
         else:
@@ -260,9 +262,9 @@ class IntrastatProductDeclaration(models.Model):
     def _get_weight_and_supplunits(self, inv_line, hs_code):
         line_qty = inv_line.quantity
         product = inv_line.product_id
-        invoice = inv_line.invoice_id
+        invoice = inv_line.move_id
         intrastat_unit_id = hs_code.intrastat_unit_id
-        source_uom = inv_line.uom_id
+        source_uom = inv_line.product_uom_id
         weight_uom_categ = self._get_uom_refs("weight_uom_categ")
         kg_uom = self._get_uom_refs("kg_uom")
         pce_uom_categ = self._get_uom_refs("pce_uom_categ")
@@ -355,12 +357,12 @@ class IntrastatProductDeclaration(models.Model):
         return weight, suppl_unit_qty
 
     def _get_amount(self, inv_line):
-        invoice = inv_line.invoice_id
+        invoice = inv_line.move_id
         amount = invoice.currency_id._convert(
             inv_line.price_subtotal,
             self.company_id.currency_id,
             self.company_id,
-            invoice.date_invoice,
+            invoice.date,
         )
         return amount
 
@@ -384,7 +386,7 @@ class IntrastatProductDeclaration(models.Model):
 
         """
         region = False
-        inv_type = inv_line.invoice_id.type
+        inv_type = inv_line.move_id.type
         if inv_type in ("in_invoice", "in_refund"):
             po_lines = self.env["purchase.order.line"].search(
                 [("invoice_lines", "in", inv_line.id)]
@@ -408,7 +410,7 @@ class IntrastatProductDeclaration(models.Model):
 
     def _get_transport(self, inv_line):
         transport = (
-            inv_line.invoice_id.intrastat_transport_id
+            inv_line.move_id.intrastat_transport_id
             or self.company_id.intrastat_transport_id
         )
         if not transport:
@@ -421,9 +423,7 @@ class IntrastatProductDeclaration(models.Model):
         return transport
 
     def _get_incoterm(self, inv_line):
-        incoterm = (
-            inv_line.invoice_id.invoice_incoterm_id or self.company_id.incoterm_id
-        )
+        incoterm = inv_line.move_id.invoice_incoterm_id or self.company_id.incoterm_id
         if not incoterm:
             msg = _(
                 "The default Incoterm "
@@ -489,9 +489,9 @@ class IntrastatProductDeclaration(models.Model):
         start_date = date(int(self.year), int(self.month), 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
         domain = [
-            ("date_invoice", ">=", start_date),
-            ("date_invoice", "<=", end_date),
-            ("state", "in", ["open", "in_payment", "paid"]),
+            ("date", ">=", start_date),
+            ("date", "<=", end_date),
+            ("state", "=", "posted"),
             ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
         ]
@@ -560,10 +560,7 @@ class IntrastatProductDeclaration(models.Model):
                     continue
 
                 if any(
-                    [
-                        tax.exclude_from_intrastat_if_present
-                        for tax in inv_line.invoice_line_tax_ids
-                    ]
+                    [tax.exclude_from_intrastat_if_present for tax in inv_line.tax_ids]
                 ):
                     _logger.info(
                         "Skipping invoice line %s "
@@ -583,7 +580,7 @@ class IntrastatProductDeclaration(models.Model):
                             "This product is present in invoice %s."
                         ) % (
                             inv_line.product_id.name_get()[0][1],
-                            inv_line.invoice_id.number,
+                            inv_line.move_id.name,
                         )
                         self._note += note
                         continue
@@ -654,7 +651,7 @@ class IntrastatProductDeclaration(models.Model):
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: price_subtotal = 0 "
                         "and accessory costs = 0"
-                        % (inv_line.name, inv_line.quantity, inv_line.invoice_id.number)
+                        % (inv_line.name, inv_line.quantity, inv_line.move_id.name)
                     )
                     continue
                 lines.append(line_vals)

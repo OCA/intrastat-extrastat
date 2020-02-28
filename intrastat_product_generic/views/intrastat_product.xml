@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="intrastat_product_declaration_action_generic" model="ir.actions.act_window">
+    <field name="name">Generic Intrastat Product Declaration</field>
+    <field name="res_model">intrastat.product.declaration</field>
+    <field name="view_mode">tree,form,graph,pivot</field>
+    <field name="context">{'generic_intrastat_product_declaration': 1}</field>
+  </record>
+
+  <menuitem id="intrastat_product_declaration_menu_generic"
+            parent="intrastat_base.menu_intrastat_base_root"
+            action="intrastat_product_declaration_action_generic"
+            groups="group_intrastat_product_generic"/>
+
+</odoo>

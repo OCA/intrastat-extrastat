@@ -837,8 +837,7 @@ msgstr "Propulsion propre"
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_9
 msgid "Own propulsion (imported or exported means of transport crossing the border under their own power, e.g. aircraft, lorries, boats, etc.)"
-msgstr "Propulsion propre (sert à désigner le mode de transport d'un bien acheminé par ses propres
-moyens : vente d'un avion ou d'un camion, l'avion et le camion se déplaçant de manière autonome)"
+msgstr "Propulsion propre (sert à désigner le mode de transport d'un bien acheminé par ses propres moyens : vente d'un avion ou d'un camion, l'avion et le camion se déplaçant de manière autonome)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_year_month

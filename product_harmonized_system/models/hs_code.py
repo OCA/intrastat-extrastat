@@ -36,7 +36,7 @@ class HSCode(models.Model):
         string="Company",
         readonly=True,
         required=True,
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self._default_company_id(),
     )
     product_categ_ids = fields.One2many(
         comodel_name="product.category",
@@ -52,6 +52,10 @@ class HSCode(models.Model):
     )
     product_categ_count = fields.Integer(compute="_compute_product_categ_count")
     product_tmpl_count = fields.Integer(compute="_compute_product_tmpl_count")
+
+    @api.model
+    def _default_company_id(self):
+        return self.env.company
 
     @api.depends("local_code")
     def _compute_hs_code(self):

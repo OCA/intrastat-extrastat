@@ -85,7 +85,7 @@ class IntrastatCommon(models.AbstractModel):
                 "res_id": self.id,
                 "res_model": self._name,
                 "datas": base64.encodestring(xml_string),
-                "datas_fname": filename,
+                "store_fname": filename,
             }
         )
         return attach.id

@@ -253,7 +253,7 @@ class IntrastatProductDeclaration(models.Model):
             note += "\n" + _(
                 "Please adjust this line manually.")
             self._note += note
-            return weight, suppl_unit_qty
+            return abs(weight), abs(suppl_unit_qty)
 
         if intrastat_unit_id:
             target_uom = intrastat_unit_id.uom_id
@@ -268,7 +268,7 @@ class IntrastatProductDeclaration(models.Model):
                     "with Intrastat Code '%s' manually"
                 ) % hs_code.display_name
                 self._note += note
-                return weight, suppl_unit_qty
+                return abs(weight), abs(suppl_unit_qty)
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(
                     line_qty, target_uom)
@@ -282,7 +282,7 @@ class IntrastatProductDeclaration(models.Model):
                     "regenerate the lines or adjust the impacted "
                     "lines manually")
                 self._note += note
-                return weight, suppl_unit_qty
+                return abs(weight), abs(suppl_unit_qty)
 
         if source_uom == kg_uom:
             weight = line_qty
@@ -297,7 +297,7 @@ class IntrastatProductDeclaration(models.Model):
                     "Please correct the product record and regenerate "
                     "the lines or adjust the impacted lines manually")
                 self._note += note
-                return weight, suppl_unit_qty
+                return abs(weight), abs(suppl_unit_qty)
             if source_uom == pce_uom:
                 weight = product.weight * line_qty  # product.weight_net
             else:
@@ -316,9 +316,9 @@ class IntrastatProductDeclaration(models.Model):
                 "regenerate the lines or adjust the impacted lines "
                 "manually")
             self._note += note
-            return weight, suppl_unit_qty
+            return abs(weight), abs(suppl_unit_qty)
 
-        return weight, suppl_unit_qty
+        return abs(weight), abs(suppl_unit_qty)
 
     def _get_amount(self, inv_line):
         invoice = inv_line.invoice_id
@@ -326,7 +326,7 @@ class IntrastatProductDeclaration(models.Model):
             date=invoice.date_invoice).compute(
                 inv_line.price_subtotal,
                 self.company_id.currency_id)
-        return amount
+        return abs(amount)
 
     def _get_region(self, inv_line):
         """
@@ -439,11 +439,11 @@ class IntrastatProductDeclaration(models.Model):
         start_date = date(int(self.year), self.month, 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
         domain = [
-            ('date_invoice', '>=', start_date),
-            ('date_invoice', '<=', end_date),
-            ('state', 'in', ['open', 'paid']),
-            ('intrastat_country', '=', True),
-            ('company_id', '=', self.company_id.id)]
+            ('invoice_id.date_invoice', '>=', start_date),
+            ('invoice_id.date_invoice', '<=', end_date),
+            ('invoice_id.state', 'in', ['open', 'paid']),
+            ('invoice_id.intrastat_country', '=', True),
+            ('invoice_id.company_id', '=', self.company_id.id)]
         return domain
 
     def _is_product(self, invoice_line):
@@ -465,121 +465,145 @@ class IntrastatProductDeclaration(models.Model):
 
         self._gather_invoices_init()
         domain = self._prepare_invoice_domain()
-        invoices = self.env['account.invoice'].search(domain)
+        invoices_lines = self.env['account.invoice.line'].search(domain)
 
-        for invoice in invoices:
+        invoices = {}
+        for inv_line in invoices_lines:
 
-            lines_current_invoice = []
-            total_inv_accessory_costs_cc = 0.0  # in company currency
-            total_inv_product_cc = 0.0  # in company currency
-            total_inv_weight = 0.0
-            for inv_line in invoice.invoice_line_ids:
+            if self.type == 'arrivals' and (
+                    (inv_line.invoice_id.type in ('out_invoice', 'in_refund')
+                        and inv_line.quantity >= 0) or
+                    (inv_line.invoice_id.type in ('in_invoice', 'out_refund')
+                        and inv_line.quantity < 0)):
+                continue
+            elif self.type == 'dispatches' and (
+                    (inv_line.invoice_id.type in ('in_invoice', 'out_refund')
+                        and inv_line.quantity >= 0) or
+                    (inv_line.invoice_id.type in ('out_invoice', 'in_refund')
+                        and inv_line.quantity < 0)):
+                continue
 
-                if (
-                        accessory_costs and
-                        inv_line.product_id and
-                        inv_line.product_id.is_accessory_cost):
-                    acost = invoice.currency_id.with_context(
-                        date=invoice.date_invoice).compute(
-                            inv_line.price_subtotal,
-                            self.company_id.currency_id)
-                    total_inv_accessory_costs_cc += acost
+            invoices.setdefault(inv_line.invoice_id.id, {
+                    'lines_current_invoice': [],
+                    'total_inv_accessory_costs_cc': 0.0, # in company currency
+                    'total_inv_product_cc': 0.0,  # in company currency
+                    'total_inv_weight': 0.0,
+                })
 
+            if (
+                    accessory_costs and
+                    inv_line.product_id and
+                    inv_line.product_id.is_accessory_cost):
+                acost = inv_line.invoice_id.currency_id.with_context(
+                    date=inv_line.invoice_id.date_invoice).compute(
+                        inv_line.price_subtotal,
+                        self.company_id.currency_id)
+                invoices[inv_line.invoice_id.id][
+                    'total_inv_accessory_costs_cc'] += acost
+
+                continue
+
+            if not inv_line.quantity:
+                _logger.info(
+                    'Skipping invoice line %s qty %s '
+                    'of invoice %s. Reason: qty = 0' % (
+                        inv_line.name, inv_line.quantity,
+                        inv_line.invoice_id.number))
+                continue
+
+            partner_country = self._get_partner_country(inv_line)
+            if not partner_country:
+                _logger.info(
+                    'Skipping invoice line %s qty %s '
+                    'of invoice %s. Reason: no partner_country' % (
+                        inv_line.name, inv_line.quantity,
+                        inv_line.invoice_id.number))
+                continue
+
+            if any([
+                    tax.exclude_from_intrastat_if_present
+                    for tax in inv_line.invoice_line_tax_ids]):
+                _logger.info(
+                    'Skipping invoice line %s '
+                    'qty %s of invoice %s. Reason: '
+                    'tax.exclude_from_intrastat_if_present' % (
+                        inv_line.name, inv_line.quantity,
+                        inv_line.invoice_id.number))
+                continue
+
+            if inv_line.hs_code_id:
+                hs_code = inv_line.hs_code_id
+            elif inv_line.product_id and self._is_product(inv_line):
+                hs_code = inv_line.product_id.get_hs_code_recursively()
+                if not hs_code:
+                    note = "\n" + _(
+                        "Missing H.S. code on product %s. "
+                        "This product is present in invoice %s.") % (
+                            inv_line.product_id.name_get()[0][1],
+                            inv_line.invoice_id.number)
+                    self._note += note
                     continue
+            else:
+                _logger.info(
+                    'Skipping invoice line %s qty %s '
+                    'of invoice %s. Reason: no product nor hs_code' % (
+                        inv_line.name,
+                        inv_line.quantity, inv_line.invoice_id.number))
+                continue
 
-                if not inv_line.quantity:
-                    _logger.info(
-                        'Skipping invoice line %s qty %s '
-                        'of invoice %s. Reason: qty = 0'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
-                    continue
+            intrastat_transaction = \
+                self._get_intrastat_transaction(inv_line)
 
-                partner_country = self._get_partner_country(inv_line)
-                if not partner_country:
-                    _logger.info(
-                        'Skipping invoice line %s qty %s '
-                        'of invoice %s. Reason: no partner_country'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
-                    continue
+            weight, suppl_unit_qty = self._get_weight_and_supplunits(
+                inv_line, hs_code)
+            invoices[inv_line.invoice_id.id]['total_inv_weight'] += weight
 
-                if any([
-                        tax.exclude_from_intrastat_if_present
-                        for tax in inv_line.invoice_line_tax_ids]):
-                    _logger.info(
-                        'Skipping invoice line %s '
-                        'qty %s of invoice %s. Reason: '
-                        'tax.exclude_from_intrastat_if_present'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
-                    continue
+            amount_company_currency = self._get_amount(inv_line)
+            invoices[inv_line.invoice_id.id][
+                'total_inv_product_cc'] += amount_company_currency
 
-                if inv_line.hs_code_id:
-                    hs_code = inv_line.hs_code_id
-                elif inv_line.product_id and self._is_product(inv_line):
-                    hs_code = inv_line.product_id.get_hs_code_recursively()
-                    if not hs_code:
-                        note = "\n" + _(
-                            "Missing H.S. code on product %s. "
-                            "This product is present in invoice %s.") % (
-                                inv_line.product_id.name_get()[0][1],
-                                inv_line.invoice_id.number)
-                        self._note += note
-                        continue
-                else:
-                    _logger.info(
-                        'Skipping invoice line %s qty %s '
-                        'of invoice %s. Reason: no product nor hs_code'
-                        % (inv_line.name, inv_line.quantity, invoice.number))
-                    continue
+            product_origin_country = self._get_product_origin_country(
+                inv_line)
 
-                intrastat_transaction = \
-                    self._get_intrastat_transaction(inv_line)
+            region = self._get_region(inv_line)
 
-                weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                    inv_line, hs_code)
-                total_inv_weight += weight
+            line_vals = {
+                'parent_id': self.id,
+                'invoice_line_id': inv_line.id,
+                'src_dest_country_id': partner_country.id,
+                'product_id': inv_line.product_id.id,
+                'hs_code_id': hs_code.id,
+                'weight': weight,
+                'suppl_unit_qty': suppl_unit_qty,
+                'amount_company_currency': amount_company_currency,
+                'amount_accessory_cost_company_currency': 0.0,
+                'transaction_id': intrastat_transaction.id,
+                'product_origin_country_id':
+                product_origin_country.id or False,
+                'region_id': region and region.id or False,
+            }
 
-                amount_company_currency = self._get_amount(inv_line)
-                total_inv_product_cc += amount_company_currency
+            # extended declaration
+            if self._extended:
+                transport = self._get_transport(inv_line)
+                line_vals.update({
+                    'transport_id': transport.id,
+                })
 
-                product_origin_country = self._get_product_origin_country(
-                    inv_line)
+            self._update_computation_line_vals(inv_line, line_vals)
 
-                region = self._get_region(inv_line)
+            if line_vals:
+                invoices[inv_line.invoice_id.id][
+                    'lines_current_invoice'].append((line_vals))
 
-                line_vals = {
-                    'parent_id': self.id,
-                    'invoice_line_id': inv_line.id,
-                    'src_dest_country_id': partner_country.id,
-                    'product_id': inv_line.product_id.id,
-                    'hs_code_id': hs_code.id,
-                    'weight': weight,
-                    'suppl_unit_qty': suppl_unit_qty,
-                    'amount_company_currency': amount_company_currency,
-                    'amount_accessory_cost_company_currency': 0.0,
-                    'transaction_id': intrastat_transaction.id,
-                    'product_origin_country_id':
-                    product_origin_country.id or False,
-                    'region_id': region and region.id or False,
-                }
-
-                # extended declaration
-                if self._extended:
-                    transport = self._get_transport(inv_line)
-                    line_vals.update({
-                        'transport_id': transport.id,
-                    })
-
-                self._update_computation_line_vals(inv_line, line_vals)
-
-                if line_vals:
-                    lines_current_invoice.append((line_vals))
-
+        for invoice in invoices.keys():
             self._handle_invoice_accessory_cost(
-                invoice, lines_current_invoice,
-                total_inv_accessory_costs_cc, total_inv_product_cc,
-                total_inv_weight)
+                invoice, invoices[invoice]['lines_current_invoice'],
+                invoices[invoice]['total_inv_accessory_costs_cc'],
+                invoices[invoice]['total_inv_product_cc'],
+                invoices[invoice]['total_inv_weight'])
 
-            for line_vals in lines_current_invoice:
+            for line_vals in invoices[invoice]['lines_current_invoice']:
                 if (
                         not line_vals['amount_company_currency'] and
                         not
@@ -591,7 +615,7 @@ class IntrastatProductDeclaration(models.Model):
                         'of invoice %s. Reason: price_subtotal = 0 '
                         'and accessory costs = 0'
                         % (inv_line.name, inv_line.quantity,
-                           inv_line.invoice_id.number))
+                            inv_line.invoice_id.number))
                     continue
                 lines.append(line_vals)
 

@@ -1,12 +1,9 @@
 # Copyright 2009-2018 Noviat
+# Copyright 2020 Manuel Calero - Tecnativa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-import logging
 
 from odoo import models
 from odoo.tools.translate import translate, _
-
-_logger = logging.getLogger(__name__)
 
 
 IR_TRANSLATION_NAME = 'intrastat.product.report'
@@ -32,7 +29,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 'line': {
                     'value': self._render(
-                        "line.product_id and line.product_id.name"),
+                        "line.product_id.name or ''"),
                 },
                 'width': 36,
             },
@@ -56,7 +53,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 'line': {
                     'type': 'string',
                     'value': self._render(
-                        "line.hs_code_id.local_code"),
+                        "line.hs_code_id.local_code or ''"),
                 },
                 'width': 14,
             },
@@ -68,7 +65,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 'line': {
                     'type': 'string',
                     'value': self._render(
-                        "line.src_dest_country_id.name"),
+                        "line.src_dest_country_id.name or ''"),
                 },
                 'width': 28,
             },

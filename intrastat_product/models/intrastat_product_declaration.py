@@ -275,7 +275,7 @@ class IntrastatProductDeclaration(models.Model):
             note = "\n" + _(
                 "Missing unit of measure on the line with %d "
                 "product(s) '%s' on invoice '%s'."
-            ) % (line_qty, product.name_get()[0][1], invoice.number)
+            ) % (line_qty, product.name_get()[0][1], invoice.name)
             note += "\n" + _("Please adjust this line manually.")
             self._note += note
             return weight, suppl_unit_qty
@@ -546,7 +546,7 @@ class IntrastatProductDeclaration(models.Model):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: qty = 0"
-                        % (inv_line.name, inv_line.quantity, invoice.number)
+                        % (inv_line.name, inv_line.quantity, invoice.name)
                     )
                     continue
 
@@ -555,7 +555,7 @@ class IntrastatProductDeclaration(models.Model):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: no partner_country"
-                        % (inv_line.name, inv_line.quantity, invoice.number)
+                        % (inv_line.name, inv_line.quantity, invoice.name)
                     )
                     continue
 
@@ -566,7 +566,7 @@ class IntrastatProductDeclaration(models.Model):
                         "Skipping invoice line %s "
                         "qty %s of invoice %s. Reason: "
                         "tax.exclude_from_intrastat_if_present"
-                        % (inv_line.name, inv_line.quantity, invoice.number)
+                        % (inv_line.name, inv_line.quantity, invoice.name)
                     )
                     continue
 
@@ -588,7 +588,7 @@ class IntrastatProductDeclaration(models.Model):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: no product nor hs_code"
-                        % (inv_line.name, inv_line.quantity, invoice.number)
+                        % (inv_line.name, inv_line.quantity, invoice.name)
                     )
                     continue
 

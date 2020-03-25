@@ -13,7 +13,7 @@
     <field name="model">account.tax</field>
     <field name="inherit_id" ref="account.view_tax_form"/>
     <field name="arch" type="xml">
-        <field name="active" position="before">
+        <field name="tag_ids" position="after">
             <field name="exclude_from_intrastat_if_present"/>
         </field>
     </field>

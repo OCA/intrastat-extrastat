@@ -10,7 +10,9 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     intrastat_remind_user_ids = fields.Many2many(
-        'res.users', column1='company_id', column2='user_id',
+        comodel_name='res.users',
+        relation='company_intrastat_reminder_user_rel',
+        column1='company_id', column2='user_id',
         string="Users Receiving the Intrastat Reminder",
         help="List of Odoo users who will receive a notification to "
         "remind them about the Intrastat declaration.")

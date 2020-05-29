@@ -529,6 +529,15 @@ class IntrastatProductDeclaration(models.Model):
 
                 if inv_line.hs_code_id:
                     hs_code = inv_line.hs_code_id
+                    if not inv_line.product_id:
+                        note = "\n" + _(
+                            "Missing product on invoice line with H.S. code %s "
+                            "in invoice %s.") % (
+                                hs_code,
+                                inv_line.invoice_id.number)
+                        self._note += note
+                        continue
+
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:

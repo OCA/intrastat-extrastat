@@ -497,28 +497,28 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:739
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:748
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr "Générer les lignes de DEB"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:628
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:637
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr "Générer les lignes à partir des factures"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:761
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:770
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr "Générer le fichier XML de la DEB"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:660
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:669
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr "Génération des lignes à partir des factures: résultats"
@@ -857,12 +857,23 @@ msgid "Messages"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:535
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:544
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr ""
 "Code S.H. manquant sur l'article %s. Cet article est présent sur la facture "
 "%s."
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:533
+#, fuzzy, python-format
+#| msgid ""
+#| "Missing unit of measure on the line with %d product(s) '%s' on invoice "
+#| "'%s'."
+msgid "Missing product on invoice line with H.S. code %s in invoice %s."
+msgstr ""
+"Unité de mesure manquante sur la ligne où figurent %d article(s) '%s' sur la "
+"facture '%s'."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
@@ -916,13 +927,13 @@ msgid "No"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:771
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:780
 #, python-format
 msgid "No XML File has been generated."
 msgstr "Fichier XML non généré."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:647
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:656
 #, python-format
 msgid "No records found for the selected period !"
 msgstr "Aucun enregistrement trouvé pour la période sélectionnée !"
@@ -1242,7 +1253,7 @@ msgid "Supplementary Units Quantity"
 msgstr "Quantité exprimée en unité supplémentaire"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:648
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:657
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr "L'action de la déclaration a été mise à 'néant'."

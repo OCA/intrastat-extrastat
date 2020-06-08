@@ -99,9 +99,9 @@ class HSCode(models.Model):
     def create(self, vals):
         if vals.get("local_code"):
             vals["local_code"] = vals["local_code"].replace(" ", "")
-        return super(HSCode, self).create(vals)
+        return super().create(vals)
 
     def write(self, vals):
         if vals.get("local_code"):
             vals["local_code"] = vals["local_code"].replace(" ", "")
-        return super(HSCode, self).write(vals)
+        return super().write(vals)

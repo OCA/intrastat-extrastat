@@ -18,7 +18,7 @@ class IntrastatProductDeclaration(models.Model):
     _name = "intrastat.product.declaration"
     _description = "Intrastat Product Report Base Object"
     _rec_name = "year_month"
-    _inherit = ["mail.thread", "intrastat.common"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "intrastat.common"]
     _order = "year_month desc, type, revision"
     _sql_constraints = [
         (
@@ -32,7 +32,7 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(IntrastatProductDeclaration, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         decl_date = fields.Date.context_today(self) - relativedelta(months=1)
         res.update(
             {"year": str(decl_date.year), "month": str(decl_date.month).rjust(2, "0")}
@@ -150,6 +150,7 @@ class IntrastatProductDeclaration(models.Model):
         states={"done": [("readonly", True)]},
     )
     valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
+    xml_attachment_id = fields.Many2one("ir.attachment", string="XML Export")
 
     @api.model
     def _default_company_id(self):
@@ -225,7 +226,7 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         default = default or {}
         default["revision"] = self.revision + 1
-        return super(IntrastatProductDeclaration, self).copy(default)
+        return super().copy(default)
 
     def _account_config_warning(self, msg):
         action = self.env.ref("account.action_account_config")
@@ -805,6 +806,14 @@ class IntrastatProductDeclaration(models.Model):
     def generate_xml(self):
         """ generate the INTRASTAT Declaration XML file """
         self.ensure_one()
+        if self.xml_attachment_id:
+            raise UserError(
+                _(
+                    "An XML Export already exists for %s. "
+                    "To re-generate it, you must first delete it."
+                )
+                % self.display_name
+            )
         self.message_post(body=_("Generate XML Declaration File"))
         self._check_generate_xml()
         self._unlink_attachments()
@@ -813,6 +822,7 @@ class IntrastatProductDeclaration(models.Model):
             attach_id = self._attach_xml_file(
                 xml_string, "{}_{}".format(self.type, self.revision)
             )
+            self.write({"xml_attachment_id": attach_id})
             return self._open_attach_view(attach_id)
         else:
             raise UserError(_("No XML File has been generated."))

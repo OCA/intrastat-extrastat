@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
 
     def _prepare_invoice(self):
         """Copy destination country to invoice"""
-        vals = super(SaleOrder, self)._prepare_invoice()
+        vals = super()._prepare_invoice()
         if self.intrastat_transport_id:
             vals["intrastat_transport_id"] = self.intrastat_transport_id.id
         if self.warehouse_id.region_id:

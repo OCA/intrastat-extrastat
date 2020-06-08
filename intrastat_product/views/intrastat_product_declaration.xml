@@ -23,7 +23,7 @@
                         name="generate_xml"
                         string="Generate XML Declaration File"
                         type="object"
-                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        attrs="{'invisible': [('xml_attachment_id', '!=', False)]}"
                         invisible="context.get('generic_intrastat_product_declaration')"
                     />
                     <button
@@ -53,6 +53,10 @@
                             <field name="year" />
                             <field name="month" />
                             <field name="type" />
+                            <field
+                                name="xml_attachment_id"
+                                invisible="context.get('generic_intrastat_product_declaration')"
+                            />
                             <field name="reporting_level" invisible="1" />
                         </group>
                         <group name="properties-2">
@@ -115,6 +119,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
                     <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>

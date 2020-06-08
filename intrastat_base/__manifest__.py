@@ -5,7 +5,7 @@
 
 {
     'name': 'Intrastat Reporting Base',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.0',
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Base module for Intrastat reporting',

@@ -172,7 +172,7 @@ msgid "List of emails of Users Receiving the Intrastat Reminder"
 msgstr "Liste des emails des utilisateurs qui reçoivent le rappel DEB/DES"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/res_company.py:37
+#: code:addons/intrastat_base/models/res_company.py:39
 #, python-format
 msgid "Missing e-mail address on user '%s'."
 msgstr "Adresse e-mail manquante pour l'utilisateur '%s'."

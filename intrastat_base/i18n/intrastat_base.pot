@@ -152,7 +152,7 @@ msgid "List of emails of Users Receiving the Intrastat Reminder"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/res_company.py:37
+#: code:addons/intrastat_base/models/res_company.py:39
 #, python-format
 msgid "Missing e-mail address on user '%s'."
 msgstr ""

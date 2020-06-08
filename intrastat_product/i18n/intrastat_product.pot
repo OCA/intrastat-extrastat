@@ -108,6 +108,21 @@ msgid "Active"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_4
 msgid "Air"
 msgstr ""
@@ -132,6 +147,14 @@ msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
 "currency = amount in invoice currency converted to company currency with the"
 " rate of the invoice date."
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid ""
+"An XML Export already exists for %s. To re-generate it, you must first "
+"delete it."
 msgstr ""
 
 #. module: intrastat_product
@@ -202,6 +225,11 @@ msgid "Company Country Code"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
+msgid "Company Country code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__company_currency_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__company_currency_id
 msgid "Company currency"
@@ -248,11 +276,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_id
 msgid "Country"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
-msgid "Country Code"
 msgstr ""
 
 #. module: intrastat_product
@@ -527,6 +550,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__id
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__id
 msgid "ID"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: intrastat_product
@@ -864,6 +897,21 @@ msgid "Net weight in Kg"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Nihil"
@@ -1053,6 +1101,11 @@ msgid "Reporting Level"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
 msgid "Revision"
 msgstr ""
@@ -1139,6 +1192,15 @@ msgstr ""
 msgid ""
 "State of the declaration. When the state is set to 'Done', the parameters "
 "become read-only."
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
 msgstr ""
 
 #. module: intrastat_product
@@ -1263,6 +1325,11 @@ msgid "Type"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread
 msgid "Unread Messages"
 msgstr ""
@@ -1309,6 +1376,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__weight
 #, python-format
 msgid "Weight"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__xml_attachment_id
+msgid "XML Export"
 msgstr ""
 
 #. module: intrastat_product

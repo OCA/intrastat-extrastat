@@ -148,7 +148,7 @@ class IntrastatCommon(models.AbstractModel):
                     _("Cannot delete the declaration %s " "because it is in Done state")
                     % self.year_month
                 )
-        return super(IntrastatCommon, self).unlink()
+        return super().unlink()
 
 
 class IntrastatResultView(models.TransientModel):

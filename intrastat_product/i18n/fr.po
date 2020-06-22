@@ -118,6 +118,25 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_ids
+#, fuzzy
+#| msgid "Active"
+msgid "Activities"
+msgstr "Actif"
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_state
+#, fuzzy
+#| msgid "Active"
+msgid "Activity State"
+msgstr "Actif"
+
+#. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_4
 msgid "Air"
 msgstr "Air"
@@ -149,6 +168,14 @@ msgstr ""
 "Montant en monnaie société à inscrire dans la DEB. Montant en monnaie "
 "société = montant dans la devise de la facture converti à la date de la "
 "facture."
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid ""
+"An XML Export already exists for %s. To re-generate it, you must first "
+"delete it."
+msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -220,6 +247,13 @@ msgid "Company Country Code"
 msgstr "Code pays de la société"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
+#, fuzzy
+#| msgid "Company Country Code"
+msgid "Company Country code"
+msgstr "Code pays de la société"
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__company_currency_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__company_currency_id
 msgid "Company currency"
@@ -273,13 +307,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_id
 msgid "Country"
 msgstr "Pays"
-
-#. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
-#, fuzzy
-#| msgid "Company Country Code"
-msgid "Country Code"
-msgstr "Code pays de la société"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
@@ -556,6 +583,16 @@ msgstr "Codes S.H."
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__id
 msgid "ID"
 msgstr "ID"
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction
@@ -903,6 +940,21 @@ msgid "Net weight in Kg"
 msgstr "Poids net en Kg"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Nihil"
@@ -1107,6 +1159,11 @@ msgid "Reporting Level"
 msgstr "Niveau d'obligation"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
 msgid "Revision"
 msgstr "Révision"
@@ -1198,6 +1255,15 @@ msgid ""
 msgstr ""
 "État de la déclaration. Quand l'état est à 'Terminé', les paramètres passent "
 "en lecture seule."
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
@@ -1329,6 +1395,11 @@ msgid "Type"
 msgstr "Type"
 
 #. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread
 msgid "Unread Messages"
 msgstr ""
@@ -1380,6 +1451,11 @@ msgid "Weight"
 msgstr "Poids"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__xml_attachment_id
+msgid "XML Export"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__year
 msgid "Year"
 msgstr "Année"
@@ -1406,6 +1482,11 @@ msgstr "Vous devez configurer le pays de la société !"
 #, python-format
 msgid "for period %s"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Company Country Code"
+#~ msgid "Country Code"
+#~ msgstr "Code pays de la société"
 
 #~ msgid "Default Incoterm for Intrastat"
 #~ msgstr "Incoterm par défaut pour la DEB"

@@ -67,9 +67,16 @@ class AccountMoveLine(models.Model):
     hs_code_id = fields.Many2one(
         comodel_name="hs.code", string="Intrastat Code", ondelete="restrict"
     )
+    weight = fields.Integer(string="Weight", help="Net weight in Kg")
+    product_origin_country_id = fields.Many2one(
+        comodel_name="res.country",
+        string="Country of Origin",
+        help="Country of origin of the product i.e. product " "'made in ____'.",
+    )
 
     @api.onchange("product_id")
     def intrastat_product_id_change(self):
         if self.product_id:
-            hs_code = self.product_id.get_hs_code_recursively()
-            self.hs_code_id = hs_code and hs_code.id or False
+            self.hs_code_id = self.product_id.get_hs_code_recursively()
+            self.product_origin_country_id = self.product_id.origin_country_id
+            self.weight = self.product_id.weight

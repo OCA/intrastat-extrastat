@@ -272,6 +272,20 @@ class IntrastatProductDeclaration(models.Model):
         pce_uom = self._get_uom_refs("pce_uom")
         weight = suppl_unit_qty = 0.0
 
+        if not product:
+            weight = inv_line.weight
+            if not weight:
+                note = "\n" + _(
+                    "Missing weight on invoice %s, line with intrastat code %s."
+                ) % (inv_line.move_id.name, inv_line.hs_code_id.local_code)
+                note += "\n" + _(
+                    "Please correct the product record and regenerate "
+                    "the lines or adjust the impacted lines manually"
+                )
+                self._note += note
+                return weight, suppl_unit_qty
+            return weight, suppl_unit_qty
+
         if not source_uom:
             note = "\n" + _(
                 "Missing unit of measure on the line with %d "
@@ -435,7 +449,9 @@ class IntrastatProductDeclaration(models.Model):
         return incoterm
 
     def _get_product_origin_country(self, inv_line):
-        return inv_line.product_id.origin_country_id
+        return (
+            inv_line.product_origin_country_id or inv_line.product_id.origin_country_id
+        )
 
     def _update_computation_line_vals(self, inv_line, line_vals):
         """ placeholder for localization modules """

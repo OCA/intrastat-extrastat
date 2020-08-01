@@ -24,12 +24,16 @@
                 position="after"
             >
                 <field name="hs_code_id" optional="hide" />
+                <field name="weight" optional="hide" />
+                <field name="product_origin_country_id" optional="hide" />
             </xpath>
             <xpath
                 expr="//field[@name='line_ids']//field[@name='account_id']"
                 position="after"
             >
                 <field name="hs_code_id" optional="hide" />
+                <field name="weight" optional="hide" />
+                <field name="product_origin_country_id" optional="hide" />
             </xpath>
         </field>
     </record>

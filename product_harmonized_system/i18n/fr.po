@@ -171,7 +171,6 @@ msgstr "Catégorie d'articles"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
 #, fuzzy
-#| msgid "Product Category"
 msgid "Product Categ Count"
 msgstr "Catégorie d'articles"
 
@@ -195,7 +194,6 @@ msgstr "Modèle d'article"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
 #, fuzzy
-#| msgid "Product Template"
 msgid "Product Tmpl Count"
 msgstr "Modèle d'article"
 

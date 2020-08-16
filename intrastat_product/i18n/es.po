@@ -854,9 +854,6 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:533
 #, fuzzy, python-format
-#| msgid ""
-#| "Missing unit of measure on the line with %d product(s) '%s' on invoice "
-#| "'%s'."
 msgid "Missing product on invoice line with H.S. code %s in invoice %s."
 msgstr ""
 "Unidad de medida no existe en la línea con %d producto(s) '%s' en factura "

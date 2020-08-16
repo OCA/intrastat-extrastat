@@ -79,7 +79,6 @@ msgstr "12"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, fuzzy
-#| msgid "Intrastat Product Declarations"
 msgid "<span>Intrastat Product Declaration </span>"
 msgstr "DEBs"
 
@@ -108,7 +107,6 @@ msgstr "Action"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction
 #, fuzzy
-#| msgid "Action"
 msgid "Action Needed"
 msgstr "Action"
 
@@ -171,7 +169,6 @@ msgstr "Introductions"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_attachment_count
 #, fuzzy
-#| msgid "Intrastat Country"
 msgid "Attachment Count"
 msgstr "Pays pour la DEB"
 
@@ -235,7 +232,6 @@ msgstr "Lignes de transaction"
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_config_settings
 #, fuzzy
-#| msgid "res.config.settings"
 msgid "Config Settings"
 msgstr "res.config.settings"
 
@@ -267,7 +263,6 @@ msgstr "Pays"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
 #, fuzzy
-#| msgid "Company Country Code"
 msgid "Country Code"
 msgstr "Code pays de la société"
 
@@ -526,7 +521,6 @@ msgstr "Génération des lignes à partir des factures: résultats"
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:193
 #, fuzzy, python-format
-#| msgid "Go to company configuration screen"
 msgid "Go to Accounting Configuration Settings screen"
 msgstr "Aller à la page de configuration"
 
@@ -669,7 +663,6 @@ msgstr "DEB"
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
 #, fuzzy
-#| msgid "Intrastat Product Computation Lines"
 msgid "Intrastat Product Computataion Lines"
 msgstr "Lignes de calcul de la DEB"
 
@@ -867,9 +860,6 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:533
 #, fuzzy, python-format
-#| msgid ""
-#| "Missing unit of measure on the line with %d product(s) '%s' on invoice "
-#| "'%s'."
 msgid "Missing product on invoice line with H.S. code %s in invoice %s."
 msgstr ""
 "Unité de mesure manquante sur la ligne où figurent %d article(s) '%s' sur la "
@@ -947,7 +937,6 @@ msgstr "Notes"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
 #, fuzzy
-#| msgid "Number of Declaration Lines"
 msgid "Number of Actions"
 msgstr "Nombre de lignes de déclaration"
 
@@ -959,7 +948,6 @@ msgstr "Nombre de lignes de déclaration"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
 #, fuzzy
-#| msgid "Number of Declaration Lines"
 msgid "Number of error"
 msgstr "Nombre de lignes de déclaration"
 
@@ -1292,7 +1280,6 @@ msgstr "Cette donnée est utilisée pour la DEB"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__total_amount
 #, fuzzy
-#| msgid "Total Amount"
 msgid "Total Fiscal Amount"
 msgstr "Montant total"
 
@@ -1304,7 +1291,6 @@ msgstr "Montant total"
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__total_amount
 #, fuzzy
-#| msgid "Year and month of the declaration."
 msgid "Total fiscal amount in company currency of the declaration."
 msgstr "Année et mois de la DEB."
 
@@ -1356,7 +1342,6 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 #, fuzzy
-#| msgid "Intrastat Country"
 msgid "Unread Messages Counter"
 msgstr "Pays pour la DEB"
 
@@ -1417,7 +1402,6 @@ msgstr "Vous pouvez ajouter des commentaires ici si vous le voulez."
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:148
 #, fuzzy, python-format
-#| msgid "You must set the country of the company!"
 msgid "You must set company's country !"
 msgstr "Vous devez configurer le pays de la société !"
 
@@ -1435,7 +1419,6 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_report_intrastat_product_product_declaration_xls
 #, fuzzy
-#| msgid "Intrastat Product Declarations"
 msgid "report.intrastat_product.product_declaration_xls"
 msgstr "DEBs"
 

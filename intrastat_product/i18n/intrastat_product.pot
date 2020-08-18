@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
+msgid ""
+"(Re)compute the intrastat transaction details from the product master data."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
 msgid "01"
 msgstr ""
@@ -133,6 +139,11 @@ msgid "Air Transport"
 msgstr ""
 
 #. module: intrastat_product
+#: model:res.groups,comment:intrastat_product.group_invoice_intrastat_transaction_details
+msgid "Allow to encode Intrastat Transaction Details on Invoices"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 msgid ""
 "Amount in company currency of the accessory costs related to this invoice "
@@ -244,6 +255,11 @@ msgid "Computation Lines"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
+msgid "Compute"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -279,6 +295,11 @@ msgid "Country"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_origin_country_id
+msgid "Country of Origin"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_id
 msgid "Country of Origin of the Product"
@@ -299,6 +320,12 @@ msgid "Country of origin of the product i.e. product 'made in ____'"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__product_origin_country_id
+msgid "Country of origin of the product i.e. product 'made in ____'."
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__create_uid
@@ -310,6 +337,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__create_date
@@ -422,6 +450,7 @@ msgid "Dispatches"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__display_name
@@ -541,6 +570,7 @@ msgid "H.S. Codes"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__id
@@ -600,11 +630,18 @@ msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__hs_code_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_line__hs_code_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__hs_code_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__hs_code_id
 #, python-format
 msgid "Intrastat Code"
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Intrastat Code %s:"
 msgstr ""
 
 #. module: intrastat_product
@@ -756,8 +793,19 @@ msgid "Intrastat declaration"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model,name:intrastat_product.model_account_move_intrastat_line
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_line_ids
+msgid "Intrastat declaration details"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move__intrastat_transaction_id
 msgid "Intrastat nature of transaction"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
+msgid "Intrastat transaction details"
 msgstr ""
 
 #. module: intrastat_product
@@ -773,12 +821,25 @@ msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__move_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__invoice_id
 #, python-format
 msgid "Invoice"
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Invoice %s, line %s"
+msgstr ""
+
+#. module: intrastat_product
+#: model:res.groups,name:intrastat_product.group_invoice_intrastat_transaction_details
+msgid "Invoice Intrastat Transaction Details"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__invoice_line_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__invoice_line_id
 msgid "Invoice Line"
 msgstr ""
@@ -805,6 +866,7 @@ msgid "Kg"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line____last_update
@@ -817,6 +879,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__write_uid
@@ -828,6 +891,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__write_date
@@ -856,15 +920,13 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
-msgid ""
-"Missing H.S. code on product %s. This product is present in invoice %s."
+msgid "Missing Intrastat Code on product %s. "
 msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
-msgid ""
-"Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
+msgid "Missing unit of measure."
 msgstr ""
 
 #. module: intrastat_product
@@ -1011,37 +1073,6 @@ msgid "Period"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, python-format
-msgid "Please adjust this line manually."
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, python-format
-msgid ""
-"Please correct the Intrastat Supplementary Unit settings and regenerate the "
-"lines or adjust the lines with Intrastat Code '%s' manually"
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, python-format
-msgid ""
-"Please correct the product record and regenerate the lines or adjust the "
-"impacted lines manually"
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, python-format
-msgid ""
-"Please correct the unit of measure settings and regenerate the lines or "
-"adjust the impacted lines manually"
-msgstr ""
-
-#. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_5
 msgid "Post"
 msgstr ""
@@ -1053,6 +1084,7 @@ msgstr ""
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_id
 #, python-format
 msgid "Product"
@@ -1064,6 +1096,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
 #, python-format
 msgid "Product C/O"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__quantity
+msgid "Quantity"
 msgstr ""
 
 #. module: intrastat_product
@@ -1177,6 +1214,11 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Standard"
@@ -1265,6 +1307,13 @@ msgid "The move of this entry line."
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__quantity
+msgid ""
+"The optional quantity expressed by this line, eg: number of product sold. "
+"The quantity is not a legal requirement but is very useful for some reports."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_sale_order__intrastat_transport_id
 msgid "This information is used in Intrastat reports"
 msgstr ""
@@ -1290,9 +1339,29 @@ msgid "Transaction"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__transaction_suppl_unit_qty
+msgid "Transaction Suppl Unit Qty"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transaction_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_transaction_menu
 msgid "Transaction Types"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__transaction_weight
+msgid "Transaction Weight"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__transaction_suppl_unit_qty
+msgid "Transaction quantity in Intrastat Supplementary Unit"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__transaction_weight
+msgid "Transaction weight in Kg: Quantity x Product Weight"
 msgstr ""
 
 #. module: intrastat_product

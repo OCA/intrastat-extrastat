@@ -19,22 +19,40 @@
                 <field name="src_dest_country_id" string="Destination Country" />
                 <field name="src_dest_region_id" string="Origin Region" invisible="1" />
             </xpath>
-            <xpath
-                expr="//field[@name='invoice_line_ids']//field[@name='account_id']"
-                position="after"
-            >
-                <field name="hs_code_id" optional="hide" />
-                <field name="weight" optional="hide" />
-                <field name="product_origin_country_id" optional="hide" />
-            </xpath>
-            <xpath
-                expr="//field[@name='line_ids']//field[@name='account_id']"
-                position="after"
-            >
-                <field name="hs_code_id" optional="hide" />
-                <field name="weight" optional="hide" />
-                <field name="product_origin_country_id" optional="hide" />
-            </xpath>
+            <page id="invoice_tab" position="after">
+                <page
+                    id="intrastat_lines"
+                    string="Intrastat transaction details"
+                    groups="intrastat_product.group_invoice_intrastat_transaction_details"
+                >
+                    <div>
+                        <button
+                            type="object"
+                            name="compute_intrastat_lines"
+                            string="Compute"
+                            help="(Re)compute the intrastat transaction details from the product master data."
+                            icon="fa-gears"
+                        />
+                    </div>
+                    <field name="intrastat_line_ids">
+                        <tree editable="bottom">
+                            <field
+                                name="invoice_line_id"
+                                domain="[('exclude_from_invoice_tab', '=', False), ('move_id', '=', parent.id), ('display_type', '=', False)]"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="hs_code_id" />
+                            <field name="transaction_weight" />
+                            <field
+                                name="product_origin_country_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
 </odoo>

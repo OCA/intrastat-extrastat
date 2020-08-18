@@ -543,6 +543,9 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
             for inv_line in invoice.invoice_line_ids:
+                inv_intrastat_line = invoice.intrastat_line_ids.filtered(
+                    lambda r: r.invoice_line_id == inv_line
+                )
 
                 if (
                     accessory_costs
@@ -587,8 +590,8 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                if inv_line.hs_code_id:
-                    hs_code = inv_line.hs_code_id
+                if inv_intrastat_line:
+                    hs_code = inv_intrastat_line.hs_code_id
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:
@@ -614,12 +617,19 @@ class IntrastatProductDeclaration(models.Model):
                 weight, suppl_unit_qty = self._get_weight_and_supplunits(
                     inv_line, hs_code
                 )
+                if inv_intrastat_line:
+                    weight = inv_intrastat_line.transaction_weight
                 total_inv_weight += weight
 
                 amount_company_currency = self._get_amount(inv_line)
                 total_inv_product_cc += amount_company_currency
 
-                product_origin_country = self._get_product_origin_country(inv_line)
+                if inv_intrastat_line:
+                    product_origin_country = (
+                        inv_intrastat_line.product_origin_country_id
+                    )
+                else:
+                    product_origin_country = self._get_product_origin_country(inv_line)
 
                 region = self._get_region(inv_line)
 

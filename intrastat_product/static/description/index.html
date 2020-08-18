@@ -382,12 +382,13 @@ the module for the Intrastat Product Declaration for Belgium</li>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#installation" id="id1">Installation</a></li>
-<li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="id2">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -396,8 +397,25 @@ the module for the Intrastat Product Declaration for Belgium</li>
 <h1><a class="toc-backref" href="#id1">Installation</a></h1>
 <p>This module is NOT compatible with the <em>account_intrastat</em> module from Odoo Enterprise.</p>
 </div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id2">Configuration</a></h1>
+<p>By default the intrastat declaration is generated based upon the product record master data.
+Hence unexpected results may occur in case this master data is not accurate,
+e.g. wrong or missing weight, country of origin, …</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This can be corrected by changing the appropriate fields when analysing the intrastat declaration
+but this can be challenging in case of large transaction volumes and especially in the specific use
+case where the product weight cannot be encoded correctly on the product records (e.g. products with variable weight).</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It is possible to allow encoding the intrastat transaction details on the purchase/sale invoice
+via the “intrastat_product.group_invoice_intrastat_transaction_detail” usability group.</p>
+</div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#id2">Usage</a></h1>
+<h1><a class="toc-backref" href="#id3">Usage</a></h1>
 <p>This module is used in combination with the country-specific
 localization module(s).</p>
 <p><strong>Coding guidelines for localization module:</strong></p>
@@ -427,7 +445,7 @@ the customization or new method is required for multiple countries).</p>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id3">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id4">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/intrastat-extrastat/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -435,9 +453,9 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id4">Credits</a></h1>
+<h1><a class="toc-backref" href="#id5">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id5">Authors</a></h2>
+<h2><a class="toc-backref" href="#id6">Authors</a></h2>
 <ul class="simple">
 <li>brain-tec AG</li>
 <li>Akretion</li>
@@ -445,14 +463,14 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id6">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id7">Contributors</a></h2>
 <ul class="simple">
 <li>Alexis de Lattre, Akretion &lt;<a class="reference external" href="mailto:alexis.delattre&#64;akretion.com">alexis.delattre&#64;akretion.com</a>&gt;</li>
 <li>Luc De Meyer, Noviat &lt;<a class="reference external" href="mailto:info&#64;noviat.com">info&#64;noviat.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id7">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose

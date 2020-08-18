@@ -21,6 +21,8 @@
     ],
     "excludes": ["account_intrastat"],
     "data": [
+        "security/intrastat_security.xml",
+        "security/ir.model.access.csv",
         "views/hs_code.xml",
         "views/intrastat_region.xml",
         "views/intrastat_unit.xml",
@@ -31,8 +33,6 @@
         "views/account_move.xml",
         "views/sale_order.xml",
         "views/stock_warehouse.xml",
-        "security/intrastat_security.xml",
-        "security/ir.model.access.csv",
         "data/intrastat_transport_mode.xml",
         "data/intrastat_unit.xml",
     ],

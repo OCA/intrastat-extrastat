@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-08-19 08:00+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,172 +15,181 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "01"
-msgstr ""
+msgstr "01"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "02"
-msgstr ""
+msgstr "02"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "03"
-msgstr ""
+msgstr "03"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "04"
-msgstr ""
+msgstr "04"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "05"
-msgstr ""
+msgstr "05"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "06"
-msgstr ""
+msgstr "06"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "07"
-msgstr ""
+msgstr "07"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "08"
-msgstr ""
+msgstr "08"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "09"
-msgstr ""
+msgstr "09"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "<span>Intrastat Product Declaration </span>"
-msgstr ""
+msgstr "<span>Intrastat deklaracija proizvodov </span>"
 
 #. module: intrastat_product
 #: sql_constraint:intrastat.product.declaration:0
 msgid "A declaration of the same type already exists for this month !\n"
 "You should update the existing declaration or change the revision number of this one."
 msgstr ""
+"V tem mesecu že obstaja deklaracija istega tipa!\n"
+"Posodobite obstoječo deklaracijo ali spremenite številko revizije na tej."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:88
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 #, python-format
 msgid "Accessory Costs"
-msgstr ""
+msgstr "Stroški dodatkov"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__action
 msgid "Action"
-msgstr ""
+msgstr "Ukrep"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Potrebno ukrepanje"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_4
 msgid "Air"
-msgstr ""
+msgstr "Zrak"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_4
 msgid "Air Transport"
-msgstr ""
+msgstr "Zračni transport"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 msgid "Amount in company currency of the accessory costs related to this invoice line (by default, these accessory costs are computed at the pro-rata of the amount of each invoice line."
 msgstr ""
+"Znesek stroškov dodatkov vezanih na to postavko računa v valuti družbe ("
+"privzeto se ti stroški obdelujejo proporcionalno glede na znesek vsake "
+"postavke računa)."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 msgid "Amount in company currency to write in the declaration. Amount in company currency = amount in invoice currency converted to company currency with the rate of the invoice date."
 msgstr ""
+"Znesek, ki se zapiše v deklaracijo, v valuti družbe. Znesek v valuti družbe ="
+" Znesek v valuti na računu pretvorjen v valuto družbe po menjalnem tečaju na "
+"datum računa."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:139
 #, python-format
 msgid "Append"
-msgstr ""
+msgstr "Dodaj"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_arrivals
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_arrivals
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Arrivals"
-msgstr ""
+msgstr "Prihodi"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Število prilog"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Back to Draft"
-msgstr ""
+msgstr "Vrni v osnutek"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__code
 msgid "Code"
-msgstr ""
+msgstr "Koda"
 
 #. module: intrastat_product
 #: sql_constraint:intrastat.region:0
 #: sql_constraint:intrastat.transaction:0
 #: sql_constraint:intrastat.transport_mode:0
 msgid "Code must be unique."
-msgstr ""
+msgstr "Koda mora biti unikatna."
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_mode_search
 msgid "Code or Description"
-msgstr ""
+msgstr "Koda ali opis"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__company_id
@@ -189,18 +199,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__company_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_mode_search
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__company_country_code
 msgid "Company Country Code"
-msgstr ""
+msgstr "Koda države družbe"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__company_currency_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__company_currency_id
 msgid "Company currency"
-msgstr ""
+msgstr "Valuta družbe"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:223
@@ -208,24 +218,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__computation_line_ids
 #, python-format
 msgid "Computation Lines"
-msgstr ""
+msgstr "Računske vrstice"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:246
 #, python-format
 msgid "Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not implemented yet."
 msgstr ""
+"Konverzija iz Intrastat dodatne enote '%s' v enoto mere še ni implementirana."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:284
 #, python-format
 msgid "Conversion from unit of measure '%s' to '%s' is not implemented yet."
-msgstr ""
+msgstr "Konverzija iz enote mere '%s' v '%s' še ni implementirana."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__src_dest_country_id
@@ -233,18 +244,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_id
 msgid "Country"
-msgstr ""
+msgstr "Država"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__country_code
 msgid "Country Code"
-msgstr ""
+msgstr "Koda države"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_id
 msgid "Country of Origin of the Product"
-msgstr ""
+msgstr "Država izvora proizvoda"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:63
@@ -252,13 +263,13 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_id
 #, python-format
 msgid "Country of Origin/Destination"
-msgstr ""
+msgstr "Država izvora/cilja"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'"
-msgstr ""
+msgstr "Država izvora proizvoda, npr. 'Izdelano v ____'"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__create_uid
@@ -269,7 +280,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__create_date
@@ -280,27 +291,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 msgid "Declaration"
-msgstr ""
+msgstr "Deklaracija"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__declaration_line_id
 msgid "Declaration Line"
-msgstr ""
+msgstr "Postavka deklaracije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:225
@@ -308,61 +319,61 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Declaration Lines"
-msgstr ""
+msgstr "Postavke deklaracije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:124
 #, python-format
 msgid "Declaration for Arrivals"
-msgstr ""
+msgstr "Deklaracija za prihode"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:126
 #, python-format
 msgid "Declaration for Dispatches"
-msgstr ""
+msgstr "Deklaracija za odpošiljanja"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_incoterm_id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_incoterm_id
 msgid "Default Incoterm for Intrastat"
-msgstr ""
+msgstr "Privzeti Incoterm za Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_region_id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_region_id
 msgid "Default Intrastat Region"
-msgstr ""
+msgstr "Privzeta Intrastat regija"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_transaction_out_invoice
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_transaction_out_invoice
 msgid "Default Intrastat Transaction For Customer Invoice"
-msgstr ""
+msgstr "Privzeta Intrastat transakcija za izdani račun"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_transaction_in_invoice
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_transaction_in_invoice
 msgid "Default Intrastat Transaction For Supplier Invoices"
-msgstr ""
+msgstr "Privzeta Intrastat transakcija za prejete račune"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_transaction_in_refund
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_transaction_in_refund
 msgid "Default Intrastat Transaction For Supplier Refunds"
-msgstr ""
+msgstr "Privzeta Intrastat transakcija za prejete dobropise"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_transaction_out_refund
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_transaction_out_refund
 msgid "Default Intrastat Transaction for Customer Refunds"
-msgstr ""
+msgstr "Privzeta intrastat transakcija za izdane dobropise"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_transport_id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_transport_id
 msgid "Default Transport Mode"
-msgstr ""
+msgstr "Privzeti način transporta"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__description
@@ -370,29 +381,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__description
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__description
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.invoice_form
 msgid "Destination Country"
-msgstr ""
+msgstr "Ciljna država"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.invoice_supplier_form
 msgid "Destination Region"
-msgstr ""
+msgstr "Ciljna regija"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_invoice__src_dest_country_id
 msgid "Destination country for dispatches. Origin country for arrivals."
-msgstr ""
+msgstr "Ciljna država za odpošiljanje. Izvorna država za prihode."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_dispatches
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_dispatches
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Dispatches"
-msgstr ""
+msgstr "Odpošiljanja"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__display_name
@@ -404,31 +415,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,state:0
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Done"
-msgstr ""
+msgstr "Opravljeno"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,state:0
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Draft"
-msgstr ""
+msgstr "Osnutek"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Excel Export"
-msgstr ""
+msgstr "Izvoz v Excel"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:133
 #, python-format
 msgid "Extended"
-msgstr ""
+msgstr "Razširjeno"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:75
@@ -436,82 +447,82 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 #, python-format
 msgid "Fiscal Value"
-msgstr ""
+msgstr "Fiskalna vrednost"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_7
 msgid "Fixed installations"
-msgstr ""
+msgstr "Fiksni obrati"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_7
 msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
-msgstr ""
+msgstr "Fiksni transportni obrati (npr. cevovodi, kabli visoke napetosti)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Sledilci"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Sledilci (kanali)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Sledilci (partnerji)"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:748
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
-msgstr ""
+msgstr "Ustvari postavke deklaracije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:637
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
-msgstr ""
+msgstr "Ustvari postavke iz računov"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:770
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
-msgstr ""
+msgstr "Ustvari XML datoteko deklaracije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:669
 #, python-format
 msgid "Generate lines from invoices: results"
-msgstr ""
+msgstr "Ustvari postavke iz računov: rezultati"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:193
 #, python-format
 msgid "Go to Accounting Configuration Settings screen"
-msgstr ""
+msgstr "Pojdi na zaslon za nastavitve računovodstva"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_mode_search
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_hs_code
 msgid "H.S. Code"
-msgstr ""
+msgstr "HS koda"
 
 #. module: intrastat_product
 #: model:ir.ui.menu,name:intrastat_product.intrastat_code_menu
 msgid "H.S. Codes"
-msgstr ""
+msgstr "HS kode"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__id
@@ -523,28 +534,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__id
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Če je označeno, zahtevajo nova sporočila vašo pozornost."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Če je označeno, zahtevajo nova sporočila vašo pozornost."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Če je označeno, imajo nekatera sporočila napako pri dostavi."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_accessory_costs
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_accessory_costs
 msgid "Include Accessory Costs in Fiscal Value of Product"
-msgstr ""
+msgstr "Vključi stroške dodatkov v fiskalno vrednost proizvoda"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:154
@@ -552,23 +563,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__incoterm_id
 #, python-format
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_8
 msgid "Inland waterway"
-msgstr ""
+msgstr "Celinska plovna pot"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_8
 msgid "Inland waterway transport"
-msgstr ""
+msgstr "Transport po celinskih plovnih poteh"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_company__intrastat_incoterm_id
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__intrastat_incoterm_id
 msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
 msgstr ""
+"Mednarodni pogoji (INCOTERMS) so v naprej določeni komercialni pogoji, ki se "
+"uporabljajo pri mednarodnih prevozih."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:51
@@ -577,24 +590,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__hs_code_id
 #, python-format
 msgid "Intrastat Code"
-msgstr ""
+msgstr "Intrastat koda"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:26
 #, python-format
 msgid "Intrastat Codes should contain 8 digits. This is not the case for Intrastat Code '%s' which has %d digits."
 msgstr ""
+"Intrastat kode bi morale zajemati 8 znakov, intrastat koda '%s' pa zajema %d "
+"digits."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:21
 #, python-format
 msgid "Intrastat Codes should only contain digits. This is not the case for code '%s'."
 msgstr ""
+"Intrastat kode bi morale vsebovati le znake, kar pa se ne sklada v primeru "
+"'%s'."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__intrastat_country
 msgid "Intrastat Country"
-msgstr ""
+msgstr "Intrastat država"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__intrastat
@@ -602,56 +619,56 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order__intrastat
 msgid "Intrastat Declaration"
-msgstr ""
+msgstr "Intrastat deklaracija"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Intrastat Declaration Line"
-msgstr ""
+msgstr "Postavka intrastat deklaracije"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
 msgid "Intrastat Declaration Lines"
-msgstr ""
+msgstr "Postavke intrastat deklaracije"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_graph
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_pivot
 msgid "Intrastat Product"
-msgstr ""
+msgstr "Intrastat proizvod"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
 msgid "Intrastat Product Computataion Lines"
-msgstr ""
+msgstr "Intrastat računske postavke proizvoda"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__computation_line_ids
 msgid "Intrastat Product Computation Lines"
-msgstr ""
+msgstr "Intrastat računske postavke proizvoda"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Intrastat Product Declaration"
-msgstr ""
+msgstr "Intrastat deklaracija proizvoda"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__declaration_line_ids
 msgid "Intrastat Product Declaration Lines"
-msgstr ""
+msgstr "Intrastat postavke deklaracije proizvoda"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_tree
 msgid "Intrastat Product Declarations"
-msgstr ""
+msgstr "Intrastat deklaracije proizvoda"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
 msgid "Intrastat Product Report Base Object"
-msgstr ""
+msgstr "Intrastat osnovni objekt poročila o proizvodu"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:174
@@ -663,13 +680,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_region_view_tree
 #, python-format
 msgid "Intrastat Region"
-msgstr ""
+msgstr "Intrastat regija"
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_region_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_region_menu
 msgid "Intrastat Regions"
-msgstr ""
+msgstr "Intrastat regije"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_hs_code__intrastat_unit_id
@@ -677,13 +694,13 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__intrastat_unit_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_form
 msgid "Intrastat Supplementary Unit"
-msgstr ""
+msgstr "Intrastat dodatna enota"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_unit
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_tree
 msgid "Intrastat Supplementary Units"
-msgstr ""
+msgstr "Intrastat dodatne enote"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:102
@@ -693,46 +710,46 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 #, python-format
 msgid "Intrastat Transaction"
-msgstr ""
+msgstr "Intrastat transakcija"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__intrastat_transaction_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_form
 msgid "Intrastat Transaction Type"
-msgstr ""
+msgstr "Intrastat tip transakcije"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_tree
 msgid "Intrastat Transaction Types"
-msgstr ""
+msgstr "Intrastat tipi transakcij"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_transport_mode
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__intrastat_transport_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transport_mode_form
 msgid "Intrastat Transport Mode"
-msgstr ""
+msgstr "Intrastat način transporta"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transport_mode_tree
 msgid "Intrastat Transportat Modes"
-msgstr ""
+msgstr "Intrastat načini transporta"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_invoice__intrastat_transaction_id
 msgid "Intrastat nature of transaction"
-msgstr ""
+msgstr "Intrastat narava transporta"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:170
 #, python-format
 msgid "Invalid Year !"
-msgstr ""
+msgstr "Neveljavno leto!"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_stock_location
 msgid "Inventory Locations"
-msgstr ""
+msgstr "Lokacije zalog"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:184
@@ -740,24 +757,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__invoice_id
 #, python-format
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_account_invoice_line
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__invoice_line_id
 msgid "Invoice Line"
-msgstr ""
+msgstr "Postavka računa"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Je sledilec"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Kg"
-msgstr ""
+msgstr "kg"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line____last_update
@@ -769,7 +786,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnjič spremenjeno"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__write_uid
@@ -780,7 +797,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__write_date
@@ -791,76 +808,78 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Glavna priponka"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Napaka pri dostavi sporočila"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:544
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
-msgstr ""
+msgstr "Pri proizvodu %s manjka HS koda. Proizvod se nahaja v računu %s."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:533
 #, python-format
 msgid "Missing product on invoice line with H.S. code %s in invoice %s."
-msgstr ""
+msgstr "Pri postavki računa s HS kodo %s v računu %s manjka proizvod."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
 #, python-format
 msgid "Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
 msgstr ""
+"Pri postavki, ki vsebuje %d proizvod(ov) '%s' na računu '%s' manjka enota "
+"mere."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:301
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:321
 #, python-format
 msgid "Missing weight on product %s."
-msgstr ""
+msgstr "Na proizvodu %s manjka masa."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__month
 msgid "Month"
-msgstr ""
+msgstr "Mesec"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transport_mode_search
 msgid "Name, Code or Description"
-msgstr ""
+msgstr "Naziv, koda ali opis"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__weight
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__weight
 msgid "Net weight in Kg"
-msgstr ""
+msgstr "Neto masa v kg"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:140
 #, python-format
 msgid "Nihil"
-msgstr ""
+msgstr "Nihil"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:237
@@ -872,101 +891,107 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:780
 #, python-format
 msgid "No XML File has been generated."
-msgstr ""
+msgstr "XML datoteka ni bila ustvarjena."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:656
 #, python-format
 msgid "No records found for the selected period !"
-msgstr ""
+msgstr "V izbranem obdobju ni najdenih zapisov!"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__note
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Notes"
-msgstr ""
+msgstr "Opombe"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Število ukrepov"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__num_decl_lines
 msgid "Number of Declaration Lines"
-msgstr ""
+msgstr "Število postavk deklaracije"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Število napak"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Število sporočil, kjer je potrebno ukrepati"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Število sporočil z napako ob dostavi"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Število neprebranih sporočil"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.invoice_supplier_form
 msgid "Origin Country"
-msgstr ""
+msgstr "Država izvora"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.invoice_form
 msgid "Origin Region"
-msgstr ""
+msgstr "Regija izvora"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_invoice__src_dest_region_id
 msgid "Origin region for dispatches, destination region for arrivals. This field is used for the Intrastat Declaration."
 msgstr ""
+"Regija izvora za odpošiljanja, ciljna regija za prihode. To polje se "
+"uporablja pri deklaraciji intrastat."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__src_dest_country_id
 msgid "Origin/Destination Country"
-msgstr ""
+msgstr "Izvorna/ciljna država"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_invoice__src_dest_region_id
 msgid "Origin/Destination Region"
-msgstr ""
+msgstr "Izvorna/ciljna regija"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_9
 msgid "Own propulsion"
-msgstr ""
+msgstr "Lasten pogon"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_9
 msgid "Own propulsion (imported or exported means of transport crossing the border under their own power, e.g. aircraft, lorries, boats, etc.)"
 msgstr ""
+"Lasten pogon (uvoženo ali izvoženo prevozno sredstvo prečka mejo z lastnim "
+"pogonom, npr. letala, kombiji, ladje, ipd.)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__year_month
 msgid "Period"
-msgstr ""
+msgstr "Obdobje"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:238
 #, python-format
 msgid "Please adjust this line manually."
-msgstr ""
+msgstr "Popravite to vrstico ročno, prosim."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:250
 #, python-format
 msgid "Please correct the Intrastat Supplementary Unit settings and regenerate the lines or adjust the lines with Intrastat Code '%s' manually"
 msgstr ""
+"Prosimo, da popravite nastavitve intrastat dodatne enote in ponovno "
+"ustvarite postavke ali pa ročno popravite postavke z intrastat kodo '%s'"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:276
@@ -975,29 +1000,33 @@ msgstr ""
 #, python-format
 msgid "Please correct the product record and regenerate the lines or adjust the impacted lines manually"
 msgstr ""
+"Popravite zapis proizvoda in ponovno ustvarite postavke ali pa ročno "
+"popravite prizadete postavke"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:288
 #, python-format
 msgid "Please correct the unit of measure settings and regenerate the lines or adjust the impacted lines manually"
 msgstr ""
+"Popravite nastavitve enote mere in ponovno ustvarite postavke ali pa ročno "
+"popravite prizadete postavke"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_5
 msgid "Post"
-msgstr ""
+msgstr "Pošta"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_5
 msgid "Postal consignments"
-msgstr ""
+msgstr "Poštne pošiljke"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:28
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_id
 #, python-format
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:265
@@ -1016,114 +1045,119 @@ msgstr ""
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_2
 msgid "Rail"
-msgstr ""
+msgstr "Železnica"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_2
 msgid "Railway transport (including lorries on railway wagons)"
-msgstr ""
+msgstr "Železniški transport (vključno kombiji na železniških vagonih)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__uom_id
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Regular UoM"
-msgstr ""
+msgstr "Običajna EM"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Related Transactions"
-msgstr ""
+msgstr "Povezane transakcije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:138
 #, python-format
 msgid "Replace"
-msgstr ""
+msgstr "Zamenjaj"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__reporting_level
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__reporting_level
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__reporting_level
 msgid "Reporting Level"
-msgstr ""
+msgstr "Nivo poročanja"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
 msgid "Revision"
-msgstr ""
+msgstr "Revizija"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_3
 msgid "Road"
-msgstr ""
+msgstr "Cesta"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_3
 msgid "Road Transport"
-msgstr ""
+msgstr "Cestni transport"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_1
 msgid "Sea"
-msgstr ""
+msgstr "Morje"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
 msgid "Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and lighters on board of a ship)"
 msgstr ""
+"Pomorski transport (vključno vagoni, motorna vozila, prikolice, pol "
+"prikolice na krovu ladje)"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Search Intrastat Product Declarations"
-msgstr ""
+msgstr "Iskanje intrastat deklaracij proizvodov"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Search Intrastat Supplementary Units"
-msgstr ""
+msgstr "Iskanje intrastat dodatnih enot"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_mode_search
 msgid "Search Intrastat Transaction Types"
-msgstr ""
+msgstr "Iskanje intrastat tipov transakcij"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transport_mode_search
 msgid "Search Intrastat Transport Modes"
-msgstr ""
+msgstr "Iskanje intrastat načinov transporta"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__type
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__type
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__type
 msgid "Select the declaration type."
-msgstr ""
+msgstr "Izberi tip deklaracije."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_unit__uom_id
 msgid "Select the regular Unit of Measure of Odoo that corresponds to this Intrastat Supplementary Unit."
 msgstr ""
+"Izberi običajno enoto mere v Odoo, ki ustreza tej Intrastat dodatni enoti."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:132
 #, python-format
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
 msgid "State"
-msgstr ""
+msgstr "Stanje"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
 msgid "State of the declaration. When the state is set to 'Done', the parameters become read-only."
 msgstr ""
+"Stanje deklaracije. Ko je stanje nastavljeno na 'Opravljeno', parametri "
+"ostanejo le za branje."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:143
@@ -1131,7 +1165,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__intrastat_unit_id
 #, python-format
 msgid "Suppl. Unit"
-msgstr ""
+msgstr "Dod. enota"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:127
@@ -1139,80 +1173,84 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__suppl_unit_qty
 #, python-format
 msgid "Suppl. Unit Qty"
-msgstr ""
+msgstr "Kol v dod. enoti"
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_unit_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_unit_menu
 msgid "Supplementary Units"
-msgstr ""
+msgstr "Dodatne enote"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__suppl_unit_qty
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__suppl_unit_qty
 msgid "Supplementary Units Quantity"
-msgstr ""
+msgstr "Količina v dodatnih enotah"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:657
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
-msgstr ""
+msgstr "Ukrep deklaracije je bil nastavljen na 'nihil'."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__country_code
 msgid "The ISO country code in two chars. \n"
 "You can use this field for quick search."
 msgstr ""
+"ISO koda države v dveh znakih. \n"
+"To polje lahko uporabite za hitro iskanje."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:399
 #, python-format
 msgid "The default Incoterm of the Company is not set, please configure it first."
-msgstr ""
+msgstr "Privzeti incoterm družbe ni nastavljen, najprej ga morate nastaviti."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:385
 #, python-format
 msgid "The default Intrastat Transport Mode of the Company is not set, please configure it first."
 msgstr ""
+"Privzeti intrastat način transporta družbe ni nastavljen, najprej ga morate "
+"nastaviti."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_sale_order__intrastat_transport_id
 msgid "This information is used in Intrastat reports"
-msgstr ""
+msgstr "Ti podatki se uporabljajo v intrastat poročilih"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__total_amount
 msgid "Total Fiscal Amount"
-msgstr ""
+msgstr "Skupaj fiskalni znesek"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_tree
 msgid "Total amount"
-msgstr ""
+msgstr "Skupaj znesek"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__total_amount
 msgid "Total fiscal amount in company currency of the declaration."
-msgstr ""
+msgstr "Skupni fiskalni znesek v valuti družbe za deklaracijo."
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 msgid "Transaction"
-msgstr ""
+msgstr "Transakcija"
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transaction_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_transaction_menu
 msgid "Transaction Types"
-msgstr ""
+msgstr "Tipi transakcij"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_tree
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcije"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:164
@@ -1221,13 +1259,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order__intrastat_transport_id
 #, python-format
 msgid "Transport Mode"
-msgstr ""
+msgstr "Način transporta"
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transport_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_transport_menu
 msgid "Transport Modes"
-msgstr ""
+msgstr "Načini transporta"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__type
@@ -1235,48 +1273,48 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__type
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Neprebrana sporočila"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Število neprebranih sporočil"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__company_country_code
 msgid "Used in views and methods of localization modules."
-msgstr ""
+msgstr "Uporabljeno v prikazih in metodah modulov za lokalizacijo."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__revision
 msgid "Used to keep track of changes"
-msgstr ""
+msgstr "Uporabljeno za sledenje spremembam"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__valid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__valid
 msgid "Valid"
-msgstr ""
+msgstr "Veljavno"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Skladišče"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Spletna sporočila"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Kronologija spletnih sporočil"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:113
@@ -1284,41 +1322,41 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__weight
 #, python-format
 msgid "Weight"
-msgstr ""
+msgstr "Masa"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__year
 msgid "Year"
-msgstr ""
+msgstr "Leto"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__year_month
 msgid "Year and month of the declaration."
-msgstr ""
+msgstr "Leto in mesec deklaracije."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__note
 msgid "You can add some comments here if you want."
-msgstr ""
+msgstr "Tu se lahko doda komentarje."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:148
 #, python-format
 msgid "You must set company's country !"
-msgstr ""
+msgstr "Določiti morate državo družbe!"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:237
 #, python-format
 msgid "for period %s"
-msgstr ""
+msgstr "za obdobje %s"
 
 #. module: intrastat_product
 #: model:uom.uom,name:intrastat_product.product_uom_m3
 msgid "m3"
-msgstr ""
+msgstr "m3"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_report_intrastat_product_product_declaration_xls
 msgid "report.intrastat_product.product_declaration_xls"
-msgstr ""
+msgstr "report.intrastat_product.product_declaration_xls"

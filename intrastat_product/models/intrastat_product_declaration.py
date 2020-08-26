@@ -260,7 +260,8 @@ class IntrastatProductDeclaration(models.Model):
             elif invoice.type == "in_refund":
                 return company.intrastat_transaction_in_refund
 
-    def _get_weight_and_supplunits(self, inv_line, hs_code):
+    def _get_weight_and_supplunits(self, inv_line, hs_code, weight=None):
+        # TODO: refactor
         line_qty = inv_line.quantity
         product = inv_line.product_id
         invoice = inv_line.move_id
@@ -270,26 +271,14 @@ class IntrastatProductDeclaration(models.Model):
         kg_uom = self._get_uom_refs("kg_uom")
         pce_uom_categ = self._get_uom_refs("pce_uom_categ")
         pce_uom = self._get_uom_refs("pce_uom")
-        weight = suppl_unit_qty = 0.0
-
-        if not product:
-            weight = inv_line.weight
-            if not weight:
-                note = "\n" + _(
-                    "Missing weight on invoice %s, line with intrastat code %s."
-                ) % (inv_line.move_id.name, inv_line.hs_code_id.local_code)
-                note += "\n" + _(
-                    "Please correct the product record and regenerate "
-                    "the lines or adjust the impacted lines manually"
-                )
-                self._note += note
-                return weight, suppl_unit_qty
-            return weight, suppl_unit_qty
+        suppl_unit_qty = 0.0
+        if not weight:
+            weight = 0.0
 
         if not source_uom:
             note = "\n" + _(
                 "Missing unit of measure on the line with %d "
-                "product(s) '%s' on invoice '%s'."
+                "product '%s' on invoice '%s'."
             ) % (line_qty, product.name_get()[0][1], invoice.name)
             note += "\n" + _("Please adjust this line manually.")
             self._note += note
@@ -332,6 +321,9 @@ class IntrastatProductDeclaration(models.Model):
                 self._note += note
                 return weight, suppl_unit_qty
 
+        if weight:
+            return weight, suppl_unit_qty
+
         if source_uom == kg_uom:
             weight = line_qty
         elif source_uom.category_id == weight_uom_categ:
@@ -341,10 +333,7 @@ class IntrastatProductDeclaration(models.Model):
                 note = (
                     "\n" + _("Missing weight on product %s.") % product.name_get()[0][1]
                 )
-                note += "\n" + _(
-                    "Please correct the product record and regenerate "
-                    "the lines or adjust the impacted lines manually"
-                )
+                note += " " + _("This product is present in invoice %s.") % invoice.name
                 self._note += note
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
@@ -612,11 +601,10 @@ class IntrastatProductDeclaration(models.Model):
 
                 intrastat_transaction = self._get_intrastat_transaction(inv_line)
 
+                weight = inv_intrastat_line.transaction_weight
                 weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                    inv_line, hs_code
+                    inv_line, hs_code, weight=weight
                 )
-                if inv_intrastat_line:
-                    weight = inv_intrastat_line.transaction_weight
                 total_inv_weight += weight
 
                 amount_company_currency = self._get_amount(inv_line)

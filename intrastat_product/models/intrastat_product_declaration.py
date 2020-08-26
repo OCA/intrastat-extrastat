@@ -449,9 +449,7 @@ class IntrastatProductDeclaration(models.Model):
         return incoterm
 
     def _get_product_origin_country(self, inv_line):
-        return (
-            inv_line.product_origin_country_id or inv_line.product_id.origin_country_id
-        )
+        return inv_line.product_id.origin_country_id
 
     def _update_computation_line_vals(self, inv_line, line_vals):
         """ placeholder for localization modules """

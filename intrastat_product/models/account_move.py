@@ -99,6 +99,21 @@ class AccountMove(models.Model):
         return vals
 
 
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    hs_code_id = fields.Many2one(
+        comodel_name="hs.code", compute="_compute_hs_code_id", string="Intrastat Code",
+    )
+
+    def _compute_hs_code_id(self):
+        for rec in self:
+            intrastat_line = self.move_id.intrastat_line_ids.filtered(
+                lambda r: r.invoice_line_id == rec
+            )
+            rec.hs_code_id = intrastat_line.hs_code_id or rec.get_hs_code_recursively()
+
+
 class AccountMoveIntrastatLine(models.Model):
     _name = "account.move.intrastat.line"
     _description = "Intrastat declaration details"

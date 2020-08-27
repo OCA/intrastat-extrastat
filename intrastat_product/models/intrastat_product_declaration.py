@@ -261,10 +261,9 @@ class IntrastatProductDeclaration(models.Model):
                 return company.intrastat_transaction_in_refund
 
     def _get_weight_and_supplunits(self, inv_line, hs_code, weight=None):
-        # TODO: refactor
+        line_nbr = self._line_nbr
         line_qty = inv_line.quantity
         product = inv_line.product_id
-        invoice = inv_line.move_id
         intrastat_unit_id = hs_code.intrastat_unit_id
         source_uom = inv_line.product_uom_id
         weight_uom_categ = self._get_uom_refs("weight_uom_categ")
@@ -276,49 +275,34 @@ class IntrastatProductDeclaration(models.Model):
             weight = 0.0
 
         if not source_uom:
-            note = "\n" + _(
-                "Missing unit of measure on the line with %d "
-                "product '%s' on invoice '%s'."
-            ) % (line_qty, product.name_get()[0][1], invoice.name)
-            note += "\n" + _("Please adjust this line manually.")
-            self._note += note
+            line_notes = [_("Missing unit of measure.")]
+            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
             target_uom = intrastat_unit_id.uom_id
             if not target_uom:
-                note = (
-                    "\n"
-                    + _(
+                line_notes = [
+                    _("Intrastat Code %s:") % hs_code.display_name,
+                    _(
                         "Conversion from Intrastat Supplementary Unit '%s' to "
                         "Unit of Measure is not implemented yet."
                     )
-                    % intrastat_unit_id.name
-                )
-                note += (
-                    "\n"
-                    + _(
-                        "Please correct the Intrastat Supplementary Unit "
-                        "settings and regenerate the lines or adjust the lines "
-                        "with Intrastat Code '%s' manually"
-                    )
-                    % hs_code.display_name
-                )
-                self._note += note
+                    % intrastat_unit_id.name,
+                ]
+                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
             else:
-                note = "\n" + _(
-                    "Conversion from unit of measure '%s' to '%s' "
-                    "is not implemented yet."
-                ) % (source_uom.name, target_uom.name)
-                note += "\n" + _(
-                    "Please correct the unit of measure settings and "
-                    "regenerate the lines or adjust the impacted "
-                    "lines manually"
-                )
-                self._note += note
+                line_notes = [
+                    _(
+                        "Conversion from unit of measure '%s' to '%s' "
+                        "is not implemented yet."
+                    )
+                    % (source_uom.name, target_uom.name)
+                ]
+                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
                 return weight, suppl_unit_qty
 
         if weight:
@@ -330,11 +314,10 @@ class IntrastatProductDeclaration(models.Model):
             weight = source_uom._compute_quantity(line_qty, kg_uom)
         elif source_uom.category_id == pce_uom_categ:
             if not product.weight:  # re-create weight_net ?
-                note = (
-                    "\n" + _("Missing weight on product %s.") % product.name_get()[0][1]
-                )
-                note += " " + _("This product is present in invoice %s.") % invoice.name
-                self._note += note
+                line_notes = [
+                    _("Missing weight on product %s.") % product.name_get()[0][1]
+                ]
+                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
                 weight = product.weight * line_qty  # product.weight_net
@@ -346,16 +329,14 @@ class IntrastatProductDeclaration(models.Model):
                     line_qty, pce_uom
                 )
         else:
-            note = "\n" + _(
-                "Conversion from unit of measure '%s' to 'Kg' "
-                "is not implemented yet. It is needed for product '%s'."
-            ) % (source_uom.name, product.name_get()[0][1])
-            note += "\n" + _(
-                "Please correct the unit of measure settings and "
-                "regenerate the lines or adjust the impacted lines "
-                "manually"
-            )
-            self._note += note
+            line_notes = [
+                _(
+                    "Conversion from unit of measure '%s' to 'Kg' "
+                    "is not implemented yet. It is needed for product '%s'."
+                )
+                % (source_uom.name, product.name_get()[0][1])
+            ]
+            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty
@@ -514,6 +495,15 @@ class IntrastatProductDeclaration(models.Model):
         """ placeholder for localization modules """
         pass
 
+    def _format_line_note(self, line, line_nbr, line_notes):
+        indent = 8 * " "
+        note = _("Invoice %s, line %s") % (line.move_id.name, line_nbr)
+        note += ":\n"
+        for line_note in line_notes:
+            note += indent + line_note
+            note += "\n"
+        return note
+
     def _gather_invoices(self):
 
         lines = []
@@ -521,7 +511,8 @@ class IntrastatProductDeclaration(models.Model):
 
         self._gather_invoices_init()
         domain = self._prepare_invoice_domain()
-        invoices = self.env["account.move"].search(domain)
+        order = "journal_id, name"
+        invoices = self.env["account.move"].search(domain, order=order)
 
         for invoice in invoices:
 
@@ -529,7 +520,8 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
-            for inv_line in invoice.invoice_line_ids:
+            for line_nbr, inv_line in enumerate(invoice.invoice_line_ids, start=1):
+                self._line_nbr = line_nbr
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
                     lambda r: r.invoice_line_id == inv_line
                 )
@@ -582,19 +574,18 @@ class IntrastatProductDeclaration(models.Model):
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:
-                        note = "\n" + _(
-                            "Missing H.S. code on product %s. "
-                            "This product is present in invoice %s."
-                        ) % (
-                            inv_line.product_id.name_get()[0][1],
-                            inv_line.move_id.name,
+                        line_notes = [
+                            _("Missing Intrastat Code on product %s. ")
+                            % (inv_line.product_id.name_get()[0][1])
+                        ]
+                        self._note += self._format_line_note(
+                            inv_line, line_nbr, line_notes
                         )
-                        self._note += note
                         continue
                 else:
                     _logger.info(
                         "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no product nor hs_code"
+                        "of invoice %s. Reason: no product nor Intrastat Code"
                         % (inv_line.name, inv_line.quantity, invoice.name)
                     )
                     continue

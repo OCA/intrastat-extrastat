@@ -29,6 +29,11 @@ class IntrastatProductDeclaration(models.Model):
             "or change the revision number of this one.",
         )
     ]
+    # TODO:
+    # drop the use of self._note & self._line_nbr when migrating to Odoo 14
+    # refactoring this now may break the localisation modules
+    _note = ""
+    _line_nbr = ""
 
     @api.model
     def default_get(self, fields_list):
@@ -260,7 +265,7 @@ class IntrastatProductDeclaration(models.Model):
             elif invoice.type == "in_refund":
                 return company.intrastat_transaction_in_refund
 
-    def _get_weight_and_supplunits(self, inv_line, hs_code, weight=None):
+    def _get_weight_and_supplunits(self, inv_line, hs_code):
         line_nbr = self._line_nbr
         line_qty = inv_line.quantity
         product = inv_line.product_id
@@ -270,9 +275,7 @@ class IntrastatProductDeclaration(models.Model):
         kg_uom = self._get_uom_refs("kg_uom")
         pce_uom_categ = self._get_uom_refs("pce_uom_categ")
         pce_uom = self._get_uom_refs("pce_uom")
-        suppl_unit_qty = 0.0
-        if not weight:
-            weight = 0.0
+        weight = suppl_unit_qty = 0.0
 
         if not source_uom:
             line_notes = [_("Missing unit of measure.")]
@@ -592,10 +595,13 @@ class IntrastatProductDeclaration(models.Model):
 
                 intrastat_transaction = self._get_intrastat_transaction(inv_line)
 
-                weight = inv_intrastat_line.transaction_weight
-                weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                    inv_line, hs_code, weight=weight
-                )
+                if inv_intrastat_line:
+                    weight = inv_intrastat_line.transaction_weight
+                    suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
+                else:
+                    weight, suppl_unit_qty = self._get_weight_and_supplunits(
+                        inv_line, hs_code
+                    )
                 total_inv_weight += weight
 
                 amount_company_currency = self._get_amount(inv_line)

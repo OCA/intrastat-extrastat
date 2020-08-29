@@ -84,15 +84,18 @@ class AccountMove(models.Model):
 
     def _get_intrastat_line_vals(self, line):
         vals = {}
-        if self.env["intrastat.product.declaration"]._is_product(line):
+        decl_model = self.env["intrastat.product.declaration"]
+        if decl_model._is_product(line):
             hs_code = line.product_id.get_hs_code_recursively()
             if not hs_code:
                 return vals
+            weight, qty = decl_model._get_weight_and_supplunits(line, hs_code)
             vals.update(
                 {
                     "invoice_line_id": line.id,
                     "hs_code_id": hs_code.id,
-                    "transaction_weight": int(line.product_id.weight * line.quantity),
+                    "transaction_weight": int(weight),
+                    "transaction_suppl_unit_qty": qty,
                     "product_origin_country_id": line.product_id.origin_country_id.id,
                 }
             )
@@ -138,6 +141,9 @@ class AccountMoveIntrastatLine(models.Model):
         related="invoice_line_id.product_id",
     )
     quantity = fields.Float(related="invoice_line_id.quantity")
+    transaction_suppl_unit_qty = fields.Float(
+        help="Transaction quantity in Intrastat Supplementary Unit"
+    )
     hs_code_id = fields.Many2one(
         comodel_name="hs.code",
         string="Intrastat Code",

@@ -44,6 +44,7 @@
                             />
                             <field name="product_id" />
                             <field name="quantity" />
+                            <field name="transaction_suppl_unit_qty" />
                             <field name="hs_code_id" />
                             <field name="transaction_weight" />
                             <field

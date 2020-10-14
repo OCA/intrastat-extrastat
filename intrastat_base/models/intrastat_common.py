@@ -21,16 +21,10 @@ class IntrastatCommon(models.AbstractModel):
     _description = "Common functions for intrastat reports for products "
     "and services"
 
-    @api.depends("declaration_line_ids.amount_company_currency")
-    def _compute_numbers(self):
-        for this in self:
-            total_amount = 0  # it is an integer
-            num_lines = 0
-            for line in this.declaration_line_ids:
-                total_amount += line.amount_company_currency
-                num_lines += 1
-            this.num_decl_lines = num_lines
-            this.total_amount = total_amount
+    # The method _compute_numbers has been removed
+    # because it was using a loop on lines, which is slow -> we should
+    # use read_group() instead, but then the code depends on
+    # the line object, so it can't be factorized here
 
     def _check_generate_lines(self):
         """Check wether all requirements are met for generating lines."""
@@ -54,16 +48,16 @@ class IntrastatCommon(models.AbstractModel):
         return True
 
     @api.model
-    def _check_xml_schema(self, xml_string, xsd_file):
+    def _check_xml_schema(self, xml_bytes, xsd_file):
         """Validate the XML file against the XSD"""
         xsd_etree_obj = etree.parse(tools.file_open(xsd_file, mode="rb"))
         official_schema = etree.XMLSchema(xsd_etree_obj)
         try:
-            t = etree.parse(BytesIO(xml_string))
+            t = etree.parse(BytesIO(xml_bytes))
             official_schema.assertValid(t)
         except (etree.XMLSchemaParseError, etree.DocumentInvalid) as e:
             logger.warning("The XML file is invalid against the XML Schema Definition")
-            logger.warning(xml_string)
+            logger.warning(xml_bytes)
             logger.warning(e)
             usererror = "{}\n\n{}".format(e.__class__.__name__, str(e))
             raise UserError(usererror)
@@ -74,7 +68,7 @@ class IntrastatCommon(models.AbstractModel):
             logger.warning(error)
             raise UserError(error)
 
-    def _attach_xml_file(self, xml_string, declaration_name):
+    def _attach_xml_file(self, xml_bytes, declaration_name):
         """Attach the XML file to the report_intrastat_product/service
         object"""
         self.ensure_one()
@@ -84,8 +78,7 @@ class IntrastatCommon(models.AbstractModel):
                 "name": filename,
                 "res_id": self.id,
                 "res_model": self._name,
-                "datas": base64.encodestring(xml_string),
-                "store_fname": filename,
+                "datas": base64.encodebytes(xml_bytes),
             }
         )
         return attach.id
@@ -96,20 +89,10 @@ class IntrastatCommon(models.AbstractModel):
         )
         atts.unlink()
 
-    @api.model
-    def _open_attach_view(self, attach_id, title="XML file"):
-        """Returns an action which opens the form view of the
-        corresponding attachement"""
-        action = {
-            "name": title,
-            "view_mode": "form",
-            "res_model": "ir.attachment",
-            "type": "ir.actions.act_window",
-            "nodestroy": True,
-            "target": "current",
-            "res_id": attach_id,
-        }
-        return action
+    # Method _open_attach_view() removed
+    # Let's handle attachments like in l10n_fr_intrastat_service v14
+    # with the field attachment_id on the declaration and the download
+    # link directly on the form view of the declaration.
 
     def _generate_xml(self):
         """

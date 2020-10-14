@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2011-2016 Akretion France (http://www.akretion.com/)
-  Copyright 2015-2016 Noviat (http://www.noviat.com/)
+  Copyright 2011-2020 Akretion France (http://www.akretion.com/)
+  Copyright 2015-2020 Noviat (http://www.noviat.com/)
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
@@ -27,7 +27,7 @@
                     <field name="note" nolabel="1" />
                 </group>
                 <footer>
-                    <button string="Ok" class="oe_highlight" special="cancel" />
+                    <button string="Ok" class="btn-primary" special="cancel" />
                 </footer>
             </form>
         </field>

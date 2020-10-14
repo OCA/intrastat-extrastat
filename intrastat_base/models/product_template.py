@@ -1,4 +1,4 @@
-# Copyright 2010-2016 Akretion (<alexis.delattre@akretion.com>)
+# Copyright 2010-2020 Akretion (<alexis.delattre@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -26,5 +26,5 @@ class ProductTemplate(models.Model):
                         "this option for the product '%s' which is of type "
                         "'%s'"
                     )
-                    % (this.name, this.type)
+                    % (this.display_name, this.type)
                 )

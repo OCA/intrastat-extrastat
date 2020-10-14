@@ -1,4 +1,4 @@
-# Copyright 2013-2017 Akretion France (http://www.akretion.com/)
+# Copyright 2013-2020 Akretion France (http://www.akretion.com/)
 # @author: <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -10,7 +10,8 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     intrastat_remind_user_ids = fields.Many2many(
-        "res.users",
+        comodel_name="res.users",
+        relation="company_intrastat_reminder_user_rel",
         column1="company_id",
         column2="user_id",
         string="Users Receiving the Intrastat Reminder",

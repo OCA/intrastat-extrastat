@@ -10,6 +10,7 @@ class IntrastatTransaction(models.Model):
     _name = "intrastat.transaction"
     _description = "Intrastat Transaction"
     _order = "code"
+    _rec_name = "code"
     _sql_constraints = [
         (
             "intrastat_transaction_code_unique",
@@ -17,7 +18,7 @@ class IntrastatTransaction(models.Model):
             "Code must be unique.",
         )
     ]
-
+    
     code = fields.Char(string="Code", required=True)
     description = fields.Text(string="Description")
     company_id = fields.Many2one(

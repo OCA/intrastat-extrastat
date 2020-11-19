@@ -15,7 +15,11 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[intrastat_base](intrastat_base/) | 14.0.1.0.0 | Base module for Intrastat reporting
 
 [//]: # (end addons)
 

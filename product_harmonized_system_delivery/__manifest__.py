@@ -1,4 +1,4 @@
-# Copyright 2018 Akretion France (http://www.akretion.com)
+# Copyright 2018-2020 Akretion France (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -9,6 +9,8 @@
     "license": "AGPL-3",
     "summary": "Hide native hs_code field provided by the delivery module",
     "author": "Akretion, Odoo Community Association (OCA)",
+    "maintainers": ["alexis-via", "luc-demeyer"],
+    "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["delivery", "product_harmonized_system"],
     "data": ["views/product_template.xml"],
     "installable": True,

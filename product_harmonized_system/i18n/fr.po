@@ -18,12 +18,12 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
-msgid "<span class=\"o_stat_text\"> Product Categs</span>"
+msgid "<span class=\"o_stat_text\">Product Categs</span>"
 msgstr ""
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
-msgid "<span class=\"o_stat_text\"> Products</span>"
+msgid "<span class=\"o_stat_text\">Products</span>"
 msgstr ""
 
 #. module: product_harmonized_system
@@ -83,6 +83,9 @@ msgstr "Description"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -128,6 +131,9 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__id
 msgid "ID"
 msgstr "ID"
 
@@ -138,6 +144,9 @@ msgstr "Propriétés pour l'import/export"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template____last_update
 #, fuzzy
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -171,7 +180,6 @@ msgstr "Catégorie d'articles"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
 #, fuzzy
-#| msgid "Product Category"
 msgid "Product Categ Count"
 msgstr "Catégorie d'articles"
 
@@ -195,7 +203,6 @@ msgstr "Modèle d'article"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
 #, fuzzy
-#| msgid "Product Template"
 msgid "Product Tmpl Count"
 msgstr "Modèle d'article"
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2011-2020 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo noupdate="1">
+    <record id="base.main_partner" model="res.partner">
+        <field name="vat">FR58441019213</field>
+    </record>
+    <record id="base.res_partner_2" model="res.partner">
+        <!-- Deco Addict -->
+        <field name="vat">BE0884025633</field>
+    </record>
+    <record id="shipping_costs_exclude" model="product.product">
+        <field name="name">Shipping costs</field>
+        <field name="default_code">SHIP_S</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">30</field>
+        <field name="is_accessory_cost" eval="True" />
+    </record>
+</odoo>

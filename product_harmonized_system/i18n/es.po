@@ -18,13 +18,13 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
-msgid "<span class=\"o_stat_text\"> Product Categs</span>"
-msgstr "<span class=\"o_stat_text\"> Categs Producto</span>"
+msgid "<span class=\"o_stat_text\">Product Categs</span>"
+msgstr ""
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
-msgid "<span class=\"o_stat_text\"> Products</span>"
-msgstr "<span class=\"o_stat_text\"> Productos</span>"
+msgid "<span class=\"o_stat_text\">Products</span>"
+msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__active
@@ -86,6 +86,9 @@ msgstr "Descripción"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -135,6 +138,9 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__id
 msgid "ID"
 msgstr ""
 
@@ -145,6 +151,9 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -224,3 +233,9 @@ msgstr ""
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
 msgstr "Este código ya existe para esta compañía !"
+
+#~ msgid "<span class=\"o_stat_text\"> Product Categs</span>"
+#~ msgstr "<span class=\"o_stat_text\"> Categs Producto</span>"
+
+#~ msgid "<span class=\"o_stat_text\"> Products</span>"
+#~ msgstr "<span class=\"o_stat_text\"> Productos</span>"

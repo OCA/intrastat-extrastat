@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2010-2019 Akretion France (http://www.akretion.com/)
+  Copyright 2010-2020 Akretion France (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -73,7 +73,7 @@
                             <span class="o_stat_value">
                                 <field name="product_categ_count" />
                             </span>
-                            <span class="o_stat_text"> Product Categs</span>
+                            <span class="o_stat_text">Product Categs</span>
                         </div>
                     </button>
                     <button
@@ -86,7 +86,7 @@
                             <span class="o_stat_value">
                                 <field name="product_tmpl_count" />
                             </span>
-                            <span class="o_stat_text"> Products</span>
+                            <span class="o_stat_text">Products</span>
                         </div>
                     </button>
                 </div>

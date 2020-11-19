@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "summary": "Adds a menu entry for H.S. codes",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "maintainers": ["alexis-via"],
+    "maintainers": ["alexis-via", "luc-demeyer"],
     "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["product_harmonized_system", "stock"],
     "data": ["views/hs_code_menu.xml"],

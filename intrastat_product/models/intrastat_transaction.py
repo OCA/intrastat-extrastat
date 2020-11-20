@@ -18,7 +18,7 @@ class IntrastatTransaction(models.Model):
             "Code must be unique.",
         )
     ]
-    
+
     code = fields.Char(string="Code", required=True)
     description = fields.Text(string="Description")
     company_id = fields.Many2one(

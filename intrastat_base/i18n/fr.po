@@ -54,7 +54,6 @@ msgstr "Société non configurée sur le rapport DEB/DES."
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_config_settings
 #, fuzzy
-#| msgid "res.config.settings"
 msgid "Config Settings"
 msgstr "res.config.settings"
 

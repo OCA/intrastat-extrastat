@@ -13,7 +13,7 @@ class AccountMove(models.Model):
         comodel_name="intrastat.transaction",
         string="Intrastat Transaction Type",
         ondelete="restrict",
-        track_visibility="onchange",
+        tracking=True,
         help="Intrastat nature of transaction",
     )
     intrastat_transport_id = fields.Many2one(

@@ -83,7 +83,7 @@ class IntrastatProductDeclaration(models.Model):
         compute="_compute_year_month",
         string="Period",
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
         store=True,
         help="Year and month of the declaration.",
     )
@@ -92,7 +92,7 @@ class IntrastatProductDeclaration(models.Model):
         string="Type",
         required=True,
         states={"done": [("readonly", True)]},
-        track_visibility="onchange",
+        tracking=True,
         help="Select the declaration type.",
     )
     action = fields.Selection(
@@ -101,7 +101,7 @@ class IntrastatProductDeclaration(models.Model):
         required=True,
         default="replace",
         states={"done": [("readonly", True)]},
-        track_visibility="onchange",
+        tracking=True,
     )
     revision = fields.Integer(
         string="Revision",
@@ -125,7 +125,7 @@ class IntrastatProductDeclaration(models.Model):
         compute="_compute_numbers",
         string="Number of Declaration Lines",
         store=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     total_amount = fields.Integer(
         compute="_compute_numbers",
@@ -140,7 +140,7 @@ class IntrastatProductDeclaration(models.Model):
         selection=[("draft", "Draft"), ("done", "Done")],
         string="State",
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
         copy=False,
         default="draft",
         help="State of the declaration. When the state is set to 'Done', "
@@ -350,7 +350,7 @@ class IntrastatProductDeclaration(models.Model):
             inv_line.price_subtotal,
             self.company_id.currency_id,
             self.company_id,
-            invoice.date,
+            invoice.invoice_date,
         )
         return amount
 
@@ -477,11 +477,12 @@ class IntrastatProductDeclaration(models.Model):
         start_date = date(int(self.year), int(self.month), 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
         domain = [
-            ("date", ">=", start_date),
-            ("date", "<=", end_date),
+            ("invoice_date", ">=", start_date),
+            ("invoice_date", "<=", end_date),
             ("state", "=", "posted"),
             ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
+            ("type", "!=", "entry"),
         ]
         return domain
 
@@ -538,7 +539,7 @@ class IntrastatProductDeclaration(models.Model):
                         inv_line.price_subtotal,
                         self.company_id.currency_id,
                         self.company_id,
-                        invoice.date_invoice,
+                        invoice.invoice_date,
                     )
                     total_inv_accessory_costs_cc += acost
 

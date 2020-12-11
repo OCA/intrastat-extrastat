@@ -350,7 +350,7 @@ class IntrastatProductDeclaration(models.Model):
             inv_line.price_subtotal,
             self.company_id.currency_id,
             self.company_id,
-            invoice.invoice_date,
+            invoice.date,
         )
         return amount
 
@@ -477,8 +477,8 @@ class IntrastatProductDeclaration(models.Model):
         start_date = date(int(self.year), int(self.month), 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
         domain = [
-            ("invoice_date", ">=", start_date),
-            ("invoice_date", "<=", end_date),
+            ("date", ">=", start_date),
+            ("date", "<=", end_date),
             ("state", "=", "posted"),
             ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
@@ -539,7 +539,7 @@ class IntrastatProductDeclaration(models.Model):
                         inv_line.price_subtotal,
                         self.company_id.currency_id,
                         self.company_id,
-                        invoice.invoice_date,
+                        invoice.date,
                     )
                     total_inv_accessory_costs_cc += acost
 

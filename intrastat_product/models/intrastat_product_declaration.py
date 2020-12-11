@@ -473,6 +473,8 @@ class IntrastatProductDeclaration(models.Model):
         Complete this method in the localization module
         with the country-specific logic for arrivals and dispatches.
         Cf. l10n_be_intrastat_product_declaration for an example
+        The dates are based on account.move,date in stead of invoice_date
+        to ensure consistency between intrastat and intracomm tax declaration.
         """
         start_date = date(int(self.year), int(self.month), 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)

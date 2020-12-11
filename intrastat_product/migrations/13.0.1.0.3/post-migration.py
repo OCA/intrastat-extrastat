@@ -44,20 +44,12 @@ def update_invoice_relation_fields(env):
     openupgrade.logged_query(
         env.cr,
         """
-        UPDATE account_move_line aml
-        SET hs_code_id = ail.hs_code_id
-        FROM account_invoice_line ail
-        WHERE aml.old_invoice_line_id = ail.id""",
-    )
-    openupgrade.logged_query(
-        env.cr,
-        """
         UPDATE intrastat_product_computation_line ipcl
         SET invoice_line_id = aml.id
         FROM account_invoice_line ail
         JOIN account_move_line aml ON aml.old_invoice_line_id = ail.id
-        WHERE ipcl.%s = ail.id""",
-        (openupgrade.get_legacy_name("invoice_line_id"),),
+        WHERE ipcl.%(old_line_id)s = ail.id"""
+        % {"old_line_id": openupgrade.get_legacy_name("invoice_line_id")},
     )
 
 

@@ -84,6 +84,13 @@ and adapt the code for the specific needs of your country.
 
   Cf. l10n_be_istrastat_product as example, replace "be" by your Country Code.
 
+Known issues / Roadmap
+======================
+
+The declaration is based upon the invoices of the corresponding tax declaration period.
+
+An option to generate the intrastat declaration based upon the dates of the physical movements of goods is currently not available.
+
 Bug Tracker
 ===========
 

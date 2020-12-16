@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* intrastat_product
+# 	* intrastat_product
 #
 msgid ""
 msgstr ""
@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.10\n"
 
 #. module: intrastat_product
@@ -84,8 +84,10 @@ msgstr "<span>Intrastat deklaracija proizvodov </span>"
 
 #. module: intrastat_product
 #: sql_constraint:intrastat.product.declaration:0
-msgid "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+msgid ""
+"A declaration of the same type already exists for this month !\n"
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 "V tem mesecu že obstaja deklaracija istega tipa!\n"
 "Posodobite obstoječo deklaracijo ali spremenite številko revizije na tej."
@@ -124,20 +126,26 @@ msgstr "Zračni transport"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
-msgid "Amount in company currency of the accessory costs related to this invoice line (by default, these accessory costs are computed at the pro-rata of the amount of each invoice line."
+msgid ""
+"Amount in company currency of the accessory costs related to this invoice "
+"line (by default, these accessory costs are computed at the pro-rata of the "
+"amount of each invoice line."
 msgstr ""
-"Znesek stroškov dodatkov vezanih na to postavko računa v valuti družbe ("
-"privzeto se ti stroški obdelujejo proporcionalno glede na znesek vsake "
+"Znesek stroškov dodatkov vezanih na to postavko računa v valuti družbe "
+"(privzeto se ti stroški obdelujejo proporcionalno glede na znesek vsake "
 "postavke računa)."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
-msgid "Amount in company currency to write in the declaration. Amount in company currency = amount in invoice currency converted to company currency with the rate of the invoice date."
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
-"Znesek, ki se zapiše v deklaracijo, v valuti družbe. Znesek v valuti družbe ="
-" Znesek v valuti na računu pretvorjen v valuto družbe po menjalnem tečaju na "
-"datum računa."
+"Znesek, ki se zapiše v deklaracijo, v valuti družbe. Znesek v valuti družbe "
+"= Znesek v valuti na računu pretvorjen v valuto družbe po menjalnem tečaju "
+"na datum računa."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:139
@@ -175,8 +183,7 @@ msgid "Code"
 msgstr "Koda"
 
 #. module: intrastat_product
-#: sql_constraint:intrastat.region:0
-#: sql_constraint:intrastat.transaction:0
+#: sql_constraint:intrastat.region:0 sql_constraint:intrastat.transaction:0
 #: sql_constraint:intrastat.transport_mode:0
 msgid "Code must be unique."
 msgstr "Koda mora biti unikatna."
@@ -228,7 +235,9 @@ msgstr "Nastavitve"
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:246
 #, python-format
-msgid "Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not implemented yet."
+msgid ""
+"Conversion from Intrastat Supplementary Unit '%s' to Unit of Measure is not "
+"implemented yet."
 msgstr ""
 "Konverzija iz Intrastat dodatne enote '%s' v enoto mere še ni implementirana."
 
@@ -475,28 +484,28 @@ msgid "Followers (Partners)"
 msgstr "Sledilci (partnerji)"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:748
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:750
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Declaration Lines"
 msgstr "Ustvari postavke deklaracije"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:637
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:639
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate Lines from Invoices"
 msgstr "Ustvari postavke iz računov"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:770
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:772
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
 msgid "Generate XML Declaration File"
 msgstr "Ustvari XML datoteko deklaracije"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:669
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:671
 #, python-format
 msgid "Generate lines from invoices: results"
 msgstr "Ustvari postavke iz računov: rezultati"
@@ -578,7 +587,9 @@ msgstr "Transport po celinskih plovnih poteh"
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_company__intrastat_incoterm_id
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__intrastat_incoterm_id
-msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
 msgstr ""
 "Mednarodni pogoji (INCOTERMS) so v naprej določeni komercialni pogoji, ki se "
 "uporabljajo pri mednarodnih prevozih."
@@ -595,7 +606,9 @@ msgstr "Intrastat koda"
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:26
 #, python-format
-msgid "Intrastat Codes should contain 8 digits. This is not the case for Intrastat Code '%s' which has %d digits."
+msgid ""
+"Intrastat Codes should contain 8 digits. This is not the case for Intrastat "
+"Code '%s' which has %d digits."
 msgstr ""
 "Intrastat kode bi morale zajemati 8 znakov, intrastat koda '%s' pa zajema %d "
 "digits."
@@ -603,7 +616,9 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:21
 #, python-format
-msgid "Intrastat Codes should only contain digits. This is not the case for code '%s'."
+msgid ""
+"Intrastat Codes should only contain digits. This is not the case for code "
+"'%s'."
 msgstr ""
 "Intrastat kode bi morale vsebovati le znake, kar pa se ne sklada v primeru "
 "'%s'."
@@ -826,13 +841,13 @@ msgid "Messages"
 msgstr "Sporočila"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:544
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:546
 #, python-format
 msgid "Missing H.S. code on product %s. This product is present in invoice %s."
 msgstr "Pri proizvodu %s manjka HS koda. Proizvod se nahaja v računu %s."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:533
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:535
 #, python-format
 msgid "Missing product on invoice line with H.S. code %s in invoice %s."
 msgstr "Pri postavki računa s HS kodo %s v računu %s manjka proizvod."
@@ -840,7 +855,8 @@ msgstr "Pri postavki računa s HS kodo %s v računu %s manjka proizvod."
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
 #, python-format
-msgid "Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
+msgid ""
+"Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
 msgstr ""
 "Pri postavki, ki vsebuje %d proizvod(ov) '%s' na računu '%s' manjka enota "
 "mere."
@@ -888,13 +904,13 @@ msgid "No"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:780
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:782
 #, python-format
 msgid "No XML File has been generated."
 msgstr "XML datoteka ni bila ustvarjena."
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:656
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:658
 #, python-format
 msgid "No records found for the selected period !"
 msgstr "V izbranem obdobju ni najdenih zapisov!"
@@ -947,7 +963,9 @@ msgstr "Regija izvora"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_invoice__src_dest_region_id
-msgid "Origin region for dispatches, destination region for arrivals. This field is used for the Intrastat Declaration."
+msgid ""
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 "Regija izvora za odpošiljanja, ciljna regija za prihode. To polje se "
 "uporablja pri deklaraciji intrastat."
@@ -969,7 +987,9 @@ msgstr "Lasten pogon"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_9
-msgid "Own propulsion (imported or exported means of transport crossing the border under their own power, e.g. aircraft, lorries, boats, etc.)"
+msgid ""
+"Own propulsion (imported or exported means of transport crossing the border "
+"under their own power, e.g. aircraft, lorries, boats, etc.)"
 msgstr ""
 "Lasten pogon (uvoženo ali izvoženo prevozno sredstvo prečka mejo z lastnim "
 "pogonom, npr. letala, kombiji, ladje, ipd.)"
@@ -988,7 +1008,9 @@ msgstr "Popravite to vrstico ročno, prosim."
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:250
 #, python-format
-msgid "Please correct the Intrastat Supplementary Unit settings and regenerate the lines or adjust the lines with Intrastat Code '%s' manually"
+msgid ""
+"Please correct the Intrastat Supplementary Unit settings and regenerate the "
+"lines or adjust the lines with Intrastat Code '%s' manually"
 msgstr ""
 "Prosimo, da popravite nastavitve intrastat dodatne enote in ponovno "
 "ustvarite postavke ali pa ročno popravite postavke z intrastat kodo '%s'"
@@ -998,7 +1020,9 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:304
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:324
 #, python-format
-msgid "Please correct the product record and regenerate the lines or adjust the impacted lines manually"
+msgid ""
+"Please correct the product record and regenerate the lines or adjust the "
+"impacted lines manually"
 msgstr ""
 "Popravite zapis proizvoda in ponovno ustvarite postavke ali pa ročno "
 "popravite prizadete postavke"
@@ -1006,7 +1030,9 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:288
 #, python-format
-msgid "Please correct the unit of measure settings and regenerate the lines or adjust the impacted lines manually"
+msgid ""
+"Please correct the unit of measure settings and regenerate the lines or "
+"adjust the impacted lines manually"
 msgstr ""
 "Popravite nastavitve enote mere in ponovno ustvarite postavke ali pa ročno "
 "popravite prizadete postavke"
@@ -1031,7 +1057,12 @@ msgstr "Proizvod"
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:265
 #, python-format
-msgid "Product '%s' has an Intrastat Supplementary Unit in the 'volume' Unit of Measure (UoM) category. The Supplementary Unit Quantity calculation has failed since the product has been sold/purchased with a UoM without volume conversion. There is also no 'volume' specificied on the product record which also allows to calculate the Intrastat Supplementary Unit."
+msgid ""
+"Product '%s' has an Intrastat Supplementary Unit in the 'volume' Unit of "
+"Measure (UoM) category. The Supplementary Unit Quantity calculation has "
+"failed since the product has been sold/purchased with a UoM without volume "
+"conversion. There is also no 'volume' specificied on the product record "
+"which also allows to calculate the Intrastat Supplementary Unit."
 msgstr ""
 
 #. module: intrastat_product
@@ -1103,7 +1134,9 @@ msgstr "Morje"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
-msgid "Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and lighters on board of a ship)"
+msgid ""
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 "Pomorski transport (vključno vagoni, motorna vozila, prikolice, pol "
 "prikolice na krovu ladje)"
@@ -1137,7 +1170,9 @@ msgstr "Izberi tip deklaracije."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_unit__uom_id
-msgid "Select the regular Unit of Measure of Odoo that corresponds to this Intrastat Supplementary Unit."
+msgid ""
+"Select the regular Unit of Measure of Odoo that corresponds to this "
+"Intrastat Supplementary Unit."
 msgstr ""
 "Izberi običajno enoto mere v Odoo, ki ustreza tej Intrastat dodatni enoti."
 
@@ -1154,7 +1189,9 @@ msgstr "Stanje"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid "State of the declaration. When the state is set to 'Done', the parameters become read-only."
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
 msgstr ""
 "Stanje deklaracije. Ko je stanje nastavljeno na 'Opravljeno', parametri "
 "ostanejo le za branje."
@@ -1188,14 +1225,15 @@ msgid "Supplementary Units Quantity"
 msgstr "Količina v dodatnih enotah"
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:657
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:659
 #, python-format
 msgid "The Declaration Action has been set to 'nihil'."
 msgstr "Ukrep deklaracije je bil nastavljen na 'nihil'."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_res_config_settings__country_code
-msgid "The ISO country code in two chars. \n"
+msgid ""
+"The ISO country code in two chars. \n"
 "You can use this field for quick search."
 msgstr ""
 "ISO koda države v dveh znakih. \n"
@@ -1204,13 +1242,16 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:399
 #, python-format
-msgid "The default Incoterm of the Company is not set, please configure it first."
+msgid ""
+"The default Incoterm of the Company is not set, please configure it first."
 msgstr "Privzeti incoterm družbe ni nastavljen, najprej ga morate nastaviti."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:385
 #, python-format
-msgid "The default Intrastat Transport Mode of the Company is not set, please configure it first."
+msgid ""
+"The default Intrastat Transport Mode of the Company is not set, please "
+"configure it first."
 msgstr ""
 "Privzeti intrastat način transporta družbe ni nastavljen, najprej ga morate "
 "nastaviti."

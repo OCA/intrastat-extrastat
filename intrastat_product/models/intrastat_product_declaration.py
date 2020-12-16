@@ -336,7 +336,7 @@ class IntrastatProductDeclaration(models.Model):
         invoice = inv_line.invoice_id
         amount = invoice.currency_id._convert(
             inv_line.price_subtotal, self.company_id.currency_id,
-            self.company_id, invoice.date_invoice)
+            self.company_id, invoice.date)
         return amount
 
     def _get_region(self, inv_line):
@@ -449,12 +449,14 @@ class IntrastatProductDeclaration(models.Model):
         Complete this method in the localization module
         with the country-specific logic for arrivals and dispatches.
         Cf. l10n_be_intrastat_product_declaration for an example
+        The dates are based on account.invoice,date in stead of date_invoice
+        to ensure consistency between intrastat and intracomm tax declaration.
         """
         start_date = date(int(self.year), self.month, 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
         domain = [
-            ('date_invoice', '>=', start_date),
-            ('date_invoice', '<=', end_date),
+            ('date', '>=', start_date),
+            ('date', '<=', end_date),
             ('state', 'in', ['open', 'in_payment', 'paid']),
             ('intrastat_country', '=', True),
             ('company_id', '=', self.company_id.id)]
@@ -497,7 +499,7 @@ class IntrastatProductDeclaration(models.Model):
                         inv_line.price_subtotal,
                         self.company_id.currency_id,
                         self.company_id,
-                        invoice.date_invoice)
+                        invoice.date)
                     total_inv_accessory_costs_cc += acost
 
                     continue

@@ -3,8 +3,13 @@
 
 import logging
 
-from odoo import models
-from odoo.tools.translate import _, translate
+from odoo import _, models
+from odoo.tools.translate import translate
+
+from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
+    FORMATS,
+    XLS_HEADERS,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -63,12 +68,12 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {
                     "type": "string",
                     "value": self._("Fiscal Value"),
-                    "format": self.format_theader_yellow_right,
+                    "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
                     "type": "number",
                     "value": self._render("line.amount_company_currency"),
-                    "format": self.format_tcell_amount_right,
+                    "format": FORMATS["format_tcell_amount_right"],
                 },
                 "width": 18,
             },
@@ -76,14 +81,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {
                     "type": "string",
                     "value": self._("Accessory Costs"),
-                    "format": self.format_theader_yellow_right,
+                    "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
                     "type": "number",
                     "value": self._render(
                         "line.amount_accessory_cost_company_currency"
                     ),
-                    "format": self.format_tcell_amount_right,
+                    "format": FORMATS["format_tcell_amount_right"],
                 },
                 "width": 18,
             },
@@ -96,12 +101,12 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {
                     "type": "string",
                     "value": self._("Weight"),
-                    "format": self.format_theader_yellow_right,
+                    "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
                     "type": "number",
                     "value": self._render("line.weight"),
-                    "format": self.format_tcell_amount_right,
+                    "format": FORMATS["format_tcell_amount_right"],
                 },
                 "width": 18,
             },
@@ -109,14 +114,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {
                     "type": "string",
                     "value": self._("Suppl. Unit Qty"),
-                    "format": self.format_theader_yellow_right,
+                    "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
                     # we don't specify a type here and rely on the
                     # report_xlsx_helper type detection to use
                     # write_string when suppl_unit_qty is zero
                     "value": self._render("line.suppl_unit_qty or ''"),
-                    "format": self.format_tcell_amount_right,
+                    "format": FORMATS["format_tcell_amount_right"],
                 },
                 "width": 18,
             },
@@ -192,14 +197,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
         no_entries = (
             _("No") + " " + lines + " " + _("for period %s") % declaration.year_month
         )
-        ws.write_string(row_pos, 0, no_entries, self.format_left_bold)
+        ws.write_string(row_pos, 0, no_entries, FORMATS["format_left_bold"])
 
     def _intrastat_report(self, workbook, ws, ws_params, data, declaration):
 
         ws.set_landscape()
         ws.fit_to_pages(1, 0)
-        ws.set_header(self.xls_headers["standard"])
-        ws.set_footer(self.xls_footers["standard"])
+        ws.set_header(XLS_HEADERS["xls_headers"]["standard"])
+        ws.set_footer(XLS_HEADERS["xls_footers"]["standard"])
 
         self._set_column_width(ws, ws_params)
 
@@ -221,7 +226,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             row_pos,
             ws_params,
             col_specs_section="header",
-            default_format=self.format_theader_yellow_left,
+            default_format=FORMATS["format_theader_yellow_left"],
         )
 
         ws.freeze_panes(row_pos, 0)
@@ -233,5 +238,5 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 ws_params,
                 col_specs_section="line",
                 render_space={"line": line},
-                default_format=self.format_tcell_left,
+                default_format=FORMATS["format_tcell_left"],
             )

@@ -1,17 +1,18 @@
-# Copyright 2011-2017 Akretion (http://www.akretion.com)
+# Copyright 2011-2020 Akretion (http://www.akretion.com)
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
-# Copyright 2018 brain-tec AG (http://www.braintec-group.com)
+# Copyright 2018-2020 brain-tec AG (http://www.braintec-group.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # @author Kumar Aberer <kumar.aberer@braintec-group.com>
 
 {
     "name": "Intrastat Product",
-    "version": "13.0.1.1.2",
+    "version": "14.0.1.0.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat Product",
     "author": "brain-tec AG, Akretion, Noviat, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": [
         "intrastat_base",
         "product_harmonized_system",

@@ -14,13 +14,13 @@
             <xpath expr="//div[@id='analytic']" position="after">
                 <h2>Intrastat</h2>
                 <div class="row mt16 o_settings_container" id="intrastat">
-                    <div class="col-xs-12 col-md-12 o_setting_box">
+                    <div class="col-12 col-lg-12 o_setting_box" id="intrastat-settings">
                         <div class="o_setting_left_pane" />
                         <div class="o_setting_right_pane">
                             <div class="row">
                                 <label
                                     for="intrastat_remind_user_ids"
-                                    class="col-md-5 o_light_label"
+                                    class="col-md-5"
                                 />
                                 <field
                                     name="intrastat_remind_user_ids"

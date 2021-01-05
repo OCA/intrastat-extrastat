@@ -2,7 +2,6 @@
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
 import logging
 from io import BytesIO
 from sys import exc_info
@@ -78,7 +77,7 @@ class IntrastatCommon(models.AbstractModel):
                 "name": filename,
                 "res_id": self.id,
                 "res_model": self._name,
-                "datas": base64.encodebytes(xml_bytes),
+                "raw": xml_bytes,
             }
         )
         return attach.id

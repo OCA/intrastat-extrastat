@@ -11,7 +11,7 @@ class AccountFiscalPosition(models.Model):
     intrastat = fields.Boolean(
         string="Intrastat",
         help="Set to True if the invoices with this fiscal position should "
-        "be taken into account for the generation of the intrastat reports."
+        "be taken into account for the generation of the intrastat reports.",
     )
 
 
@@ -26,5 +26,5 @@ class AccountChartTemplate(models.Model):
 
     def _get_fp_vals(self, company, position):
         vals = super()._get_fp_vals(company, position)
-        vals['intrastat'] = position.intrastat
+        vals["intrastat"] = position.intrastat
         return vals

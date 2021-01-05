@@ -11,7 +11,7 @@
         <field name="inherit_id" ref="account.view_account_position_form" />
         <field name="arch" type="xml">
             <field name="vat_required" position="after">
-                <field name="intrastat"/>
+                <field name="intrastat" />
             </field>
         </field>
     </record>
@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="account.view_account_position_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="intrastat" optional="show"/>
+                <field name="intrastat" optional="show" />
             </field>
         </field>
     </record>

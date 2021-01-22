@@ -31,18 +31,6 @@ class IntrastatCommon(models.AbstractModel):
             this.num_decl_lines = num_lines
             this.total_amount = total_amount
 
-    def _check_generate_lines(self):
-        """Check wether all requirements are met for generating lines."""
-        for this in self:
-            if not this.company_id:
-                raise UserError(_("Company not yet set on intrastat report."))
-            company = this.company_id
-            if not company.country_id:
-                raise UserError(
-                    _("The country is not set on the company '%s'.") % company.name
-                )
-        return True
-
     def _check_generate_xml(self):
         for this in self:
             if not this.company_id.partner_id.vat:
@@ -50,7 +38,6 @@ class IntrastatCommon(models.AbstractModel):
                     _("The VAT number is not set for the partner '%s'.")
                     % this.company_id.partner_id.name
                 )
-        return True
 
     @api.model
     def _check_xml_schema(self, xml_string, xsd_file):

@@ -14,10 +14,8 @@
     "depends": ["base_vat", "account"],
     "excludes": ["account_intrastat"],
     "data": [
-        "data/country_data.xml",
         "views/product_template.xml",
         "views/res_partner.xml",
-        "views/res_country.xml",
         "views/res_config_settings.xml",
         "views/intrastat.xml",
         "views/account_fiscal_position.xml",

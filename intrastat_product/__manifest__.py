@@ -21,6 +21,7 @@
         "report_xlsx_helper",
     ],
     "excludes": ["account_intrastat"],
+    "external_dependencies": {"python": ["stdnum"]},
     "data": [
         "security/intrastat_security.xml",
         "security/ir.model.access.csv",

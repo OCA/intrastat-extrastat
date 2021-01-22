@@ -16,7 +16,8 @@ class HSCode(models.Model):
 
     @api.constrains("local_code")
     def _hs_code(self):
-        if self.company_id.country_id.intrastat:
+        eu_countries = self.env.ref("base.europe").country_ids
+        if self.company_id.country_id in eu_countries:
             if not self.local_code.isdigit():
                 raise ValidationError(
                     _(

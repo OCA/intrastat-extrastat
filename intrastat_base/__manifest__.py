@@ -15,10 +15,8 @@
     "excludes": ["account_intrastat"],
     "data": [
         "security/ir.model.access.csv",
-        "data/country_data.xml",
         "views/product_template.xml",
         "views/res_partner.xml",
-        "views/res_country.xml",
         "views/res_config_settings.xml",
         "views/intrastat.xml",
         "views/account_fiscal_position.xml",

@@ -9,5 +9,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     intrastat_fiscal_position = fields.Boolean(
-        related="fiscal_position_id.intrastat", store=True,
-        string="Intrastat Fiscal Position")
+        related="fiscal_position_id.intrastat",
+        store=True,
+        string="Intrastat Fiscal Position",
+    )

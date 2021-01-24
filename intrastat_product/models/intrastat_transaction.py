@@ -10,6 +10,7 @@ class IntrastatTransaction(models.Model):
     _name = "intrastat.transaction"
     _description = "Intrastat Transaction"
     _order = "code"
+    _rec_name = "code"
     _sql_constraints = [
         (
             "intrastat_transaction_code_unique",

@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [intrastat_base](intrastat_base/) | 14.0.1.0.0 | Base module for Intrastat reporting
+[product_harmonized_system](product_harmonized_system/) | 14.0.1.0.0 | Base module for Product Import/Export reports
 
 [//]: # (end addons)
 

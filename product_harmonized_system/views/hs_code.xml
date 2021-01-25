@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2010-2020 Akretion France (http://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!-- Search view for H.S. code -->
+    <record id="hs_code_view_search" model="ir.ui.view">
+        <field name="name">hs.code.search</field>
+        <field name="model">hs.code</field>
+        <field name="arch" type="xml">
+            <search string="Search H.S. Codes">
+                <field
+                    name="local_code"
+                    filter_domain="['|', ('local_code', 'like', self), ('description', 'ilike', self)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+    <!-- Tree view for H.S. code -->
+    <record id="hs_code_view_tree" model="ir.ui.view">
+        <field name="name">hs.code.tree</field>
+        <field name="model">hs.code</field>
+        <field name="arch" type="xml">
+            <tree string="H.S. Codes">
+                <field name="hs_code" />
+                <field name="local_code" />
+                <field name="description" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <!-- Action used in the form view for HS codes -->
+    <record id="product_categ_hs_code_action" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+    </record>
+    <record id="product_template_hs_code_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+    </record>
+    <!-- Form view for H.S. code -->
+    <record id="hs_code_view_form" model="ir.ui.view">
+        <field name="name">hs.code.form</field>
+        <field name="model">hs.code</field>
+        <field name="arch" type="xml">
+            <form string="H.S. Code">
+                <field name="active" invisible="1" />
+                <widget
+                    name="web_ribbon"
+                    text="Archived"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': [('active', '=', True)]}"
+                />
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        class="oe_stat_button"
+                        name="%(product_categ_hs_code_action)d"
+                        icon="fa-th-list"
+                        type="action"
+                    >
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="product_categ_count" />
+                            </span>
+                            <span class="o_stat_text">Product Categs</span>
+                        </div>
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        name="%(product_template_hs_code_action)d"
+                        icon="fa-th-list"
+                        type="action"
+                    >
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="product_tmpl_count" />
+                            </span>
+                            <span class="o_stat_text">Products</span>
+                        </div>
+                    </button>
+                </div>
+                <group name="main">
+                    <field name="local_code" />
+                    <field name="hs_code" />
+                    <field name="description" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <!-- Action for H.S. code -->
+    <record id="hs_code_action" model="ir.actions.act_window">
+        <field name="name">H.S. Codes</field>
+        <field name="res_model">hs.code</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- The menu entry for H.S. code is now provided by the module
+         product_harmonized_system_stock -->
+</odoo>

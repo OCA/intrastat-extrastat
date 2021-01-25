@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-intrastat_base',
+        'odoo14-addon-product_harmonized_system',
     ],
     classifiers=[
         'Programming Language :: Python',

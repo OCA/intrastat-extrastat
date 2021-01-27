@@ -20,15 +20,16 @@ class ProductTemplate(models.Model):
         "http://www.wcoomd.org/. You can leave this field empty "
         "and configure the H.S. code on the product category.",
     )
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
     origin_country_id = fields.Many2one(
         "res.country",
         string="Country of Origin",
         help="Country of origin of the product i.e. product " "'made in ____'.",
     )
-
-
-class ProductProduct(models.Model):
-    _inherit = "product.product"
 
     def get_hs_code_recursively(self):
         res = self.env["hs.code"]

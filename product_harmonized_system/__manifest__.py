@@ -9,7 +9,7 @@
 
 {
     "name": "Product Harmonized System Codes",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.0.2",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",
@@ -21,6 +21,7 @@
         "security/ir.model.access.csv",
         "views/hs_code.xml",
         "views/product_category.xml",
+        "views/product_product.xml",
         "views/product_template.xml",
     ],
     "demo": ["demo/product_demo.xml"],

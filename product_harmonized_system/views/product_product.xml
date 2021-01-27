@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_variant_easy_edit_view" model="ir.ui.view">
+        <field name="name">product.product.view.form.easy</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view" />
+        <field name="arch" type="xml">
+            <sheet position="inside">
+                <group
+                    name="info"
+                    string="General Information"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                >
+                    <group name="info_left">
+                        <field
+                            name="origin_country_id"
+                            attrs="{'invisible': [('type', '=', 'service')]}"
+                        />
+                    </group>
+                </group>
+            </sheet>
+        </field>
+    </record>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field
+                    name="origin_country_id"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

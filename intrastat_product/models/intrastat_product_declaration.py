@@ -242,7 +242,7 @@ class IntrastatProductDeclaration(models.Model):
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
 
-    def _get_partner_country(self, inv_line, notedict):
+    def _get_partner_country(self, inv_line, notedict, eu_countries):
         inv = inv_line.move_id
         country = inv.src_dest_country_id or inv.partner_id.country_id
         if not country:
@@ -260,7 +260,6 @@ class IntrastatProductDeclaration(models.Model):
             ]
             self._format_line_note(inv_line, notedict, line_notes)
         else:
-            eu_countries = self.env.ref("base.europe").country_ids
             if country not in eu_countries and country.code != "GB":
                 line_notes = [
                     _(
@@ -607,6 +606,7 @@ class IntrastatProductDeclaration(models.Model):
             "Product Unit of Measure"
         )
         accessory_costs = self.company_id.intrastat_accessory_costs
+        eu_countries = self.env.ref("base.europe").country_ids
 
         self._gather_invoices_init(notedict)
         domain = self._prepare_invoice_domain()
@@ -650,7 +650,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                partner_country = self._get_partner_country(inv_line, notedict)
+                partner_country = self._get_partner_country(
+                    inv_line, notedict, eu_countries
+                )
 
                 if inv_intrastat_line:
                     hs_code = inv_intrastat_line.hs_code_id

@@ -2,7 +2,6 @@
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
 import logging
 from io import BytesIO
 from sys import exc_info
@@ -26,18 +25,6 @@ class IntrastatCommon(models.AbstractModel):
     # use read_group() instead, but then the code depends on
     # the line object, so it can't be factorized here
 
-    def _check_generate_lines(self):
-        """Check wether all requirements are met for generating lines."""
-        for this in self:
-            if not this.company_id:
-                raise UserError(_("Company not yet set on intrastat report."))
-            company = this.company_id
-            if not company.country_id:
-                raise UserError(
-                    _("The country is not set on the company '%s'.") % company.name
-                )
-        return True
-
     def _check_generate_xml(self):
         for this in self:
             if not this.company_id.partner_id.vat:
@@ -45,7 +32,6 @@ class IntrastatCommon(models.AbstractModel):
                     _("The VAT number is not set for the partner '%s'.")
                     % this.company_id.partner_id.name
                 )
-        return True
 
     @api.model
     def _check_xml_schema(self, xml_bytes, xsd_file):
@@ -78,7 +64,7 @@ class IntrastatCommon(models.AbstractModel):
                 "name": filename,
                 "res_id": self.id,
                 "res_model": self._name,
-                "datas": base64.encodebytes(xml_bytes),
+                "raw": xml_bytes,
             }
         )
         return attach.id

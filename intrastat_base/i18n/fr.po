@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -46,21 +51,10 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "Company not yet set on intrastat report."
-msgstr "Société non configurée sur le rapport DEB/DES."
-
-#. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_config_settings
 #, fuzzy
 msgid "Config Settings"
 msgstr "res.config.settings"
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_res_country
-msgid "Country"
-msgstr "Pays"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_uid
@@ -73,62 +67,52 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
-msgid "Currency"
-msgstr ""
-
-#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Afficher le nom"
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_res_country__intrastat
-#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
-msgid "EU Country"
-msgstr "Membre de l'UE"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_tax__exclude_from_intrastat_if_present
-#: model:ir.model.fields,field_description:intrastat_base.field_account_tax_template__exclude_from_intrastat_if_present
-msgid "Exclude invoice line from intrastat if this tax is present"
-msgstr ""
-"Ligne de facture exclue de la DEB et de la DES si cette taxe est présente"
-
-#. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
-msgid "Group By"
+#: model:ir.model,name:intrastat_base.model_account_fiscal_position
+msgid "Fiscal Position"
 msgstr ""
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__id
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move__id
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__id
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__id
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__id
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
 #. module: intrastat_base
-#: model:ir.model.fields,help:intrastat_base.field_account_tax__exclude_from_intrastat_if_present
-#: model:ir.model.fields,help:intrastat_base.field_account_tax_template__exclude_from_intrastat_if_present
-msgid ""
-"If this tax is present on an invoice line, this invoice line will be skipped "
-"when generating Intrastat Product or Service lines from invoices."
-msgstr ""
-"Si cette taxe est présente sur une ligne de facture, cette ligne de facture "
-"sera sautée lors de la génération de la DEB et de la DES à partir des "
-"factures."
-
-#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__intrastat
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_config_root
+#: model_terms:ir.ui.view,arch_db:intrastat_base.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
 msgid "Intrastat"
 msgstr "DEB/DES"
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.product_template_form_view
-msgid "Intrastat Properties"
-msgstr "Propriétés DEB/DES"
+#: model:ir.model.fields,field_description:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move__intrastat_fiscal_position
+#: model:ir.model.fields,field_description:intrastat_base.field_account_payment__intrastat_fiscal_position
+msgid "Intrastat Fiscal Position"
+msgstr ""
 
 #. module: intrastat_base
 #: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
@@ -142,8 +126,20 @@ msgid "Is accessory cost"
 msgstr "Est un frais accessoire"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -177,11 +173,6 @@ msgid "Missing e-mail address on user '%s'."
 msgstr "Adresse e-mail manquante pour l'utilisateur '%s'."
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
-msgid "Name or Code"
-msgstr ""
-
-#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__note
 msgid "Notes"
 msgstr "Notes"
@@ -202,14 +193,14 @@ msgid "Product Template"
 msgstr "Modèle d'article"
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.res_country_view_search
-msgid "Search Countries"
-msgstr "Recherche pays"
-
-#. module: intrastat_base
-#: model:ir.model.fields,help:intrastat_base.field_res_country__intrastat
-msgid "Set to True for all European Union countries."
-msgstr "Cocher la case pour tous les pays de l'Union Européenne."
+#: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
+#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
+#: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
+#: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
+msgid ""
+"Set to True if the invoices with this fiscal position should be taken into "
+"account for the generation of the intrastat reports."
+msgstr ""
 
 #. module: intrastat_base
 #: model:product.product,name:intrastat_base.shipping_costs_exclude
@@ -218,26 +209,15 @@ msgid "Shipping costs"
 msgstr "Frais de port"
 
 #. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_tax
-msgid "Tax"
-msgstr "Taxe"
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_tax_template
-msgid "Templates for Taxes"
-msgstr "Modèles pour les taxes"
+#: model:ir.model,name:intrastat_base.model_account_fiscal_position_template
+msgid "Template for Fiscal Position"
+msgstr ""
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "The VAT number is not set for the partner '%s'."
 msgstr "Numéro de TVA non renseigné sur le partenaire '%s'."
-
-#. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "The country is not set on the company '%s'."
-msgstr "Pays non renseigné sur la société '%s'."
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/product_template.py:0
@@ -268,6 +248,45 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
 msgid "Users Receiving the Intrastat Reminder"
 msgstr "Utilisateurs qui reçoivent le rappel DEB/DES"
+
+#~ msgid "Company not yet set on intrastat report."
+#~ msgstr "Société non configurée sur le rapport DEB/DES."
+
+#~ msgid "Country"
+#~ msgstr "Pays"
+
+#~ msgid "EU Country"
+#~ msgstr "Membre de l'UE"
+
+#~ msgid "Exclude invoice line from intrastat if this tax is present"
+#~ msgstr ""
+#~ "Ligne de facture exclue de la DEB et de la DES si cette taxe est présente"
+
+#~ msgid ""
+#~ "If this tax is present on an invoice line, this invoice line will be "
+#~ "skipped when generating Intrastat Product or Service lines from invoices."
+#~ msgstr ""
+#~ "Si cette taxe est présente sur une ligne de facture, cette ligne de "
+#~ "facture sera sautée lors de la génération de la DEB et de la DES à partir "
+#~ "des factures."
+
+#~ msgid "Intrastat Properties"
+#~ msgstr "Propriétés DEB/DES"
+
+#~ msgid "Search Countries"
+#~ msgstr "Recherche pays"
+
+#~ msgid "Set to True for all European Union countries."
+#~ msgstr "Cocher la case pour tous les pays de l'Union Européenne."
+
+#~ msgid "Tax"
+#~ msgstr "Taxe"
+
+#~ msgid "Templates for Taxes"
+#~ msgstr "Modèles pour les taxes"
+
+#~ msgid "The country is not set on the company '%s'."
+#~ msgstr "Pays non renseigné sur la société '%s'."
 
 #~ msgid "intrastat.result.view"
 #~ msgstr "intrastat.result.view"

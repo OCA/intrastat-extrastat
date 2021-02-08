@@ -28,7 +28,7 @@
             <tree string="Intrastat Transportat Modes">
                 <field name="code" />
                 <field name="name" />
-                <field name="description" />
+                <field name="description" optional="show" />
             </tree>
         </field>
     </record>

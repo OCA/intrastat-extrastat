@@ -1,4 +1,4 @@
-# Copyright 2011-2017 Akretion France (http://www.akretion.com)
+# Copyright 2011-2020 Akretion France (http://www.akretion.com)
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
@@ -14,6 +14,7 @@ class AccountMove(models.Model):
         string="Intrastat Transaction Type",
         ondelete="restrict",
         tracking=True,
+        check_company=True,
         help="Intrastat nature of transaction",
     )
     intrastat_transport_id = fields.Many2one(
@@ -26,14 +27,12 @@ class AccountMove(models.Model):
         string="Origin/Destination Country",
         compute="_compute_intrastat_country",
         store=True,
-        compute_sudo=True,
         help="Destination country for dispatches. Origin country for " "arrivals.",
     )
     intrastat_country = fields.Boolean(
         compute="_compute_intrastat_country",
         string="Intrastat Country",
         store=True,
-        compute_sudo=True,
     )
     src_dest_region_id = fields.Many2one(
         comodel_name="intrastat.region",
@@ -106,7 +105,9 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     hs_code_id = fields.Many2one(
-        comodel_name="hs.code", compute="_compute_hs_code_id", string="Intrastat Code",
+        comodel_name="hs.code",
+        compute="_compute_hs_code_id",
+        string="Intrastat Code",
     )
 
     def _compute_hs_code_id(self):

@@ -11,7 +11,7 @@
                         type="object"
                         attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
                         string="Generate Lines from Invoices"
-                        class="oe_highlight"
+                        class="btn-primary"
                     />
                     <button
                         name="generate_declaration"
@@ -27,10 +27,16 @@
                         invisible="context.get('generic_intrastat_product_declaration')"
                     />
                     <button
+                        name="delete_xml"
+                        string="Delete XML Export"
+                        type="object"
+                        attrs="{'invisible': [('xml_attachment_id', '=', False)]}"
+                    />
+                    <button
                         name="done"
                         string="Done"
                         type="object"
-                        class="oe_highlight"
+                        class="btn-primary"
                         states="draft"
                     />
                     <button
@@ -52,11 +58,14 @@
                         <group name="properties-1">
                             <field name="year" />
                             <field name="month" />
-                            <field name="type" />
+                            <field name="declaration_type" />
                             <field
-                                name="xml_attachment_id"
+                                name="xml_attachment_datas"
+                                filename="xml_attachment_name"
                                 invisible="context.get('generic_intrastat_product_declaration')"
                             />
+                            <field name="xml_attachment_name" invisible="1" />
+                            <field name="xml_attachment_id" invisible="1" />
                             <field name="reporting_level" invisible="1" />
                         </group>
                         <group name="properties-2">
@@ -71,7 +80,6 @@
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
-                                widget="selection"
                             />
                             <field name="company_country_code" invisible="1" />
                             <field name="currency_id" invisible="1" />
@@ -90,7 +98,7 @@
                             <group name="computation_lines">
                                 <field
                                     name="computation_line_ids"
-                                    context="{'type': type, 'reporting_level': reporting_level}"
+                                    context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
                                     nolabel="1"
                                 />
                             </group>
@@ -107,7 +115,7 @@
                             <group name="declaration_lines">
                                 <field
                                     name="declaration_line_ids"
-                                    context="{'type': type, 'reporting_level': reporting_level}"
+                                    context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
                                     nolabel="1"
                                 />
                             </group>
@@ -135,7 +143,7 @@
             >
                 <field name="year_month" />
                 <field name="revision" />
-                <field name="type" />
+                <field name="declaration_type" />
                 <field name="num_decl_lines" />
                 <field name="total_amount" sum="Total amount" />
                 <field name="currency_id" />
@@ -148,16 +156,18 @@
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
             <search string="Search Intrastat Product Declarations">
+                <field name="year_month" />
                 <filter
                     name="arrivals"
                     string="Arrivals"
-                    domain="[('type', '=', 'arrivals')]"
+                    domain="[('declaration_type', '=', 'arrivals')]"
                 />
                 <filter
                     name="dispatches"
                     string="Dispatches"
-                    domain="[('type', '=', 'dispatches')]"
+                    domain="[('declaration_type', '=', 'dispatches')]"
                 />
+                <separator />
                 <filter
                     name="draft"
                     string="Draft"
@@ -171,9 +181,9 @@
                         context="{'group_by': 'year_month'}"
                     />
                     <filter
-                        name="type_group_by"
+                        name="declaration_type_group_by"
                         string="Type"
-                        context="{'group_by': 'type'}"
+                        context="{'group_by': 'declaration_type'}"
                     />
                 </group>
             </search>
@@ -185,7 +195,7 @@
         <field name="arch" type="xml">
             <graph string="Intrastat Product" type="bar" stacked="False">
                 <field name="year_month" type="row" />
-                <field name="type" type="row" />
+                <field name="declaration_type" type="row" />
                 <field name="total_amount" type="measure" />
             </graph>
         </field>
@@ -196,7 +206,7 @@
         <field name="arch" type="xml">
             <pivot string="Intrastat Product">
                 <field name="year_month" type="row" />
-                <field name="type" type="col" />
+                <field name="declaration_type" type="col" />
                 <field name="total_amount" type="measure" />
             </pivot>
         </field>
@@ -236,7 +246,7 @@
             </div>
                     <field name="suppl_unit_qty" />
                     <field name="intrastat_unit_id" />
-                    <field name="type" invisible="1" />
+                    <field name="declaration_type" invisible="1" />
                     <field name="reporting_level" invisible="1" />
                     <field
                         name="transport_id"
@@ -285,7 +295,7 @@
                     string="Product C/O"
                 />
                 <field name="invoice_id" />
-                <field name="type" invisible="1" />
+                <field name="declaration_type" invisible="1" />
                 <field name="reporting_level" invisible="1" />
             </tree>
         </field>
@@ -318,7 +328,7 @@
             </div>
                     <field name="suppl_unit_qty" />
                     <field name="intrastat_unit_id" />
-                    <field name="type" invisible="1" />
+                    <field name="declaration_type" invisible="1" />
                     <field name="reporting_level" invisible="1" />
                     <field
                         name="transport_id"
@@ -350,7 +360,7 @@
                 <field name="weight" />
                 <field name="suppl_unit_qty" />
                 <field name="intrastat_unit_id" />
-                <field name="type" invisible="1" />
+                <field name="declaration_type" invisible="1" />
                 <field name="reporting_level" invisible="1" />
                 <field
                     name="transport_id"

@@ -5,7 +5,7 @@
         <field name="model">intrastat.region</field>
         <field name="arch" type="xml">
             <form string="Intrastat Region">
-                <group>
+                <group name="main">
                     <field name="code" />
                     <field name="name" />
                     <field name="description" />
@@ -22,7 +22,7 @@
             <tree string="Intrastat Region">
                 <field name="code" />
                 <field name="name" />
-                <field name="description" />
+                <field name="description" optional="show" />
                 <field name="country_id" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
@@ -37,5 +37,6 @@
         id="intrastat_region_menu"
         action="intrastat_region_action"
         parent="intrastat_base.menu_intrastat_config_root"
+        sequence="50"
     />
 </odoo>

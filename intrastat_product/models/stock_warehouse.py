@@ -1,4 +1,4 @@
-# Copyright 2009-2018 Noviat nv/sa (www.noviat.com).
+# Copyright 2009-2020 Noviat nv/sa (www.noviat.com).
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -18,10 +18,10 @@ class StockLocation(models.Model):
 
     def get_intrastat_region(self):
         self.ensure_one()
-        locations = self.search([("id", "parent_of", self.id)])
-        warehouses = self.env["stock.warehouse"].search(
-            [("lot_stock_id", "in", locations.ids), ("region_id", "!=", False)]
+        warehouse = self.env["stock.warehouse"].search(
+            [("lot_stock_id", "parent_of", self.ids), ("region_id", "!=", False)],
+            limit=1,
         )
-        if warehouses:
-            return warehouses[0].region_id
+        if warehouse:
+            return warehouse.region_id
         return None

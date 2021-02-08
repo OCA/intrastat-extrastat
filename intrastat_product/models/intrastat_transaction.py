@@ -1,4 +1,4 @@
-# Copyright 2011-2017 Akretion France (http://www.akretion.com)
+# Copyright 2011-2020 Akretion France (http://www.akretion.com)
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>

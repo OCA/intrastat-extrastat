@@ -1,15 +1,16 @@
-# Copyright 2011-2017 Akretion France (http://www.akretion.com)
+# Copyright 2011-2020 Akretion France (http://www.akretion.com)
 # Copyright 2009-2020 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
-from datetime import date, datetime
+from datetime import date
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
+from odoo.tools import float_is_zero
 
 _logger = logging.getLogger(__name__)
 
@@ -19,35 +20,31 @@ class IntrastatProductDeclaration(models.Model):
     _description = "Intrastat Product Report Base Object"
     _rec_name = "year_month"
     _inherit = ["mail.thread", "mail.activity.mixin", "intrastat.common"]
-    _order = "year_month desc, type, revision"
+    _order = "year_month desc, declaration_type, revision"
     _sql_constraints = [
         (
             "date_uniq",
-            "unique(year_month, company_id, type, revision)",
+            "unique(year_month, company_id, declaration_type, revision)",
             "A declaration of the same type already exists for this month !"
             "\nYou should update the existing declaration "
             "or change the revision number of this one.",
         )
     ]
-    # TODO:
-    # drop the use of self._note & self._line_nbr when migrating to Odoo 14
-    # refactoring this now may break the localisation modules
-    _note = ""
-    _line_nbr = ""
 
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         decl_date = fields.Date.context_today(self) - relativedelta(months=1)
         res.update(
-            {"year": str(decl_date.year), "month": str(decl_date.month).rjust(2, "0")}
+            {"year": str(decl_date.year), "month": str(decl_date.month).zfill(2)}
         )
         return res
 
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        readonly=True,
+        required=True,
+        states={"done": [("readonly", True)]},
         default=lambda self: self._default_company_id(),
     )
     company_country_code = fields.Char(
@@ -87,13 +84,12 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
         help="Year and month of the declaration.",
     )
-    type = fields.Selection(
-        selection="_get_type",
+    declaration_type = fields.Selection(
+        selection="_get_declaration_type",
         string="Type",
         required=True,
         states={"done": [("readonly", True)]},
         tracking=True,
-        help="Select the declaration type.",
     )
     action = fields.Selection(
         selection="_get_action",
@@ -155,16 +151,22 @@ class IntrastatProductDeclaration(models.Model):
         states={"done": [("readonly", True)]},
     )
     valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
-    xml_attachment_id = fields.Many2one("ir.attachment", string="XML Export")
+    xml_attachment_id = fields.Many2one("ir.attachment", string="XML Attachment")
+    xml_attachment_datas = fields.Binary(
+        related="xml_attachment_id.datas", string="XML Export"
+    )
+    xml_attachment_name = fields.Char(
+        related="xml_attachment_id.name", string="XML Filename"
+    )
 
     @api.model
     def _default_company_id(self):
         return self.env.company
 
     @api.model
-    def _get_type(self):
+    def _get_declaration_type(self):
         res = []
-        company = self.env.user.company_id
+        company = self.env.company
         arrivals = company.intrastat_arrivals
         dispatches = company.intrastat_dispatches
         if arrivals != "exempt":
@@ -212,15 +214,15 @@ class IntrastatProductDeclaration(models.Model):
             if len(this.year) != 4 or this.year[0] != "2":
                 raise ValidationError(_("Invalid Year !"))
 
-    @api.onchange("type")
-    def _onchange_type(self):
-        if self.type == "arrivals":
+    @api.onchange("declaration_type")
+    def _onchange_declaration_type(self):
+        if self.declaration_type == "arrivals":
             self.reporting_level = (
                 self.company_id.intrastat_arrivals == "extended"
                 and "extended"
                 or "standard"
             )
-        if self.type == "dispatches":
+        if self.declaration_type == "dispatches":
             self.reporting_level = (
                 self.company_id.intrastat_dispatches == "extended"
                 and "extended"
@@ -239,7 +241,7 @@ class IntrastatProductDeclaration(models.Model):
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
 
-    def _get_partner_country(self, inv_line):
+    def _get_partner_country(self, inv_line, notedict):
         country = (
             inv_line.move_id.src_dest_country_id
             or inv_line.move_id.partner_id.country_id
@@ -250,23 +252,22 @@ class IntrastatProductDeclaration(models.Model):
             country = False
         return country
 
-    def _get_intrastat_transaction(self, inv_line):
+    def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         if invoice.intrastat_transaction_id:
             return invoice.intrastat_transaction_id
         else:
             company = invoice.company_id
-            if invoice.type == "out_invoice":
+            if invoice.move_type == "out_invoice":
                 return company.intrastat_transaction_out_invoice
-            elif invoice.type == "out_refund":
+            elif invoice.move_type == "out_refund":
                 return company.intrastat_transaction_out_refund
-            elif invoice.type == "in_invoice":
+            elif invoice.move_type == "in_invoice":
                 return company.intrastat_transaction_in_invoice
-            elif invoice.type == "in_refund":
+            elif invoice.move_type == "in_refund":
                 return company.intrastat_transaction_in_refund
 
-    def _get_weight_and_supplunits(self, inv_line, hs_code):
-        line_nbr = self._line_nbr
+    def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):
         line_qty = inv_line.quantity
         product = inv_line.product_id
         intrastat_unit_id = hs_code.intrastat_unit_id
@@ -279,7 +280,7 @@ class IntrastatProductDeclaration(models.Model):
 
         if not source_uom:
             line_notes = [_("Missing unit of measure.")]
-            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+            self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
@@ -293,7 +294,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % intrastat_unit_id.name,
                 ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
@@ -305,7 +306,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % (source_uom.name, target_uom.name)
                 ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
 
         if weight:
@@ -317,10 +318,8 @@ class IntrastatProductDeclaration(models.Model):
             weight = source_uom._compute_quantity(line_qty, kg_uom)
         elif source_uom.category_id == pce_uom_categ:
             if not product.weight:  # re-create weight_net ?
-                line_notes = [
-                    _("Missing weight on product %s.") % product.name_get()[0][1]
-                ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                line_notes = [_("Missing weight on product %s.") % product.display_name]
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
                 weight = product.weight * line_qty  # product.weight_net
@@ -337,14 +336,14 @@ class IntrastatProductDeclaration(models.Model):
                     "Conversion from unit of measure '%s' to 'Kg' "
                     "is not implemented yet. It is needed for product '%s'."
                 )
-                % (source_uom.name, product.name_get()[0][1])
+                % (source_uom.name, product.display_name)
             ]
-            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+            self._note += self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty
 
-    def _get_amount(self, inv_line):
+    def _get_amount(self, inv_line, notedict):
         invoice = inv_line.move_id
         amount = invoice.currency_id._convert(
             inv_line.price_subtotal,
@@ -354,7 +353,7 @@ class IntrastatProductDeclaration(models.Model):
         )
         return amount
 
-    def _get_region(self, inv_line):
+    def _get_region(self, inv_line, notedict):
         """
         For supplier invoices/refunds: if the invoice line is linked
         to a stock move, use the destination stock location ;
@@ -374,29 +373,27 @@ class IntrastatProductDeclaration(models.Model):
 
         """
         region = False
-        inv_type = inv_line.move_id.type
-        if inv_type in ("in_invoice", "in_refund"):
-            po_lines = self.env["purchase.order.line"].search(
-                [("invoice_lines", "in", inv_line.id)]
+        move_type = inv_line.move_id.move_type
+        if move_type in ("in_invoice", "in_refund"):
+            po_line = self.env["purchase.order.line"].search(
+                [("invoice_lines", "in", inv_line.id)], limit=1
             )
-            if po_lines:
-                if po_lines[0].move_ids:
-                    region = (
-                        po_lines[0].move_ids[0].location_dest_id.get_intrastat_region()
-                    )
-        elif inv_type in ("out_invoice", "out_refund"):
-            so_lines = self.env["sale.order.line"].search(
-                [("invoice_lines", "in", inv_line.id)]
+            if po_line:
+                if po_line.move_ids:
+                    region = po_line.move_ids[0].location_dest_id.get_intrastat_region()
+        elif move_type in ("out_invoice", "out_refund"):
+            so_line = self.env["sale.order.line"].search(
+                [("invoice_lines", "in", inv_line.id)], limit=1
             )
-            if so_lines:
-                so = so_lines[0].order_id
+            if so_line:
+                so = so_line.order_id
                 region = so.warehouse_id.region_id
         if not region:
             if self.company_id.intrastat_region_id:
                 region = self.company_id.intrastat_region_id
         return region
 
-    def _get_transport(self, inv_line):
+    def _get_transport(self, inv_line, notedict):
         transport = (
             inv_line.move_id.intrastat_transport_id
             or self.company_id.intrastat_transport_id
@@ -410,7 +407,7 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return transport
 
-    def _get_incoterm(self, inv_line):
+    def _get_incoterm(self, inv_line, notedict):
         incoterm = inv_line.move_id.invoice_incoterm_id or self.company_id.incoterm_id
         if not incoterm:
             msg = _(
@@ -421,12 +418,11 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return incoterm
 
-    def _get_product_origin_country(self, inv_line):
+    def _get_product_origin_country(self, inv_line, notedict):
         return inv_line.product_id.origin_country_id
 
-    def _update_computation_line_vals(self, inv_line, line_vals):
+    def _update_computation_line_vals(self, inv_line, line_vals, notedict):
         """ placeholder for localization modules """
-        pass
 
     def _handle_invoice_accessory_cost(
         self,
@@ -482,9 +478,13 @@ class IntrastatProductDeclaration(models.Model):
             ("date", ">=", start_date),
             ("date", "<=", end_date),
             ("state", "=", "posted"),
-            ("intrastat_country", "=", True),
+            ("intrastat_fiscal_position", "=", True),
             ("company_id", "=", self.company_id.id),
-            ("type", "!=", "entry"),
+            (
+                "move_type",
+                "in",
+                ("out_invoice", "out_refund", "in_invoice", "in_refund"),
+            ),
         ]
         return domain
 
@@ -497,25 +497,27 @@ class IntrastatProductDeclaration(models.Model):
         else:
             return False
 
-    def _gather_invoices_init(self):
+    def _gather_invoices_init(self, notedict):
         """ placeholder for localization modules """
-        pass
 
-    def _format_line_note(self, line, line_nbr, line_notes):
+    def _format_line_note(self, line, notedict, line_notes):
         indent = 8 * " "
-        note = _("Invoice %s, line %s") % (line.move_id.name, line_nbr)
+        note = _("Invoice %s, line %s") % (line.move_id.name, notedict["line_nbr"])
         note += ":\n"
         for line_note in line_notes:
             note += indent + line_note
             note += "\n"
-        return note
+        notedict["note"] += note
 
-    def _gather_invoices(self):
+    def _gather_invoices(self, notedict):
 
         lines = []
+        qty_prec = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
         accessory_costs = self.company_id.intrastat_accessory_costs
 
-        self._gather_invoices_init()
+        self._gather_invoices_init(notedict)
         domain = self._prepare_invoice_domain()
         order = "journal_id, name"
         invoices = self.env["account.move"].search(domain, order=order)
@@ -526,8 +528,10 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
-            for line_nbr, inv_line in enumerate(invoice.invoice_line_ids, start=1):
-                self._line_nbr = line_nbr
+            for line_nbr, inv_line in enumerate(
+                invoice.invoice_line_ids.filtered(lambda x: not x.display_type), start=1
+            ):
+                notedict["line_nbr"] = line_nbr
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
                     lambda r: r.invoice_line_id == inv_line
                 )
@@ -547,7 +551,7 @@ class IntrastatProductDeclaration(models.Model):
 
                     continue
 
-                if not inv_line.quantity:
+                if float_is_zero(inv_line.quantity, precision_digits=qty_prec):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: qty = 0"
@@ -555,24 +559,21 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                partner_country = self._get_partner_country(inv_line)
+                partner_country = self._get_partner_country(inv_line, notedict)
                 if not partner_country:
-                    _logger.info(
-                        "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no partner_country"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
-
-                if any(
-                    [tax.exclude_from_intrastat_if_present for tax in inv_line.tax_ids]
-                ):
-                    _logger.info(
-                        "Skipping invoice line %s "
-                        "qty %s of invoice %s. Reason: "
-                        "tax.exclude_from_intrastat_if_present"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
+                    line_notes = [
+                        _(
+                            "Missing country on invoice partner '%s' "
+                            "or on the delivery address (partner '%s'). "
+                        )
+                        % (
+                            invoice.partner_id.display_name,
+                            invoice.partner_shipping_id
+                            and invoice.partner_shipping_id.display_name
+                            or "-",
+                        )
+                    ]
+                    self._format_line_note(inv_line, notedict, line_notes)
                     continue
 
                 if inv_intrastat_line:
@@ -582,11 +583,9 @@ class IntrastatProductDeclaration(models.Model):
                     if not hs_code:
                         line_notes = [
                             _("Missing Intrastat Code on product %s. ")
-                            % (inv_line.product_id.name_get()[0][1])
+                            % (inv_line.product_id.display_name)
                         ]
-                        self._note += self._format_line_note(
-                            inv_line, line_nbr, line_notes
-                        )
+                        self._format_line_note(inv_line, notedict, line_notes)
                         continue
                 else:
                     _logger.info(
@@ -596,18 +595,20 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                intrastat_transaction = self._get_intrastat_transaction(inv_line)
+                intrastat_transaction = self._get_intrastat_transaction(
+                    inv_line, notedict
+                )
 
                 if inv_intrastat_line:
                     weight = inv_intrastat_line.transaction_weight
                     suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
                 else:
                     weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                        inv_line, hs_code
+                        inv_line, hs_code, notedict
                     )
                 total_inv_weight += weight
 
-                amount_company_currency = self._get_amount(inv_line)
+                amount_company_currency = self._get_amount(inv_line, notedict)
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:
@@ -615,9 +616,11 @@ class IntrastatProductDeclaration(models.Model):
                         inv_intrastat_line.product_origin_country_id
                     )
                 else:
-                    product_origin_country = self._get_product_origin_country(inv_line)
+                    product_origin_country = self._get_product_origin_country(
+                        inv_line, notedict
+                    )
 
-                region = self._get_region(inv_line)
+                region = self._get_region(inv_line, notedict)
 
                 line_vals = {
                     "parent_id": self.id,
@@ -635,11 +638,11 @@ class IntrastatProductDeclaration(models.Model):
                 }
 
                 # extended declaration
-                if self._extended:
-                    transport = self._get_transport(inv_line)
+                if self.reporting_level == "extended":
+                    transport = self._get_transport(inv_line, notedict)
                     line_vals.update({"transport_id": transport.id})
 
-                self._update_computation_line_vals(inv_line, line_vals)
+                self._update_computation_line_vals(inv_line, line_vals, notedict)
 
                 if line_vals:
                     lines_current_invoice.append(line_vals)
@@ -684,42 +687,33 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         self.message_post(body=_("Generate Lines from Invoices"))
         self._check_generate_lines()
-        self._note = ""
-        if (
-            self.type == "arrivals" and self.company_id.intrastat_arrivals == "extended"
-        ) or (
-            self.type == "dispatches"
-            and self.company_id.intrastat_dispatches == "extended"
-        ):
-            self._extended = True
-        else:
-            self._extended = False
+        notedict = {
+            "note": "",
+            "line_nbr": 0,
+        }
+        # TODO: implement a solution to avoid double warnings
+        # e.g. warning on invoice that is repeated for every line
+        # or warning on a product that is repeated for every invoice line
+        # with that product
 
         self.computation_line_ids.unlink()
         self.declaration_line_ids.unlink()
-        lines = self._gather_invoices()
+        lines = self._gather_invoices(notedict)
 
+        vals = {"note": notedict["note"]}
         if not lines:
-            self.action = "nihil"
-            note = (
+            vals["action"] = "nihil"
+            vals["note"] += (
                 "\n"
                 + _("No records found for the selected period !")
                 + "\n"
                 + _("The Declaration Action has been set to 'nihil'.")
             )
-            self._note += note
         else:
-            self.write({"computation_line_ids": [(0, 0, x) for x in lines]})
+            vals["computation_line_ids"] = [(0, 0, x) for x in lines]
 
-        if self._note:
-            note_header = (
-                "\n\n>>> "
-                + fields.Datetime.to_string(
-                    fields.Datetime.context_timestamp(self, datetime.now())
-                )
-                + "\n"
-            )
-            self.note = note_header + self._note + (self.note or "")
+        self.write(vals)
+        if vals["note"]:
             result_view = self.env.ref("intrastat_base.intrastat_result_view_form")
             return {
                 "name": _("Generate lines from invoices: results"),
@@ -728,7 +722,7 @@ class IntrastatProductDeclaration(models.Model):
                 "res_model": "intrastat.result.view",
                 "view_id": result_view.id,
                 "target": "new",
-                "context": dict(self._context, note=self._note),
+                "context": dict(self._context, note=vals["note"]),
                 "type": "ir.actions.act_window",
             }
 
@@ -829,15 +823,19 @@ class IntrastatProductDeclaration(models.Model):
         self.message_post(body=_("Generate XML Declaration File"))
         self._check_generate_xml()
         self._unlink_attachments()
-        xml_string = self._generate_xml()
-        if xml_string:
+        xml_bytes = self._generate_xml()
+        if xml_bytes:
             attach_id = self._attach_xml_file(
-                xml_string, "{}_{}".format(self.type, self.revision)
+                xml_bytes, "{}_{}".format(self.declaration_type, self.revision)
             )
             self.write({"xml_attachment_id": attach_id})
-            return self._open_attach_view(attach_id)
+            return
         else:
             raise UserError(_("No XML File has been generated."))
+
+    def delete_xml(self):
+        self.ensure_one()
+        self.xml_attachment_id and self.xml_attachment_id.unlink()
 
     def create_xls(self):
         if self.env.context.get("computation_lines"):
@@ -917,7 +915,7 @@ class IntrastatProductComputationLine(models.Model):
     company_currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company currency"
     )
-    type = fields.Selection(related="parent_id.type")
+    declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
     valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
     invoice_line_id = fields.Many2one(
@@ -1017,7 +1015,7 @@ class IntrastatProductDeclarationLine(models.Model):
     company_currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company currency"
     )
-    type = fields.Selection(related="parent_id.type")
+    declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
     computation_line_ids = fields.One2many(
         "intrastat.product.computation.line",

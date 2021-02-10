@@ -64,7 +64,8 @@
         <field name="intrastat" eval="True" />
     </record>
     <record id="base.uk" model="res.country">
-        <field name="intrastat" eval="True" />
+        <!-- Brexit means Brexit! -->
+        <field name="intrastat" eval="False" />
     </record>
     <record id="base.si" model="res.country">
         <field name="intrastat" eval="True" />

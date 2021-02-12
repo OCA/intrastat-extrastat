@@ -7,6 +7,7 @@ import logging
 from datetime import date, datetime
 
 from dateutil.relativedelta import relativedelta
+from stdnum.vatin import is_valid
 
 from odoo import _, api, fields, models
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
@@ -239,18 +240,74 @@ class IntrastatProductDeclaration(models.Model):
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
 
-    def _get_partner_country(self, inv_line):
-        country = (
-            inv_line.move_id.src_dest_country_id
-            or inv_line.move_id.partner_id.country_id
-        )
-        if not country.intrastat:
-            country = False
-        elif country == self.company_id.country_id:
-            country = False
+    def _get_partner_country(self, inv_line, notedict, eu_countries):
+        inv = inv_line.move_id
+        country = inv.src_dest_country_id or inv.partner_id.country_id
+        if not country:
+            line_notes = [
+                _(
+                    "Missing country on invoice partner '%s' "
+                    "or on the delivery address (partner '%s'). "
+                )
+                % (
+                    inv.partner_id.display_name,
+                    inv.partner_shipping_id
+                    and inv.partner_shipping_id.display_name
+                    or "-",
+                )
+            ]
+            self._format_line_note(inv_line, notedict, line_notes)
+        else:
+            if country not in eu_countries and country.code != "GB":
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is '%s' which is not part of the European Union."
+                    )
+                    % (inv.name, country.name)
+                ]
+                self._format_line_note(inv_line, notedict, line_notes)
+        if country and country.code == "GB" and self.year >= "2021":
+            vat = inv.commercial_partner_id.vat
+            if not vat:
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is United-Kingdom and the fiscal position is '%s'. "
+                        "Make sure that the fiscal position is right. If "
+                        "the origin/destination is Northern Ireland, please "
+                        "set the VAT number of the partner '%s' in Odoo with "
+                        "its new VAT number starting with 'XI' following Brexit."
+                    )
+                    % (
+                        inv.name,
+                        inv.fiscal_position_id.display_name,
+                        inv.commercial_partner_id.display_name,
+                    )
+                ]
+                self._format_line_note(inv_line, notedict, line_notes)
+            elif not vat.startswith("XI"):
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is United-Kingdom, the fiscal position is '%s' and "
+                        "the partner's VAT number is '%s'. "
+                        "Make sure that the fiscal position is right. If "
+                        "the origin/destination is Northern Ireland, please "
+                        "update the VAT number of the partner '%s' in Odoo with "
+                        "its new VAT number starting with 'XI' following Brexit."
+                    )
+                    % (
+                        inv.name,
+                        inv.fiscal_position_id.display_name,
+                        vat,
+                        inv.commercial_partner_id.display_name,
+                    )
+                ]
+                self._format_line_note(inv_line, notedict, line_notes)
         return country
 
-    def _get_intrastat_transaction(self, inv_line):
+    def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         if invoice.intrastat_transaction_id:
             return invoice.intrastat_transaction_id
@@ -265,7 +322,7 @@ class IntrastatProductDeclaration(models.Model):
             elif invoice.type == "in_refund":
                 return company.intrastat_transaction_in_refund
 
-    def _get_weight_and_supplunits(self, inv_line, hs_code):
+    def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):
         line_nbr = self._line_nbr
         line_qty = inv_line.quantity
         product = inv_line.product_id
@@ -339,7 +396,7 @@ class IntrastatProductDeclaration(models.Model):
                 )
                 % (source_uom.name, product.name_get()[0][1])
             ]
-            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+            self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty
@@ -424,7 +481,40 @@ class IntrastatProductDeclaration(models.Model):
     def _get_product_origin_country(self, inv_line):
         return inv_line.product_id.origin_country_id
 
-    def _update_computation_line_vals(self, inv_line, line_vals):
+    def _get_vat(self, inv_line, notedict):
+        vat = False
+        inv = inv_line.move_id
+        if self.type == "dispatches":
+            vat = inv.commercial_partner_id.vat
+            if vat:
+                if vat.startswith("GB"):
+                    line_notes = [
+                        _(
+                            "VAT number of partner '%s' is '%s'. If this partner "
+                            "is from Northern Ireland, his VAT number should be "
+                            "updated to his new VAT number starting with 'XI' "
+                            "following Brexit. If this partner is from Great Britain, "
+                            "maybe the fiscal position was wrong on invoice '%s' "
+                            "(the fiscal position was '%s')."
+                        )
+                        % (
+                            inv.commercial_partner_id.display_name,
+                            vat,
+                            inv.name,
+                            inv.fiscal_position_id.display_name,
+                        )
+                    ]
+                    self._format_line_note(inv_line, notedict, line_notes)
+
+            else:
+                line_notes = [
+                    _("Missing VAT Number on partner '%s'")
+                    % inv.commercial_partner_id.display_name
+                ]
+                self._format_line_note(inv_line, notedict, line_notes)
+        return vat
+
+    def _update_computation_line_vals(self, inv_line, line_vals, notedict):
         """ placeholder for localization modules """
         pass
 
@@ -482,7 +572,6 @@ class IntrastatProductDeclaration(models.Model):
             ("date", ">=", start_date),
             ("date", "<=", end_date),
             ("state", "=", "posted"),
-            ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
             ("type", "!=", "entry"),
         ]
@@ -510,10 +599,11 @@ class IntrastatProductDeclaration(models.Model):
             note += "\n"
         return note
 
-    def _gather_invoices(self):
+    def _gather_invoices(self, notedict):
 
         lines = []
         accessory_costs = self.company_id.intrastat_accessory_costs
+        eu_countries = self.env.ref("base.europe").country_ids
 
         self._gather_invoices_init()
         domain = self._prepare_invoice_domain()
@@ -555,25 +645,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                partner_country = self._get_partner_country(inv_line)
-                if not partner_country:
-                    _logger.info(
-                        "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no partner_country"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
-
-                if any(
-                    [tax.exclude_from_intrastat_if_present for tax in inv_line.tax_ids]
-                ):
-                    _logger.info(
-                        "Skipping invoice line %s "
-                        "qty %s of invoice %s. Reason: "
-                        "tax.exclude_from_intrastat_if_present"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
+                partner_country = self._get_partner_country(
+                    inv_line, notedict, eu_countries
+                )
 
                 if inv_intrastat_line:
                     hs_code = inv_intrastat_line.hs_code_id
@@ -596,14 +670,16 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                intrastat_transaction = self._get_intrastat_transaction(inv_line)
+                intrastat_transaction = self._get_intrastat_transaction(
+                    inv_line, notedict
+                )
 
                 if inv_intrastat_line:
                     weight = inv_intrastat_line.transaction_weight
                     suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
                 else:
                     weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                        inv_line, hs_code
+                        inv_line, hs_code, notedict
                     )
                 total_inv_weight += weight
 
@@ -619,6 +695,8 @@ class IntrastatProductDeclaration(models.Model):
 
                 region = self._get_region(inv_line)
 
+                vat = self._get_vat(inv_line, notedict)
+
                 line_vals = {
                     "parent_id": self.id,
                     "invoice_line_id": inv_line.id,
@@ -632,14 +710,15 @@ class IntrastatProductDeclaration(models.Model):
                     "transaction_id": intrastat_transaction.id,
                     "product_origin_country_id": product_origin_country.id or False,
                     "region_id": region and region.id or False,
+                    "vat": vat,
                 }
 
                 # extended declaration
-                if self._extended:
+                if self.reporting_level == "extended":
                     transport = self._get_transport(inv_line)
                     line_vals.update({"transport_id": transport.id})
 
-                self._update_computation_line_vals(inv_line, line_vals)
+                self._update_computation_line_vals(inv_line, line_vals, notedict)
 
                 if line_vals:
                     lines_current_invoice.append(line_vals)
@@ -683,21 +762,18 @@ class IntrastatProductDeclaration(models.Model):
     def action_gather(self):
         self.ensure_one()
         self.message_post(body=_("Generate Lines from Invoices"))
-        self._check_generate_lines()
-        self._note = ""
-        if (
-            self.type == "arrivals" and self.company_id.intrastat_arrivals == "extended"
-        ) or (
-            self.type == "dispatches"
-            and self.company_id.intrastat_dispatches == "extended"
-        ):
-            self._extended = True
-        else:
-            self._extended = False
+        notedict = {
+            "note": "",
+            "line_nbr": 0,
+        }
+        # TODO: implement a solution to avoid double warnings
+        # e.g. warning on invoice that is repeated for every line
+        # or warning on a product that is repeated for every invoice line
+        # with that product
 
         self.computation_line_ids.unlink()
         self.declaration_line_ids.unlink()
-        lines = self._gather_invoices()
+        lines = self._gather_invoices(notedict)
 
         if not lines:
             self.action = "nihil"
@@ -745,6 +821,7 @@ class IntrastatProductDeclaration(models.Model):
             "region": computation_line.region_id.id or False,
             "product_origin_country": computation_line.product_origin_country_id.id
             or False,
+            "vat": computation_line.vat or False,
         }
 
     def group_line_hashcode(self, computation_line):
@@ -764,6 +841,7 @@ class IntrastatProductDeclaration(models.Model):
             "parent_id": computation_line.parent_id.id,
             "product_origin_country_id": computation_line.product_origin_country_id.id,
             "amount_company_currency": 0.0,
+            "vat": computation_line.vat,
         }
         for field in fields_to_sum:
             vals[field] = 0.0
@@ -869,6 +947,8 @@ class IntrastatProductDeclaration(models.Model):
             "suppl_unit_qty",
             "suppl_unit",
             "transport",
+            "vat",
+            "partner_id",
             "invoice",
         ]
 
@@ -886,6 +966,7 @@ class IntrastatProductDeclaration(models.Model):
             "suppl_unit_qty",
             "suppl_unit",
             "transport",
+            "vat",
         ]
 
     @api.model
@@ -900,6 +981,11 @@ class IntrastatProductDeclaration(models.Model):
         self.write({"state": "done"})
 
     def back2draft(self):
+        for decl in self:
+            if decl.xml_attachment_id:
+                raise UserError(
+                    _("Before going back to draft, you must delete the XML export.")
+                )
         self.write({"state": "draft"})
 
 
@@ -925,6 +1011,9 @@ class IntrastatProductComputationLine(models.Model):
     )
     invoice_id = fields.Many2one(
         "account.move", related="invoice_line_id.move_id", string="Invoice"
+    )
+    partner_id = fields.Many2one(
+        related="invoice_line_id.move_id.commercial_partner_id", string="Partner"
     )
     declaration_line_id = fields.Many2one(
         "intrastat.product.declaration.line", string="Declaration Line", readonly=True
@@ -980,12 +1069,19 @@ class IntrastatProductComputationLine(models.Model):
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    vat = fields.Char(string="VAT Number")
 
     @api.depends("transport_id")
     def _compute_check_validity(self):
         """ TO DO: logic based upon fields """
         for this in self:
             this.valid = True
+
+    @api.constrains("vat")
+    def _check_vat(self):
+        for this in self:
+            if this.vat and not is_valid(this.vat):
+                raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)
 
     # TODO: product_id is a readonly related field 'invoice_line_id.product_id'
     # so the onchange is non-sense. Either we convert product_id to a regular
@@ -1026,10 +1122,7 @@ class IntrastatProductDeclarationLine(models.Model):
         readonly=True,
     )
     src_dest_country_id = fields.Many2one(
-        "res.country",
-        string="Country",
-        help="Country of Origin/Destination",
-        domain=[("intrastat", "=", True)],
+        "res.country", string="Country", help="Country of Origin/Destination",
     )
     hs_code_id = fields.Many2one("hs.code", string="Intrastat Code")
     intrastat_unit_id = fields.Many2one(
@@ -1060,3 +1153,10 @@ class IntrastatProductDeclarationLine(models.Model):
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    vat = fields.Char(string="VAT Number")
+
+    @api.constrains("vat")
+    def _check_vat(self):
+        for this in self:
+            if this.vat and not is_valid(this.vat):
+                raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)

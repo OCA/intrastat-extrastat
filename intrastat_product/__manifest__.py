@@ -20,6 +20,7 @@
         "report_xlsx_helper",
     ],
     "excludes": ["account_intrastat"],
+    "external_dependencies": {"python": ["python-stdnum>=1.16"]},
     "data": [
         "security/intrastat_security.xml",
         "security/ir.model.access.csv",

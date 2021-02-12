@@ -25,14 +25,9 @@ class AccountMove(models.Model):
     src_dest_country_id = fields.Many2one(
         comodel_name="res.country",
         string="Origin/Destination Country",
-        compute="_compute_intrastat_country",
+        compute="_compute_src_dest_country_id",
         store=True,
         help="Destination country for dispatches. Origin country for " "arrivals.",
-    )
-    intrastat_country = fields.Boolean(
-        compute="_compute_intrastat_country",
-        string="Intrastat Country",
-        store=True,
     )
     src_dest_region_id = fields.Many2one(
         comodel_name="intrastat.region",
@@ -52,13 +47,12 @@ class AccountMove(models.Model):
     )
 
     @api.depends("partner_shipping_id.country_id", "partner_id.country_id")
-    def _compute_intrastat_country(self):
+    def _compute_src_dest_country_id(self):
         for inv in self:
             country = inv.partner_shipping_id.country_id or inv.partner_id.country_id
             if not country:
                 country = inv.company_id.country_id
             inv.src_dest_country_id = country.id
-            inv.intrastat_country = country.intrastat
 
     @api.model
     def _default_src_dest_region_id(self):

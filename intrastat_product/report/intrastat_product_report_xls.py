@@ -145,6 +145,16 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "line": {"value": self._render("line.region_id.name or ''")},
                 "width": 28,
             },
+            "vat": {
+                "header": {"type": "string", "value": self._("VAT")},
+                "line": {"value": self._render("line.vat or ''")},
+                "width": 20,
+            },
+            "partner_id": {
+                "header": {"type": "string", "value": self._("Partner")},
+                "line": {"value": self._render("line.partner_id.display_name or ''")},
+                "width": 28,
+            },
             "invoice": {
                 "header": {"type": "string", "value": self._("Invoice")},
                 "line": {"value": self._render("line.invoice_id.name")},

@@ -224,10 +224,7 @@
                     />
                     <field name="product_id" />
                     <field name="hs_code_id" />
-                    <field
-                        name="src_dest_country_id"
-                        domain="[('intrastat', '=', True)]"
-                    />
+                    <field name="src_dest_country_id" />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -255,6 +252,8 @@
                     <field name="incoterm_id" invisible="1" />
                     <field name="region_id" invisible="1" />
                     <field name="product_origin_country_id" invisible="1" />
+                    <field name="vat" />
+                    <field name="partner_id" />
                     <field name="invoice_id" />
                 </group>
                 <group string="Declaration" name="declaration">
@@ -274,7 +273,7 @@
                 />
                 <field name="product_id" />
                 <field name="hs_code_id" />
-                <field name="src_dest_country_id" domain="[('intrastat', '=', True)]" />
+                <field name="src_dest_country_id" />
                 <field name="amount_company_currency" />
                 <field name="amount_accessory_cost_company_currency" />
                 <field name="transaction_id" />
@@ -294,6 +293,7 @@
                     invisible="1"
                     string="Product C/O"
                 />
+                <field name="vat" />
                 <field name="invoice_id" />
                 <field name="declaration_type" invisible="1" />
                 <field name="reporting_level" invisible="1" />
@@ -311,10 +311,7 @@
                         invisible="not context.get('intrastat_product_declaration_line_main_view')"
                     />
                     <field name="hs_code_id" />
-                    <field
-                        name="src_dest_country_id"
-                        domain="[('intrastat', '=', True)]"
-                    />
+                    <field name="src_dest_country_id" />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -337,6 +334,7 @@
                     <field name="region_id" invisible="1" />
                     <field name="incoterm_id" invisible="1" />
                     <field name="product_origin_country_id" invisible="1" />
+                    <field name="vat" />
                 </group>
                 <group name="computation" string="Related Transactions">
                     <field name="computation_line_ids" nolabel="1" />
@@ -354,7 +352,7 @@
                     invisible="not context.get('intrastat_product_declaration_line_main_view')"
                 />
                 <field name="hs_code_id" />
-                <field name="src_dest_country_id" domain="[('intrastat', '=', True)]" />
+                <field name="src_dest_country_id" />
                 <field name="amount_company_currency" />
                 <field name="transaction_id" />
                 <field name="weight" />
@@ -373,6 +371,7 @@
                     invisible="1"
                     string="Product C/O"
                 />
+                <field name="vat" />
             </tree>
         </field>
     </record>

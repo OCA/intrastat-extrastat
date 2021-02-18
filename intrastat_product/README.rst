@@ -102,6 +102,12 @@ and adapt the code for the specific needs of your country.
 
   Cf. l10n_be_istrastat_product as example, replace "be" by your Country Code.
 
+**Other functionality added by this module:**
+
+* Compute the Intrastat Lines in an invoice.
+  For this, your user needs to be in the "Technical / Invoice Intrastat Transaction Details" group.
+  Go to the "Intrastat transaction details" tab and press **Compute**
+
 Known issues / Roadmap
 ======================
 

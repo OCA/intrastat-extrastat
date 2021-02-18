@@ -65,7 +65,12 @@ class AccountMove(models.Model):
         """
         self.mapped("intrastat_line_ids").unlink()
         for inv in self:
-            if inv.type not in ("out_invoice", "out_refund", "in_invoice", "in_refund"):
+            if inv.move_type not in (
+                "out_invoice",
+                "out_refund",
+                "in_invoice",
+                "in_refund",
+            ):
                 continue
             line_vals = []
             for line in inv.invoice_line_ids:
@@ -77,12 +82,16 @@ class AccountMove(models.Model):
 
     def _get_intrastat_line_vals(self, line):
         vals = {}
+        notedict = {
+            "note": "",
+            "line_nbr": 0,
+        }
         decl_model = self.env["intrastat.product.declaration"]
         if decl_model._is_product(line):
             hs_code = line.product_id.get_hs_code_recursively()
             if not hs_code:
                 return vals
-            weight, qty = decl_model._get_weight_and_supplunits(line, hs_code)
+            weight, qty = decl_model._get_weight_and_supplunits(line, hs_code, notedict)
             vals.update(
                 {
                     "invoice_line_id": line.id,

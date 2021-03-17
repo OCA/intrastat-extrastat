@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-17 15:45+0000\n"
+"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hs_code_link
 #: model:ir.model.fields,field_description:hs_code_link.field_product_product__hs_code
 #: model:ir.model.fields,field_description:hs_code_link.field_product_template__hs_code
 msgid "HS Code"
-msgstr ""
+msgstr "Código HS"
 
 #. module: hs_code_link
 #: model:ir.model,name:hs_code_link.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de Producto"
 
 #. module: hs_code_link
 #: model:ir.model.fields,help:hs_code_link.field_product_product__hs_code
@@ -32,3 +34,5 @@ msgid ""
 "Standardized code for international shipping and goods declaration. At the "
 "moment, only used for the FedEx shipping provider."
 msgstr ""
+"Código estandarizado para envío internacional y declaración de mercancías. "
+"Por el momento, solo se utiliza para el proveedor de envío FedEx."

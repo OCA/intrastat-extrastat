@@ -23,6 +23,7 @@ addon | version | summary
 [intrastat_product](intrastat_product/) | 14.0.1.0.1 | Base module for Intrastat Product
 [product_harmonized_system](product_harmonized_system/) | 14.0.1.0.0 | Base module for Product Import/Export reports
 [product_harmonized_system_delivery](product_harmonized_system_delivery/) | 14.0.1.0.0 | Hide native hs_code field provided by the delivery module
+[product_harmonized_system_stock](product_harmonized_system_stock/) | 14.0.1.0.0 | Adds a menu entry for H.S. codes
 
 [//]: # (end addons)
 

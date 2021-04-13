@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-intrastat_product',
         'odoo14-addon-product_harmonized_system',
         'odoo14-addon-product_harmonized_system_delivery',
+        'odoo14-addon-product_harmonized_system_stock',
     ],
     classifiers=[
         'Programming Language :: Python',

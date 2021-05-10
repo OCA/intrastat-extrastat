@@ -9,10 +9,7 @@
                 expr="//page[@name='other_info']//field[@name='invoice_incoterm_id']"
                 position="after"
             >
-                <field
-                    name="intrastat_transaction_id"
-                    domain="[('company_id', '=', company_id)]"
-                />
+                <field name="intrastat_transaction_id" />
                 <field name="intrastat" invisible="1" />
                 <field
                     name="intrastat_transport_id"

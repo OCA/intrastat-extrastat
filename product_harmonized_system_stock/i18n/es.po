@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_harmonized_system_stock
+# 	* product_harmonized_system_stock
 #
 msgid ""
 msgstr ""

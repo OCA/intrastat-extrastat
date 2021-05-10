@@ -16,6 +16,7 @@ class AccountMove(models.Model):
         tracking=True,
         check_company=True,
         help="Intrastat nature of transaction",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     intrastat_transport_id = fields.Many2one(
         comodel_name="intrastat.transport_mode",

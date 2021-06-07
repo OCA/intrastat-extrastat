@@ -645,22 +645,6 @@ msgid "Intrastat Code %s:"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/models/hs_code.py:0
-#, python-format
-msgid ""
-"Intrastat Codes should contain 8 digits. This is not the case for Intrastat "
-"Code '%s' which has %d digits."
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/hs_code.py:0
-#, python-format
-msgid ""
-"Intrastat Codes should only contain digits. This is not the case for code "
-"'%s'."
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_country
 msgid "Intrastat Country"
 msgstr ""

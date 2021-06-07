@@ -89,7 +89,8 @@ msgstr ""
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 
 #. module: intrastat_product
@@ -157,8 +158,8 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the"
-" rate of the invoice date."
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 
 #. module: intrastat_product
@@ -248,7 +249,6 @@ msgid "Company currency"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__computation_line_ids
 #, python-format
@@ -370,7 +370,6 @@ msgid "Declaration Line"
 msgstr ""
 
 #. module: intrastat_product
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
@@ -643,22 +642,6 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Intrastat Code %s:"
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/hs_code.py:0
-#, python-format
-msgid ""
-"Intrastat Codes should contain 8 digits. This is not the case for Intrastat "
-"Code '%s' which has %d digits."
-msgstr ""
-
-#. module: intrastat_product
-#: code:addons/intrastat_product/models/hs_code.py:0
-#, python-format
-msgid ""
-"Intrastat Codes should only contain digits. This is not the case for code "
-"'%s'."
 msgstr ""
 
 #. module: intrastat_product
@@ -1042,8 +1025,8 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move__src_dest_region_id
 msgid ""
-"Origin region for dispatches, destination region for arrivals. This field is"
-" used for the Intrastat Declaration."
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 
 #. module: intrastat_product
@@ -1176,8 +1159,8 @@ msgstr ""
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
 msgid ""
-"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and"
-" lighters on board of a ship)"
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 
 #. module: intrastat_product

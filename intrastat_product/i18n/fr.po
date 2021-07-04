@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 10:27+0000\n"
-"PO-Revision-Date: 2021-07-04 21:48+0000\n"
+"PO-Revision-Date: 2021-07-05 00:48+0000\n"
 "Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -272,13 +272,12 @@ msgstr "Lignes de transaction"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid "Compute"
-msgstr ""
+msgstr "Calculer"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
-msgstr "res.config.settings"
+msgstr "Configuration"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -318,7 +317,7 @@ msgstr "Pays"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_origin_country_id
 msgid "Country of Origin"
-msgstr ""
+msgstr "Pays d'origine"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
@@ -343,7 +342,7 @@ msgstr "Pays d'origine de l'article i.e. article 'made in ____'"
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__product_origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
-msgstr ""
+msgstr "Pays d'origine de l'article i.e. article 'made in ____'."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__create_uid
@@ -500,7 +499,7 @@ msgstr "Brouillon"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Excel Export"
-msgstr ""
+msgstr "Export Excel"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -524,12 +523,12 @@ msgstr "Installations de transport fixe"
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_7
 msgid "Fixed transport installations (e.g. pipelines, high-tension cables)"
-msgstr ""
+msgstr "Installations de transport fixe (pipelines, câbles haute-tension)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Suiveurs"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_channel_ids
@@ -570,9 +569,9 @@ msgstr "Génération des lignes à partir des factures: résultats"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Go to Accounting Configuration Settings screen"
-msgstr "Aller à la page de configuration"
+msgstr "Aller à la page de configuration de la comptabilité"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
@@ -607,7 +606,7 @@ msgstr "ID"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_exception_icon
@@ -664,7 +663,7 @@ msgstr "Code pour la DEB"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Intrastat Code %s:"
-msgstr ""
+msgstr "Code intrastat %s :"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/hs_code.py:0
@@ -717,9 +716,8 @@ msgstr "DEB"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
-#, fuzzy
 msgid "Intrastat Product Computataion Lines"
-msgstr "Lignes de calcul de la DEB"
+msgstr "Lignes de transaction de la DEB"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__computation_line_ids
@@ -824,7 +822,7 @@ msgstr "DEB"
 #: model:ir.model,name:intrastat_product.model_account_move_intrastat_line
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_line_ids
 msgid "Intrastat declaration details"
-msgstr ""
+msgstr "Lignes pour la DEB"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move__intrastat_transaction_id
@@ -834,7 +832,7 @@ msgstr "Nature de la transaction pour la DEB"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid "Intrastat transaction details"
-msgstr ""
+msgstr "Transactions pour la DEB"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -859,12 +857,12 @@ msgstr "Facture"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Invoice %s, line %s"
-msgstr ""
+msgstr "Facture %s, ligne %s"
 
 #. module: intrastat_product
 #: model:res.groups,name:intrastat_product.group_invoice_intrastat_transaction_details
 msgid "Invoice Intrastat Transaction Details"
-msgstr ""
+msgstr "Saisie des informations de transaction DEB sur la facture"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__invoice_line_id
@@ -880,12 +878,12 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_account_move
 msgid "Journal Entries"
-msgstr ""
+msgstr "Écritures comptables"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Ligne comptable"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
@@ -933,7 +931,7 @@ msgstr "Dernière modification le"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Pièce jointe principale"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error
@@ -943,19 +941,19 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Missing Intrastat Code on product %s. "
-msgstr ""
+msgstr "Code intrastat manquant sur l'article %s. "
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Missing unit of measure."
-msgstr ""
+msgstr "Unité de mesure manquante."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -989,29 +987,29 @@ msgstr "Poids net en Kg"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Date limite de la prochaine activité"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Résumé de la prochaine activité"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Type de la prochaine activité"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Nihil"
-msgstr ""
+msgstr "Néant"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #, python-format
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
@@ -1033,9 +1031,8 @@ msgstr "Notes"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
-#, fuzzy
 msgid "Number of Actions"
-msgstr "Nombre de lignes de déclaration"
+msgstr "Nombre d'actions"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__num_decl_lines
@@ -1044,9 +1041,8 @@ msgstr "Nombre de lignes de déclaration"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
-#, fuzzy
 msgid "Number of errors"
-msgstr "Nombre de lignes de déclaration"
+msgstr "Nombre d'erreurs"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
@@ -1061,7 +1057,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Nombre de messages non plus"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
@@ -1136,7 +1132,7 @@ msgstr "Pays ori. article"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_2
@@ -1163,7 +1159,7 @@ msgstr "Transactions associées"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Replace"
-msgstr ""
+msgstr "Remplace"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__reporting_level
@@ -1175,7 +1171,7 @@ msgstr "Niveau d'obligation"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Utilisateur responsable"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
@@ -1200,7 +1196,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Commandes client"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_1
@@ -1253,7 +1249,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0

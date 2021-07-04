@@ -7,20 +7,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 10:27+0000\n"
-"PO-Revision-Date: 2018-12-29 10:27+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2021-07-04 21:48+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid ""
 "(Re)compute the intrastat transaction details from the product master data."
-msgstr ""
+msgstr "(Re)-générer les transactions intrastat depuis les données source."
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
@@ -84,9 +85,8 @@ msgstr "12"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-#, fuzzy
 msgid "<span>Intrastat Product Declaration </span>"
-msgstr "DEBs"
+msgstr "<span>DEB</span>"
 
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
@@ -112,9 +112,8 @@ msgstr "Action"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction
-#, fuzzy
 msgid "Action Needed"
-msgstr "Action"
+msgstr "Action requise"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__active
@@ -123,9 +122,8 @@ msgstr "Actif"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Actif"
+msgstr "Activités"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_exception_decoration
@@ -134,9 +132,8 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_state
-#, fuzzy
 msgid "Activity State"
-msgstr "Actif"
+msgstr "État de l'activité"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_4
@@ -151,7 +148,7 @@ msgstr "Transport par air"
 #. module: intrastat_product
 #: model:res.groups,comment:intrastat_product.group_invoice_intrastat_transaction_details
 msgid "Allow to encode Intrastat Transaction Details on Invoices"
-msgstr ""
+msgstr "Possibilité de saisie des paramètres intrastat sur les factures"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
@@ -183,17 +180,19 @@ msgid ""
 "An XML Export already exists for %s. To re-generate it, you must first "
 "delete it."
 msgstr ""
+"Un export XML existe déjà pour %s. Pour le re-générer, vous devez d'abord le "
+"supprimer."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Append"
-msgstr ""
+msgstr "Ajout"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Archived"
-msgstr ""
+msgstr "Archivés"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_arrivals
@@ -204,9 +203,8 @@ msgstr "Introductions"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_attachment_count
-#, fuzzy
 msgid "Attachment Count"
-msgstr "Pays pour la DEB"
+msgstr "Nombre de pièces jointes"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form

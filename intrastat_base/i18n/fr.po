@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 09:52+0000\n"
-"PO-Revision-Date: 2018-12-29 09:52+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2021-07-04 21:48+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Modèle de plan comptable"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
@@ -43,7 +44,7 @@ msgstr ""
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_intrastat_common
 msgid "Common functions for intrastat reports for products "
-msgstr "Common functions for intrastat reports for products "
+msgstr "Fonctions communes pour les rapports intrastat des produits "
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_company
@@ -52,9 +53,8 @@ msgstr "Sociétés"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
-msgstr "res.config.settings"
+msgstr "Configuration"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_uid
@@ -82,7 +82,7 @@ msgstr "Afficher le nom"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Position fiscale"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
@@ -112,7 +112,7 @@ msgstr "DEB/DES"
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,field_description:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid "Intrastat Fiscal Position"
-msgstr ""
+msgstr "Position fiscale intrastat"
 
 #. module: intrastat_base
 #: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
@@ -128,7 +128,7 @@ msgstr "Est un frais accessoire"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Pièce comptable"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template____last_update
@@ -186,6 +186,7 @@ msgstr "Ok"
 #: model:ir.model,name:intrastat_base.model_intrastat_result_view
 msgid "Pop-up to show errors on intrastat report generation"
 msgstr ""
+"Pop-up qui affiche les erreurs lors de la génération du rapport intrastat"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
@@ -201,6 +202,8 @@ msgid ""
 "Set to True if the invoices with this fiscal position should be taken into "
 "account for the generation of the intrastat reports."
 msgstr ""
+"Activer si les factures ayant cette position fiscale doivent être "
+"sélectionnées pour la génération des rapports intrastat."
 
 #. module: intrastat_base
 #: model:product.product,name:intrastat_base.shipping_costs_exclude
@@ -211,7 +214,7 @@ msgstr "Frais de port"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position_template
 msgid "Template for Fiscal Position"
-msgstr ""
+msgstr "Modèle de position fiscale"
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/intrastat_common.py:0
@@ -235,13 +238,13 @@ msgstr ""
 #: model:product.product,uom_name:intrastat_base.shipping_costs_exclude
 #: model:product.template,uom_name:intrastat_base.shipping_costs_exclude_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unités"
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/intrastat_common.py:0
 #, python-format
 msgid "Unknown Error"
-msgstr ""
+msgstr "Erreur inconnue"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_remind_user_ids

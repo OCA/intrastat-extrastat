@@ -7,4 +7,4 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    hs_code = fields.Char(related="hs_code_id.hs_code", readonly=True, store=True)
+    hs_code = fields.Char(related="hs_code_id.hs_code", readonly=True)

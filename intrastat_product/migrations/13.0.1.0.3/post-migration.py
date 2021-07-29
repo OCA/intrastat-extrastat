@@ -29,28 +29,31 @@ def map_intrastat_product_declaration_month(env):
 
 
 def update_invoice_relation_fields(env):
-    openupgrade.logged_query(
-        env.cr,
-        """
-        UPDATE account_move am
-        SET (intrastat_transaction_id, intrastat_transport_id,
-            src_dest_country_id, intrastat_country, src_dest_region_id
-            ) = (ai.intrastat_transaction_id,
-            ai.intrastat_transport_id, ai.src_dest_country_id,
-            ai.intrastat_country, ai.src_dest_region_id)
-        FROM account_invoice ai
-        WHERE am.old_invoice_id = ai.id""",
-    )
-    openupgrade.logged_query(
-        env.cr,
-        """
-        UPDATE intrastat_product_computation_line ipcl
-        SET invoice_line_id = aml.id
-        FROM account_invoice_line ail
-        JOIN account_move_line aml ON aml.old_invoice_line_id = ail.id
-        WHERE ipcl.%(old_line_id)s = ail.id"""
-        % {"old_line_id": openupgrade.get_legacy_name("invoice_line_id")},
-    )
+    # In a Odoo project started from v13.0, these invoices tables doesn't exist!
+    if openupgrade.table_exists(env.cr, "account_invoice"):
+        openupgrade.logged_query(
+            env.cr,
+            """
+            UPDATE account_move am
+            SET (intrastat_transaction_id, intrastat_transport_id,
+                src_dest_country_id, intrastat_country, src_dest_region_id
+                ) = (ai.intrastat_transaction_id,
+                ai.intrastat_transport_id, ai.src_dest_country_id,
+                ai.intrastat_country, ai.src_dest_region_id)
+            FROM account_invoice ai
+            WHERE am.old_invoice_id = ai.id""",
+        )
+        if openupgrade.table_exists(env.cr, "account_invoice_line"):
+            openupgrade.logged_query(
+                env.cr,
+                """
+                UPDATE intrastat_product_computation_line ipcl
+                SET invoice_line_id = aml.id
+                FROM account_invoice_line ail
+                JOIN account_move_line aml ON aml.old_invoice_line_id = ail.id
+                WHERE ipcl.%(old_line_id)s = ail.id"""
+                % {"old_line_id": openupgrade.get_legacy_name("invoice_line_id")},
+            )
 
 
 @openupgrade.migrate()

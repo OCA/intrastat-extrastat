@@ -686,7 +686,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                 total_inv_weight += weight
 
-                amount_company_currency = self._get_amount(inv_line, notedict)
+                amount_company_currency = -inv_line.balance
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:

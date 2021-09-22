@@ -25,6 +25,7 @@ class IntrastatTransaction(models.Model):
         string="Company",
         default=lambda self: self._default_company_id(),
     )
+    active = fields.Boolean(default=True)
 
     @api.model
     def _default_company_id(self):

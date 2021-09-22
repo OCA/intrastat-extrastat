@@ -13,11 +13,20 @@
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
             <form string="Intrastat Transaction Type">
-                <group>
-                    <field name="code" />
-                    <field name="description" />
-                    <field name="company_id" groups="base.group_multi_company" />
-                </group>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
+                    <group name="main">
+                        <field name="code" />
+                        <field name="description" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>

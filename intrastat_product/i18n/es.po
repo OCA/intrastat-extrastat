@@ -111,6 +111,7 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__active
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__active
 msgid "Active"
 msgstr ""

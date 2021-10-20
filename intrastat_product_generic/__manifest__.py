@@ -5,7 +5,7 @@
     "name": "Generic Intrastat Product Declaration",
     "version": "13.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "https://github.com/OCA/intrastat",
+    "website": "https://github.com/OCA/intrastat-extrastat",
     "author": "Noviat," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,

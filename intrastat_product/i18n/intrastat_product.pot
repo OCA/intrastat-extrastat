@@ -109,6 +109,7 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__active
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__active
 msgid "Active"
 msgstr ""
@@ -180,6 +181,7 @@ msgid "Append"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_form
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
 msgid "Archived"
 msgstr ""
@@ -983,6 +985,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__month
 msgid "Month"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: intrastat_product

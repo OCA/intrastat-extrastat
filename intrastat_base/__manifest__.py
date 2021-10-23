@@ -9,7 +9,7 @@
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat reporting",
-    "author": "Akretion,Noviat,Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV, Akretion,Noviat,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["base_vat", "account"],
     "excludes": ["account_intrastat"],

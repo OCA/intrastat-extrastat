@@ -11,6 +11,14 @@ class IntrastatSaleCommon(IntrastatProductCommon):
         - Customer in Netherlands
     """
 
+    def _get_expected_vals(self, line):
+        return {
+            "declaration_type": "dispatches",
+            "suppl_unit_qty": line.qty_delivered,
+            "hs_code_id": line.product_id.hs_code_id,
+            "product_origin_country_id": line.product_id.origin_country_id,
+        }
+
     def _check_line_values(self, final=False, declaration=None, sale=None):
         """
         This method allows to test computation lines and declaration
@@ -21,12 +29,7 @@ class IntrastatSaleCommon(IntrastatProductCommon):
         if sale is None:
             sale = self.sale
         for line in sale.order_line:
-            expected_vals = {
-                "declaration_type": "dispatches",
-                "suppl_unit_qty": line.qty_delivered,
-                "hs_code_id": line.product_id.hs_code_id,
-                "product_origin_country_id": line.product_id.origin_country_id,
-            }
+            expected_vals = self._get_expected_vals(line)
             comp_line = declaration.computation_line_ids.filtered(
                 lambda cline: cline.product_id == line.product_id
             )

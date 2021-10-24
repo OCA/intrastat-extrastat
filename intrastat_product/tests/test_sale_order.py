@@ -79,13 +79,9 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
             self._create_declaration(vals)
         self.declaration.action_gather()
 
-        expected_vals = {
-            "declaration_type": "dispatches",
-            "suppl_unit_qty": 3.0,
-            "hs_code_id": self.hs_code_computer,
-        }
-        line = self.declaration.computation_line_ids
-        self.assertDictContainsSubset(expected_vals, line)
+        self._check_line_values()
+        self.declaration.generate_declaration()
+        self._check_line_values(final=True)
 
 
 class TestIntrastatProductSaleCase(TestIntrastatProductSale, SavepointCase):

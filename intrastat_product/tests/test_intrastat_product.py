@@ -29,6 +29,16 @@ class TestIntrastatProduct(IntrastatProductCommon):
         with self.assertRaises(IntegrityError):
             self._create_transport_mode(vals)
 
+    def test_copy(self):
+        """
+        When copying declaration, the new one has an incremented revision
+        value.
+        """
+        vals = {"declaration_type": "dispatches"}
+        self._create_declaration(vals)
+        decl_copy = self.declaration.copy()
+        self.assertEqual(self.declaration.revision + 1, decl_copy.revision)
+
 
 class TestIntrastatProductCase(TestIntrastatProduct, SavepointCase):
     """ Test Intrastat Product """

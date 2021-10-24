@@ -7,3 +7,4 @@ from odoo import models
 class IntrastatDeclarationTest(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "intrastat.common"]
     _name = "intrastat.declaration.test"
+    _description = "Intrastat Declaration Test"

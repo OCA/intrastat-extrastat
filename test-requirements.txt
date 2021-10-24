@@ -1,0 +1,2 @@
+odoo14-addon-intrastat-base @ git+https://github.com/OCA/intrastat-extrastat.git@refs/pull/149/head#subdirectory=setup/intrastat_base
+odoo14-addon-intrastat-product @ git+https://github.com/OCA/intrastat-extrastat.git@refs/pull/149/head#subdirectory=setup/intrastat_product

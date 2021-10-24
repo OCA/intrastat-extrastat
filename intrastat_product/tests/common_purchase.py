@@ -11,6 +11,16 @@ class IntrastatPurchaseCommon(IntrastatProductCommon):
         - Supplier in Germany
     """
 
+    def _get_expected_vals(self, line):
+        return {
+            "declaration_type": "arrivals",
+            "suppl_unit_qty": line.qty_received,
+            "hs_code_id": line.product_id.hs_code_id,
+            "product_origin_country_id": line.product_id.origin_country_id,
+            "amount_company_currency": line.price_subtotal,
+            "src_dest_country_id": line.partner_id.country_id,
+        }
+
     def _check_line_values(self, final=False, declaration=None, purchase=None):
         """
         This method allows to test computation lines and declaration
@@ -21,14 +31,7 @@ class IntrastatPurchaseCommon(IntrastatProductCommon):
         if purchase is None:
             purchase = self.purchase
         for line in purchase.order_line:
-            expected_vals = {
-                "declaration_type": "arrivals",
-                "suppl_unit_qty": line.qty_received,
-                "hs_code_id": line.product_id.hs_code_id,
-                "product_origin_country_id": line.product_id.origin_country_id,
-                "amount_company_currency": line.price_subtotal,
-                "src_dest_country_id": line.partner_id.country_id,
-            }
+            expected_vals = self._get_expected_vals(line)
             comp_line = declaration.computation_line_ids.filtered(
                 lambda cline: cline.product_id == line.product_id
             )

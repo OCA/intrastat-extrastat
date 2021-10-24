@@ -52,11 +52,6 @@ class IntrastatCommon(object):
 
         cls.shipping_cost = cls.env.ref("intrastat_base.shipping_costs_exclude")
         cls._load_test_declaration()
-        cls.declaration_test_obj = cls.env["intrastat.declaration.test"]
-        cls._load_xml("intrastat_base", "tests/data/mail_template.xml")
-        cls.mail_template_id = (
-            "intrastat_base.base_intrastat_product_reminder_email_template"
-        )
 
     @classmethod
     def tearDownClass(cls):

@@ -7,6 +7,15 @@ from .common import IntrastatCommon
 class TestIntrastatBase(IntrastatCommon):
     """Tests for this module"""
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.declaration_test_obj = cls.env["intrastat.declaration.test"]
+        cls._load_xml("intrastat_base", "tests/data/mail_template.xml")
+        cls.mail_template_id = (
+            "intrastat_base.base_intrastat_product_reminder_email_template"
+        )
+
     def test_company(self):
         # add 'Demo user' to intrastat_remind_user_ids
         self.demo_company.write(

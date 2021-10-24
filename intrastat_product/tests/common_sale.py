@@ -11,6 +11,36 @@ class IntrastatSaleCommon(IntrastatProductCommon):
         - Customer in Netherlands
     """
 
+    def _check_line_values(self, final=False, declaration=None, sale=None):
+        """
+        This method allows to test computation lines and declaration
+        lines values from original sale order line
+        """
+        if declaration is None:
+            declaration = self.declaration
+        if sale is None:
+            sale = self.sale
+        for line in sale.order_line:
+            expected_vals = {
+                "declaration_type": "dispatches",
+                "suppl_unit_qty": line.qty_delivered,
+                "hs_code_id": line.product_id.hs_code_id,
+                "product_origin_country_id": line.product_id.origin_country_id,
+            }
+            comp_line = declaration.computation_line_ids.filtered(
+                lambda cline: cline.product_id == line.product_id
+            )
+            self.assertTrue(
+                all(comp_line[key] == val for key, val in expected_vals.items())
+            )
+            if final:
+                decl_line = declaration.declaration_line_ids.filtered(
+                    lambda dline: comp_line in dline.computation_line_ids
+                )
+                self.assertTrue(
+                    all(decl_line[key] == val for key, val in expected_vals.items())
+                )
+
     @classmethod
     def _init_customer(cls, vals=None):
         values = {

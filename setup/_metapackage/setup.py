@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-intrastat_base',
         'odoo14-addon-intrastat_product',
+        'odoo14-addon-intrastat_product_generic',
         'odoo14-addon-product_harmonized_system',
         'odoo14-addon-product_harmonized_system_delivery',
         'odoo14-addon-product_harmonized_system_stock',

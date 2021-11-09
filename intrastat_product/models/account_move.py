@@ -114,7 +114,9 @@ class AccountMoveLine(models.Model):
             intrastat_line = self.move_id.intrastat_line_ids.filtered(
                 lambda r: r.invoice_line_id == rec
             )
-            rec.hs_code_id = intrastat_line.hs_code_id or rec.product_id.get_hs_code_recursively()
+            rec.hs_code_id = (
+                intrastat_line.hs_code_id or rec.product_id.get_hs_code_recursively()
+            )
 
 
 class AccountMoveIntrastatLine(models.Model):

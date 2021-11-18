@@ -879,6 +879,7 @@ class IntrastatProductDeclaration(models.Model):
         """
         return [
             "hs_code",
+            "product_origin_country",
             "src_dest_country",
             "amount_company_currency",
             "transaction",

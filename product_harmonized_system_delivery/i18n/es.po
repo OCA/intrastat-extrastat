@@ -1,0 +1,33 @@
+#. module: product_harmonized_system_delivery
+#: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_harmonized_system_delivery
+#: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__hs_code
+#: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__hs_code
+msgid "HS Code"
+msgstr ""
+
+#. module: product_harmonized_system_delivery
+#: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: product_harmonized_system_delivery
+#: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_harmonized_system_delivery
+#: model:ir.model,name:product_harmonized_system_delivery.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_harmonized_system_delivery
+#: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__hs_code
+#: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_template__hs_code
+msgid ""
+"Standardized code for international shipping and goods declaration. At the "
+"moment, only used for the FedEx shipping provider."
+msgstr ""

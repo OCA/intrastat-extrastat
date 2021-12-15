@@ -14,7 +14,6 @@
     "depends": ["base_vat", "account"],
     "excludes": ["account_intrastat"],
     "data": [
-        "security/ir.model.access.csv",
         "views/product_template.xml",
         "views/res_partner.xml",
         "views/res_config_settings.xml",

@@ -20,7 +20,7 @@ class IntrastatProductDeclaration(models.Model):
     _name = "intrastat.product.declaration"
     _description = "Intrastat Product Report Base Object"
     _rec_name = "year_month"
-    _inherit = ["mail.thread", "mail.activity.mixin", "intrastat.common"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "year_month desc, declaration_type, revision"
     _sql_constraints = [
         (
@@ -41,6 +41,62 @@ class IntrastatProductDeclaration(models.Model):
         )
         return res
 
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        required=True,
+        states={"done": [("readonly", True)]},
+        default=lambda self: self.env.company,
+    )
+    company_country_code = fields.Char(
+        compute="_compute_company_country_code",
+        string="Company Country Code",
+        readonly=True,
+        store=True,
+    )
+    state = fields.Selection(
+        selection=[("draft", "Draft"), ("done", "Done")],
+        string="State",
+        readonly=True,
+        tracking=True,
+        copy=False,
+        default="draft",
+        help="State of the declaration. When the state is set to 'Done', "
+        "the parameters become read-only.",
+    )
+    note = fields.Text(
+        string="Notes", help="You can add some comments here if you want."
+    )
+    year = fields.Char(
+        string="Year", required=True, states={"done": [("readonly", True)]}
+    )
+    month = fields.Selection(
+        selection=[
+            ("01", "01"),
+            ("02", "02"),
+            ("03", "03"),
+            ("04", "04"),
+            ("05", "05"),
+            ("06", "06"),
+            ("07", "07"),
+            ("08", "08"),
+            ("09", "09"),
+            ("10", "10"),
+            ("11", "11"),
+            ("12", "12"),
+        ],
+        string="Month",
+        required=True,
+        states={"done": [("readonly", True)]},
+    )
+    year_month = fields.Char(
+        compute="_compute_year_month",
+        string="Period",
+        readonly=True,
+        tracking=True,
+        store=True,
+        help="Year and month of the declaration.",
+    )
     declaration_type = fields.Selection(
         selection="_get_declaration_type",
         string="Type",
@@ -127,11 +183,31 @@ class IntrastatProductDeclaration(models.Model):
             ("nihil", _("Nihil")),
         ]
 
+    @api.depends("company_id")
+    def _compute_company_country_code(self):
+        for this in self:
+            if this.company_id:
+                if not this.company_id.country_id:
+                    raise ValidationError(_("You must set company's country !"))
+                this.company_country_code = this.company_id.country_id.code.lower()
+
+    @api.depends("year", "month")
+    def _compute_year_month(self):
+        for this in self:
+            if this.year and this.month:
+                this.year_month = "-".join([this.year, this.month])
+
     @api.depends("month")
     def _compute_check_validity(self):
         """ TO DO: logic based upon computation lines """
         for this in self:
             this.valid = True
+
+    @api.constrains("year")
+    def _check_year(self):
+        for this in self:
+            if len(this.year) != 4 or this.year[0] != "2":
+                raise ValidationError(_("Invalid Year!"))
 
     @api.onchange("declaration_type")
     def _onchange_declaration_type(self):
@@ -159,6 +235,36 @@ class IntrastatProductDeclaration(models.Model):
         raise RedirectWarning(
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
+
+    def _attach_xml_file(self, xml_bytes, declaration_name):
+        """Attach the XML file to the report_intrastat_product/service
+        object"""
+        self.ensure_one()
+        filename = "{}_{}.xml".format(self.year_month, declaration_name)
+        attach = self.env["ir.attachment"].create(
+            {
+                "name": filename,
+                "res_id": self.id,
+                "res_model": self._name,
+                "raw": xml_bytes,
+            }
+        )
+        return attach.id
+
+    def _unlink_attachments(self):
+        atts = self.env["ir.attachment"].search(
+            [("res_model", "=", self._name), ("res_id", "=", self.id)]
+        )
+        atts.unlink()
+
+    def unlink(self):
+        for this in self:
+            if this.state == "done":
+                raise UserError(
+                    _("Cannot delete the declaration %s because it is in Done state.")
+                    % this.display_name
+                )
+        return super().unlink()
 
     def _get_partner_country(self, inv_line, notedict, eu_countries):
         inv = inv_line.move_id
@@ -712,7 +818,7 @@ class IntrastatProductDeclaration(models.Model):
 
         self.write(vals)
         if vals["note"]:
-            result_view = self.env.ref("intrastat_base.intrastat_result_view_form")
+            result_view = self.env.ref("intrastat_product.intrastat_result_view_form")
             return {
                 "name": _("Generate lines from invoices: results"),
                 "view_type": "form",
@@ -808,6 +914,14 @@ class IntrastatProductDeclaration(models.Model):
             for cl in cl_lines:
                 cl.write({"declaration_line_id": declaration_line.id})
         return True
+
+    def _check_generate_xml(self):
+        self.ensure_one()
+        if not self.company_id.partner_id.vat:
+            raise UserError(
+                _("The VAT number is not set for the partner '%s'.")
+                % self.company_id.partner_id.display_name
+            )
 
     def generate_xml(self):
         """ generate the INTRASTAT Declaration XML file """

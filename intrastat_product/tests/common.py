@@ -107,6 +107,7 @@ class IntrastatProductCommon(IntrastatCommon):
     def _create_declaration(cls, vals=None):
         values = {
             "company_id": cls.env.company.id,
+            "declaration_type": "dispatches",
         }
         if vals is not None:
             values.update(vals)

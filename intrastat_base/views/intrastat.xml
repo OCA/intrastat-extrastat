@@ -18,18 +18,4 @@
         parent="account.menu_finance_configuration"
         sequence="50"
     />
-    <record id="intrastat_result_view_form" model="ir.ui.view">
-        <field name="name">intrastat.result_view_form</field>
-        <field name="model">intrastat.result.view</field>
-        <field name="arch" type="xml">
-            <form string="Intrastat Result View">
-                <group name="main">
-                    <field name="note" nolabel="1" />
-                </group>
-                <footer>
-                    <button string="Ok" class="btn-primary" special="cancel" />
-                </footer>
-            </form>
-        </field>
-    </record>
 </odoo>

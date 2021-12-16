@@ -1,5 +1,5 @@
-# Copyright 2011-2020 Akretion (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2011-2021 Akretion (http://www.akretion.com)
+# Copyright 2009-2021 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -13,9 +13,6 @@ class ProductTemplate(models.Model):
     hs_code_id = fields.Many2one(
         "hs.code",
         string="H.S. Code",
-        # company_dependent updated from True to False in 14.0.2.0.0
-        # migration scripts provided
-        company_dependent=False,
         ondelete="restrict",
         help="Harmonised System Code. Nomenclature is "
         "available from the World Customs Organisation, see "

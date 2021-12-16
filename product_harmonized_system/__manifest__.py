@@ -1,6 +1,6 @@
-# Copyright 2018-2020 brain-tec AG (http://www.braintec-group.com)
-# Copyright 2011-2020 Akretion (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2018-2021 brain-tec AG (http://www.braintec-group.com)
+# Copyright 2011-2021 Akretion (http://www.akretion.com)
+# Copyright 2009-2021 Noviat (http://www.noviat.com)
 # @author Benjamin Henquet <info@noviat.com>
 # @author Kumar Aberer <kumar.aberer@braintec-group.com>
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
@@ -9,7 +9,7 @@
 
 {
     "name": "Product Harmonized System Codes",
-    "version": "14.0.2.0.0",
+    "version": "15.0.1.0.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",

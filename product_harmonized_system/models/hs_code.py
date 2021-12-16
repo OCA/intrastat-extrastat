@@ -1,8 +1,10 @@
-# Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2011-2021 Akretion France (http://www.akretion.com)
+# Copyright 2009-2021 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from textwrap import shorten
 
 from odoo import api, fields, models
 
@@ -34,7 +36,7 @@ class HSCode(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        default=lambda self: self._default_company_id(),
+        # by default, company_id=False on this object
     )
     product_categ_ids = fields.One2many(
         comodel_name="product.category",
@@ -50,10 +52,6 @@ class HSCode(models.Model):
     )
     product_categ_count = fields.Integer(compute="_compute_product_categ_count")
     product_tmpl_count = fields.Integer(compute="_compute_product_tmpl_count")
-
-    @api.model
-    def _default_company_id(self):
-        return self.env.company
 
     @api.depends("local_code")
     def _compute_hs_code(self):
@@ -81,7 +79,7 @@ class HSCode(models.Model):
             name = this.local_code
             if this.description:
                 name += " " + this.description
-            name = len(name) > 55 and name[:55] + "..." or name
+            name = shorten(name, 55)
             res.append((this.id, name))
         return res
 

@@ -53,7 +53,7 @@ class HSCode(models.Model):
 
     @api.model
     def _default_company_id(self):
-        return self.env.company
+        return False
 
     @api.depends("local_code")
     def _compute_hs_code(self):

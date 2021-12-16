@@ -1,4 +1,4 @@
-# Copyright 2013-2020 Akretion France (http://www.akretion.com/)
+# Copyright 2013-2021 Akretion France (http://www.akretion.com/)
 # @author: <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -63,10 +63,10 @@ class ResCompany(models.Model):
             logger.warning(xml_bytes)
             logger.warning(e)
             usererror = "{}\n\n{}".format(e.__class__.__name__, str(e))
-            raise UserError(usererror)
-        except Exception:
+            raise UserError(usererror) from e
+        except Exception as e:
             error = _("Unknown Error")
             tb = "".join(format_exception(*exc_info()))
             error += "\n%s" % tb
             logger.warning(error)
-            raise UserError(error)
+            raise UserError(error) from e

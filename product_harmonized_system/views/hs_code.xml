@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2010-2020 Akretion France (http://www.akretion.com/)
+  Copyright 2010-2021 Akretion France (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -10,7 +10,7 @@
         <field name="name">hs.code.search</field>
         <field name="model">hs.code</field>
         <field name="arch" type="xml">
-            <search string="Search H.S. Codes">
+            <search>
                 <field
                     name="local_code"
                     filter_domain="['|', ('local_code', 'like', self), ('description', 'ilike', self)]"
@@ -28,7 +28,7 @@
         <field name="name">hs.code.tree</field>
         <field name="model">hs.code</field>
         <field name="arch" type="xml">
-            <tree string="H.S. Codes">
+            <tree>
                 <field name="hs_code" />
                 <field name="local_code" />
                 <field name="description" />
@@ -54,7 +54,7 @@
         <field name="name">hs.code.form</field>
         <field name="model">hs.code</field>
         <field name="arch" type="xml">
-            <form string="H.S. Code">
+            <form>
                 <sheet>
                     <field name="active" invisible="1" />
                     <widget

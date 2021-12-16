@@ -99,6 +99,7 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
 msgstr "Código HS"
 

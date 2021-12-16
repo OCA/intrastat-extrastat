@@ -252,9 +252,3 @@ msgstr "Unidades de almacenamiento"
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
 msgstr "Este código ya existe para esta compañía !"
-
-#~ msgid "<span class=\"o_stat_text\"> Product Categs</span>"
-#~ msgstr "<span class=\"o_stat_text\"> Categs Producto</span>"
-
-#~ msgid "<span class=\"o_stat_text\"> Products</span>"
-#~ msgstr "<span class=\"o_stat_text\"> Productos</span>"

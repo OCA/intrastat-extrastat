@@ -4,6 +4,8 @@
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from textwrap import shorten
+
 from odoo import api, fields, models
 
 
@@ -81,7 +83,7 @@ class HSCode(models.Model):
             name = this.local_code
             if this.description:
                 name += " " + this.description
-            name = len(name) > 55 and name[:55] + "..." or name
+            name = shorten(name, 55)
             res.append((this.id, name))
         return res
 

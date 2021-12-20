@@ -35,6 +35,7 @@
         "views/account_move.xml",
         "views/sale_order.xml",
         "views/stock_warehouse.xml",
+        "wizards/intrastat_result_view.xml",
         "data/intrastat_transport_mode.xml",
         "data/intrastat_unit.xml",
     ],

@@ -2,9 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from psycopg2 import IntegrityError
 
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import SavepointCase
 from odoo.tools import mute_logger
-from odoo.exceptions import UserError, ValidationError
+
 from .common import IntrastatProductCommon
 
 

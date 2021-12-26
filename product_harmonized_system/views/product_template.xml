@@ -20,6 +20,10 @@
                     name="origin_country_id"
                     attrs="{'invisible': [('type', '=', 'service')]}"
                 />
+                <field
+                    name="origin_state_id"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                />
             </field>
         </field>
     </record>

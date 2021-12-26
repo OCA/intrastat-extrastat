@@ -1,9 +1,10 @@
-# Copyright 2011-2017 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2011-2020 Akretion France (http://www.akretion.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
+import warnings
 from datetime import date, datetime
 
 from dateutil.relativedelta import relativedelta
@@ -239,15 +240,71 @@ class IntrastatProductDeclaration(models.Model):
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
 
-    def _get_partner_country(self, inv_line):
-        country = (
-            inv_line.move_id.src_dest_country_id
-            or inv_line.move_id.partner_id.country_id
-        )
-        if not country.intrastat:
-            country = False
-        elif country == self.company_id.country_id:
-            country = False
+    def _get_partner_country(self, inv_line, eu_countries):
+        inv = inv_line.move_id
+        country = inv.src_dest_country_id or inv.partner_id.country_id
+        if not country:
+            line_notes = [
+                _(
+                    "Missing country on invoice partner '%s' "
+                    "or on the delivery address (partner '%s'). "
+                )
+                % (
+                    inv.partner_id.display_name,
+                    inv.partner_shipping_id
+                    and inv.partner_shipping_id.display_name
+                    or "-",
+                )
+            ]
+            self._format_line_note(inv_line, line_notes)
+        else:
+            if country not in eu_countries and country.code != "GB":
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is '%s' which is not part of the European Union."
+                    )
+                    % (inv.name, country.name)
+                ]
+                self._format_line_note(inv_line, line_notes)
+        if country and country.code == "GB" and self.year >= "2021":
+            vat = inv.commercial_partner_id.vat
+            if not vat:
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is United-Kingdom and the fiscal position is '%s'. "
+                        "Make sure that the fiscal position is right. If "
+                        "the origin/destination is Northern Ireland, please "
+                        "set the VAT number of the partner '%s' in Odoo with "
+                        "its new VAT number starting with 'XI' following Brexit."
+                    )
+                    % (
+                        inv.name,
+                        inv.fiscal_position_id.display_name,
+                        inv.commercial_partner_id.display_name,
+                    )
+                ]
+                self._format_line_note(inv_line, line_notes)
+            elif not vat.startswith("XI"):
+                line_notes = [
+                    _(
+                        "On invoice '%s', the source/destination country "
+                        "is United-Kingdom, the fiscal position is '%s' and "
+                        "the partner's VAT number is '%s'. "
+                        "Make sure that the fiscal position is right. If "
+                        "the origin/destination is Northern Ireland, please "
+                        "update the VAT number of the partner '%s' in Odoo with "
+                        "its new VAT number starting with 'XI' following Brexit."
+                    )
+                    % (
+                        inv.name,
+                        inv.fiscal_position_id.display_name,
+                        vat,
+                        inv.commercial_partner_id.display_name,
+                    )
+                ]
+                self._format_line_note(inv_line, line_notes)
         return country
 
     def _get_intrastat_transaction(self, inv_line):
@@ -412,7 +469,28 @@ class IntrastatProductDeclaration(models.Model):
         return incoterm
 
     def _get_product_origin_country(self, inv_line):
+        warnings.warn(
+            "Method '_get_product_origin_country' is deprecated, "
+            "please use '_get_product_origin_country_code'.",
+            DeprecationWarning,
+        )
         return inv_line.product_id.origin_country_id
+
+    def _get_product_origin_country_code(self, inv_line, product_origin_country):
+        cc = "QU"
+        if product_origin_country.code:
+            cc = product_origin_country.code
+            year = self.year or str(inv_line.move_id.date.year)
+            if year >= "2021":
+                product_origin_state = getattr(
+                    inv_line.product_id,
+                    "origin_state_id",
+                    self.env["res.country.state"],
+                )
+                cc = self.env["res.partner"]._get_intrastat_country_code(
+                    product_origin_country, product_origin_state
+                )
+        return cc
 
     def _update_computation_line_vals(self, inv_line, line_vals):
         """ placeholder for localization modules """
@@ -502,6 +580,7 @@ class IntrastatProductDeclaration(models.Model):
 
         lines = []
         accessory_costs = self.company_id.intrastat_accessory_costs
+        eu_countries = self.env.ref("base.europe").country_ids
 
         self._gather_invoices_init()
         domain = self._prepare_invoice_domain()
@@ -543,25 +622,10 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                partner_country = self._get_partner_country(inv_line)
-                if not partner_country:
-                    _logger.info(
-                        "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no partner_country"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
-
-                if any(
-                    [tax.exclude_from_intrastat_if_present for tax in inv_line.tax_ids]
-                ):
-                    _logger.info(
-                        "Skipping invoice line %s "
-                        "qty %s of invoice %s. Reason: "
-                        "tax.exclude_from_intrastat_if_present"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
+                partner_country = self._get_partner_country(inv_line, eu_countries)
+                partner_country_code = (
+                    invoice.commercial_partner_id._get_intrastat_country_code()
+                )
 
                 if inv_intrastat_line:
                     hs_code = inv_intrastat_line.hs_code_id
@@ -604,8 +668,14 @@ class IntrastatProductDeclaration(models.Model):
                     product_origin_country = (
                         inv_intrastat_line.product_origin_country_id
                     )
+                    product_origin_country_code = (
+                        inv_intrastat_line.product_origin_country_code
+                    )
                 else:
-                    product_origin_country = self._get_product_origin_country(inv_line)
+                    product_origin_country = inv_line.product_id.origin_country_id
+                    product_origin_country_code = self._get_product_origin_country_code(
+                        inv_line, product_origin_country
+                    )
 
                 region = self._get_region(inv_line)
 
@@ -613,6 +683,7 @@ class IntrastatProductDeclaration(models.Model):
                     "parent_id": self.id,
                     "invoice_line_id": inv_line.id,
                     "src_dest_country_id": partner_country.id,
+                    "src_dest_country_code": partner_country_code,
                     "product_id": inv_line.product_id.id,
                     "hs_code_id": hs_code.id,
                     "weight": weight,
@@ -621,6 +692,7 @@ class IntrastatProductDeclaration(models.Model):
                     "amount_accessory_cost_company_currency": 0.0,
                     "transaction_id": intrastat_transaction.id,
                     "product_origin_country_id": product_origin_country.id or False,
+                    "product_origin_country_code": product_origin_country_code,
                     "region_id": region and region.id or False,
                 }
 
@@ -727,14 +799,13 @@ class IntrastatProductDeclaration(models.Model):
     @api.model
     def _group_line_hashcode_fields(self, computation_line):
         return {
-            "country": computation_line.src_dest_country_id.id or False,
+            "country": computation_line.src_dest_country_code,
             "hs_code_id": computation_line.hs_code_id.id or False,
             "intrastat_unit": computation_line.intrastat_unit_id.id or False,
             "transaction": computation_line.transaction_id.id or False,
             "transport": computation_line.transport_id.id or False,
             "region": computation_line.region_id.id or False,
-            "product_origin_country": computation_line.product_origin_country_id.id
-            or False,
+            "product_origin_country": computation_line.product_origin_country_code,
         }
 
     def group_line_hashcode(self, computation_line):
@@ -746,6 +817,7 @@ class IntrastatProductDeclaration(models.Model):
     def _prepare_grouped_fields(self, computation_line, fields_to_sum):
         vals = {
             "src_dest_country_id": computation_line.src_dest_country_id.id,
+            "src_dest_country_code": computation_line.src_dest_country_code,
             "intrastat_unit_id": computation_line.intrastat_unit_id.id,
             "hs_code_id": computation_line.hs_code_id.id,
             "transaction_id": computation_line.transaction_id.id,
@@ -753,6 +825,7 @@ class IntrastatProductDeclaration(models.Model):
             "region_id": computation_line.region_id.id,
             "parent_id": computation_line.parent_id.id,
             "product_origin_country_id": computation_line.product_origin_country_id.id,
+            "product_origin_country_code": computation_line.product_origin_country_code,
             "amount_company_currency": 0.0,
         }
         for field in fields_to_sum:
@@ -925,6 +998,15 @@ class IntrastatProductComputationLine(models.Model):
         help="Country of Origin/Destination",
         domain=[("intrastat", "=", True)],
     )
+    src_dest_country_code = fields.Char(
+        string="Country Code",
+        compute="_compute_src_dest_country_code",
+        store=True,
+        required=True,
+        readonly=False,
+        help="2 digit code of country of origin/destination.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+    )
     product_id = fields.Many2one(
         "product.product", related="invoice_line_id.product_id"
     )
@@ -962,14 +1044,36 @@ class IntrastatProductComputationLine(models.Model):
         "intrastat.transaction", string="Intrastat Transaction"
     )
     region_id = fields.Many2one("intrastat.region", string="Intrastat Region")
-    # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
-    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+    # product_origin_country_id is replaced by product_origin_country_code
+    # this field should be dropped once the localisation modules have been
+    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         "res.country",
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    product_origin_country_code = fields.Char(
+        string="Country of Origin of the Product",
+        size=2,
+        required=True,
+        default="QU",
+        help="2 digit code of country of origin of the product except for the UK.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        "Specify 'QU' when the country is unknown.\n",
+    )
+    vat = fields.Char(string="VAT Number")
+
+    # extended declaration
+    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+
+    @api.onchange("src_dest_country_id")
+    def _onchange_src_dest_country_id(self):
+        self.src_dest_country_code = self.src_dest_country_id.code
+        if self.parent_id.year >= "2021":
+            self.src_dest_country_code = self.env[
+                "res.partner"
+            ]._get_intrastat_country_code(country=self.src_dest_country_id)
 
     @api.depends("transport_id")
     def _compute_check_validity(self):
@@ -1021,6 +1125,12 @@ class IntrastatProductDeclarationLine(models.Model):
         help="Country of Origin/Destination",
         domain=[("intrastat", "=", True)],
     )
+    src_dest_country_code = fields.Char(
+        string="Country Code",
+        required=True,
+        help="2 digit code of country of origin/destination.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+    )
     hs_code_id = fields.Many2one("hs.code", string="Intrastat Code")
     intrastat_unit_id = fields.Many2one(
         "intrastat.unit",
@@ -1042,11 +1152,32 @@ class IntrastatProductDeclarationLine(models.Model):
         "intrastat.transaction", string="Intrastat Transaction"
     )
     region_id = fields.Many2one("intrastat.region", string="Intrastat Region")
-    # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
-    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+    # product_origin_country_id is replaced by product_origin_country_code
+    # this field should be dropped once the localisation modules have been
+    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         "res.country",
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    product_origin_country_code = fields.Char(
+        string="Country of Origin of the Product",
+        size=2,
+        required=True,
+        default="QU",
+        help="2 digit code of country of origin of the product except for the UK.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        "Specify 'QU' when the country is unknown.\n",
+    )
+    vat = fields.Char(string="VAT Number")
+    # extended declaration
+    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+
+    @api.onchange("src_dest_country_id")
+    def _onchange_src_dest_country_id(self):
+        self.src_dest_country_code = self.src_dest_country_id.code
+        if self.parent_id.year >= "2021":
+            self.src_dest_country_code = self.env[
+                "res.partner"
+            ]._get_intrastat_country_code(country=self.src_dest_country_id)

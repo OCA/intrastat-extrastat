@@ -36,9 +36,9 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {"type": "string", "value": self._("Product C/O")},
                 "line": {
                     "type": "string",
-                    "value": self._render("line.product_origin_country_id.name or ''"),
+                    "value": self._render("line.product_origin_country_code or ''"),
                 },
-                "width": 28,
+                "width": 3,
             },
             "hs_code": {
                 "header": {"type": "string", "value": self._("Intrastat Code")},

@@ -1,5 +1,5 @@
 # Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2009-2021 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -489,8 +489,24 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return incoterm
 
-    def _get_product_origin_country(self, inv_line, notedict):
-        return inv_line.product_id.origin_country_id
+    def _get_product_origin_country_code(
+        self, inv_line, product_origin_country, notedict
+    ):
+        product_origin_country_code = "QU"
+        if product_origin_country.code:
+            product_origin_country_code = product_origin_country.code
+            year = self.year or str(inv_line.move_id.date.year)
+            if year >= "2021":
+                if (
+                    hasattr(inv_line.product_id, "origin_state_id")
+                    and inv_line.product_id.origin_state_id
+                    and inv_line.product_id.origin_state_id.name.lower()
+                    == "northern ireland"
+                ):
+                    product_origin_country_code = "XI"
+                elif inv_line.product_id.origin_country_id.code == "GB":
+                    product_origin_country_code = "XU"
+        return product_origin_country_code
 
     def _get_vat(self, inv_line, notedict):
         vat = False
@@ -705,12 +721,13 @@ class IntrastatProductDeclaration(models.Model):
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:
-                    product_origin_country = (
-                        inv_intrastat_line.product_origin_country_id
+                    product_origin_country_code = (
+                        inv_intrastat_line.product_origin_country_code
                     )
                 else:
-                    product_origin_country = self._get_product_origin_country(
-                        inv_line, notedict
+                    product_origin_country = inv_line.product_id.origin_country_id
+                    product_origin_country_code = self._get_product_origin_country_code(
+                        inv_line, product_origin_country, notedict
                     )
 
                 region = self._get_region(inv_line, notedict)
@@ -728,7 +745,7 @@ class IntrastatProductDeclaration(models.Model):
                     "amount_company_currency": amount_company_currency,
                     "amount_accessory_cost_company_currency": 0.0,
                     "transaction_id": intrastat_transaction.id,
-                    "product_origin_country_id": product_origin_country.id or False,
+                    "product_origin_country_code": product_origin_country_code,
                     "region_id": region and region.id or False,
                     "vat": vat,
                 }
@@ -832,9 +849,8 @@ class IntrastatProductDeclaration(models.Model):
             "transaction": computation_line.transaction_id.id or False,
             "transport": computation_line.transport_id.id or False,
             "region": computation_line.region_id.id or False,
-            "product_origin_country": computation_line.product_origin_country_id.id
-            or False,
             "vat": computation_line.vat or False,
+            "product_origin_country_code": computation_line.product_origin_country_code,
         }
 
     def group_line_hashcode(self, computation_line):
@@ -852,7 +868,7 @@ class IntrastatProductDeclaration(models.Model):
             "transport_id": computation_line.transport_id.id,
             "region_id": computation_line.region_id.id,
             "parent_id": computation_line.parent_id.id,
-            "product_origin_country_id": computation_line.product_origin_country_id.id,
+            "product_origin_country_code": computation_line.product_origin_country_code,
             "amount_company_currency": 0.0,
             "vat": computation_line.vat,
         }
@@ -1090,15 +1106,27 @@ class IntrastatProductComputationLine(models.Model):
         "intrastat.transaction", string="Intrastat Transaction"
     )
     region_id = fields.Many2one("intrastat.region", string="Intrastat Region")
-    # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
-    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+    # product_origin_country_id is replaced by product_origin_country_code
+    # this field should be dropped once the localisation modules have been
+    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         "res.country",
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    product_origin_country_code = fields.Char(
+        string="Country of Origin of the Product",
+        required=True,
+        default="QU",
+        help="2 digit code of country of origin of the product except for the UK.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        "Specify 'QU' when the country is unknown.\n",
+    )
     vat = fields.Char(string="VAT Number")
+
+    # extended declaration
+    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
 
     @api.depends("transport_id")
     def _compute_check_validity(self):
@@ -1176,15 +1204,26 @@ class IntrastatProductDeclarationLine(models.Model):
         "intrastat.transaction", string="Intrastat Transaction"
     )
     region_id = fields.Many2one("intrastat.region", string="Intrastat Region")
-    # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
-    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+    # product_origin_country_id is replaced by product_origin_country_code
+    # this field should be dropped once the localisation modules have been
+    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         "res.country",
         string="Country of Origin of the Product",
         help="Country of origin of the product i.e. product 'made in ____'",
     )
+    product_origin_country_code = fields.Char(
+        string="Country of Origin of the Product",
+        required=True,
+        default="QU",
+        help="2 digit code of country of origin of the product except for the UK.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        "Specify 'QU' when the country is unknown.\n",
+    )
     vat = fields.Char(string="VAT Number")
+    # extended declaration
+    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
 
     @api.constrains("vat")
     def _check_vat(self):

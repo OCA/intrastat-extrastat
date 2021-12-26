@@ -400,16 +400,6 @@ class IntrastatProductDeclaration(models.Model):
 
         return weight, suppl_unit_qty
 
-    def _get_amount(self, inv_line, notedict):
-        invoice = inv_line.move_id
-        amount = invoice.currency_id._convert(
-            inv_line.price_subtotal,
-            self.company_id.currency_id,
-            self.company_id,
-            invoice.date,
-        )
-        return amount
-
     def _get_region(self, inv_line, notedict):
         """
         For supplier invoices/refunds: if the invoice line is linked

@@ -1,9 +1,10 @@
 # Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2009-2021 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class AccountMove(models.Model):
@@ -93,13 +94,17 @@ class AccountMove(models.Model):
             if not hs_code:
                 return vals
             weight, qty = decl_model._get_weight_and_supplunits(line, hs_code, notedict)
+            product_origin_country = line.product_id.origin_country_id
+            product_origin_country_code = decl_model._get_product_origin_country_code(
+                line, product_origin_country
+            )
             vals.update(
                 {
                     "invoice_line_id": line.id,
                     "hs_code_id": hs_code.id,
                     "transaction_weight": int(weight),
                     "transaction_suppl_unit_qty": qty,
-                    "product_origin_country_id": line.product_id.origin_country_id.id,
+                    "product_origin_country_code": product_origin_country_code,
                 }
             )
         return vals
@@ -160,10 +165,21 @@ class AccountMoveIntrastatLine(models.Model):
     transaction_weight = fields.Integer(
         help="Transaction weight in Kg: Quantity x Product Weight"
     )
+    # product_origin_country_id is replaced by product_origin_country_code
+    # this field should be dropped once the localisation modules have been
+    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         comodel_name="res.country",
         string="Country of Origin",
         help="Country of origin of the product i.e. product " "'made in ____'.",
+    )
+    product_origin_country_code = fields.Char(
+        string="Country of Origin of the Product",
+        required=True,
+        default="QU",
+        help="2 digit code of country of origin of the product except for the UK.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        "Specify 'QU' when the country is unknown.\n",
     )
 
     @api.onchange("invoice_line_id")
@@ -176,3 +192,25 @@ class AccountMoveIntrastatLine(models.Model):
             ("id", "not in", moves.mapped("intrastat_line_ids.invoice_line_id").ids),
         ]
         return {"domain": {"invoice_line_id": dom}}
+
+    @api.model
+    def create(self, vals):
+        self._format_vals(vals)
+        return super().create(vals)
+
+    def write(self, vals):
+        self._format_vals(vals)
+        return super().write(vals)
+
+    def _format_vals(self, vals):
+        if "product_origin_country_code" in vals:
+            vals["product_origin_country_code"] = (
+                vals["product_origin_country_code"].upper().strip()
+            )
+            if len(vals["product_origin_country_code"]) != 2:
+                raise UserError(
+                    _(
+                        "Intrastat transaction details error:\n"
+                        "Product Origin Country Code must be 2 characters."
+                    )
+                )

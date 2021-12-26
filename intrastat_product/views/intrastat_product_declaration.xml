@@ -250,7 +250,12 @@
                     />
                     <field name="incoterm_id" invisible="1" />
                     <field name="region_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
                     <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('type', '!=', 'arrivals')]}"
+                    />
                     <field name="vat" />
                     <field name="partner_id" />
                     <field name="invoice_id" />
@@ -287,9 +292,15 @@
                     attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
                 />
                 <field name="region_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
                 <field
                     name="product_origin_country_id"
                     invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />
@@ -332,7 +343,12 @@
                     />
                     <field name="region_id" invisible="1" />
                     <field name="incoterm_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
                     <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('type', '!=', 'arrivals')]}"
+                    />
                     <field name="vat" />
                 </group>
                 <group name="computation" string="Related Transactions">
@@ -365,9 +381,15 @@
                 />
                 <field name="region_id" invisible="1" />
                 <field name="incoterm_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
                 <field
                     name="product_origin_country_id"
                     invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />

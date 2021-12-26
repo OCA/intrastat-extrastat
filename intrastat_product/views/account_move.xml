@@ -47,10 +47,7 @@
                             <field name="transaction_suppl_unit_qty" />
                             <field name="hs_code_id" />
                             <field name="transaction_weight" />
-                            <field
-                                name="product_origin_country_id"
-                                options="{'no_create': True, 'no_open': True}"
-                            />
+                            <field name="product_origin_country_code" />
                         </tree>
                     </field>
                 </page>

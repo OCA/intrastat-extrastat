@@ -23,9 +23,19 @@ class ProductTemplate(models.Model):
         "and configure the H.S. code on the product category.",
     )
     origin_country_id = fields.Many2one(
-        "res.country",
+        comodel_name="res.country",
         string="Country of Origin",
         help="Country of origin of the product i.e. product " "'made in ____'.",
+    )
+    origin_state_id = fields.Many2one(
+        comodel_name="res.country.state",
+        string="Country State of Origin",
+        domain="[('country_id', '=?', origin_country_id)]",
+        help="Country State of origin of the product.\n"
+        "This field is used for the Intrastat declaration, "
+        "selecting 'Northern Ireland' will set the code 'XI' "
+        "for products from the United Kingdom whereas code 'XU' "
+        "will be used for the other UK states.",
     )
 
 

@@ -1,13 +1,30 @@
-from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
+
+from .common import IntrastatCommon
 
 
-class TestIntrastatBase(TransactionCase):
+class TestIntrastatBase(IntrastatCommon):
     """Tests for this module"""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
     def test_company(self):
         # add 'Demo user' to intrastat_remind_user_ids
-        demo_user = self.env.ref("base.user_demo")
-        demo_company = self.env.ref("base.main_company")
-        demo_company.write({"intrastat_remind_user_ids": [(6, False, [demo_user.id])]})
+        self.demo_company.write(
+            {"intrastat_remind_user_ids": [(6, False, [self.demo_user.id])]}
+        )
         # then check if intrastat_email_list contains the email of the user
-        self.assertEqual(demo_company.intrastat_email_list, demo_user.email)
+        self.assertEqual(self.demo_company.intrastat_email_list, self.demo_user.email)
+
+    def test_no_email(self):
+        self.demo_user.email = False
+        with self.assertRaises(ValidationError):
+            self.demo_company.write(
+                {"intrastat_remind_user_ids": [(6, False, [self.demo_user.id])]}
+            )
+
+    def test_accessory(self):
+        with self.assertRaises(ValidationError):
+            self.shipping_cost.type = "consu"

@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_chart_template
-msgid "Account Chart Template"
-msgstr ""
-
-#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -27,14 +22,10 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "Cannot delete the declaration %s because it is in Done state"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_intrastat_common
-msgid "Common functions for intrastat reports for products "
+#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position_template__intrastat
+msgid ""
+"Check this if you want to generate intrastat declarations withthe created "
+"fiscal position"
 msgstr ""
 
 #. module: intrastat_base
@@ -48,22 +39,9 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_uid
-msgid "Created by"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_date
-msgid "Created on"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
@@ -76,12 +54,9 @@ msgid "Fiscal Position"
 msgstr ""
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__id
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__id
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__id
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__id
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__id
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__id
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
@@ -106,11 +81,6 @@ msgid "Intrastat Fiscal Position"
 msgstr ""
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
-msgid "Intrastat Result View"
-msgstr ""
-
-#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
 msgid "Is accessory cost"
@@ -122,26 +92,13 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_uid
-msgid "Last Updated by"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_date
-msgid "Last Updated on"
 msgstr ""
 
 #. module: intrastat_base
@@ -161,21 +118,6 @@ msgstr ""
 #: code:addons/intrastat_base/models/res_company.py:0
 #, python-format
 msgid "Missing e-mail address on user '%s'."
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__note
-msgid "Notes"
-msgstr ""
-
-#. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
-msgid "Ok"
-msgstr ""
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_intrastat_result_view
-msgid "Pop-up to show errors on intrastat report generation"
 msgstr ""
 
 #. module: intrastat_base
@@ -205,12 +147,6 @@ msgid "Template for Fiscal Position"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "The VAT number is not set for the partner '%s'."
-msgstr ""
-
-#. module: intrastat_base
 #: code:addons/intrastat_base/models/product_template.py:0
 #, python-format
 msgid ""
@@ -226,7 +162,7 @@ msgid "Units"
 msgstr ""
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
+#: code:addons/intrastat_base/models/res_company.py:0
 #, python-format
 msgid "Unknown Error"
 msgstr ""

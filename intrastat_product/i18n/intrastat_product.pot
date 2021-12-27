@@ -210,6 +210,12 @@ msgid "Before going back to draft, you must delete the XML export."
 msgstr ""
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Cannot delete the declaration %s because it is in Done state."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__code
@@ -338,6 +344,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__create_uid
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__create_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__create_uid
@@ -350,6 +357,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__create_date
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__create_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__create_date
@@ -473,6 +481,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__display_name
@@ -606,6 +615,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__id
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__id
@@ -758,6 +768,11 @@ msgid "Intrastat Regions"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_result_view_form
+msgid "Intrastat Result View"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_hs_code__intrastat_unit_id
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__intrastat_unit_id
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__intrastat_unit_id
@@ -836,7 +851,7 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
-msgid "Invalid Year !"
+msgid "Invalid Year!"
 msgstr ""
 
 #. module: intrastat_product
@@ -899,6 +914,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region____last_update
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit____last_update
@@ -917,6 +933,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__write_uid
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_uid
@@ -929,6 +946,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region__write_date
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__write_date
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_date
@@ -1051,6 +1069,7 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__note
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view__note
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Notes"
 msgstr ""
@@ -1083,6 +1102,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 msgid "Number of unread messages"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_result_view_form
+msgid "Ok"
 msgstr ""
 
 #. module: intrastat_product
@@ -1165,6 +1189,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__year_month
 msgid "Period"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model,name:intrastat_product.model_intrastat_result_view
+msgid "Pop-up to show errors on intrastat report generation"
 msgstr ""
 
 #. module: intrastat_product
@@ -1377,6 +1406,12 @@ msgstr ""
 #. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
+msgid "The VAT number is not set for the partner '%s'."
+msgstr ""
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
 msgid ""
 "The default Incoterm of the Company is not set, please configure it first."
 msgstr ""
@@ -1494,11 +1529,6 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__company_country_code
-msgid "Used in views and methods of localization modules."
 msgstr ""
 
 #. module: intrastat_product

@@ -752,7 +752,7 @@ class IntrastatProductDeclaration(models.Model):
             "transaction": computation_line.transaction_id.id or False,
             "transport": computation_line.transport_id.id or False,
             "region": computation_line.region_id.id or False,
-            "product_origin_country_code": computation_line.product_origin_country_code,
+            "product_origin_country": computation_line.product_origin_country_code,
         }
 
     def group_line_hashcode(self, computation_line):

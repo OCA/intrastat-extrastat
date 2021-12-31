@@ -474,7 +474,7 @@ class IntrastatProductDeclaration(models.Model):
             ("state", "=", "posted"),
             ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
-            ("type", "!=", "entry"),
+            ("type", "in", ("out_invoice", "out_refund", "in_invoice", "in_refund")),
         ]
         return domain
 
@@ -597,7 +597,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                 total_inv_weight += weight
 
-                amount_company_currency = -inv_line.balance
+                sign = invoice.type in ("in_invoice", "out_refund") and 1 or -1
+                amount_company_currency = sign * inv_line.balance
+
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:

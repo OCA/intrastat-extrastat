@@ -344,16 +344,6 @@ class IntrastatProductDeclaration(models.Model):
 
         return weight, suppl_unit_qty
 
-    def _get_amount(self, inv_line):
-        invoice = inv_line.move_id
-        amount = invoice.currency_id._convert(
-            inv_line.price_subtotal,
-            self.company_id.currency_id,
-            self.company_id,
-            invoice.date,
-        )
-        return amount
-
     def _get_region(self, inv_line):
         """
         For supplier invoices/refunds: if the invoice line is linked
@@ -498,7 +488,7 @@ class IntrastatProductDeclaration(models.Model):
             ("state", "=", "posted"),
             ("intrastat_country", "=", True),
             ("company_id", "=", self.company_id.id),
-            ("type", "!=", "entry"),
+            ("type", "in", ("out_invoice", "out_refund", "in_invoice", "in_refund")),
         ]
         return domain
 
@@ -621,7 +611,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                 total_inv_weight += weight
 
-                amount_company_currency = self._get_amount(inv_line)
+                sign = invoice.type in ("in_invoice", "out_refund") and 1 or -1
+                amount_company_currency = sign * inv_line.balance
+
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:

@@ -20,7 +20,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [intrastat_base](intrastat_base/) | 14.0.2.1.0 |  | Base module for Intrastat reporting
-[intrastat_product](intrastat_product/) | 14.0.1.5.1 |  | Base module for Intrastat Product
+[intrastat_product](intrastat_product/) | 14.0.1.5.2 |  | Base module for Intrastat Product
 [intrastat_product_generic](intrastat_product_generic/) | 14.0.1.0.0 |  | Generic Intrastat Product Declaration
 [product_harmonized_system](product_harmonized_system/) | 14.0.2.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) [![luc-demeyer](https://github.com/luc-demeyer.png?size=30px)](https://github.com/luc-demeyer) | Base module for Product Import/Export reports
 [product_harmonized_system_delivery](product_harmonized_system_delivery/) | 14.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) [![luc-demeyer](https://github.com/luc-demeyer.png?size=30px)](https://github.com/luc-demeyer) | Hide native hs_code field provided by the delivery module

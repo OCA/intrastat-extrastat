@@ -254,7 +254,7 @@
                     <field name="product_origin_country_id" invisible="1" />
                     <field
                         name="product_origin_country_code"
-                        attrs="{'invisible': [('type', '!=', 'arrivals')]}"
+                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
                     />
                     <field name="vat" />
                     <field name="partner_id" />
@@ -300,7 +300,7 @@
                 />
                 <field
                     name="product_origin_country_code"
-                    attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"
+                    attrs="{'column_invisible': [('declaration_type.type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />
@@ -389,7 +389,7 @@
                 />
                 <field
                     name="product_origin_country_code"
-                    attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"
+                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />

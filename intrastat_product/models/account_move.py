@@ -49,6 +49,7 @@ class AccountMove(models.Model):
     intrastat_line_ids = fields.One2many(
         comodel_name="account.move.intrastat.line",
         inverse_name="move_id",
+        groups="intrastat_product.group_invoice_intrastat_transaction_details",
         string="Intrastat declaration details",
     )
 
@@ -110,8 +111,8 @@ class AccountMoveLine(models.Model):
     )
 
     def _compute_hs_code_id(self):
-        for rec in self:
-            intrastat_line = self.move_id.intrastat_line_ids.filtered(
+        for rec in self.sudo():
+            intrastat_line = rec.move_id.intrastat_line_ids.filtered(
                 lambda r: r.invoice_line_id == rec
             )
             rec.hs_code_id = (

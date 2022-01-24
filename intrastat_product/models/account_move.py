@@ -107,11 +107,14 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     hs_code_id = fields.Many2one(
-        comodel_name="hs.code", compute="_compute_hs_code_id", string="Intrastat Code",
+        comodel_name="hs.code",
+        compute="_compute_hs_code_id",
+        string="Intrastat Code",
+        compute_sudo=True,
     )
 
     def _compute_hs_code_id(self):
-        for rec in self.sudo():
+        for rec in self:
             intrastat_line = rec.move_id.intrastat_line_ids.filtered(
                 lambda r: r.invoice_line_id == rec
             )

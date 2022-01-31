@@ -1,5 +1,5 @@
-# Copyright 2017-2020 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2017-2022 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models

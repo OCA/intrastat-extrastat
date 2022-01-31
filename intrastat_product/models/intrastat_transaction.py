@@ -1,5 +1,5 @@
-# Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2011-2022 Akretion France (http://www.akretion.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -18,8 +18,8 @@ class IntrastatTransaction(models.Model):
         )
     ]
 
-    code = fields.Char(string="Code", required=True)
-    description = fields.Text(string="Description")
+    code = fields.Char(required=True)
+    description = fields.Text()
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",

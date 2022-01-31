@@ -1,4 +1,4 @@
-# Copyright 2009-2020 Noviat nv/sa (www.noviat.com).
+# Copyright 2009-2022 Noviat nv/sa (www.noviat.com).
 # @author Luc de Meyer <info@noviat.com>
 
 from odoo import api, fields, models
@@ -15,12 +15,12 @@ class IntrastatRegion(models.Model):
         )
     ]
 
-    code = fields.Char(string="Code", required=True)
+    code = fields.Char(required=True)
     country_id = fields.Many2one(
         comodel_name="res.country", string="Country", required=True
     )
-    name = fields.Char(string="Name", translate=True)
-    description = fields.Char(string="Description")
+    name = fields.Char(translate=True)
+    description = fields.Char()
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",

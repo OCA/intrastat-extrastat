@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2010-2020 Akretion (http://www.akretion.com/)
-  Copyright 2015-2020 Noviat (http://www.noviat.com/)
+  Copyright 2010-2022 Akretion (http://www.akretion.com/)
+  Copyright 2015-2022 Noviat (http://www.noviat.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   @author Luc De Meyer <luc.demeyer@noviat.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -12,7 +12,7 @@
         <field name="name">intrastat.transaction_form</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transaction Type">
+            <form>
                 <sheet>
                     <widget
                         name="web_ribbon"
@@ -34,7 +34,7 @@
         <field name="name">intrastat.transaction_tree</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Transaction Types">
+            <tree>
                 <field name="code" />
                 <field name="description" />
                 <field name="company_id" groups="base.group_multi_company" />
@@ -45,7 +45,7 @@
         <field name="name">intrastat.transaction.mode.search</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Transaction Types">
+            <search>
                 <field
                     name="description"
                     string="Code or Description"

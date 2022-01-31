@@ -50,13 +50,11 @@ class IntrastatProductDeclaration(models.Model):
     )
     company_country_code = fields.Char(
         compute="_compute_company_country_code",
-        string="Company Country Code",
         readonly=True,
         store=True,
     )
     state = fields.Selection(
         selection=[("draft", "Draft"), ("done", "Done")],
-        string="State",
         readonly=True,
         tracking=True,
         copy=False,
@@ -67,9 +65,7 @@ class IntrastatProductDeclaration(models.Model):
     note = fields.Text(
         string="Notes", help="You can add some comments here if you want."
     )
-    year = fields.Char(
-        string="Year", required=True, states={"done": [("readonly", True)]}
-    )
+    year = fields.Char(required=True, states={"done": [("readonly", True)]})
     month = fields.Selection(
         selection=[
             ("01", "01"),
@@ -85,7 +81,6 @@ class IntrastatProductDeclaration(models.Model):
             ("11", "11"),
             ("12", "12"),
         ],
-        string="Month",
         required=True,
         states={"done": [("readonly", True)]},
     )
@@ -106,14 +101,12 @@ class IntrastatProductDeclaration(models.Model):
     )
     action = fields.Selection(
         selection="_get_action",
-        string="Action",
         required=True,
         default="replace",
         states={"done": [("readonly", True)]},
         tracking=True,
     )
     revision = fields.Integer(
-        string="Revision",
         default=1,
         states={"done": [("readonly", True)]},
         help="Used to keep track of changes",
@@ -147,10 +140,9 @@ class IntrastatProductDeclaration(models.Model):
     )
     reporting_level = fields.Selection(
         selection="_get_reporting_level",
-        string="Reporting Level",
         states={"done": [("readonly", True)]},
     )
-    valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
+    valid = fields.Boolean(compute="_compute_check_validity")
     xml_attachment_id = fields.Many2one("ir.attachment", string="XML Attachment")
     xml_attachment_datas = fields.Binary(
         related="xml_attachment_id.datas", string="XML Export"
@@ -199,7 +191,7 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.depends("month")
     def _compute_check_validity(self):
-        """ TO DO: logic based upon computation lines """
+        """TO DO: logic based upon computation lines"""
         for this in self:
             this.valid = True
 
@@ -272,12 +264,11 @@ class IntrastatProductDeclaration(models.Model):
         if not country:
             line_notes = [
                 _(
-                    "Missing country on invoice partner '%s' "
-                    "or on the delivery address (partner '%s'). "
-                )
-                % (
-                    inv.partner_id.display_name,
-                    inv.partner_shipping_id
+                    "Missing country on invoice partner '{invoice_partner}' "
+                    "or on the delivery address (partner '{delivery_partner}'). "
+                ).format(
+                    invoice_partner=inv.partner_id.display_name,
+                    delivery_partner=inv.partner_shipping_id
                     and inv.partner_shipping_id.display_name
                     or "-",
                 )
@@ -287,10 +278,9 @@ class IntrastatProductDeclaration(models.Model):
             if country not in eu_countries and country.code != "GB":
                 line_notes = [
                     _(
-                        "On invoice '%s', the source/destination country "
-                        "is '%s' which is not part of the European Union."
-                    )
-                    % (inv.name, country.name)
+                        "On invoice '{invoice}', the source/destination country "
+                        "is '{country}' which is not part of the European Union."
+                    ).format(invoice=inv.display_name, country=country.display_name)
                 ]
                 self._format_line_note(inv_line, notedict, line_notes)
         if country and country.code == "GB" and self.year >= "2021":
@@ -298,36 +288,34 @@ class IntrastatProductDeclaration(models.Model):
             if not vat:
                 line_notes = [
                     _(
-                        "On invoice '%s', the source/destination country "
-                        "is United-Kingdom and the fiscal position is '%s'. "
+                        "On invoice '{invoice}', the source/destination country "
+                        "is United-Kingdom and the fiscal position is '{fp}'. "
                         "Make sure that the fiscal position is right. If "
                         "the origin/destination is Northern Ireland, please "
-                        "set the VAT number of the partner '%s' in Odoo with "
+                        "set the VAT number of the partner '{partner}' in Odoo with "
                         "its new VAT number starting with 'XI' following Brexit."
-                    )
-                    % (
-                        inv.name,
-                        inv.fiscal_position_id.display_name,
-                        inv.commercial_partner_id.display_name,
+                    ).format(
+                        invoice=inv.display_name,
+                        fp=inv.fiscal_position_id.display_name,
+                        partner=inv.commercial_partner_id.display_name,
                     )
                 ]
                 self._format_line_note(inv_line, notedict, line_notes)
             elif not vat.startswith("XI"):
                 line_notes = [
                     _(
-                        "On invoice '%s', the source/destination country "
-                        "is United-Kingdom, the fiscal position is '%s' and "
-                        "the partner's VAT number is '%s'. "
+                        "On invoice '{invoice}', the source/destination country "
+                        "is United-Kingdom, the fiscal position is '{fp}' and "
+                        "the partner's VAT number is '{partner_vat}'. "
                         "Make sure that the fiscal position is right. If "
                         "the origin/destination is Northern Ireland, please "
-                        "update the VAT number of the partner '%s' in Odoo with "
+                        "update the VAT number of the partner '{partner}' in Odoo with "
                         "its new VAT number starting with 'XI' following Brexit."
-                    )
-                    % (
-                        inv.name,
-                        inv.fiscal_position_id.display_name,
-                        vat,
-                        inv.commercial_partner_id.display_name,
+                    ).format(
+                        invoice=inv.display_name,
+                        fp=inv.fiscal_position_id.display_name,
+                        partner_vat=vat,
+                        partner=inv.commercial_partner_id.display_name,
                     )
                 ]
                 self._format_line_note(inv_line, notedict, line_notes)
@@ -382,10 +370,12 @@ class IntrastatProductDeclaration(models.Model):
             else:
                 line_notes = [
                     _(
-                        "Conversion from unit of measure '%s' to '%s' "
-                        "is not implemented yet."
+                        "Conversion from unit of measure '{src_uom}' to '{dest_uom}' "
+                        "is not implemented."
+                    ).format(
+                        src_uom=source_uom.display_name,
+                        dest_uom=target_uom.display_name,
                     )
-                    % (source_uom.name, target_uom.name)
                 ]
                 self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
@@ -414,10 +404,9 @@ class IntrastatProductDeclaration(models.Model):
         else:
             line_notes = [
                 _(
-                    "Conversion from unit of measure '%s' to 'Kg' "
-                    "is not implemented yet. It is needed for product '%s'."
-                )
-                % (source_uom.name, product.display_name)
+                    "Conversion from unit of measure '{uom}' to 'Kg' "
+                    "is not implemented. It is needed for product '{product}'."
+                ).format(uom=source_uom.display_name, product=product.display_name)
             ]
             self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
@@ -501,18 +490,18 @@ class IntrastatProductDeclaration(models.Model):
                 if vat.startswith("GB"):
                     line_notes = [
                         _(
-                            "VAT number of partner '%s' is '%s'. If this partner "
-                            "is from Northern Ireland, his VAT number should be "
+                            "VAT number of partner '{partner}' is '{partner_vat}'. "
+                            "If this partner is from Northern Ireland, "
+                            "his VAT number should be "
                             "updated to his new VAT number starting with 'XI' "
                             "following Brexit. If this partner is from Great Britain, "
-                            "maybe the fiscal position was wrong on invoice '%s' "
-                            "(the fiscal position was '%s')."
-                        )
-                        % (
-                            inv.commercial_partner_id.display_name,
-                            vat,
-                            inv.name,
-                            inv.fiscal_position_id.display_name,
+                            "maybe the fiscal position was wrong on invoice '{invoice}' "
+                            "(the fiscal position was '{fp}')."
+                        ).format(
+                            partner=inv.commercial_partner_id.display_name,
+                            partner_vat=vat,
+                            invoice=inv.display_name,
+                            fp=inv.fiscal_position_id.display_name,
                         )
                     ]
                     self._format_line_note(inv_line, notedict, line_notes)
@@ -526,7 +515,7 @@ class IntrastatProductDeclaration(models.Model):
         return vat
 
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
-        """ placeholder for localization modules """
+        """placeholder for localization modules"""
 
     def _handle_invoice_accessory_cost(
         self,
@@ -602,11 +591,13 @@ class IntrastatProductDeclaration(models.Model):
             return False
 
     def _gather_invoices_init(self, notedict):
-        """ placeholder for localization modules """
+        """placeholder for localization modules"""
 
     def _format_line_note(self, line, notedict, line_notes):
         indent = 8 * " "
-        note = _("Invoice %s, line %s") % (line.move_id.name, notedict["line_nbr"])
+        note = _("Invoice {invoice}, line {line}").format(
+            invoice=line.move_id.display_name, line=notedict["line_nbr"]
+        )
         note += ":\n"
         for line_note in line_notes:
             note += indent + line_note
@@ -884,7 +875,7 @@ class IntrastatProductDeclaration(models.Model):
         return vals
 
     def generate_declaration(self):
-        """ generate declaration lines """
+        """generate declaration lines"""
         self.ensure_one()
         assert self.valid, "Computation lines are not valid"
         self.message_post(body=_("Generate Declaration Lines"))
@@ -915,7 +906,7 @@ class IntrastatProductDeclaration(models.Model):
             )
 
     def generate_xml(self):
-        """ generate the INTRASTAT Declaration XML file """
+        """generate the INTRASTAT Declaration XML file"""
         self.ensure_one()
         if self.xml_attachment_id:
             raise UserError(
@@ -1031,7 +1022,7 @@ class IntrastatProductComputationLine(models.Model):
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
-    valid = fields.Boolean(compute="_compute_check_validity", string="Valid")
+    valid = fields.Boolean(compute="_compute_check_validity")
     invoice_line_id = fields.Many2one(
         "account.move.line", string="Invoice Line", readonly=True
     )
@@ -1060,9 +1051,7 @@ class IntrastatProductComputationLine(models.Model):
         string="Suppl. Unit",
         help="Intrastat Supplementary Unit",
     )
-    weight = fields.Float(
-        string="Weight", digits="Stock Weight", help="Net weight in Kg"
-    )
+    weight = fields.Float(digits="Stock Weight", help="Net weight in Kg")
     suppl_unit_qty = fields.Float(
         string="Suppl. Unit Qty",
         digits="Product Unit of Measure",
@@ -1099,7 +1088,7 @@ class IntrastatProductComputationLine(models.Model):
 
     @api.depends("transport_id")
     def _compute_check_validity(self):
-        """ TO DO: logic based upon fields """
+        """TO DO: logic based upon fields"""
         for this in self:
             this.valid = True
 
@@ -1159,7 +1148,7 @@ class IntrastatProductDeclarationLine(models.Model):
         string="Suppl. Unit",
         help="Intrastat Supplementary Unit",
     )
-    weight = fields.Integer(string="Weight", help="Net weight in Kg")
+    weight = fields.Integer(help="Net weight in Kg")
     suppl_unit_qty = fields.Integer(
         string="Suppl. Unit Qty", help="Supplementary Units Quantity"
     )

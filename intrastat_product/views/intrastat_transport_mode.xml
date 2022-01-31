@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  © 2010-2017 Akretion (http://www.akretion.com/)
-  © 2015-2017 Noviat (http://www.noviat.com/)
+  Copyright 2010-2012 Akretion (http://www.akretion.com/)
+  Copyright 2015-2012 Noviat (http://www.noviat.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   @author Luc De Meyer <luc.demeyer@noviat.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -12,7 +12,7 @@
         <field name="name">intrastat.transport.mode.form</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transport Mode">
+            <form>
                 <group>
                     <field name="name" />
                     <field name="code" />
@@ -25,7 +25,7 @@
         <field name="name">intrastat.transport.mode.tree</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Transportat Modes">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="description" optional="show" />
@@ -36,7 +36,7 @@
         <field name="name">intrastat.transport.mode.search</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Transport Modes">
+            <search>
                 <field
                     name="name"
                     string="Name, Code or Description"

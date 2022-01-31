@@ -14,9 +14,9 @@ class IntrastatTransportMode(models.Model):
         ("intrastat_transport_code_unique", "UNIQUE(code)", "Code must be unique.")
     ]
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name", required=True, translate=True)
-    description = fields.Char(string="Description", translate=True)
+    code = fields.Char(required=True)
+    name = fields.Char(required=True, translate=True)
+    description = fields.Char(translate=True)
 
     @api.depends("name", "code")
     def name_get(self):

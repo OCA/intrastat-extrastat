@@ -3,7 +3,7 @@
 from freezegun import freeze_time
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .common_purchase import IntrastatPurchaseCommon
 
@@ -49,5 +49,5 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self._check_line_values(final=True)
 
 
-class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, SavepointCase):
+class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, TransactionCase):
     """Test Intrastat Purchase"""

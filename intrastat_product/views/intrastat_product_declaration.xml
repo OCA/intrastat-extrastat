@@ -4,7 +4,7 @@
         <field name="name">intrastat.product.declaration.form</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Product Declaration">
+            <form>
                 <header>
                     <button
                         name="action_gather"
@@ -129,7 +129,7 @@
         <field name="name">intrastat.product.declaration.tree</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Product Declarations">
+            <tree>
                 <field name="year_month" decoration-bf="1" />
                 <field name="revision" />
                 <field
@@ -139,7 +139,7 @@
                     decoration-warning="declaration_type == 'dispatches'"
                 />
                 <field name="num_decl_lines" />
-                <field name="total_amount" sum="Total amount" />
+                <field name="total_amount" sum="1" />
                 <field name="currency_id" />
                 <field
                     name="state"
@@ -154,7 +154,7 @@
         <field name="name">intrastat.product.declaration.search</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Product Declarations">
+            <search>
                 <field name="year_month" />
                 <filter
                     name="arrivals"
@@ -192,7 +192,7 @@
         <field name="name">intrastat.product.declaration.graph</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <graph string="Intrastat Product" type="bar" stacked="False">
+            <graph type="bar" stacked="False">
                 <field name="year_month" type="row" />
                 <field name="declaration_type" type="row" />
                 <field name="total_amount" type="measure" />
@@ -203,7 +203,7 @@
         <field name="name">intrastat.product.declaration.pivot</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <pivot string="Intrastat Product">
+            <pivot>
                 <field name="year_month" type="row" />
                 <field name="declaration_type" type="col" />
                 <field name="total_amount" type="measure" />
@@ -215,7 +215,7 @@
         <field name="name">intrastat.product.computation.line.form</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transaction">
+            <form>
                 <group string="Transaction" name="transaction">
                     <field
                         name="parent_id"
@@ -271,7 +271,7 @@
         <field name="name">intrastat.product.computation.line.tree</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="arch" type="xml">
-            <tree string="Transactions">
+            <tree>
                 <field
                     name="parent_id"
                     invisible="not context.get('intrastat_product_computation_line_main_view')"
@@ -316,7 +316,7 @@
         <field name="name">intrastat.product.declaration.line.form</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Declaration Line">
+            <form>
                 <group name="declaration">
                     <field
                         name="parent_id"
@@ -364,7 +364,7 @@
         <field name="name">intrastat.product.declaration.line.tree</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Declaration Lines">
+            <tree>
                 <field
                     name="parent_id"
                     invisible="not context.get('intrastat_product_declaration_line_main_view')"

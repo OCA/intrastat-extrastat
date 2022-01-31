@@ -4,7 +4,7 @@
         <field name="name">intrastat.region.form</field>
         <field name="model">intrastat.region</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Region">
+            <form>
                 <group name="main">
                     <field name="code" />
                     <field name="name" />
@@ -19,7 +19,7 @@
         <field name="name">intrastat.region.tree</field>
         <field name="model">intrastat.region</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Region">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="description" optional="show" />

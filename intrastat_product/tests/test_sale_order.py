@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from freezegun import freeze_time
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .common_sale import IntrastatSaleCommon
 
@@ -84,5 +84,5 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self._check_line_values(final=True)
 
 
-class TestIntrastatProductSaleCase(TestIntrastatProductSale, SavepointCase):
+class TestIntrastatProductSaleCase(TestIntrastatProductSale, TransactionCase):
     """Test Intrastat Sale"""

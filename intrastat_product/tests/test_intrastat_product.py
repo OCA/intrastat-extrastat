@@ -5,7 +5,7 @@ from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 from .common import IntrastatProductCommon
@@ -123,5 +123,5 @@ class TestIntrastatProduct(IntrastatProductCommon):
         self._test_invoice_report(2)
 
 
-class TestIntrastatProductCase(TestIntrastatProduct, SavepointCase):
+class TestIntrastatProductCase(TestIntrastatProduct, TransactionCase):
     """Test Intrastat Product"""

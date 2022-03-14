@@ -13,7 +13,7 @@ class ProductTemplate(models.Model):
     hs_code_id = fields.Many2one(
         "hs.code",
         string="H.S. Code",
-        company_dependent=True,
+        company_dependent=False,
         ondelete="restrict",
         help="Harmonised System Code. Nomenclature is "
         "available from the World Customs Organisation, see "

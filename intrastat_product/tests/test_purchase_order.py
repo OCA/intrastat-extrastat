@@ -50,4 +50,4 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
 
 
 class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, SavepointCase):
-    """ Test Intrastat Purchase """
+    """Test Intrastat Purchase"""

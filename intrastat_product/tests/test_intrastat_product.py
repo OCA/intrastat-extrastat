@@ -64,4 +64,4 @@ class TestIntrastatProduct(IntrastatProductCommon):
 
 
 class TestIntrastatProductCase(TestIntrastatProduct, SavepointCase):
-    """ Test Intrastat Product """
+    """Test Intrastat Product"""

@@ -199,7 +199,7 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.depends("month")
     def _compute_check_validity(self):
-        """ TO DO: logic based upon computation lines """
+        """TO DO: logic based upon computation lines"""
         for this in self:
             this.valid = True
 
@@ -526,7 +526,7 @@ class IntrastatProductDeclaration(models.Model):
         return vat
 
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
-        """ placeholder for localization modules """
+        """placeholder for localization modules"""
 
     def _handle_invoice_accessory_cost(
         self,
@@ -602,7 +602,7 @@ class IntrastatProductDeclaration(models.Model):
             return False
 
     def _gather_invoices_init(self, notedict):
-        """ placeholder for localization modules """
+        """placeholder for localization modules"""
 
     def _format_line_note(self, line, notedict, line_notes):
         indent = 8 * " "
@@ -884,7 +884,7 @@ class IntrastatProductDeclaration(models.Model):
         return vals
 
     def generate_declaration(self):
-        """ generate declaration lines """
+        """generate declaration lines"""
         self.ensure_one()
         assert self.valid, "Computation lines are not valid"
         self.message_post(body=_("Generate Declaration Lines"))
@@ -915,7 +915,7 @@ class IntrastatProductDeclaration(models.Model):
             )
 
     def generate_xml(self):
-        """ generate the INTRASTAT Declaration XML file """
+        """generate the INTRASTAT Declaration XML file"""
         self.ensure_one()
         if self.xml_attachment_id:
             raise UserError(
@@ -1099,7 +1099,7 @@ class IntrastatProductComputationLine(models.Model):
 
     @api.depends("transport_id")
     def _compute_check_validity(self):
-        """ TO DO: logic based upon fields """
+        """TO DO: logic based upon fields"""
         for this in self:
             this.valid = True
 

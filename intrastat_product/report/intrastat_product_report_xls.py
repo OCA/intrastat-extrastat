@@ -28,6 +28,10 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
         return val
 
     def _get_template(self, declaration):
+        """
+        Return a dictionary that contains columns specifications
+        see: report_xlsx_helper / _write_line() method
+        """
 
         template = {
             "product": {

@@ -41,6 +41,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 "width": 36,
             },
+            "product_origin_country_code": {
+                "header": {"type": "string", "value": self._("Product C/O Code")},
+                "line": {
+                    "type": "string",
+                    "value": self._render("line.product_origin_country_id.code or ''"),
+                },
+                "width": 28,
+            },
             "product_origin_country": {
                 "header": {"type": "string", "value": self._("Product C/O")},
                 "line": {
@@ -56,6 +64,17 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                     "value": self._render("line.hs_code_id.local_code"),
                 },
                 "width": 14,
+            },
+            "src_dest_country_code": {
+                "header": {
+                    "type": "string",
+                    "value": self._("Country of Origin/Destination"),
+                },
+                "line": {
+                    "type": "string",
+                    "value": self._render("line.src_dest_country_id.code"),
+                },
+                "width": 28,
             },
             "src_dest_country": {
                 "header": {
@@ -95,6 +114,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                     "format": FORMATS["format_tcell_amount_right"],
                 },
                 "width": 18,
+            },
+            "transaction_code": {
+                "header": {
+                    "type": "string",
+                    "value": self._("Intrastat Transaction code"),
+                },
+                "line": {"value": self._render("line.transaction_id.code")},
+                "width": 36,
             },
             "transaction": {
                 "header": {"type": "string", "value": self._("Intrastat Transaction")},
@@ -137,6 +164,11 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "incoterm": {
                 "header": {"type": "string", "value": self._("Incoterm")},
                 "line": {"value": self._render("line.incoterm_id.name or ''")},
+                "width": 14,
+            },
+            "transport_code": {
+                "header": {"type": "string", "value": self._("Transport Mode Code")},
+                "line": {"value": self._render("line.transport_id.code or ''")},
                 "width": 14,
             },
             "transport": {

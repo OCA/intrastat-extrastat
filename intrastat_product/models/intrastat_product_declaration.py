@@ -984,13 +984,17 @@ class IntrastatProductDeclaration(models.Model):
         """
         return [
             "hs_code",
+            "product_origin_country_code",
             "product_origin_country",
+            "src_dest_country_code",
             "src_dest_country",
             "amount_company_currency",
+            "transaction_code",
             "transaction",
             "weight",
             "suppl_unit_qty",
             "suppl_unit",
+            "transport_code",
             "transport",
             "vat",
         ]

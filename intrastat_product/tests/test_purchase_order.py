@@ -48,6 +48,14 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self.declaration.generate_declaration()
         self._check_line_values(final=True)
 
+        # Check the Excel computation file
+        file_data = self._create_xls()
+        self.check_xls(file_data[0])
+
+        # Check the Excel declaration file
+        file_data = self._create_xls(True)
+        self.check_xls(file_data[0], True)
+
 
 class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, SavepointCase):
     """Test Intrastat Purchase"""

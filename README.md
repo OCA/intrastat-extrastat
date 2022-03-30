@@ -1,6 +1,7 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=14.0)
-[![Build Status](https://travis-ci.com/OCA/intrastat-extrastat.svg?branch=14.0)](https://travis-ci.com/OCA/intrastat-extrastat)
+[![Pre-commit Status](https://github.com/OCA/intrastat-extrastat/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/intrastat-extrastat/actions/workflows/pre-commit.yml?query=branch%3A14.0)
+[![Build Status](https://github.com/OCA/intrastat-extrastat/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/intrastat-extrastat/actions/workflows/test.yml?query=branch%3A14.0)
 [![codecov](https://codecov.io/gh/OCA/intrastat-extrastat/branch/14.0/graph/badge.svg)](https://codecov.io/gh/OCA/intrastat-extrastat)
 [![Translation Status](https://translation.odoo-community.org/widgets/intrastat-extrastat-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/intrastat-extrastat-14-0/?utm_source=widget)
 

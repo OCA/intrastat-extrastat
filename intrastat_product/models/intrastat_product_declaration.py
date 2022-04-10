@@ -721,6 +721,9 @@ class IntrastatProductDeclaration(models.Model):
                 total_inv_product_cc += amount_company_currency
 
                 if inv_intrastat_line:
+                    product_origin_country = (
+                        inv_intrastat_line.product_origin_country_id
+                    )
                     product_origin_country_code = (
                         inv_intrastat_line.product_origin_country_code
                     )
@@ -745,6 +748,7 @@ class IntrastatProductDeclaration(models.Model):
                     "amount_company_currency": amount_company_currency,
                     "amount_accessory_cost_company_currency": 0.0,
                     "transaction_id": intrastat_transaction.id,
+                    "product_origin_country_id": product_origin_country.id or False,
                     "product_origin_country_code": product_origin_country_code,
                     "region_id": region and region.id or False,
                     "vat": vat,
@@ -868,6 +872,7 @@ class IntrastatProductDeclaration(models.Model):
             "transport_id": computation_line.transport_id.id,
             "region_id": computation_line.region_id.id,
             "parent_id": computation_line.parent_id.id,
+            "product_origin_country_id": computation_line.product_origin_country_id.id,
             "product_origin_country_code": computation_line.product_origin_country_code,
             "amount_company_currency": 0.0,
             "vat": computation_line.vat,

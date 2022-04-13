@@ -8,13 +8,19 @@ class IntrastatProductDeclaration(models.Model):
     _inherit = "intrastat.product.declaration"
 
     def _get_product_origin_country(self, inv_line, notedict):
+        """
+        Retrieves the country of origin on the lot related to sale/purchase
+        If not found, call back to original method
+        """
+        country = self.env["res.country"].browse()
         if inv_line.purchase_line_id and inv_line.purchase_line_id.move_ids:
-            return first(
+            country = first(
                 inv_line.purchase_line_id.move_ids.mapped("lot_ids")
             ).origin_country_id
         elif inv_line.sale_line_ids and inv_line.sale_line_ids.mapped("move_ids"):
-            return first(
+            country = first(
                 inv_line.sale_line_ids.mapped("move_ids.lot_ids")
             ).origin_country_id
-        else:
-            return super()._get_product_origin_country(self, inv_line, notedict)
+        if country:
+            return country
+        return super()._get_product_origin_country(inv_line, notedict)

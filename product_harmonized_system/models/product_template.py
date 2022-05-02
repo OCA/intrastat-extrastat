@@ -33,9 +33,9 @@ class ProductTemplate(models.Model):
         domain="[('country_id', '=?', origin_country_id)]",
         help="Country State of origin of the product.\n"
         "This field is used for the Intrastat declaration, "
-        "selecting 'Northern Ireland' will set the code 'XI' "
+        "selecting one of the Northern Ireland counties will set the code 'XI' "
         "for products from the United Kingdom whereas code 'XU' "
-        "will be used for the other UK states.",
+        "will be used for the other UK counties.",
     )
 
 

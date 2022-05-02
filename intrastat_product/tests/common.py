@@ -39,7 +39,7 @@ class IntrastatProductCommon(IntrastatCommon):
 
     @classmethod
     def _init_regions(cls):
-        # Create Belgium Region
+        # Create Region
         cls._create_region()
 
         vals = {
@@ -75,7 +75,7 @@ class IntrastatProductCommon(IntrastatCommon):
     @classmethod
     def _create_region(cls, vals=None):
         values = {
-            "code": "BE_w",
+            "code": "2",
             "country_id": cls.env.ref("base.be").id,
             "company_id": cls.env.company.id,
             "description": "Belgium Walloon Region",

@@ -1,5 +1,5 @@
 # Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2021 Noviat (http://www.noviat.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -492,21 +492,20 @@ class IntrastatProductDeclaration(models.Model):
     def _get_product_origin_country_code(
         self, inv_line, product_origin_country, notedict
     ):
-        product_origin_country_code = "QU"
+        cc = "QU"
         if product_origin_country.code:
-            product_origin_country_code = product_origin_country.code
+            cc = product_origin_country.code
             year = self.year or str(inv_line.move_id.date.year)
             if year >= "2021":
-                if (
-                    hasattr(inv_line.product_id, "origin_state_id")
-                    and inv_line.product_id.origin_state_id
-                    and inv_line.product_id.origin_state_id.name.lower()
-                    == "northern ireland"
-                ):
-                    product_origin_country_code = "XI"
-                elif inv_line.product_id.origin_country_id.code == "GB":
-                    product_origin_country_code = "XU"
-        return product_origin_country_code
+                product_origin_state = getattr(
+                    inv_line.product_id,
+                    "origin_state_id",
+                    self.env["res.country.state"],
+                )
+                cc = self.env["res.partner"]._get_intrastat_country_code(
+                    product_origin_country, product_origin_state
+                )
+        return cc
 
     def _get_vat(self, inv_line, notedict):
         vat = False
@@ -683,6 +682,9 @@ class IntrastatProductDeclaration(models.Model):
                 partner_country = self._get_partner_country(
                     inv_line, notedict, eu_countries
                 )
+                partner_country_code = (
+                    invoice.commercial_partner_id._get_intrastat_country_code()
+                )
 
                 if inv_intrastat_line:
                     hs_code = inv_intrastat_line.hs_code_id
@@ -741,6 +743,7 @@ class IntrastatProductDeclaration(models.Model):
                     "parent_id": self.id,
                     "invoice_line_id": inv_line.id,
                     "src_dest_country_id": partner_country.id,
+                    "src_dest_country_code": partner_country_code,
                     "product_id": inv_line.product_id.id,
                     "hs_code_id": hs_code.id,
                     "weight": weight,
@@ -847,7 +850,7 @@ class IntrastatProductDeclaration(models.Model):
     @api.model
     def _group_line_hashcode_fields(self, computation_line):
         return {
-            "country": computation_line.src_dest_country_id.id or False,
+            "country": computation_line.src_dest_country_code,
             "hs_code_id": computation_line.hs_code_id.id or False,
             "intrastat_unit": computation_line.intrastat_unit_id.id or False,
             "transaction": computation_line.transaction_id.id or False,
@@ -866,6 +869,7 @@ class IntrastatProductDeclaration(models.Model):
     def _prepare_grouped_fields(self, computation_line, fields_to_sum):
         vals = {
             "src_dest_country_id": computation_line.src_dest_country_id.id,
+            "src_dest_country_code": computation_line.src_dest_country_code,
             "intrastat_unit_id": computation_line.intrastat_unit_id.id,
             "hs_code_id": computation_line.hs_code_id.id,
             "transaction_id": computation_line.transaction_id.id,
@@ -1074,6 +1078,15 @@ class IntrastatProductComputationLine(models.Model):
         string="Country",
         help="Country of Origin/Destination",
     )
+    src_dest_country_code = fields.Char(
+        string="Country Code",
+        compute="_compute_src_dest_country_code",
+        store=True,
+        required=True,
+        readonly=False,
+        help="2 digit code of country of origin/destination.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+    )
     product_id = fields.Many2one(
         "product.product", related="invoice_line_id.product_id"
     )
@@ -1133,6 +1146,14 @@ class IntrastatProductComputationLine(models.Model):
     incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
     transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
 
+    @api.onchange("src_dest_country_id")
+    def _onchange_src_dest_country_id(self):
+        self.src_dest_country_code = self.src_dest_country_id.code
+        if self.parent_id.year >= "2021":
+            self.src_dest_country_code = self.env[
+                "res.partner"
+            ]._get_intrastat_country_code(country=self.src_dest_country_id)
+
     @api.depends("transport_id")
     def _compute_check_validity(self):
         """TO DO: logic based upon fields"""
@@ -1188,6 +1209,12 @@ class IntrastatProductDeclarationLine(models.Model):
         string="Country",
         help="Country of Origin/Destination",
     )
+    src_dest_country_code = fields.Char(
+        string="Country Code",
+        required=True,
+        help="2 digit code of country of origin/destination.\n"
+        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+    )
     hs_code_id = fields.Many2one("hs.code", string="Intrastat Code")
     intrastat_unit_id = fields.Many2one(
         "intrastat.unit",
@@ -1229,6 +1256,14 @@ class IntrastatProductDeclarationLine(models.Model):
     # extended declaration
     incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
     transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
+
+    @api.onchange("src_dest_country_id")
+    def _onchange_src_dest_country_id(self):
+        self.src_dest_country_code = self.src_dest_country_id.code
+        if self.parent_id.year >= "2021":
+            self.src_dest_country_code = self.env[
+                "res.partner"
+            ]._get_intrastat_country_code(country=self.src_dest_country_id)
 
     @api.constrains("vat")
     def _check_vat(self):

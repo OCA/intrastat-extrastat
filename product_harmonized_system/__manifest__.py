@@ -9,7 +9,7 @@
 
 {
     "name": "Product Harmonized System Codes",
-    "version": "14.0.2.1.0",
+    "version": "14.0.2.2.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",

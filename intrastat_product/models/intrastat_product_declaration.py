@@ -1052,7 +1052,6 @@ class IntrastatProductComputationLine(models.Model):
         "res.country",
         string="Country",
         help="Country of Origin/Destination",
-        domain=[("intrastat", "=", True)],
     )
     product_id = fields.Many2one(
         "product.product", related="invoice_line_id.product_id"

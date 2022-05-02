@@ -59,6 +59,22 @@ msgid "Company"
 msgstr "Société"
 
 #. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_state_id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_state_id
+msgid "Country State of Origin"
+msgstr ""
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_state_id
+#: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_state_id
+msgid ""
+"Country State of origin of the product.\n"
+"This field is used for the Intrastat declaration, selecting one of the "
+"Northern Ireland counties will set the code 'XI' for products from the "
+"United Kingdom whereas code 'XU' will be used for the other UK counties."
+msgstr ""
+
+#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"

@@ -489,6 +489,13 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return incoterm
 
+    def _get_product_origin_country(self, inv_line, notedict):
+        _logger.warning(
+            "Method '_get_product_origin_country' is deprecated, "
+            "please use '_get_product_origin_country_code'."
+        )
+        return inv_line.product_id.origin_country_id
+
     def _get_product_origin_country_code(
         self, inv_line, product_origin_country, notedict
     ):

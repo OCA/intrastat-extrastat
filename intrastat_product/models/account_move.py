@@ -1,5 +1,5 @@
 # Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2021 Noviat (http://www.noviat.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
@@ -94,16 +94,21 @@ class AccountMove(models.Model):
             if not hs_code:
                 return vals
             weight, qty = decl_model._get_weight_and_supplunits(line, hs_code, notedict)
-            product_origin_country = line.product_id.origin_country_id
-            product_origin_country_code = decl_model._get_product_origin_country_code(
-                line, product_origin_country
-            )
+            product_country = line.product_id.origin_country_id
+            product_state = line.product_id.origin_state_id
+            country = product_country or product_state.country_id
+            product_origin_country_code = "QU"
+            if country:
+                product_origin_country_code = self.env[
+                    "res.partner"
+                ]._get_intrastat_country_code(product_country, product_state)
             vals.update(
                 {
                     "invoice_line_id": line.id,
                     "hs_code_id": hs_code.id,
                     "transaction_weight": int(weight),
                     "transaction_suppl_unit_qty": qty,
+                    "product_origin_country_id": line.product_id.origin_country_id.id,
                     "product_origin_country_code": product_origin_country_code,
                 }
             )

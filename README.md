@@ -1,20 +1,37 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/${REPO_ID}/${BRANCH_NAME}.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-${REPO_NAME}-${REPO_ID})
-[![Build Status](https://travis-ci.org/OCA/${REPO_NAME}.svg?branch=${BRANCH_NAME})](https://travis-ci.org/OCA/${REPO_NAME})
-[![Coverage Status](https://coveralls.io/repos/OCA/${REPO_NAME}/badge.svg?branch=${BRANCH_NAME}&service=github)](https://coveralls.io/github/OCA/${REPO_NAME}?branch=${BRANCH_NAME})
-[![Code Climate](https://codeclimate.com/github/OCA/${REPO_NAME}/badges/gpa.svg)](https://codeclimate.com/github/OCA/${REPO_NAME})
 
-# ${REPO_NAME_VERBOSE}
+[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=13.0)
+[![Pre-commit Status](https://github.com/OCA/intrastat-extrastat/actions/workflows/pre-commit.yml/badge.svg?branch=13.0)](https://github.com/OCA/intrastat-extrastat/actions/workflows/pre-commit.yml?query=branch%3A13.0)
+[![Build Status](https://github.com/OCA/intrastat-extrastat/actions/workflows/test.yml/badge.svg?branch=13.0)](https://github.com/OCA/intrastat-extrastat/actions/workflows/test.yml?query=branch%3A13.0)
+[![codecov](https://codecov.io/gh/OCA/intrastat-extrastat/branch/13.0/graph/badge.svg)](https://codecov.io/gh/OCA/intrastat-extrastat)
+[![Translation Status](https://translation.odoo-community.org/widgets/intrastat-extrastat-13-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/intrastat-extrastat-13-0/?utm_source=widget)
 
-${REPO_DESCRIPTION}
+<!-- /!\ do not modify above this line -->
 
+# Intrastat and Extrastat Odoo modules
 
+None
 
-Translation Status
-------------------
-[![Transifex Status](https://www.transifex.com/projects/p/${ORG_NAME}-${REPO_NAME}-${BRANCH_NAME_WITH_DASH}/chart/image_png)](https://www.transifex.com/projects/p/${ORG_NAME}-${REPO_NAME}-${BRANCH_NAME_WITH_DASH})
+<!-- /!\ do not modify below this line -->
+
+<!-- prettier-ignore-start -->
+
+[//]: # (addons)
+
+This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+
+[//]: # (end addons)
+
+<!-- prettier-ignore-end -->
+
+## Licenses
+
+This repository is licensed under [AGPL-3.0](LICENSE).
+
+However, each module can have a totally different license, as long as they adhere to Odoo Community Association (OCA)
+policy. Consult each module's `__manifest__.py` file, which contains a `license` key
+that explains its license.
 
 ----
-
-OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
+OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit
+organization whose mission is to support the collaborative development of Odoo features
+and promote its widespread use.

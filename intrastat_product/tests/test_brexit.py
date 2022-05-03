@@ -109,3 +109,18 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         self.assertEqual(cl_xu.product_origin_country_code, "XU")
         self.assertEqual(dl_xi.product_origin_country_code, "XI")
         self.assertEqual(dl_xu.product_origin_country_code, "XU")
+
+    def test_brexit_invoice_intrastat_details(self):
+        inv_in_xi = self.inv_obj.with_context(default_move_type="in_invoice").create(
+            {
+                "partner_id": self.partner_xi.id,
+                "fiscal_position_id": self.position.id,
+            }
+        )
+        with Form(inv_in_xi) as inv_form:
+            with inv_form.invoice_line_ids.new() as ail:
+                ail.product_id = self.product_xi
+        inv_in_xi.invoice_date = inv_in_xi.date
+        inv_in_xi.compute_intrastat_lines()
+        ilines = inv_in_xi.intrastat_line_ids
+        self.assertEqual(ilines.product_origin_country_code, "XI")

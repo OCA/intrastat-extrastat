@@ -13,7 +13,8 @@
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",
-    "author": "brain-tec AG, Akretion, Noviat, " "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/intrastat-extrastat",
+    "author": "brain-tec AG, Akretion, Noviat, Odoo Community Association (OCA)",
     "depends": ["product"],
     "excludes": ["account_intrastat"],
     "data": [

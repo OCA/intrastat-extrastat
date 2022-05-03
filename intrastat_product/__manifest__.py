@@ -11,6 +11,7 @@
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat Product",
+    "website": "https://github.com/OCA/intrastat-extrastat",
     "author": "brain-tec AG, Akretion, Noviat, Odoo Community Association (OCA)",
     "depends": [
         "intrastat_base",

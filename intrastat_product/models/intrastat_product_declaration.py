@@ -416,7 +416,6 @@ class IntrastatProductDeclaration(models.Model):
 
     def _update_computation_line_vals(self, inv_line, line_vals):
         """ placeholder for localization modules """
-        pass
 
     def _handle_invoice_accessory_cost(
         self,
@@ -489,7 +488,6 @@ class IntrastatProductDeclaration(models.Model):
 
     def _gather_invoices_init(self):
         """ placeholder for localization modules """
-        pass
 
     def _format_line_note(self, line, line_nbr, line_notes):
         indent = 8 * " "

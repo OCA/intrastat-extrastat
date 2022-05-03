@@ -8,6 +8,7 @@
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Hide native hs_code field provided by the delivery module",
+    "website": "https://github.com/OCA/intrastat-extrastat",
     "author": "Akretion, Odoo Community Association (OCA)",
     "depends": ["delivery", "product_harmonized_system"],
     "data": ["views/product_template.xml"],

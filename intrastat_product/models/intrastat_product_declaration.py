@@ -4,6 +4,7 @@
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
+import warnings
 from datetime import date
 
 from dateutil.relativedelta import relativedelta
@@ -490,9 +491,10 @@ class IntrastatProductDeclaration(models.Model):
         return incoterm
 
     def _get_product_origin_country(self, inv_line, notedict):
-        _logger.warning(
+        warnings.warn(
             "Method '_get_product_origin_country' is deprecated, "
-            "please use '_get_product_origin_country_code'."
+            "please use '_get_product_origin_country_code'.",
+            DeprecationWarning,
         )
         return inv_line.product_id.origin_country_id
 

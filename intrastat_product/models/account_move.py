@@ -49,7 +49,6 @@ class AccountMove(models.Model):
     intrastat_line_ids = fields.One2many(
         comodel_name="account.move.intrastat.line",
         inverse_name="move_id",
-        groups="intrastat_product.group_invoice_intrastat_transaction_details",
         string="Intrastat declaration details",
     )
 

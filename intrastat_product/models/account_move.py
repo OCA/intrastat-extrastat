@@ -3,8 +3,7 @@
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 
 class AccountMove(models.Model):
@@ -180,6 +179,7 @@ class AccountMoveIntrastatLine(models.Model):
     )
     product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
+        size=2,
         required=True,
         default="QU",
         help="2 digit code of country of origin of the product except for the UK.\n"
@@ -212,10 +212,3 @@ class AccountMoveIntrastatLine(models.Model):
             vals["product_origin_country_code"] = (
                 vals["product_origin_country_code"].upper().strip()
             )
-            if len(vals["product_origin_country_code"]) != 2:
-                raise UserError(
-                    _(
-                        "Intrastat transaction details error:\n"
-                        "Product Origin Country Code must be 2 characters."
-                    )
-                )

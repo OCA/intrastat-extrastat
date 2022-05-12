@@ -1143,6 +1143,7 @@ class IntrastatProductComputationLine(models.Model):
     )
     product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
+        size=2,
         required=True,
         default="QU",
         help="2 digit code of country of origin of the product except for the UK.\n"
@@ -1255,6 +1256,7 @@ class IntrastatProductDeclarationLine(models.Model):
     )
     product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
+        size=2,
         required=True,
         default="QU",
         help="2 digit code of country of origin of the product except for the UK.\n"

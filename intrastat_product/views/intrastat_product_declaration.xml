@@ -224,6 +224,7 @@
                     <field name="product_id" />
                     <field name="hs_code_id" />
                     <field name="src_dest_country_id" />
+                    <field name="src_dest_country_code" />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -250,7 +251,12 @@
                     />
                     <field name="incoterm_id" invisible="1" />
                     <field name="region_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
                     <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                    />
                     <field name="vat" />
                     <field name="partner_id" />
                     <field name="invoice_id" />
@@ -273,6 +279,7 @@
                 <field name="product_id" />
                 <field name="hs_code_id" />
                 <field name="src_dest_country_id" />
+                <field name="src_dest_country_code" />
                 <field name="amount_company_currency" />
                 <field name="amount_accessory_cost_company_currency" />
                 <field name="transaction_id" />
@@ -287,9 +294,15 @@
                     attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
                 />
                 <field name="region_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
                 <field
                     name="product_origin_country_id"
                     invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />
@@ -311,6 +324,7 @@
                     />
                     <field name="hs_code_id" />
                     <field name="src_dest_country_id" />
+                    <field name="src_dest_country_code" />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -332,7 +346,12 @@
                     />
                     <field name="region_id" invisible="1" />
                     <field name="incoterm_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
                     <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                    />
                     <field name="vat" />
                 </group>
                 <group name="computation" string="Related Transactions">
@@ -351,7 +370,8 @@
                     invisible="not context.get('intrastat_product_declaration_line_main_view')"
                 />
                 <field name="hs_code_id" />
-                <field name="src_dest_country_id" />
+                <field name="src_dest_country_id" invisible="1" />
+                <field name="src_dest_country_code" />
                 <field name="amount_company_currency" />
                 <field name="transaction_id" />
                 <field name="weight" />
@@ -365,9 +385,15 @@
                 />
                 <field name="region_id" invisible="1" />
                 <field name="incoterm_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
                 <field
                     name="product_origin_country_id"
                     invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
                     string="Product C/O"
                 />
                 <field name="vat" />

@@ -84,6 +84,24 @@ msgid "12"
 msgstr "12"
 
 #. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__product_origin_country_code
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
+msgid ""
+"2 digit code of country of origin of the product except for the UK.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+"Specify 'QU' when the country is unknown.\n"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+msgstr ""
+
+#. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "<span>Intrastat Product Declaration </span>"
 msgstr "<span>DEB</span>"
@@ -328,12 +346,22 @@ msgid "Country"
 msgstr "Pays"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
+#, fuzzy
+msgid "Country Code"
+msgstr "Code pays de la société"
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_origin_country_id
 msgid "Country of Origin"
 msgstr "Pays d'origine"
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_origin_country_code
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_origin_country_id
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_id
 msgid "Country of Origin of the Product"
 msgstr "Pays d'origine de l'article"
@@ -1735,11 +1763,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Corrigez le paramétrage de l'unité de mesure et regénérez les lignes ou "
 #~ "ajustez manuellement les lignes concernées"
-
-#, fuzzy
-#~| msgid "Company Country Code"
-#~ msgid "Country Code"
-#~ msgstr "Code pays de la société"
 
 #~ msgid "Default Incoterm for Intrastat"
 #~ msgstr "Incoterm par défaut pour la DEB"

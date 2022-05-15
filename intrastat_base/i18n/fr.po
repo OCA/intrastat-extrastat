@@ -46,12 +46,18 @@ msgid "Config Settings"
 msgstr "Configuration"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Afficher le nom"
 
@@ -67,6 +73,7 @@ msgstr "Position fiscale"
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__id
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
+#: model:ir.model.fields,field_description:intrastat_base.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -105,6 +112,7 @@ msgstr "Pièce comptable"
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company____last_update
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:intrastat_base.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -131,6 +139,12 @@ msgstr "Adresse e-mail manquante pour l'utilisateur '%s'."
 #: model:ir.model,name:intrastat_base.model_product_template
 msgid "Product Template"
 msgstr "Modèle d'article"
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/res_partner.py:0
+#, python-format
+msgid "Programming Error when calling '_get_intrastat_country_code()"
+msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position

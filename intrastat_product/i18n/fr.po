@@ -94,11 +94,17 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
 msgid ""
 "2 digit code of country of origin/destination.\n"
 "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
+msgid ""
+"2 digit code of country of origin/destination.\n"
+"Specify 'XI' for UK Northern Ireland."
 msgstr ""
 
 #. module: intrastat_product

@@ -12,7 +12,7 @@ class ProductCategory(models.Model):
 
     hs_code_id = fields.Many2one(
         'hs.code', string='H.S. Code',
-        company_dependent=True, ondelete='restrict',
+        company_dependent=False, ondelete='restrict',
         help="Harmonised System Code. If this code is not "
         "set on the product itself, it will be read here, on the "
         "related product category.")

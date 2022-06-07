@@ -31,9 +31,10 @@ class HSCode(models.Model):
         "has a few additional digits to extend the H.S. code.")
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
-        'res.company', string='Company', readonly=True, required=True,
-        default=lambda self: self.env['res.company']._company_default_get(
-            'hs.code'))
+        "res.company",
+        string="Company",
+        default=lambda self: self._default_company_id(),
+    )
     product_categ_ids = fields.One2many(
         comodel_name='product.category',
         inverse_name='hs_code_id',
@@ -44,6 +45,10 @@ class HSCode(models.Model):
         inverse_name='hs_code_id',
         string='Products',
         readonly=True)
+
+    @api.model
+    def _default_company_id(self):
+        return False
 
     @api.multi
     @api.depends('local_code')

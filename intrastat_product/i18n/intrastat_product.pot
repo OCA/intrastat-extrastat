@@ -303,6 +303,11 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model,name:intrastat_product.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: intrastat_product
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid ""
@@ -521,6 +526,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_location__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse__display_name
@@ -640,6 +646,11 @@ msgid "H.S. Codes"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
+msgid "HS Code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_line__id
@@ -655,6 +666,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__id
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__id
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner__id
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order__id
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_location__id
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse__id
@@ -870,6 +882,11 @@ msgid "Intrastat declaration details"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
+msgid "Intrastat information"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
 #: model:ir.model.fields,help:intrastat_product.field_account_move__intrastat_transaction_id
 #: model:ir.model.fields,help:intrastat_product.field_account_payment__intrastat_transaction_id
@@ -954,6 +971,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_sale_order____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_location____last_update
 #: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse____last_update
@@ -1178,6 +1196,11 @@ msgid "Origin Region"
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
+msgid "Origin country"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_bank_statement_line__src_dest_region_id
 #: model:ir.model.fields,help:intrastat_product.field_account_move__src_dest_region_id
 #: model:ir.model.fields,help:intrastat_product.field_account_payment__src_dest_region_id
@@ -1243,6 +1266,7 @@ msgstr ""
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__product_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__product_id
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
 #, python-format
 msgid "Product"
 msgstr ""
@@ -1268,6 +1292,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_2
 msgid "Railway transport (including lorries on railway wagons)"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
+msgid "Reference"
 msgstr ""
 
 #. module: intrastat_product
@@ -1366,6 +1395,12 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__sequence
 msgid "Sequence"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner__invoice_intrastat_detail
+#: model:ir.model.fields,field_description:intrastat_product.field_res_users__invoice_intrastat_detail
+msgid "Show intrastat details in invoice report"
 msgstr ""
 
 #. module: intrastat_product
@@ -1555,6 +1590,11 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
+msgid "Unit Weight"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_unread
 msgid "Unread Messages"
 msgstr ""
@@ -1616,6 +1656,7 @@ msgstr ""
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__weight
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__weight
+#: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
 #, python-format
 msgid "Weight"
 msgstr ""

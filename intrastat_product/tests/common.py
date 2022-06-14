@@ -13,7 +13,6 @@ class IntrastatProductCommon(IntrastatCommon):
             "parent_id": cls.category_saleable.id,
         }
         cls.categ_robots = cls.category_obj.create(vals)
-
         vals = {
             "name": "C3PO",
             "categ_id": cls.categ_robots.id,
@@ -23,19 +22,32 @@ class IntrastatProductCommon(IntrastatCommon):
             "hs_code_id": cls.hs_code_computer.id,
         }
         cls.product_c3po = cls.product_template_obj.create(vals)
+        cls.account = cls.env["account.account"].create(
+            {
+                "name": "Test Account",
+                "code": "TEST",
+                "user_type_id": cls.env.ref("account.data_account_type_receivable").id,
+                "reconcile": True,
+            }
+        )
+        cls.other_account = cls.env["account.account"].create(
+            {
+                "name": "Test Account",
+                "code": "ACC",
+                "user_type_id": cls.env.ref(
+                    "account.data_account_type_other_income"
+                ).id,
+                "reconcile": True,
+            }
+        )
+        cls.journal = cls.env["account.journal"].create(
+            {"name": "Test sale journal", "type": "sale", "code": "TEST-SALE"}
+        )
 
     @classmethod
     def _init_company(cls):
         # Default transport for company is Road
         cls.demo_company.intrastat_transport_id = cls.transport_road
-
-    @classmethod
-    def _init_fiscal_position(cls):
-        vals = {
-            "name": "Intrastat Fiscal Position",
-            "intrastat": True,
-        }
-        cls.position = cls.position_obj.create(vals)
 
     @classmethod
     def _init_regions(cls):
@@ -69,7 +81,6 @@ class IntrastatProductCommon(IntrastatCommon):
 
         cls._init_regions()
         cls._init_company()
-        cls._init_fiscal_position()
         cls._init_products()
 
     @classmethod
@@ -107,7 +118,7 @@ class IntrastatProductCommon(IntrastatCommon):
     def _create_declaration(cls, vals=None):
         values = {
             "company_id": cls.env.company.id,
-            "declaration_type": "dispatches",
+            "type": "dispatches",
         }
         if vals is not None:
             values.update(vals)

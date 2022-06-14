@@ -1,4 +1,5 @@
 # Copyright 2022 Noviat.
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import Form, SavepointCase
@@ -36,28 +37,28 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
                 "hs_code_id": cls.hs_code_whiskey.id,
             }
         )
+        country_uk = cls.env.ref("base.uk")
+        country_uk.intrastat = True
         cls.partner_xi = cls.env["res.partner"].create(
             {
                 "name": "Bushmills Distillery",
-                "country_id": cls.env.ref("base.uk").id,
+                "country_id": country_uk.id,
                 "state_id": cls.env.ref("base.state_uk18").id,
                 "vat": "XI123456782",
-                "property_account_position_id": cls.position.id,
             }
         )
 
     def test_brexit_sale(self):
-        inv_out_xi = self.inv_obj.with_context(default_move_type="out_invoice").create(
-            {"partner_id": self.partner_xi.id, "fiscal_position_id": self.position.id}
-        )
-        with Form(inv_out_xi) as inv_form:
-            with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_c3po.product_variant_ids[0]
+        inv_form = Form(self.inv_obj.with_context(default_type="out_invoice"))
+        inv_form.partner_id = self.partner_xi
+        with inv_form.invoice_line_ids.new() as ail:
+            ail.product_id = self.product_c3po.product_variant_ids[0]
+        inv_out_xi = inv_form.save()
         inv_out_xi.action_post()
 
         self._create_declaration(
             {
-                "declaration_type": "dispatches",
+                "type": "dispatches",
                 "year": str(inv_out_xi.date.year),
                 "month": str(inv_out_xi.date.month).zfill(2),
             }
@@ -70,20 +71,18 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         self.assertEqual(dline.src_dest_country_code, "XI")
 
     def test_brexit_purchase(self):
-        inv_in_xi = self.inv_obj.with_context(default_move_type="in_invoice").create(
-            {"partner_id": self.partner_xi.id, "fiscal_position_id": self.position.id}
-        )
-        with Form(inv_in_xi) as inv_form:
-            with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xi
-            with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xu
-        inv_in_xi.invoice_date = inv_in_xi.date
+        inv_form = Form(self.inv_obj.with_context(default_type="in_invoice"))
+        inv_form.partner_id = self.partner_xi
+        with inv_form.invoice_line_ids.new() as ail:
+            ail.product_id = self.product_xi
+        with inv_form.invoice_line_ids.new() as ail:
+            ail.product_id = self.product_xu
+        inv_in_xi = inv_form.save()
         inv_in_xi.action_post()
 
         self._create_declaration(
             {
-                "declaration_type": "arrivals",
+                "type": "arrivals",
                 "year": str(inv_in_xi.date.year),
                 "month": str(inv_in_xi.date.month).zfill(2),
             }
@@ -102,13 +101,11 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         self.assertEqual(dl_xu.product_origin_country_code, "XU")
 
     def test_brexit_invoice_intrastat_details(self):
-        inv_in_xi = self.inv_obj.with_context(default_move_type="in_invoice").create(
-            {"partner_id": self.partner_xi.id, "fiscal_position_id": self.position.id}
-        )
-        with Form(inv_in_xi) as inv_form:
-            with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xi
-        inv_in_xi.invoice_date = inv_in_xi.date
+        inv_form = Form(self.inv_obj.with_context(default_type="in_invoice"))
+        inv_form.partner_id = self.partner_xi
+        with inv_form.invoice_line_ids.new() as ail:
+            ail.product_id = self.product_xi
+        inv_in_xi = inv_form.save()
         inv_in_xi.compute_intrastat_lines()
         ilines = inv_in_xi.intrastat_line_ids
         self.assertEqual(ilines.product_origin_country_code, "XI")

@@ -1,11 +1,12 @@
 # Copyright 2011-2020 Akretion France (http://www.akretion.com)
 # Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2022 Tecnativa - Víctor Martínez
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
 import warnings
-from datetime import date, datetime
+from datetime import date
 
 from dateutil.relativedelta import relativedelta
 
@@ -240,7 +241,7 @@ class IntrastatProductDeclaration(models.Model):
             msg, action.id, _("Go to Accounting Configuration Settings screen")
         )
 
-    def _get_partner_country(self, inv_line, eu_countries):
+    def _get_partner_country(self, inv_line, notedict, eu_countries):
         inv = inv_line.move_id
         country = inv.src_dest_country_id or inv.partner_id.country_id
         if not country:
@@ -256,7 +257,7 @@ class IntrastatProductDeclaration(models.Model):
                     or "-",
                 )
             ]
-            self._format_line_note(inv_line, line_notes)
+            self._format_line_note(inv_line, notedict, line_notes)
         else:
             if country not in eu_countries and country.code != "GB":
                 line_notes = [
@@ -266,7 +267,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % (inv.name, country.name)
                 ]
-                self._format_line_note(inv_line, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
         if country and country.code == "GB" and self.year >= "2021":
             vat = inv.commercial_partner_id.vat
             if not vat:
@@ -285,7 +286,7 @@ class IntrastatProductDeclaration(models.Model):
                         inv.commercial_partner_id.display_name,
                     )
                 ]
-                self._format_line_note(inv_line, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
             elif not vat.startswith("XI"):
                 line_notes = [
                     _(
@@ -304,7 +305,7 @@ class IntrastatProductDeclaration(models.Model):
                         inv.commercial_partner_id.display_name,
                     )
                 ]
-                self._format_line_note(inv_line, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
         return country
 
     def _get_intrastat_transaction(self, inv_line):
@@ -322,8 +323,7 @@ class IntrastatProductDeclaration(models.Model):
             elif invoice.type == "in_refund":
                 return company.intrastat_transaction_in_refund
 
-    def _get_weight_and_supplunits(self, inv_line, hs_code):
-        line_nbr = self._line_nbr
+    def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):
         line_qty = inv_line.quantity
         product = inv_line.product_id
         intrastat_unit_id = hs_code.intrastat_unit_id
@@ -336,7 +336,7 @@ class IntrastatProductDeclaration(models.Model):
 
         if not source_uom:
             line_notes = [_("Missing unit of measure.")]
-            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+            self._note += self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
@@ -350,7 +350,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % intrastat_unit_id.name,
                 ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                self._note += self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
@@ -362,7 +362,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % (source_uom.name, target_uom.name)
                 ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                self._note += self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
 
         if weight:
@@ -377,7 +377,7 @@ class IntrastatProductDeclaration(models.Model):
                 line_notes = [
                     _("Missing weight on product %s.") % product.name_get()[0][1]
                 ]
-                self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+                self._note += self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
                 weight = product.weight * line_qty  # product.weight_net
@@ -396,7 +396,7 @@ class IntrastatProductDeclaration(models.Model):
                 )
                 % (source_uom.name, product.name_get()[0][1])
             ]
-            self._note += self._format_line_note(inv_line, line_nbr, line_notes)
+            self._note += self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty
@@ -564,25 +564,25 @@ class IntrastatProductDeclaration(models.Model):
         else:
             return False
 
-    def _gather_invoices_init(self):
+    def _gather_invoices_init(self, notedict):
         """ placeholder for localization modules """
 
-    def _format_line_note(self, line, line_nbr, line_notes):
+    def _format_line_note(self, line, notedict, line_notes):
         indent = 8 * " "
-        note = _("Invoice %s, line %s") % (line.move_id.name, line_nbr)
+        note = _("Invoice %s, line %s") % (line.move_id.name, notedict["line_nbr"])
         note += ":\n"
         for line_note in line_notes:
             note += indent + line_note
             note += "\n"
-        return note
+        notedict["note"] += note
 
-    def _gather_invoices(self):
+    def _gather_invoices(self, notedict):
 
         lines = []
         accessory_costs = self.company_id.intrastat_accessory_costs
         eu_countries = self.env.ref("base.europe").country_ids
 
-        self._gather_invoices_init()
+        self._gather_invoices_init(notedict)
         domain = self._prepare_invoice_domain()
         order = "journal_id, name"
         invoices = self.env["account.move"].search(domain, order=order)
@@ -622,7 +622,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                partner_country = self._get_partner_country(inv_line, eu_countries)
+                partner_country = self._get_partner_country(
+                    inv_line, notedict, eu_countries
+                )
                 partner_country_code = (
                     invoice.commercial_partner_id._get_intrastat_country_code()
                 )
@@ -637,7 +639,7 @@ class IntrastatProductDeclaration(models.Model):
                             % (inv_line.product_id.name_get()[0][1])
                         ]
                         self._note += self._format_line_note(
-                            inv_line, line_nbr, line_notes
+                            inv_line, notedict, line_notes
                         )
                         continue
                 else:
@@ -655,7 +657,7 @@ class IntrastatProductDeclaration(models.Model):
                     suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
                 else:
                     weight, suppl_unit_qty = self._get_weight_and_supplunits(
-                        inv_line, hs_code
+                        inv_line, hs_code, notedict
                     )
                 total_inv_weight += weight
 
@@ -756,32 +758,27 @@ class IntrastatProductDeclaration(models.Model):
             self._extended = True
         else:
             self._extended = False
-
+        notedict = {
+            "note": "",
+            "line_nbr": 0,
+        }
         self.computation_line_ids.unlink()
         self.declaration_line_ids.unlink()
-        lines = self._gather_invoices()
-
+        lines = self._gather_invoices(notedict)
+        vals = {"note": notedict["note"]}
         if not lines:
-            self.action = "nihil"
-            note = (
+            vals["action"] = "nihil"
+            vals["note"] += (
                 "\n"
                 + _("No records found for the selected period !")
                 + "\n"
                 + _("The Declaration Action has been set to 'nihil'.")
             )
-            self._note += note
         else:
-            self.write({"computation_line_ids": [(0, 0, x) for x in lines]})
+            vals["computation_line_ids"] = [(0, 0, x) for x in lines]
 
-        if self._note:
-            note_header = (
-                "\n\n>>> "
-                + fields.Datetime.to_string(
-                    fields.Datetime.context_timestamp(self, datetime.now())
-                )
-                + "\n"
-            )
-            self.note = note_header + self._note + (self.note or "")
+        self.write(vals)
+        if vals["note"]:
             result_view = self.env.ref("intrastat_base.intrastat_result_view_form")
             return {
                 "name": _("Generate lines from invoices: results"),
@@ -790,7 +787,7 @@ class IntrastatProductDeclaration(models.Model):
                 "res_model": "intrastat.result.view",
                 "view_id": result_view.id,
                 "target": "new",
-                "context": dict(self._context, note=self._note),
+                "context": dict(self._context, note=vals["note"]),
                 "type": "ir.actions.act_window",
             }
 

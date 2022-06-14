@@ -84,12 +84,16 @@ class AccountMove(models.Model):
 
     def _get_intrastat_line_vals(self, line):
         vals = {}
+        notedict = {
+            "note": "",
+            "line_nbr": 0,
+        }
         decl_model = self.env["intrastat.product.declaration"]
         if decl_model._is_product(line):
             hs_code = line.product_id.get_hs_code_recursively()
             if not hs_code:
                 return vals
-            weight, qty = decl_model._get_weight_and_supplunits(line, hs_code)
+            weight, qty = decl_model._get_weight_and_supplunits(line, hs_code, notedict)
             product_country = line.product_id.origin_country_id
             product_state = line.product_id.origin_state_id
             country = product_country or product_state.country_id

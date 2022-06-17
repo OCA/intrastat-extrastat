@@ -55,47 +55,49 @@
         <field name="model">hs.code</field>
         <field name="arch" type="xml">
             <form string="H.S. Code">
-                <field name="active" invisible="1" />
-                <widget
-                    name="web_ribbon"
-                    text="Archived"
-                    bg_color="bg-danger"
-                    attrs="{'invisible': [('active', '=', True)]}"
-                />
-                <div class="oe_button_box" name="button_box">
-                    <button
-                        class="oe_stat_button"
-                        name="%(product_categ_hs_code_action)d"
-                        icon="fa-th-list"
-                        type="action"
-                    >
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_value">
-                                <field name="product_categ_count" />
-                            </span>
-                            <span class="o_stat_text">Product Categs</span>
-                        </div>
-                    </button>
-                    <button
-                        class="oe_stat_button"
-                        name="%(product_template_hs_code_action)d"
-                        icon="fa-th-list"
-                        type="action"
-                    >
-                        <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_value">
-                                <field name="product_tmpl_count" />
-                            </span>
-                            <span class="o_stat_text">Products</span>
-                        </div>
-                    </button>
-                </div>
-                <group name="main">
-                    <field name="local_code" />
-                    <field name="hs_code" />
-                    <field name="description" />
-                    <field name="company_id" groups="base.group_multi_company" />
-                </group>
+                <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            name="%(product_categ_hs_code_action)d"
+                            icon="fa-th-list"
+                            type="action"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="product_categ_count" />
+                                </span>
+                                <span class="o_stat_text">Product Categs</span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button"
+                            name="%(product_template_hs_code_action)d"
+                            icon="fa-th-list"
+                            type="action"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="product_tmpl_count" />
+                                </span>
+                                <span class="o_stat_text">Products</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group name="main">
+                        <field name="local_code" />
+                        <field name="hs_code" />
+                        <field name="description" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>

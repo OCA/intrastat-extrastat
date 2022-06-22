@@ -978,9 +978,9 @@ class IntrastatProductDeclaration(models.Model):
 
     def create_xls(self):
         if self.env.context.get("computation_lines"):
-            report_file = "instrastat_transactions"
+            report_file = "intrastat_transactions"
         else:
-            report_file = "instrastat_declaration_lines"
+            report_file = "intrastat_declaration_lines"
         return {
             "type": "ir.actions.report",
             "report_type": "xlsx",

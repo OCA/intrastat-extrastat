@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_chart_template
-msgid "Account Chart Template"
-msgstr "Modèle de plan comptable"
-
-#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -34,17 +29,11 @@ msgstr ""
 "la DEB et la DES."
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "Cannot delete the declaration %s because it is in Done state"
+#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position_template__intrastat
+msgid ""
+"Check this if you want to generate intrastat declarations withthe created "
+"fiscal position"
 msgstr ""
-"Impossible de supprimer la déclaration %s parce qu'elle est à l'état "
-"'Terminé'."
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_intrastat_common
-msgid "Common functions for intrastat reports for products "
-msgstr "Fonctions communes pour les rapports intrastat des produits "
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_company
@@ -57,45 +46,14 @@ msgid "Config Settings"
 msgstr "Configuration"
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_uid
-msgid "Created by"
-msgstr "Créé par"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__create_date
-msgid "Created on"
-msgstr "Créé le"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_account_move__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_product_template__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
-#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Afficher le nom"
+#: model:ir.model,name:intrastat_base.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Position fiscale"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__id
-#: model:ir.model.fields,field_description:intrastat_base.field_account_move__id
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common__id
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__id
-#: model:ir.model.fields,field_description:intrastat_base.field_product_template__id
-#: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
-#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
@@ -115,43 +73,15 @@ msgid "Intrastat Fiscal Position"
 msgstr "Position fiscale intrastat"
 
 #. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
-msgid "Intrastat Result View"
-msgstr "Résultat DEB"
-
-#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
-msgid "Is accessory cost"
-msgstr "Est un frais accessoire"
+msgid "Is Accessory Cost"
+msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_move
 msgid "Journal Entry"
 msgstr "Pièce comptable"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_account_move____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_common____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_product_template____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_res_company____last_update
-#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_uid
-msgid "Last Updated by"
-msgstr "Dernière modification par"
-
-#. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__write_date
-msgid "Last Updated on"
-msgstr "Dernière modification le"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_res_company__intrastat_remind_user_ids
@@ -173,25 +103,15 @@ msgid "Missing e-mail address on user '%s'."
 msgstr "Adresse e-mail manquante pour l'utilisateur '%s'."
 
 #. module: intrastat_base
-#: model:ir.model.fields,field_description:intrastat_base.field_intrastat_result_view__note
-msgid "Notes"
-msgstr "Notes"
-
-#. module: intrastat_base
-#: model_terms:ir.ui.view,arch_db:intrastat_base.intrastat_result_view_form
-msgid "Ok"
-msgstr "Ok"
-
-#. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_intrastat_result_view
-msgid "Pop-up to show errors on intrastat report generation"
-msgstr ""
-"Pop-up qui affiche les erreurs lors de la génération du rapport intrastat"
-
-#. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
 msgid "Product Template"
 msgstr "Modèle d'article"
+
+#. module: intrastat_base
+#: code:addons/intrastat_base/models/res_partner.py:0
+#, python-format
+msgid "Programming Error when calling '_get_intrastat_country_code()"
+msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
@@ -217,22 +137,13 @@ msgid "Template for Fiscal Position"
 msgstr "Modèle de position fiscale"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
-#, python-format
-msgid "The VAT number is not set for the partner '%s'."
-msgstr "Numéro de TVA non renseigné sur le partenaire '%s'."
-
-#. module: intrastat_base
 #: code:addons/intrastat_base/models/product_template.py:0
 #, python-format
 msgid ""
 "The option 'Is accessory cost?' should only be activated on 'Service' "
-"products. You have activated this option for the product '%s' which is of "
-"type '%s'"
+"products. You have activated this option for the product '{product_name}' "
+"which is configured with type '{product_type}'."
 msgstr ""
-"L'option 'Est un frais accessoire' ne doit être activée que sur des articles "
-"de service. Vous avez activé cette option pour l'article '%s' qui est de "
-"type '%s'"
 
 #. module: intrastat_base
 #: model:product.product,uom_name:intrastat_base.shipping_costs_exclude
@@ -241,7 +152,7 @@ msgid "Units"
 msgstr "Unités"
 
 #. module: intrastat_base
-#: code:addons/intrastat_base/models/intrastat_common.py:0
+#: code:addons/intrastat_base/models/res_company.py:0
 #, python-format
 msgid "Unknown Error"
 msgstr "Erreur inconnue"
@@ -251,6 +162,66 @@ msgstr "Erreur inconnue"
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
 msgid "Users Receiving the Intrastat Reminder"
 msgstr "Utilisateurs qui reçoivent le rappel DEB/DES"
+
+#~ msgid "Account Chart Template"
+#~ msgstr "Modèle de plan comptable"
+
+#~ msgid "Cannot delete the declaration %s because it is in Done state"
+#~ msgstr ""
+#~ "Impossible de supprimer la déclaration %s parce qu'elle est à l'état "
+#~ "'Terminé'."
+
+#~ msgid "Common functions for intrastat reports for products "
+#~ msgstr "Fonctions communes pour les rapports intrastat des produits "
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Created on"
+#~ msgstr "Créé le"
+
+#~ msgid "Display Name"
+#~ msgstr "Afficher le nom"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Intrastat Result View"
+#~ msgstr "Résultat DEB"
+
+#~ msgid "Is accessory cost"
+#~ msgstr "Est un frais accessoire"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Dernière modification par"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Notes"
+#~ msgstr "Notes"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "Pop-up to show errors on intrastat report generation"
+#~ msgstr ""
+#~ "Pop-up qui affiche les erreurs lors de la génération du rapport intrastat"
+
+#~ msgid "The VAT number is not set for the partner '%s'."
+#~ msgstr "Numéro de TVA non renseigné sur le partenaire '%s'."
+
+#~ msgid ""
+#~ "The option 'Is accessory cost?' should only be activated on 'Service' "
+#~ "products. You have activated this option for the product '%s' which is of "
+#~ "type '%s'"
+#~ msgstr ""
+#~ "L'option 'Est un frais accessoire' ne doit être activée que sur des "
+#~ "articles de service. Vous avez activé cette option pour l'article '%s' "
+#~ "qui est de type '%s'"
 
 #~ msgid "Company not yet set on intrastat report."
 #~ msgstr "Société non configurée sur le rapport DEB/DES."

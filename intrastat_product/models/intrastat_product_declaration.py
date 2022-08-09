@@ -997,12 +997,10 @@ class IntrastatProductComputationLine(models.Model):
     )
     src_dest_country_code = fields.Char(
         string="Country Code",
-        compute="_compute_src_dest_country_code",
-        store=True,
         required=True,
         readonly=False,
         help="2 digit code of country of origin/destination.\n"
-        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+        "Specify 'XI' for UK Northern Ireland.",
     )
     product_id = fields.Many2one(
         "product.product", related="invoice_line_id.product_id"

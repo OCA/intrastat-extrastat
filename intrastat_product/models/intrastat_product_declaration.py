@@ -336,7 +336,7 @@ class IntrastatProductDeclaration(models.Model):
 
         if not source_uom:
             line_notes = [_("Missing unit of measure.")]
-            self._note += self._format_line_note(inv_line, notedict, line_notes)
+            self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
@@ -350,7 +350,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % intrastat_unit_id.name,
                 ]
-                self._note += self._format_line_note(inv_line, notedict, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
@@ -362,7 +362,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     % (source_uom.name, target_uom.name)
                 ]
-                self._note += self._format_line_note(inv_line, notedict, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
 
         if weight:
@@ -377,7 +377,7 @@ class IntrastatProductDeclaration(models.Model):
                 line_notes = [
                     _("Missing weight on product %s.") % product.name_get()[0][1]
                 ]
-                self._note += self._format_line_note(inv_line, notedict, line_notes)
+                self._format_line_note(inv_line, notedict, line_notes)
                 return weight, suppl_unit_qty
             if source_uom == pce_uom:
                 weight = product.weight * line_qty  # product.weight_net
@@ -396,7 +396,7 @@ class IntrastatProductDeclaration(models.Model):
                 )
                 % (source_uom.name, product.name_get()[0][1])
             ]
-            self._note += self._format_line_note(inv_line, notedict, line_notes)
+            self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty
@@ -638,9 +638,7 @@ class IntrastatProductDeclaration(models.Model):
                             _("Missing Intrastat Code on product %s. ")
                             % (inv_line.product_id.name_get()[0][1])
                         ]
-                        self._note += self._format_line_note(
-                            inv_line, notedict, line_notes
-                        )
+                        self._format_line_note(inv_line, notedict, line_notes)
                         continue
                 else:
                     _logger.info(

@@ -105,13 +105,52 @@ class AccountMove(models.Model):
                 {
                     "invoice_line_id": line.id,
                     "hs_code_id": hs_code.id,
-                    "transaction_weight": int(weight),
+                    "transaction_weight": weight,
                     "transaction_suppl_unit_qty": qty,
                     "product_origin_country_id": line.product_id.origin_country_id.id,
                     "product_origin_country_code": product_origin_country_code,
                 }
             )
         return vals
+
+    def _prepare_intrastat_line_info(self, line):
+        is_intrastat_line = bool(line._name == "account.move.intrastat.line")
+        product = line.product_id
+        return {
+            "product_id": product,
+            "hs_code_id": (
+                line.hs_code_id if is_intrastat_line else product.hs_code_id
+            ),
+            "weight": (
+                line.transaction_weight
+                if is_intrastat_line
+                else self._get_intrastat_line_vals(line)["transaction_weight"]
+            ),
+            "origin_country_id": (
+                line.product_origin_country_id
+                if is_intrastat_line
+                else product.origin_country_id
+            ),
+        }
+
+    def _get_intrastat_lines_info(self):
+        """We obtain a list of information that we will need to group at the end by
+        product and sum weight.
+        """
+        res = {}
+        for line in (
+            self.invoice_line_ids.filtered(
+                lambda x: x.product_id.hs_code_id and x.product_id.origin_country_id
+            )
+            if not self.intrastat_line_ids
+            else self.intrastat_line_ids
+        ):
+            res.setdefault(line.product_id.id, {"weight": 0})
+            vals = self._prepare_intrastat_line_info(line)
+            weight = vals.pop("weight")
+            res[line.product_id.id].update(vals)
+            res[line.product_id.id]["weight"] += weight
+        return res.values()
 
 
 class AccountMoveLine(models.Model):

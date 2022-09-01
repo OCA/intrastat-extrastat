@@ -55,7 +55,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 "line": {
                     "type": "string",
-                    "value": self._render("line.src_dest_country_code"),
+                    "value": self._render("line.src_dest_country_code or ''"),
                 },
                 "width": 28,
             },

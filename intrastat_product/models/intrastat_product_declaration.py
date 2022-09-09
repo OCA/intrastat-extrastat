@@ -625,6 +625,13 @@ class IntrastatProductDeclaration(models.Model):
                 partner_country = self._get_partner_country(
                     inv_line, notedict, eu_countries
                 )
+                # When the country is the same as the company's country or the country
+                # does not have the intrastat check marked, it must be skipped.
+                if (
+                    not partner_country.intrastat
+                    or partner_country == self.company_id.country_id
+                ):
+                    continue
                 partner_country_code = (
                     invoice.commercial_partner_id._get_intrastat_country_code()
                 )

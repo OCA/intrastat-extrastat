@@ -1,0 +1,403 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="intrastat_product_declaration_view_form" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.form</field>
+        <field name="model">intrastat.product.declaration</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_gather"
+                        type="object"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
+                        string="Generate Lines from Invoices"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="generate_declaration"
+                        type="object"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
+                        string="Generate Declaration Lines"
+                    />
+                    <button
+                        name="generate_xml"
+                        string="Generate XML Declaration File"
+                        type="object"
+                        attrs="{'invisible': [('xml_attachment_id', '!=', False)]}"
+                        invisible="context.get('generic_intrastat_product_declaration')"
+                    />
+                    <button
+                        name="delete_xml"
+                        string="Delete XML Export"
+                        type="object"
+                        attrs="{'invisible': [('xml_attachment_id', '=', False)]}"
+                    />
+                    <button
+                        name="done"
+                        string="Done"
+                        type="object"
+                        class="btn-primary"
+                        states="draft"
+                    />
+                    <button
+                        name="back2draft"
+                        string="Back to Draft"
+                        type="object"
+                        states="done"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet string="Intrastat Product Declaration">
+                    <div class="oe_title">
+                        <h1>
+                            <span>Intrastat Product Declaration </span>
+                            <field name="year_month" class="oe_inline" />
+                        </h1>
+                    </div>
+                    <group name="top-block">
+                        <group name="properties-1">
+                            <field name="year" />
+                            <field name="month" />
+                            <field name="declaration_type" />
+                            <field
+                                name="xml_attachment_datas"
+                                filename="xml_attachment_name"
+                                invisible="context.get('generic_intrastat_product_declaration')"
+                            />
+                            <field name="xml_attachment_name" invisible="1" />
+                            <field name="xml_attachment_id" invisible="1" />
+                            <field name="reporting_level" invisible="1" />
+                        </group>
+                        <group name="properties-2">
+                            <field name="action" />
+                            <field name="revision" />
+                            <field
+                                name="total_amount"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                            <field name="num_decl_lines" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="company_country_code" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Transactions">
+                            <button
+                                name="create_xls"
+                                type="object"
+                                string="Excel Export"
+                                context="{'computation_lines': 1}"
+                            />
+                            <field
+                                name="computation_line_ids"
+                                context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
+                                nolabel="1"
+                            />
+                        </page>
+                        <page string="Declaration Lines">
+                            <button
+                                name="create_xls"
+                                type="object"
+                                string="Excel Export"
+                                context="{'declaration_lines': 1}"
+                            />
+                            <field
+                                name="declaration_line_ids"
+                                context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
+                                nolabel="1"
+                            />
+                        </page>
+                        <page string="Notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_view_tree" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.tree</field>
+        <field name="model">intrastat.product.declaration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="year_month" decoration-bf="1" />
+                <field name="revision" />
+                <field
+                    name="declaration_type"
+                    widget="badge"
+                    decoration-danger="declaration_type == 'arrivals'"
+                    decoration-warning="declaration_type == 'dispatches'"
+                />
+                <field name="num_decl_lines" />
+                <field name="total_amount" sum="1" />
+                <field name="currency_id" />
+                <field
+                    name="state"
+                    decoration-success="state == 'done'"
+                    decoration-info="state == 'draft'"
+                    widget="badge"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_view_search" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.search</field>
+        <field name="model">intrastat.product.declaration</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="year_month" />
+                <filter
+                    name="arrivals"
+                    string="Arrivals"
+                    domain="[('declaration_type', '=', 'arrivals')]"
+                />
+                <filter
+                    name="dispatches"
+                    string="Dispatches"
+                    domain="[('declaration_type', '=', 'dispatches')]"
+                />
+                <separator />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <group string="Group By" name="group_by">
+                    <filter
+                        name="date_group_by"
+                        string="Date"
+                        context="{'group_by': 'year_month'}"
+                    />
+                    <filter
+                        name="declaration_type_group_by"
+                        string="Type"
+                        context="{'group_by': 'declaration_type'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_view_graph" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.graph</field>
+        <field name="model">intrastat.product.declaration</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="False">
+                <field name="year_month" type="row" />
+                <field name="declaration_type" type="row" />
+                <field name="total_amount" type="measure" />
+            </graph>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_view_pivot" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.pivot</field>
+        <field name="model">intrastat.product.declaration</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="year_month" type="row" />
+                <field name="declaration_type" type="col" />
+                <field name="total_amount" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <!-- No menuitem nor action since these are provided by the localization modules -->
+    <record id="intrastat_product_computation_line_view_form" model="ir.ui.view">
+        <field name="name">intrastat.product.computation.line.form</field>
+        <field name="model">intrastat.product.computation.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Transaction" name="transaction">
+                    <field
+                        name="parent_id"
+                        invisible="not context.get('intrastat_product_computation_line_main_view')"
+                    />
+                    <field name="product_id" />
+                    <field name="hs_code_id" />
+                    <field name="src_dest_country_id" />
+                    <field name="src_dest_country_code" />
+                    <field
+                        name="amount_company_currency"
+                        widget="monetary"
+                        options="{'currency_field': 'company_currency_id'}"
+                    />
+                    <field
+                        name="amount_accessory_cost_company_currency"
+                        widget="monetary"
+                        options="{'currency_field': 'company_currency_id'}"
+                    />
+                    <field name="company_currency_id" invisible="1" />
+                    <field name="transaction_id" />
+                    <label for="weight" />
+                    <div name="weight">
+                <field name="weight" class="oe_inline" /> Kg
+            </div>
+                    <field name="suppl_unit_qty" />
+                    <field name="intrastat_unit_id" />
+                    <field name="declaration_type" invisible="1" />
+                    <field name="reporting_level" invisible="1" />
+                    <field
+                        name="transport_id"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field name="incoterm_id" invisible="1" />
+                    <field name="region_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
+                    <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                    />
+                    <field name="vat" />
+                    <field name="partner_id" />
+                    <field name="invoice_id" />
+                </group>
+                <group string="Declaration" name="declaration">
+                    <field name="declaration_line_id" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="intrastat_product_computation_line_view_tree" model="ir.ui.view">
+        <field name="name">intrastat.product.computation.line.tree</field>
+        <field name="model">intrastat.product.computation.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    invisible="not context.get('intrastat_product_computation_line_main_view')"
+                />
+                <field name="product_id" />
+                <field name="hs_code_id" />
+                <field name="src_dest_country_id" />
+                <field name="src_dest_country_code" />
+                <field name="amount_company_currency" />
+                <field name="amount_accessory_cost_company_currency" />
+                <field name="transaction_id" />
+                <field name="weight" />
+                <field
+                    name="suppl_unit_qty"
+                    attrs="{'invisible': [('intrastat_unit_id', '=', False)], 'required': [('intrastat_unit_id', '!=', False)]}"
+                />
+                <field name="intrastat_unit_id" />
+                <field
+                    name="transport_id"
+                    attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                />
+                <field name="region_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
+                <field
+                    name="product_origin_country_id"
+                    invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
+                    string="Product C/O"
+                />
+                <field name="vat" />
+                <field name="invoice_id" />
+                <field name="declaration_type" invisible="1" />
+                <field name="reporting_level" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_line_view_form" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.line.form</field>
+        <field name="model">intrastat.product.declaration.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="declaration">
+                    <field
+                        name="parent_id"
+                        invisible="not context.get('intrastat_product_declaration_line_main_view')"
+                    />
+                    <field name="hs_code_id" />
+                    <field name="src_dest_country_id" />
+                    <field name="src_dest_country_code" />
+                    <field
+                        name="amount_company_currency"
+                        widget="monetary"
+                        options="{'currency_field': 'company_currency_id'}"
+                    />
+                    <field name="company_currency_id" invisible="1" />
+                    <field name="transaction_id" />
+                    <label for="weight" />
+                    <div name="weight">
+                <field name="weight" class="oe_inline" /> Kg
+            </div>
+                    <field name="suppl_unit_qty" />
+                    <field name="intrastat_unit_id" />
+                    <field name="declaration_type" invisible="1" />
+                    <field name="reporting_level" invisible="1" />
+                    <field
+                        name="transport_id"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field name="region_id" invisible="1" />
+                    <field name="incoterm_id" invisible="1" />
+                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
+                    <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="product_origin_country_code"
+                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                    />
+                    <field name="vat" />
+                </group>
+                <group name="computation" string="Related Transactions">
+                    <field name="computation_line_ids" nolabel="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="intrastat_product_declaration_line_view_tree" model="ir.ui.view">
+        <field name="name">intrastat.product.declaration.line.tree</field>
+        <field name="model">intrastat.product.declaration.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field
+                    name="parent_id"
+                    invisible="not context.get('intrastat_product_declaration_line_main_view')"
+                />
+                <field name="hs_code_id" />
+                <field name="src_dest_country_id" invisible="1" />
+                <field name="src_dest_country_code" />
+                <field name="amount_company_currency" />
+                <field name="transaction_id" />
+                <field name="weight" />
+                <field name="suppl_unit_qty" />
+                <field name="intrastat_unit_id" />
+                <field name="declaration_type" invisible="1" />
+                <field name="reporting_level" invisible="1" />
+                <field
+                    name="transport_id"
+                    attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                />
+                <field name="region_id" invisible="1" />
+                <field name="incoterm_id" invisible="1" />
+                <!-- TODO: remove product_origin_country_id after update of localization modules -->
+                <field
+                    name="product_origin_country_id"
+                    invisible="1"
+                    string="Product C/O"
+                />
+                <field
+                    name="product_origin_country_code"
+                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
+                    string="Product C/O"
+                />
+                <field name="vat" />
+            </tree>
+        </field>
+    </record>
+</odoo>

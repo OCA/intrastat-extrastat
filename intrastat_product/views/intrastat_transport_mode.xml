@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  © 2010-2017 Akretion (http://www.akretion.com/)
+  © 2015-2017 Noviat (http://www.noviat.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  @author Luc De Meyer <luc.demeyer@noviat.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!-- Intrastat Transport Mode -->
+    <record id="intrastat_transport_mode_form" model="ir.ui.view">
+        <field name="name">intrastat.transport.mode.form</field>
+        <field name="model">intrastat.transport_mode</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="description" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="intrastat_transport_mode_tree" model="ir.ui.view">
+        <field name="name">intrastat.transport.mode.tree</field>
+        <field name="model">intrastat.transport_mode</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+                <field name="description" optional="show" />
+            </tree>
+        </field>
+    </record>
+    <record id="intrastat_transport_mode_search" model="ir.ui.view">
+        <field name="name">intrastat.transport.mode.search</field>
+        <field name="model">intrastat.transport_mode</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="Name, Code or Description"
+                    filter_domain="['|', '|', ('name', 'ilike', self), ('description', 'ilike', self), ('code', 'ilike', self)]"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="intrastat_transport_action" model="ir.actions.act_window">
+        <field name="name">Transport Modes</field>
+        <field name="res_model">intrastat.transport_mode</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="intrastat_transport_menu"
+        action="intrastat_transport_action"
+        parent="intrastat_base.menu_intrastat_config_root"
+        sequence="30"
+    />
+</odoo>

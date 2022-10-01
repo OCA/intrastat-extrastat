@@ -888,6 +888,12 @@ msgid "Intrastat Transaction Types"
 msgstr "Tipos de transacciones de Intrastat"
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "Intrastat Transaction code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_transport_mode
 #: model:ir.model.fields,field_description:intrastat_product.field_account_bank_statement_line__intrastat_transport_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_transport_id
@@ -1331,6 +1337,12 @@ msgid "Product C/O"
 msgstr "Product C/O"
 
 #. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "Product C/O Code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__quantity
 msgid "Quantity"
 msgstr "Cantidad"
@@ -1636,6 +1648,12 @@ msgstr "Transacciones"
 #, python-format
 msgid "Transport Mode"
 msgstr "Modo de transporte"
+
+#. module: intrastat_product
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "Transport Mode Code"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transport_action

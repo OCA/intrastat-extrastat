@@ -204,6 +204,17 @@ class IntrastatProductDeclaration(models.Model):
         for this in self:
             this.valid = True
 
+    @api.depends("declaration_line_ids.amount_company_currency")
+    def _compute_numbers(self):
+        for this in self:
+            total_amount = 0  # it is an integer
+            num_lines = 0
+            for line in this.declaration_line_ids:
+                total_amount += line.amount_company_currency
+                num_lines += 1
+            this.num_decl_lines = num_lines
+            this.total_amount = total_amount
+
     @api.constrains("year")
     def _check_year(self):
         for this in self:

@@ -45,7 +45,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {"type": "string", "value": self._("Product C/O Code")},
                 "line": {
                     "type": "string",
-                    "value": self._render("line.product_origin_country_id.code or ''"),
+                    "value": self._render("line.product_origin_country_code"),
                 },
                 "width": 28,
             },
@@ -72,7 +72,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 "line": {
                     "type": "string",
-                    "value": self._render("line.src_dest_country_id.code"),
+                    "value": self._render("line.src_dest_country_code"),
                 },
                 "width": 28,
             },
@@ -83,7 +83,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 "line": {
                     "type": "string",
-                    "value": self._render("line.src_dest_country_code"),
+                    "value": self._render("line.src_dest_country_id.name or ''"),
                 },
                 "width": 28,
             },

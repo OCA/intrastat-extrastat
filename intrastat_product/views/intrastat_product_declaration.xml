@@ -4,7 +4,7 @@
         <field name="name">intrastat.product.declaration.form</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Product Declaration">
+            <form>
                 <header>
                     <button
                         name="action_gather"
@@ -14,40 +14,23 @@
                         class="btn-primary"
                     />
                     <button
-                        name="generate_declaration"
-                        type="object"
-                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
-                        string="Generate Declaration Lines"
-                    />
-                    <button
-                        name="generate_xml"
-                        string="Generate XML Declaration File"
-                        type="object"
-                        attrs="{'invisible': [('xml_attachment_id', '!=', False)]}"
-                        invisible="context.get('generic_intrastat_product_declaration')"
-                    />
-                    <button
-                        name="delete_xml"
-                        string="Delete XML Export"
-                        type="object"
-                        attrs="{'invisible': [('xml_attachment_id', '=', False)]}"
-                    />
-                    <button
                         name="done"
-                        string="Done"
+                        string="Confirm"
                         type="object"
                         class="btn-primary"
                         states="draft"
+                        help="Generate declaration lines, generate XML export and set declaration to 'Done'"
                     />
                     <button
                         name="back2draft"
                         string="Back to Draft"
                         type="object"
                         states="done"
+                        confirm="Are you sure you want to go back to draft?"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
-                <sheet string="Intrastat Product Declaration">
+                <sheet>
                     <div class="oe_title">
                         <h1>
                             <span>Intrastat Product Declaration </span>
@@ -59,6 +42,7 @@
                             <field name="year" />
                             <field name="month" />
                             <field name="declaration_type" />
+                            <field name="reporting_level" />
                             <field
                                 name="xml_attachment_datas"
                                 filename="xml_attachment_name"
@@ -66,7 +50,6 @@
                             />
                             <field name="xml_attachment_name" invisible="1" />
                             <field name="xml_attachment_id" invisible="1" />
-                            <field name="reporting_level" invisible="1" />
                         </group>
                         <group name="properties-2">
                             <field name="action" />
@@ -86,7 +69,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Transactions">
+                        <page string="Transactions" name="computation_lines">
                             <button
                                 name="create_xls"
                                 type="object"
@@ -99,7 +82,7 @@
                                 nolabel="1"
                             />
                         </page>
-                        <page string="Declaration Lines">
+                        <page string="Declaration Lines" name="declaration_lines">
                             <button
                                 name="create_xls"
                                 type="object"
@@ -112,7 +95,7 @@
                                 nolabel="1"
                             />
                         </page>
-                        <page string="Notes">
+                        <page string="Notes" name="note">
                             <field name="note" />
                         </page>
                     </notebook>
@@ -129,18 +112,20 @@
         <field name="name">intrastat.product.declaration.tree</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Product Declarations">
+            <tree>
                 <field name="year_month" decoration-bf="1" />
-                <field name="revision" />
                 <field
                     name="declaration_type"
                     widget="badge"
                     decoration-danger="declaration_type == 'arrivals'"
                     decoration-warning="declaration_type == 'dispatches'"
                 />
-                <field name="num_decl_lines" />
-                <field name="total_amount" sum="Total amount" />
-                <field name="currency_id" />
+                <field name="reporting_level" optional="hide" />
+                <field name="action" optional="hide" />
+                <field name="revision" optional="hide" />
+                <field name="num_decl_lines" optional="show" />
+                <field name="total_amount" sum="1" optional="show" />
+                <field name="currency_id" optional="show" />
                 <field
                     name="state"
                     decoration-success="state == 'done'"
@@ -154,7 +139,7 @@
         <field name="name">intrastat.product.declaration.search</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Product Declarations">
+            <search>
                 <field name="year_month" />
                 <filter
                     name="arrivals"
@@ -192,7 +177,7 @@
         <field name="name">intrastat.product.declaration.graph</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <graph string="Intrastat Product" type="bar" stacked="False">
+            <graph type="bar" stacked="False">
                 <field name="year_month" type="row" />
                 <field name="declaration_type" type="row" />
                 <field name="total_amount" type="measure" />
@@ -203,7 +188,7 @@
         <field name="name">intrastat.product.declaration.pivot</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <pivot string="Intrastat Product">
+            <pivot>
                 <field name="year_month" type="row" />
                 <field name="declaration_type" type="col" />
                 <field name="total_amount" type="measure" />
@@ -215,16 +200,28 @@
         <field name="name">intrastat.product.computation.line.form</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transaction">
+            <form>
                 <group string="Transaction" name="transaction">
                     <field
                         name="parent_id"
                         invisible="not context.get('intrastat_product_computation_line_main_view')"
                     />
+                    <field name="declaration_type" invisible="1" />
+                    <field name="reporting_level" invisible="1" />
+                    <field name="company_country_code" invisible="1" />
                     <field name="product_id" />
-                    <field name="hs_code_id" />
-                    <field name="src_dest_country_id" />
-                    <field name="src_dest_country_code" />
+                    <field
+                        name="hs_code_id"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="src_dest_country_id"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="src_dest_country_code"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -236,26 +233,45 @@
                         options="{'currency_field': 'company_currency_id'}"
                     />
                     <field name="company_currency_id" invisible="1" />
-                    <field name="transaction_id" />
-                    <label for="weight" />
-                    <div name="weight">
+                    <field name="transaction_id" required="1" />
+                    <label
+                        for="weight"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <div
+                        name="weight"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    >
                 <field name="weight" class="oe_inline" /> Kg
             </div>
-                    <field name="suppl_unit_qty" />
-                    <field name="intrastat_unit_id" />
-                    <field name="declaration_type" invisible="1" />
-                    <field name="reporting_level" invisible="1" />
+                    <field
+                        name="suppl_unit_qty"
+                        attrs="{'required': [('reporting_level', '=', 'extended'), ('intrastat_unit_id', '!=', False)], 'invisible': ['|', ('reporting_level', '!=', 'extended'), ('intrastat_unit_id', '=', False)]}"
+                    />
+                    <field
+                        name="intrastat_unit_id"
+                        attrs="{'invisible': ['|', ('reporting_level', '!=', 'extended'), ('intrastat_unit_id', '=', False)]}"
+                    />
                     <field
                         name="transport_id"
                         attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
                     />
                     <field name="incoterm_id" invisible="1" />
-                    <field name="region_id" invisible="1" />
-                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
-                    <field name="product_origin_country_id" invisible="1" />
+                    <field
+                        name="region_id"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="region_code"
+                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="product_origin_country_id"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
                     <field
                         name="product_origin_country_code"
-                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')], 'required': [('reporting_level', '=', 'extended')]}"
                     />
                     <field name="vat" />
                     <field name="partner_id" />
@@ -271,44 +287,77 @@
         <field name="name">intrastat.product.computation.line.tree</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="arch" type="xml">
-            <tree string="Transactions">
+            <tree>
                 <field
                     name="parent_id"
                     invisible="not context.get('intrastat_product_computation_line_main_view')"
                 />
-                <field name="product_id" />
-                <field name="hs_code_id" />
-                <field name="src_dest_country_id" />
-                <field name="src_dest_country_code" />
+                <field name="declaration_type" invisible="1" />
+                <field name="reporting_level" invisible="1" />
+                <field name="company_country_code" invisible="1" />
+                <field name="product_id" optional="show" />
+                <field
+                    name="hs_code_id"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
+                <field
+                    name="src_dest_country_id"
+                    optional="hide"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
+                <field
+                    name="src_dest_country_code"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
                 <field name="amount_company_currency" />
-                <field name="amount_accessory_cost_company_currency" />
+                <field name="amount_accessory_cost_company_currency" optional="show" />
                 <field name="transaction_id" />
-                <field name="weight" />
+                <field
+                    name="weight"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
                 <field
                     name="suppl_unit_qty"
-                    attrs="{'invisible': [('intrastat_unit_id', '=', False)], 'required': [('intrastat_unit_id', '!=', False)]}"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')], 'invisible': [('intrastat_unit_id', '=', False)]}"
                 />
-                <field name="intrastat_unit_id" />
+                <field
+                    name="intrastat_unit_id"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
                 <field
                     name="transport_id"
-                    attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                 />
-                <field name="region_id" invisible="1" />
-                <!-- TODO: remove product_origin_country_id after update of localization modules -->
+                <field
+                    name="region_id"
+                    optional="hide"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
+                <field
+                    name="region_code"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                />
                 <field
                     name="product_origin_country_id"
-                    invisible="1"
+                    optional="hide"
                     string="Product C/O"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                 />
                 <field
                     name="product_origin_country_code"
-                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
+                    optional="show"
                     string="Product C/O"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                 />
-                <field name="vat" />
-                <field name="invoice_id" />
-                <field name="declaration_type" invisible="1" />
-                <field name="reporting_level" invisible="1" />
+                <field name="vat" optional="show" />
+                <field name="invoice_id" optional="show" />
             </tree>
         </field>
     </record>
@@ -316,15 +365,23 @@
         <field name="name">intrastat.product.declaration.line.form</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Declaration Line">
+            <form>
                 <group name="declaration">
                     <field
                         name="parent_id"
                         invisible="not context.get('intrastat_product_declaration_line_main_view')"
                     />
-                    <field name="hs_code_id" />
-                    <field name="src_dest_country_id" />
-                    <field name="src_dest_country_code" />
+                    <field name="declaration_type" invisible="1" />
+                    <field name="reporting_level" invisible="1" />
+                    <field name="company_country_code" invisible="1" />
+                    <field
+                        name="hs_code_id"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="src_dest_country_code"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
                     <field
                         name="amount_company_currency"
                         widget="monetary"
@@ -332,25 +389,36 @@
                     />
                     <field name="company_currency_id" invisible="1" />
                     <field name="transaction_id" />
-                    <label for="weight" />
-                    <div name="weight">
+                    <label
+                        for="weight"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <div
+                        name="weight"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    >
                 <field name="weight" class="oe_inline" /> Kg
             </div>
-                    <field name="suppl_unit_qty" />
-                    <field name="intrastat_unit_id" />
-                    <field name="declaration_type" invisible="1" />
-                    <field name="reporting_level" invisible="1" />
+                    <field
+                        name="suppl_unit_qty"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
+                    <field
+                        name="intrastat_unit_id"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
                     <field
                         name="transport_id"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
                     />
-                    <field name="region_id" invisible="1" />
+                    <field
+                        name="region_code"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                    />
                     <field name="incoterm_id" invisible="1" />
-                    <!-- TODO: remove product_origin_country_id after update of localization modules -->
-                    <field name="product_origin_country_id" invisible="1" />
                     <field
                         name="product_origin_country_code"
-                        attrs="{'invisible': [('declaration_type', '!=', 'arrivals')]}"
+                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
                     />
                     <field name="vat" />
                 </group>
@@ -364,37 +432,57 @@
         <field name="name">intrastat.product.declaration.line.tree</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Declaration Lines">
+            <tree>
                 <field
                     name="parent_id"
                     invisible="not context.get('intrastat_product_declaration_line_main_view')"
                 />
-                <field name="hs_code_id" />
-                <field name="src_dest_country_id" invisible="1" />
-                <field name="src_dest_country_code" />
-                <field name="amount_company_currency" />
-                <field name="transaction_id" />
-                <field name="weight" />
-                <field name="suppl_unit_qty" />
-                <field name="intrastat_unit_id" />
                 <field name="declaration_type" invisible="1" />
                 <field name="reporting_level" invisible="1" />
+                <field name="company_country_code" invisible="1" />
+                <field
+                    name="hs_code_id"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                />
+                <field
+                    name="src_dest_country_code"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                />
+                <field name="amount_company_currency" />
+                <field name="transaction_id" />
+                <field
+                    name="weight"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                />
+                <field
+                    name="suppl_unit_qty"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                />
+                <field
+                    name="intrastat_unit_id"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
+                />
                 <field
                     name="transport_id"
-                    attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
                 />
-                <field name="region_id" invisible="1" />
-                <field name="incoterm_id" invisible="1" />
-                <!-- TODO: remove product_origin_country_id after update of localization modules -->
                 <field
-                    name="product_origin_country_id"
-                    invisible="1"
-                    string="Product C/O"
+                    name="region_code"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    optional="show"
                 />
+                <field name="incoterm_id" invisible="1" />
                 <field
                     name="product_origin_country_code"
-                    attrs="{'column_invisible': [('parent.declaration_type', '=', 'arrivals')]}"
+                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                     string="Product C/O"
+                    optional="show"
                 />
                 <field name="vat" />
             </tree>

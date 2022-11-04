@@ -21,18 +21,6 @@ class ResConfigSettings(models.TransientModel):
     intrastat_region_id = fields.Many2one(
         related="company_id.intrastat_region_id", readonly=False
     )
-    intrastat_transaction_out_invoice = fields.Many2one(
-        related="company_id.intrastat_transaction_out_invoice", readonly=False
-    )
-    intrastat_transaction_out_refund = fields.Many2one(
-        related="company_id.intrastat_transaction_out_refund", readonly=False
-    )
-    intrastat_transaction_in_invoice = fields.Many2one(
-        related="company_id.intrastat_transaction_in_invoice", readonly=False
-    )
-    intrastat_transaction_in_refund = fields.Many2one(
-        related="company_id.intrastat_transaction_in_refund", readonly=False
-    )
     intrastat_accessory_costs = fields.Boolean(
         related="company_id.intrastat_accessory_costs", readonly=False
     )

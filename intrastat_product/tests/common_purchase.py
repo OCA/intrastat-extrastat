@@ -16,9 +16,9 @@ class IntrastatPurchaseCommon(IntrastatProductCommon):
             "declaration_type": "arrivals",
             "suppl_unit_qty": line.qty_received,
             "hs_code_id": line.product_id.hs_code_id,
-            "product_origin_country_id": line.product_id.origin_country_id,
+            "product_origin_country_code": line.product_id.origin_country_id.code,
             "amount_company_currency": line.price_subtotal,
-            "src_dest_country_id": line.partner_id.country_id,
+            "src_dest_country_code": line.partner_id.country_id.code,
         }
 
     def _check_line_values(self, final=False, declaration=None, purchase=None):

@@ -9,6 +9,7 @@ from odoo import api, fields, models
 class IntrastatTransaction(models.Model):
     _name = "intrastat.transaction"
     _description = "Intrastat Transaction"
+    _rec_name = "code"
     _order = "code"
     _sql_constraints = [
         (

@@ -17,25 +17,13 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
                 "local_code": "22083000",
             }
         )
-        cls.product_xi = cls.env["product.product"].create(
+        cls.product_uk = cls.env["product.product"].create(
             {
                 "name": "Bushmills Original",
                 "weight": 1.4,
                 "list_price": 30.0,
                 "standard_price": 15.0,
                 "origin_country_id": cls.env.ref("base.uk").id,
-                "origin_state_id": cls.env.ref("base.state_uk18").id,
-                "hs_code_id": cls.hs_code_whiskey.id,
-            }
-        )
-        cls.product_xu = cls.env["product.product"].create(
-            {
-                "name": "Glenfiddich",
-                "weight": 1.4,
-                "list_price": 50.0,
-                "standard_price": 25.0,
-                "origin_country_id": cls.env.ref("base.uk").id,
-                "origin_state_id": cls.env.ref("base.state_uk6").id,
                 "hs_code_id": cls.hs_code_whiskey.id,
             }
         )
@@ -84,9 +72,7 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         )
         with Form(inv_in_xi) as inv_form:
             with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xi
-            with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xu
+                ail.product_id = self.product_uk
         inv_in_xi.invoice_date = inv_in_xi.date
         inv_in_xi.action_post()
 
@@ -100,15 +86,11 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         self.declaration.action_gather()
         self.declaration.generate_declaration()
         clines = self.declaration.computation_line_ids
-        cl_xi = clines.filtered(lambda r: r.product_id == self.product_xi)
-        cl_xu = clines.filtered(lambda r: r.product_id == self.product_xu)
+        cl_uk = clines.filtered(lambda r: r.product_id == self.product_uk)
         dlines = self.declaration.declaration_line_ids
-        dl_xi = dlines.filtered(lambda r: r.computation_line_ids == cl_xi)
-        dl_xu = dlines.filtered(lambda r: r.computation_line_ids == cl_xu)
-        self.assertEqual(cl_xi.product_origin_country_code, "XI")
-        self.assertEqual(cl_xu.product_origin_country_code, "XU")
-        self.assertEqual(dl_xi.product_origin_country_code, "XI")
-        self.assertEqual(dl_xu.product_origin_country_code, "XU")
+        dl_uk = dlines.filtered(lambda r: r.computation_line_ids == cl_uk)
+        self.assertEqual(cl_uk.product_origin_country_code, "XU")
+        self.assertEqual(dl_uk.product_origin_country_code, "XU")
 
     def test_brexit_invoice_intrastat_details(self):
         inv_in_xi = self.inv_obj.with_context(default_move_type="in_invoice").create(
@@ -119,8 +101,8 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
         )
         with Form(inv_in_xi) as inv_form:
             with inv_form.invoice_line_ids.new() as ail:
-                ail.product_id = self.product_xi
+                ail.product_id = self.product_uk
         inv_in_xi.invoice_date = inv_in_xi.date
         inv_in_xi.compute_intrastat_lines()
         ilines = inv_in_xi.intrastat_line_ids
-        self.assertEqual(ilines.product_origin_country_code, "XI")
+        self.assertEqual(ilines.product_origin_country_id, self.env.ref("base.uk"))

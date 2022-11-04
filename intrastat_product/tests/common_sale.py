@@ -16,7 +16,7 @@ class IntrastatSaleCommon(IntrastatProductCommon):
             "declaration_type": "dispatches",
             "suppl_unit_qty": line.qty_delivered,
             "hs_code_id": line.product_id.hs_code_id,
-            "product_origin_country_id": line.product_id.origin_country_id,
+            "product_origin_country_code": line.product_id.origin_country_id.code,
         }
 
     def _check_line_values(self, final=False, declaration=None, sale=None):

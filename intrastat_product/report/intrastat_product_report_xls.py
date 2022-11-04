@@ -45,9 +45,9 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {"type": "string", "value": self._("Product C/O Code")},
                 "line": {
                     "type": "string",
-                    "value": self._render("line.product_origin_country_code"),
+                    "value": self._render("line.product_origin_country_code or ''"),
                 },
-                "width": 28,
+                "width": 10,
             },
             "product_origin_country": {
                 "header": {"type": "string", "value": self._("Product C/O")},
@@ -68,13 +68,13 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "src_dest_country_code": {
                 "header": {
                     "type": "string",
-                    "value": self._("Country of Origin/Destination"),
+                    "value": self._("Country Code of Origin/Destination"),
                 },
                 "line": {
                     "type": "string",
                     "value": self._render("line.src_dest_country_code"),
                 },
-                "width": 28,
+                "width": 10,
             },
             "src_dest_country": {
                 "header": {
@@ -83,7 +83,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 },
                 "line": {
                     "type": "string",
-                    "value": self._render("line.src_dest_country_id.name or ''"),
+                    "value": self._render("line.src_dest_country_id.name"),
                 },
                 "width": 28,
             },
@@ -121,7 +121,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                     "value": self._("Intrastat Transaction code"),
                 },
                 "line": {"value": self._render("line.transaction_id.code")},
-                "width": 36,
+                "width": 10,
             },
             "transaction": {
                 "header": {"type": "string", "value": self._("Intrastat Transaction")},
@@ -169,7 +169,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "transport_code": {
                 "header": {"type": "string", "value": self._("Transport Mode Code")},
                 "line": {"value": self._render("line.transport_id.code or ''")},
-                "width": 14,
+                "width": 10,
             },
             "transport": {
                 "header": {"type": "string", "value": self._("Transport Mode")},
@@ -180,6 +180,11 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "header": {"type": "string", "value": self._("Intrastat Region")},
                 "line": {"value": self._render("line.region_id.name or ''")},
                 "width": 28,
+            },
+            "region_code": {
+                "header": {"type": "string", "value": self._("Intrastat Region Code")},
+                "line": {"value": self._render("line.region_code or ''")},
+                "width": 10,
             },
             "vat": {
                 "header": {"type": "string", "value": self._("VAT")},

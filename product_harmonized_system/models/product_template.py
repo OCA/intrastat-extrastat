@@ -27,16 +27,6 @@ class ProductTemplate(models.Model):
         string="Country of Origin",
         help="Country of origin of the product i.e. product " "'made in ____'.",
     )
-    origin_state_id = fields.Many2one(
-        comodel_name="res.country.state",
-        string="Country State of Origin",
-        domain="[('country_id', '=?', origin_country_id)]",
-        help="Country State of origin of the product.\n"
-        "This field is used for the Intrastat declaration, "
-        "selecting one of the Northern Ireland counties will set the code 'XI' "
-        "for products from the United Kingdom whereas code 'XU' "
-        "will be used for the other UK counties.",
-    )
 
 
 class ProductProduct(models.Model):

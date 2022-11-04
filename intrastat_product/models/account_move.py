@@ -93,14 +93,6 @@ class AccountMove(models.Model):
             if not hs_code:
                 return vals
             weight, qty = decl_model._get_weight_and_supplunits(line, hs_code, notedict)
-            product_country = line.product_id.origin_country_id
-            product_state = line.product_id.origin_state_id
-            country = product_country or product_state.country_id
-            product_origin_country_code = "QU"
-            if country:
-                product_origin_country_code = self.env[
-                    "res.partner"
-                ]._get_intrastat_country_code(product_country, product_state)
             vals.update(
                 {
                     "invoice_line_id": line.id,
@@ -108,7 +100,6 @@ class AccountMove(models.Model):
                     "transaction_weight": weight,
                     "transaction_suppl_unit_qty": qty,
                     "product_origin_country_id": line.product_id.origin_country_id.id,
-                    "product_origin_country_code": product_origin_country_code,
                 }
             )
         return vals
@@ -208,22 +199,10 @@ class AccountMoveIntrastatLine(models.Model):
     transaction_weight = fields.Integer(
         help="Transaction weight in Kg: Quantity x Product Weight"
     )
-    # product_origin_country_id is replaced by product_origin_country_code
-    # this field should be dropped once the localisation modules have been
-    # adapted accordingly
     product_origin_country_id = fields.Many2one(
         comodel_name="res.country",
-        string="Country of Origin",
-        help="Country of origin of the product i.e. product " "'made in ____'.",
-    )
-    product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
-        size=2,
-        required=True,
-        default="QU",
-        help="2 digit code of country of origin of the product except for the UK.\n"
-        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
-        "Specify 'QU' when the country is unknown.\n",
+        help="Country of origin of the product i.e. product " "'made in ____'.",
     )
 
     @api.onchange("invoice_line_id")

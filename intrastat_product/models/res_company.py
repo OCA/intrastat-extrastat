@@ -35,22 +35,6 @@ class ResCompany(models.Model):
     intrastat_region_id = fields.Many2one(
         comodel_name="intrastat.region", string="Default Intrastat Region"
     )
-    intrastat_transaction_out_invoice = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Customer Invoice",
-    )
-    intrastat_transaction_out_refund = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction for Customer Refunds",
-    )
-    intrastat_transaction_in_invoice = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Supplier Invoices",
-    )
-    intrastat_transaction_in_refund = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Supplier Refunds",
-    )
     intrastat_accessory_costs = fields.Boolean(
         string="Include Accessory Costs in Fiscal Value of Product"
     )

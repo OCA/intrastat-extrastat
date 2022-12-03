@@ -1,10 +1,10 @@
-# Copyright 2018-2020 Akretion France (http://www.akretion.com)
+# Copyright 2018-2022 Akretion France (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Product Harmonized System Codes - Delivery",
-    "version": "14.0.1.2.0",
+    "version": "15.0.1.0.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Hide native hs_code field provided by the delivery module",

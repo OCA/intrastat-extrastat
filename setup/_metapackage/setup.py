@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-intrastat_base>=15.0dev,<15.1dev',
         'odoo-addon-intrastat_product>=15.0dev,<15.1dev',
         'odoo-addon-product_harmonized_system>=15.0dev,<15.1dev',
+        'odoo-addon-product_harmonized_system_delivery>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

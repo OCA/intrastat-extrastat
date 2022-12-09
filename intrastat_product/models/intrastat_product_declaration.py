@@ -586,6 +586,7 @@ class IntrastatProductDeclaration(models.Model):
         domain = self._prepare_invoice_domain()
         order = "journal_id, name"
         invoices = self.env["account.move"].search(domain, order=order)
+        partner_model = self.env["res.partner"]
 
         for invoice in invoices:
 
@@ -632,8 +633,8 @@ class IntrastatProductDeclaration(models.Model):
                     or partner_country == self.company_id.country_id
                 ):
                     continue
-                partner_country_code = (
-                    invoice.commercial_partner_id._get_intrastat_country_code()
+                partner_country_code = partner_model._get_intrastat_country_code(
+                    country=partner_country, state=invoice.partner_shipping_id.state_id
                 )
 
                 if inv_intrastat_line:

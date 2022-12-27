@@ -1,11 +1,11 @@
-# Copyright 2011-2021 Akretion (http://www.akretion.com)
-# Copyright 2018-2021 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
-# Copyright 2009-2021 Noviat (http://www.noviat.com)
+# Copyright 2011-2022 Akretion (http://www.akretion.com)
+# Copyright 2018-2022 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Intrastat Reporting Base",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat reporting",

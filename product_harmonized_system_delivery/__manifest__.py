@@ -4,7 +4,7 @@
 
 {
     "name": "Product Harmonized System Codes - Delivery",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Hide native hs_code field provided by the delivery module",

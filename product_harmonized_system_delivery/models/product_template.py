@@ -8,3 +8,4 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     hs_code = fields.Char(related="hs_code_id.hs_code", store=True)
+    country_of_origin = fields.Many2one(related="origin_country_id", store=True)

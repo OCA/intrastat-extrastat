@@ -31,8 +31,12 @@
             <tree>
                 <field name="hs_code" />
                 <field name="local_code" />
-                <field name="description" />
-                <field name="company_id" groups="base.group_multi_company" />
+                <field name="description" optional="show" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
             </tree>
         </field>
     </record>

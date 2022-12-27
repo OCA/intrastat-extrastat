@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2010-2020 Akretion France (http://www.akretion.com/)
+  Copyright 2010-2022 Akretion France (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -11,7 +11,7 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
-            <field name="company_id" position="before">
+            <group name="group_standard_price" position="inside">
                 <field
                     name="hs_code_id"
                     attrs="{'invisible': [('type', '=', 'service')]}"
@@ -19,12 +19,9 @@
                 <field
                     name="origin_country_id"
                     attrs="{'invisible': [('type', '=', 'service')]}"
+                    options="{'no_create': True}"
                 />
-                <field
-                    name="origin_state_id"
-                    attrs="{'invisible': [('type', '=', 'service')]}"
-                />
-            </field>
+            </group>
         </field>
     </record>
     <record id="product_template_search_view" model="ir.ui.view">

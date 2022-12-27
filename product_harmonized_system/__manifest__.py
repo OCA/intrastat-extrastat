@@ -1,6 +1,6 @@
-# Copyright 2018-2020 brain-tec AG (http://www.braintec-group.com)
-# Copyright 2011-2020 Akretion (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2018-2022 brain-tec AG (http://www.braintec-group.com)
+# Copyright 2011-2022 Akretion (http://www.akretion.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # Copyright 2022 Tecnativa - Víctor Martínez
 # @author Benjamin Henquet <info@noviat.com>
 # @author Kumar Aberer <kumar.aberer@braintec-group.com>
@@ -10,11 +10,11 @@
 
 {
     "name": "Product Harmonized System Codes",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",
-    "author": "brain-tec AG, Akretion, Noviat, " "Odoo Community Association (OCA)",
+    "author": "brain-tec AG, Akretion, Noviat, Odoo Community Association (OCA)",
     "maintainers": ["alexis-via", "luc-demeyer"],
     "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["product"],

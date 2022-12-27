@@ -1,5 +1,5 @@
-# Copyright 2011-2020 Akretion France (http://www.akretion.com)
-# Copyright 2009-2020 Noviat (http://www.noviat.com)
+# Copyright 2011-2022 Akretion France (http://www.akretion.com)
+# Copyright 2009-2022 Noviat (http://www.noviat.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -18,7 +18,8 @@ class HSCode(models.Model):
     hs_code = fields.Char(
         string="H.S. Code",
         compute="_compute_hs_code",
-        readonly=True,
+        store=True,
+        precompute=True,
         help="Harmonized System code (6 digits). Full list is "
         "available from the World Customs Organisation, see "
         "http://www.wcoomd.org",
@@ -64,17 +65,21 @@ class HSCode(models.Model):
 
     @api.depends("product_categ_ids")
     def _compute_product_categ_count(self):
-        # hs_code_id on product.category is company_dependent=True
-        # so we can't use a read_group()
+        rg_res = self.env["product.category"].read_group(
+            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["hs_code_id"]
+        )
+        mapped_data = {x["hs_code_id"][0]: x["hs_code_id_count"] for x in rg_res}
         for code in self:
-            code.product_categ_count = len(code.product_categ_ids)
+            code.product_categ_count = mapped_data.get(code.id, 0)
 
     @api.depends("product_tmpl_ids")
     def _compute_product_tmpl_count(self):
-        # hs_code_id on product.template is company_dependent=True
-        # so we can't use a read_group()
+        rg_res = self.env["product.template"].read_group(
+            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["hs_code_id"]
+        )
+        mapped_data = {x["hs_code_id"][0]: x["hs_code_id_count"] for x in rg_res}
         for code in self:
-            code.product_tmpl_count = len(code.product_tmpl_ids)
+            code.product_tmpl_count = mapped_data.get(code.id, 0)
 
     @api.depends("local_code", "description")
     def name_get(self):
@@ -95,11 +100,12 @@ class HSCode(models.Model):
         )
     ]
 
-    @api.model
-    def create(self, vals):
-        if vals.get("local_code"):
-            vals["local_code"] = vals["local_code"].replace(" ", "")
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("local_code"):
+                vals["local_code"] = vals["local_code"].replace(" ", "")
+        return super().create(vals_list)
 
     def write(self, vals):
         if vals.get("local_code"):

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2020-2021 Akretion France (https://akretion.com/)
+  Copyright 2020-2022 Akretion France (https://akretion.com/)
   @author: Alexis de Lattre <alexis.delattre@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
@@ -22,6 +22,20 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="intrastat" optional="show" />
+            </field>
+        </field>
+    </record>
+    <record id="view_account_position_filter" model="ir.ui.view">
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <filter
+                    name="intrastat"
+                    domain="[('intrastat', '=', True)]"
+                    string="Intrastat"
+                />
+                <separator />
             </field>
         </field>
     </record>

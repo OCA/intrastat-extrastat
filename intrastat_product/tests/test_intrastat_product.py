@@ -69,6 +69,26 @@ class TestIntrastatProduct(IntrastatProductCommon):
         decl_copy = self.declaration.copy()
         self.assertEqual(self.declaration.revision + 1, decl_copy.revision)
 
+    def test_declaration_manual_lines(self):
+        vals = {"declaration_type": "dispatches"}
+        self._create_declaration(vals)
+        computation_line_form = Form(
+            self.env["intrastat.product.computation.line"].with_context(
+                default_parent_id=self.declaration.id
+            )
+        )
+        computation_line_form.src_dest_country_code = "FR"
+        computation_line = computation_line_form.save()
+        self.assertEqual(computation_line.src_dest_country_code, "FR")
+        declaration_line_form = Form(
+            self.env["intrastat.product.declaration.line"].with_context(
+                default_parent_id=self.declaration.id
+            )
+        )
+        declaration_line_form.src_dest_country_code = "FR"
+        declaration_line = declaration_line_form.save()
+        self.assertEqual(declaration_line.src_dest_country_code, "FR")
+
     def test_declaration_no_country(self):
         self.demo_company.country_id = False
         with self.assertRaises(ValidationError):

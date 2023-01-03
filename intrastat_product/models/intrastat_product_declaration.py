@@ -1152,7 +1152,7 @@ class IntrastatProductComputationLine(models.Model):
     @api.onchange("src_dest_country_id")
     def _onchange_src_dest_country_id(self):
         self.src_dest_country_code = self.src_dest_country_id.code
-        if self.parent_id.year >= "2021":
+        if self.parent_id.year >= "2021" and self.src_dest_country_id:
             self.src_dest_country_code = self.env[
                 "res.partner"
             ]._get_intrastat_country_code(country=self.src_dest_country_id)
@@ -1176,8 +1176,6 @@ class IntrastatProductComputationLine(models.Model):
     def _onchange_product(self):
         self.weight = 0.0
         self.suppl_unit_qty = 0.0
-        self.intrastat_code_id = False
-        self.intrastat_unit_id = False
         if self.product_id:
             self.intrastat_code_id = self.product_id.intrastat_id
             self.intrastat_unit_id = self.product_id.intrastat_id.intrastat_unit_id
@@ -1264,7 +1262,7 @@ class IntrastatProductDeclarationLine(models.Model):
     @api.onchange("src_dest_country_id")
     def _onchange_src_dest_country_id(self):
         self.src_dest_country_code = self.src_dest_country_id.code
-        if self.parent_id.year >= "2021":
+        if self.parent_id.year >= "2021" and self.src_dest_country_id:
             self.src_dest_country_code = self.env[
                 "res.partner"
             ]._get_intrastat_country_code(country=self.src_dest_country_id)

@@ -4,6 +4,7 @@
 # @author Luc de Meyer <info@noviat.com>
 
 import logging
+from collections import defaultdict
 from datetime import date
 
 from dateutil.relativedelta import relativedelta
@@ -280,29 +281,26 @@ class IntrastatProductDeclaration(models.Model):
         inv = inv_line.move_id
         country = inv.src_dest_country_id
         if not country:
-            line_notes = [
-                _(
-                    "Missing country on invoice partner '%s' "
-                    "or on the delivery address (partner '%s'). "
-                )
-                % (
-                    inv.partner_id.display_name,
-                    inv.partner_shipping_id
-                    and inv.partner_shipping_id.display_name
-                    or "-",
-                )
-            ]
-            self._format_line_note(inv_line, notedict, line_notes)
+            if not inv.partner_shipping_id.country_id:
+                error_partner = inv.partner_shipping_id
+            elif not inv.partner_id.country_id:
+                error_partner = inv.partner_id
+            else:
+                error_partner = inv.company_id.partner_id
+            msg = _("Missing <em>Country</em>")
+            notedict["partner"][error_partner.display_name][msg].add(
+                notedict["inv_origin"]
+            )
         else:
             if country not in eu_countries and country.code != "GB":
-                line_notes = [
+                msg = (
                     _(
-                        "On invoice '%s', the source/destination country "
-                        "is '%s' which is not part of the European Union."
+                        "The source/destination country "
+                        "is <em>%s</em> which is not part of the European Union"
                     )
-                    % (inv.name, country.name)
-                ]
-                self._format_line_note(inv_line, notedict, line_notes)
+                    % country.name
+                )
+                notedict["invoice"][notedict["inv_origin"]].add(msg)
         return country
 
     def _get_intrastat_transaction(self, inv_line, notedict):
@@ -321,20 +319,16 @@ class IntrastatProductDeclaration(models.Model):
         if not transaction and invoice.move_type in fieldmap:
             transaction = invoice.company_id[fieldmap[invoice.move_type]]
         if not transaction:
-            line_notes = [
-                _(
-                    "No Intrastat Transaction Type on invoice '%s'. "
-                    "No Default Intrastat Transaction Type on "
-                    "the fiscal position of the invoice (%s), "
-                    "nor on the accounting configuration page of the company '%s'. "
-                )
-                % (
-                    invoice.name,
-                    invoice.fiscal_position_id.display_name,
-                    invoice.company_id.display_name,
-                )
-            ]
-            self._format_line_note(inv_line, notedict, line_notes)
+            msg = _(
+                "No <em>Intrastat Transaction Type</em> on invoice. "
+                "No Default Intrastat Transaction Type on "
+                "the fiscal position of the invoice (%s), "
+                "nor on the accounting configuration page of the company <i>%s</i>."
+            ) % (
+                invoice.fiscal_position_id.display_name,
+                invoice.company_id.display_name,
+            )
+            notedict["invoice"][notedict["inv_origin"]].add(msg)
         return transaction
 
     def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):
@@ -348,34 +342,34 @@ class IntrastatProductDeclaration(models.Model):
         weight = suppl_unit_qty = 0.0
 
         if not source_uom:
-            line_notes = [_("Missing unit of measure.")]
-            self._format_line_note(inv_line, notedict, line_notes)
+            msg = _("Missing unit of measure")
+            notedict["invoice"][notedict["invline_origin"]].add(msg)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
             target_uom = intrastat_unit_id.uom_id
             if not target_uom:
-                line_notes = [
-                    _("Intrastat Code %s:") % hs_code.display_name,
-                    _(
-                        "Conversion from Intrastat Supplementary Unit '%s' to "
-                        "Unit of Measure is not implemented yet."
-                    )
-                    % intrastat_unit_id.name,
-                ]
-                self._format_line_note(inv_line, notedict, line_notes)
+                msg = _("Missing link to a <em>regular unit of measure</em>")
+                notedict["intrastat_unit"][intrastat_unit_id.display_name][msg].add(
+                    notedict["invline_origin"]
+                )
                 return weight, suppl_unit_qty
             if target_uom.category_id == source_uom.category_id:
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
             else:
-                line_notes = [
-                    _(
-                        "Conversion from unit of measure '%s' to '%s' "
-                        "is not implemented yet."
-                    )
-                    % (source_uom.name, target_uom.name)
-                ]
-                self._format_line_note(inv_line, notedict, line_notes)
+                msg = _(
+                    "Conversion from unit of measure <em>%(source_uom)s</em> to "
+                    "<em>%(target_uom)s</em>, which is configured on the intrastat "
+                    "supplementary unit <i>%(intrastat_unit)s</i> "
+                    "of H.S. code <i>%(hs_code)s</i>, "
+                    "is not implemented yet"
+                ) % {
+                    "source_uom": source_uom.name,
+                    "target_uom": target_uom.name,
+                    "intrastat_unit": intrastat_unit_id.display_name,
+                    "hs_code": hs_code.display_name,
+                }
+                notedict["invoice"][notedict["invline_origin"]].add(msg)
                 return weight, suppl_unit_qty
 
         if source_uom == kg_uom:
@@ -389,15 +383,17 @@ class IntrastatProductDeclaration(models.Model):
                 line_qty, product.uom_id
             )
         else:
-            line_notes = [
-                _(
-                    "Conversion from unit of measure '%s' to 'Kg' "
-                    "cannot be done automatically. It is needed for product "
-                    "'%s' whose unit of measure is %s."
-                )
-                % (source_uom.name, product.display_name, product.uom_id.display_name)
-            ]
-            self._format_line_note(inv_line, notedict, line_notes)
+            msg = _(
+                "Conversion from unit of measure <em>%(source_uom)s</em> to "
+                "<em>Kg</em> cannot be done automatically. It is needed for product "
+                "<i>%(product)s</i> whose unit of measure is "
+                "<i>%(product_uom)s</i>"
+            ) % {
+                "source_uom": source_uom.name,
+                "product": product.display_name,
+                "product_uom": product.uom_id.display_name,
+            }
+            notedict["invoice"][notedict["inv_origin"]].add(msg)
         return weight, suppl_unit_qty
 
     def _get_region_code(self, inv_line, notedict):
@@ -454,8 +450,7 @@ class IntrastatProductDeclaration(models.Model):
         )
         if not transport:
             msg = _(
-                "The default Intrastat Transport Mode "
-                "of the Company is not set, "
+                "The default Intrastat Transport Mode of the Company is not set, "
                 "please configure it first."
             )
             self._account_config_warning(msg)
@@ -465,21 +460,20 @@ class IntrastatProductDeclaration(models.Model):
         incoterm = inv_line.move_id.invoice_incoterm_id or self.company_id.incoterm_id
         if not incoterm:
             msg = _(
-                "The default Incoterm "
-                "of the Company is not set, "
+                "The default Incoterm of the Company is not set, "
                 "please configure it first."
             )
             self._account_config_warning(msg)
         return incoterm
 
     def _get_product_origin_country(self, inv_line, notedict):
-        origin_country = inv_line.product_id.origin_country_id
+        product = inv_line.product_id
+        origin_country = product.origin_country_id
         if not origin_country:
-            line_notes = [
-                _("The country of origin is missing on product '%s'.")
-                % inv_line.product_id.display_name
-            ]
-            self._format_line_note(inv_line, notedict, line_notes)
+            msg = _("Missing <em>Country of Origin</em>")
+            notedict["product"][product.display_name][msg].add(
+                notedict["invline_origin"]
+            )
         return origin_country
 
     def _get_vat(self, inv_line, notedict):
@@ -489,33 +483,29 @@ class IntrastatProductDeclaration(models.Model):
             self.declaration_type == "dispatches"
             and inv_line.move_id.fiscal_position_id.vat_required
         ):
-            vat = inv.commercial_partner_id.vat
+            partner = inv.commercial_partner_id
+            vat = partner.vat
             if vat:
                 if vat.startswith("GB"):
-                    line_notes = [
-                        _(
-                            "VAT number of partner '%s' is '%s'. If this partner "
-                            "is from Northern Ireland, his VAT number should be "
-                            "updated to his new VAT number starting with 'XI' "
-                            "following Brexit. If this partner is from Great Britain, "
-                            "maybe the fiscal position was wrong on invoice '%s' "
-                            "(the fiscal position was '%s')."
-                        )
-                        % (
-                            inv.commercial_partner_id.display_name,
-                            vat,
-                            inv.name,
-                            inv.fiscal_position_id.display_name,
-                        )
-                    ]
-                    self._format_line_note(inv_line, notedict, line_notes)
-
+                    msg = _(
+                        "VAT number is <em>%(vat)s</em>. If this partner "
+                        "is from Northern Ireland, his VAT number should be "
+                        "updated to his new VAT number starting with <em>XI</em> "
+                        "following Brexit. If this partner is from Great Britain, "
+                        "maybe the fiscal position was wrong on the invoice "
+                        "(the fiscal position was <i>%(fiscal_position)s</i>)."
+                    ) % {
+                        "vat": vat,
+                        "fiscal_position": inv.fiscal_position_id.display_name,
+                    }
+                    notedict["partner"][partner.display_name][msg].add(
+                        notedict["inv_origin"]
+                    )
             else:
-                line_notes = [
-                    _("Missing VAT Number on partner '%s'")
-                    % inv.commercial_partner_id.display_name
-                ]
-                self._format_line_note(inv_line, notedict, line_notes)
+                msg = _("Missing <em>VAT Number</em>")
+                notedict["partner"][partner.display_name][msg].add(
+                    notedict["inv_origin"]
+                )
         return vat
 
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
@@ -596,15 +586,6 @@ class IntrastatProductDeclaration(models.Model):
     def _gather_invoices_init(self, notedict):
         """placeholder for localization modules"""
 
-    def _format_line_note(self, line, notedict, line_notes):
-        indent = 8 * " "
-        note = _("Invoice %s, line %s") % (line.move_id.name, notedict["line_nbr"])
-        note += ":\n"
-        for line_note in line_notes:
-            note += indent + line_note
-            note += "\n"
-        notedict["note"] += note
-
     def _gather_invoices(self, notedict):
         lines = []
         qty_prec = self.env["decimal.precision"].precision_get(
@@ -624,10 +605,14 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
+            notedict["inv_origin"] = invoice.name
             for line_nbr, inv_line in enumerate(
                 invoice.invoice_line_ids.filtered(lambda x: not x.display_type), start=1
             ):
-                notedict["line_nbr"] = line_nbr
+                notedict["invline_origin"] = _("%(invoice)s line %(line_nbr)s") % {
+                    "invoice": invoice.name,
+                    "line_nbr": line_nbr,
+                }
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
                     lambda r: r.invoice_line_id == inv_line
                 )
@@ -673,11 +658,10 @@ class IntrastatProductDeclaration(models.Model):
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:
-                        line_notes = [
-                            _("Missing Intrastat Code on product %s. ")
-                            % (inv_line.product_id.display_name)
-                        ]
-                        self._format_line_note(inv_line, notedict, line_notes)
+                        msg = _("Missing <em>H.S. Code</em>")
+                        notedict["product"][inv_line.product_id.display_name][msg].add(
+                            notedict["invline_origin"]
+                        )
                         continue
                 else:
                     _logger.info(
@@ -776,30 +760,63 @@ class IntrastatProductDeclaration(models.Model):
 
         return lines
 
+    def _prepare_html_note(self, notedict, key2label):
+        note = ""
+        for key, entries in notedict.items():
+            if not key.endswith("_origin") and entries:
+                note += "<h3>%s</h3><ul>" % key2label[key]
+                for obj_name, messages in entries.items():
+                    note += "<li>%s<ul>" % obj_name
+                    if isinstance(
+                        messages, dict
+                    ):  # 2 layers of dict (partner, product)
+                        for message, origins in messages.items():
+                            note += "<li>%s <small>(%s)</small></li>" % (
+                                message,
+                                ", ".join(origins),
+                            )
+                    else:  # 1st layer=dict, 2nd layer=set (invoice)
+                        for message in messages:
+                            note += "<li>%s</li>" % message
+                    note += "</ul>"
+                note += "</ul>"
+        return note
+
+    def _prepare_notedict(self):
+        notedict = {
+            "partner": defaultdict(lambda: defaultdict(set)),
+            # key = partner.display_name
+            # value = {message1: {origin1, origin2}, message2: {origin3, origin4}}
+            "product": defaultdict(lambda: defaultdict(set)),
+            "intrastat_unit": defaultdict(lambda: defaultdict(set)),
+            "invoice": defaultdict(set),  # for invoice and invoice line
+            # key = invoice.name
+            # value (set) = {message1, message2}
+            "inv_origin": "",
+            "invline_origin": "",
+        }
+        key2label = {
+            "partner": _("Partners"),
+            "product": _("Products"),
+            "intrastat_unit": _("Intrastat Supplementary Units"),
+            "invoice": _("Invoices/Refunds"),
+        }
+        return notedict, key2label
+
     def action_gather(self):
         self.ensure_one()
         self.message_post(body=_("Generate Lines from Invoices"))
-        notedict = {
-            "note": "",
-            "line_nbr": 0,
-        }
-        # TODO: implement a solution to avoid double warnings
-        # e.g. warning on invoice that is repeated for every line
-        # or warning on a product that is repeated for every invoice line
-        # with that product
-
+        notedict, key2label = self._prepare_notedict()
         self.computation_line_ids.unlink()
         self.declaration_line_ids.unlink()
         lines = self._gather_invoices(notedict)
 
-        vals = {"note": notedict["note"]}
+        vals = {"note": self._prepare_html_note(notedict, key2label)}
         if not lines:
             vals["action"] = "nihil"
-            vals["note"] += (
-                "\n"
-                + _("No records found for the selected period !")
-                + "\n"
-                + _("The Declaration Action has been set to 'nihil'.")
+            vals["note"] += "<h3>%s</h3><p>%s</p>" % (
+                _("No records found for the selected period !"),
+                _("The declaration Action has been set to <em>nihil</em>."),
             )
         else:
             vals["computation_line_ids"] = [(0, 0, x) for x in lines]
@@ -809,7 +826,6 @@ class IntrastatProductDeclaration(models.Model):
             result_view = self.env.ref("intrastat_product.intrastat_result_view_form")
             return {
                 "name": _("Generate lines from invoices: results"),
-                "view_type": "form",
                 "view_mode": "form",
                 "res_model": "intrastat.result.view",
                 "view_id": result_view.id,

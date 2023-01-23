@@ -200,16 +200,21 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.depends("declaration_line_ids.amount_company_currency")
     def _compute_numbers(self):
-        rg_res = self.env['intrastat.product.declaration.line'].read_group(
-            [('parent_id', 'in', self.ids)],
-            ['parent_id', 'amount_company_currency:sum'],
-            ['parent_id'])
-        mapped_data = dict(
-            [(x['parent_id'][0],
-            {'num_decl_lines': x['parent_id_count'], 'total_amount': x['amount_company_currency']}) for x in rg_res])
+        rg_res = self.env["intrastat.product.declaration.line"].read_group(
+            [("parent_id", "in", self.ids)],
+            ["parent_id", "amount_company_currency:sum"],
+            ["parent_id"],
+        )
+        mapped_data = {
+            x["parent_id"][0]: {
+                "num_decl_lines": x["parent_id_count"],
+                "total_amount": x["amount_company_currency"],
+            }
+            for x in rg_res
+        }
         for this in self:
-            this.num_decl_lines = mapped_data.get(this.id, {}).get('num_decl_lines', 0)
-            this.total_amount = mapped_data.get(this.id, {}).get('total_amount', 0)
+            this.num_decl_lines = mapped_data.get(this.id, {}).get("num_decl_lines", 0)
+            this.total_amount = mapped_data.get(this.id, {}).get("total_amount", 0)
 
     @api.constrains("year")
     def _check_year(self):
@@ -303,18 +308,18 @@ class IntrastatProductDeclaration(models.Model):
     def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         transaction = invoice.intrastat_transaction_id
-        if not transaction:
+        fieldmap = {
+            "out_invoice": "intrastat_out_invoice_transaction_id",
+            "out_refund": "intrastat_out_refund_transaction_id",
+            "in_invoice": "intrastat_in_invoice_transaction_id",
+            "in_refund": "intrastat_in_refund_transaction_id",
+        }
+        if not transaction and invoice.move_type in fieldmap:
             # as we have searched with intrastat_fiscal_position = True
             # we should always have a fiscal position on the invoice
-            fp = invoice.fiscal_position_id
-            if invoice.move_type == "out_invoice":
-                transaction = fp.intrastat_out_invoice_transaction_id
-            elif invoice.move_type == "out_refund":
-                transaction = fp.intrastat_out_refund_transaction_id
-            elif invoice.move_type == "in_invoice":
-                transaction = fp.intrastat_in_invoice_transaction_id
-            elif invoice.move_type == "in_refund":
-                transaction = fp.intrastat_in_refund_transaction_id
+            transaction = invoice.fiscal_position_id[fieldmap[invoice.move_type]]
+        if not transaction and invoice.move_type in fieldmap:
+            transaction = invoice.company_id[fieldmap[invoice.move_type]]
         if not transaction:
             line_notes = [
                 _(

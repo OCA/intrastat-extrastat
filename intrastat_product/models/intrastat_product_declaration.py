@@ -323,10 +323,16 @@ class IntrastatProductDeclaration(models.Model):
         if not transaction:
             line_notes = [
                 _(
-                    "No Intrastat Transaction Type on invoice '%s', "
-                    "nor on the fiscal position of the invoice (%s)."
+                    "No Intrastat Transaction Type on invoice '%s'. "
+                    "No Default Intrastat Transaction Type on "
+                    "the fiscal position of the invoice (%s), "
+                    "nor on the accounting configuration page of the company '%s'. "
                 )
-                % (invoice.name, invoice.fiscal_position_id.display_name)
+                % (
+                    invoice.name,
+                    invoice.fiscal_position_id.display_name,
+                    invoice.company_id.display_name,
+                )
             ]
             self._format_line_note(inv_line, notedict, line_notes)
         return transaction

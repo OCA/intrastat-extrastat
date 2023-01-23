@@ -18,7 +18,7 @@
                 >
                                 <group
                         name="intrastat_transactions"
-                        string="Default Intrastat Transactions"
+                        string="Default Intrastat Transaction Types"
                     >
                 <field
                             name="intrastat_out_invoice_transaction_id"

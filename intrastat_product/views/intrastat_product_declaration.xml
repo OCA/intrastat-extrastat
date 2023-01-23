@@ -311,8 +311,12 @@
                     optional="show"
                     attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                 />
-                <field name="amount_company_currency" />
-                <field name="amount_accessory_cost_company_currency" optional="show" />
+                <field name="amount_company_currency" sum="1" />
+                <field
+                    name="amount_accessory_cost_company_currency"
+                    optional="show"
+                    sum="1"
+                />
                 <field name="transaction_id" />
                 <field
                     name="weight"
@@ -450,7 +454,7 @@
                     attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
                     optional="show"
                 />
-                <field name="amount_company_currency" />
+                <field name="amount_company_currency" sum="1" />
                 <field name="transaction_id" />
                 <field
                     name="weight"

@@ -1,7 +1,7 @@
 # Copyright 2009-2020 Noviat nv/sa (www.noviat.com).
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class IntrastatRegion(models.Model):
@@ -15,18 +15,8 @@ class IntrastatRegion(models.Model):
         )
     ]
 
-    code = fields.Char(string="Code", required=True)
-    country_id = fields.Many2one(
-        comodel_name="res.country", string="Country", required=True
-    )
-    name = fields.Char(string="Name", translate=True)
-    description = fields.Char(string="Description")
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        string="Company",
-        default=lambda self: self._default_company_id(),
-    )
-
-    @api.model
-    def _default_company_id(self):
-        return self.env.company
+    code = fields.Char(required=True)
+    country_id = fields.Many2one(comodel_name="res.country", required=True)
+    name = fields.Char(translate=True)
+    description = fields.Char()
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)

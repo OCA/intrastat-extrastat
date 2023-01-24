@@ -19,18 +19,10 @@ class IntrastatTransaction(models.Model):
         )
     ]
 
-    code = fields.Char(string="Code", required=True)
-    description = fields.Text(string="Description")
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        string="Company",
-        default=lambda self: self._default_company_id(),
-    )
+    code = fields.Char(required=True)
+    description = fields.Text()
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
-
-    @api.model
-    def _default_company_id(self):
-        return self.env.company
 
     @api.depends("code", "description")
     def name_get(self):

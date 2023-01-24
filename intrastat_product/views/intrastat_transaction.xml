@@ -12,7 +12,7 @@
         <field name="name">intrastat.transaction_form</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transaction Type">
+            <form>
                 <sheet>
                     <widget
                         name="web_ribbon"
@@ -34,7 +34,7 @@
         <field name="name">intrastat.transaction_tree</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Transaction Types">
+            <tree>
                 <field name="code" />
                 <field name="description" />
                 <field name="company_id" groups="base.group_multi_company" />
@@ -45,7 +45,7 @@
         <field name="name">intrastat.transaction.mode.search</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Transaction Types">
+            <search>
                 <field
                     name="description"
                     string="Code or Description"

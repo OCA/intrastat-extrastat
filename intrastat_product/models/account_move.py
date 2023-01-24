@@ -33,7 +33,7 @@ class AccountMove(models.Model):
     src_dest_region_id = fields.Many2one(
         comodel_name="intrastat.region",
         string="Origin/Destination Region",
-        default=lambda self: self._default_src_dest_region_id(),
+        default=lambda self: self.env.company.intrastat_region_id,
         help="Origin region for dispatches, destination region for "
         "arrivals. This field is used for the Intrastat Declaration.",
         ondelete="restrict",
@@ -54,10 +54,6 @@ class AccountMove(models.Model):
             if not country:
                 country = inv.company_id.country_id
             inv.src_dest_country_id = country.id
-
-    @api.model
-    def _default_src_dest_region_id(self):
-        return self.env.company.intrastat_region_id
 
     def compute_intrastat_lines(self):
         """

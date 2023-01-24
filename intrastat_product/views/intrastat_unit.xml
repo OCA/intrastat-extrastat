@@ -12,7 +12,7 @@
         <field name="name">intrastat.unit.form</field>
         <field name="model">intrastat.unit</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Supplementary Unit">
+            <form>
                 <field name="active" invisible="1" />
                 <widget
                     name="web_ribbon"
@@ -32,7 +32,7 @@
         <field name="name">intrastat.unit.tree</field>
         <field name="model">intrastat.unit</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Supplementary Units">
+            <tree>
                 <field name="name" />
                 <field name="uom_id" />
                 <field name="description" optional="show" />
@@ -43,7 +43,7 @@
         <field name="name">intrastat.unit.search</field>
         <field name="model">intrastat.unit</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Supplementary Units">
+            <search>
                 <field
                     name="name"
                     filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"

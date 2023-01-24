@@ -53,6 +53,15 @@ class IntrastatProductCommon(IntrastatCommon):
         cls._create_region(vals)
 
     @classmethod
+    def _init_transaction(cls):
+        vals = {
+            "code": "9X",
+            "company_id": cls.env.company.id,
+            "description": "Test 9X",
+        }
+        cls._create_transaction(vals)
+
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.region_obj = cls.env["intrastat.region"]
@@ -77,6 +86,7 @@ class IntrastatProductCommon(IntrastatCommon):
         cls._init_company()
         cls._init_fiscal_position()
         cls._init_products()
+        cls._init_transaction()
 
     @classmethod
     def _create_xls(cls, declaration=False):
@@ -99,16 +109,14 @@ class IntrastatProductCommon(IntrastatCommon):
         data = {}
         encoded_data = "report/report_xlsx/" + report_name + "?" + url_encode(data)
         datas["data"] = encoded_data
-        context = {
-            "active_model": cls.declaration._name,
-        }
+        active_model = cls.declaration._name
         if not declaration:
-            context.update({"computation_lines": True})
+            computation_lines = True
         else:
-            context.update({"declaration_lines": True})
-        file_data = cls.xls_declaration.with_context(context).create_xlsx_report(
-            None, datas
-        )
+            computation_lines = False
+        file_data = cls.xls_declaration.with_context(
+            computation_lines=computation_lines, active_model=active_model
+        ).create_xlsx_report(None, datas)
         return file_data
 
     def check_xls(self, xls, declaration=False):

@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="product_harmonized_system.hs_code_view_tree" />
         <field name="arch" type="xml">
             <field name="local_code" position="after">
-                <field name="intrastat_unit_id" />
+                <field name="intrastat_unit_id" optional="show" />
             </field>
         </field>
     </record>

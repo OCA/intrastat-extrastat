@@ -72,12 +72,14 @@ class TestIntrastatProduct(IntrastatProductCommon):
     def test_declaration_manual_lines(self):
         vals = {"declaration_type": "dispatches"}
         self._create_declaration(vals)
+        self.declaration.write({"reporting_level": "standard"})
         computation_line_form = Form(
             self.env["intrastat.product.computation.line"].with_context(
                 default_parent_id=self.declaration.id
             )
         )
-        computation_line_form.src_dest_country_code = "FR"
+        computation_line_form.src_dest_country_id = self.env.ref("base.fr")
+        computation_line_form.transaction_id = self.transaction
         computation_line = computation_line_form.save()
         self.assertEqual(computation_line.src_dest_country_code, "FR")
         declaration_line_form = Form(

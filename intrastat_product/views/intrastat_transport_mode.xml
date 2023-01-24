@@ -12,7 +12,7 @@
         <field name="name">intrastat.transport.mode.form</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Transport Mode">
+            <form>
                 <group>
                     <field name="name" />
                     <field name="code" />
@@ -25,7 +25,7 @@
         <field name="name">intrastat.transport.mode.tree</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Transportat Modes">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="description" optional="show" />
@@ -36,7 +36,7 @@
         <field name="name">intrastat.transport.mode.search</field>
         <field name="model">intrastat.transport_mode</field>
         <field name="arch" type="xml">
-            <search string="Search Intrastat Transport Modes">
+            <search>
                 <field
                     name="name"
                     string="Name, Code or Description"

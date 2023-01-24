@@ -56,7 +56,6 @@ class IntrastatProductDeclaration(models.Model):
     )
     state = fields.Selection(
         selection=[("draft", "Draft"), ("done", "Done")],
-        string="State",
         readonly=True,
         tracking=True,
         copy=False,
@@ -67,9 +66,7 @@ class IntrastatProductDeclaration(models.Model):
     note = fields.Text(
         string="Notes", help="You can add some comments here if you want."
     )
-    year = fields.Char(
-        string="Year", required=True, states={"done": [("readonly", True)]}
-    )
+    year = fields.Char(required=True, states={"done": [("readonly", True)]})
     month = fields.Selection(
         selection=[
             ("01", "01"),
@@ -85,7 +82,6 @@ class IntrastatProductDeclaration(models.Model):
             ("11", "11"),
             ("12", "12"),
         ],
-        string="Month",
         required=True,
         states={"done": [("readonly", True)]},
     )
@@ -106,14 +102,12 @@ class IntrastatProductDeclaration(models.Model):
     )
     action = fields.Selection(
         selection="_get_action",
-        string="Action",
         required=True,
         default="replace",
         states={"done": [("readonly", True)]},
         tracking=True,
     )
     revision = fields.Integer(
-        string="Revision",
         default=1,
         states={"done": [("readonly", True)]},
         help="Used to keep track of changes",
@@ -149,7 +143,6 @@ class IntrastatProductDeclaration(models.Model):
         selection="_get_reporting_level",
         compute="_compute_reporting_level",
         readonly=False,
-        string="Reporting Level",
         states={"done": [("readonly", True)]},
     )
     xml_attachment_id = fields.Many2one("ir.attachment", string="XML Attachment")
@@ -322,12 +315,12 @@ class IntrastatProductDeclaration(models.Model):
             msg = _(
                 "No <em>Intrastat Transaction Type</em> on invoice. "
                 "No Default Intrastat Transaction Type on "
-                "the fiscal position of the invoice (%s), "
-                "nor on the accounting configuration page of the company <i>%s</i>."
-            ) % (
-                invoice.fiscal_position_id.display_name,
-                invoice.company_id.display_name,
-            )
+                "the fiscal position of the invoice (%(fiscal_position)s), "
+                "nor on the accounting configuration page of the company <i>%(company)s</i>."
+            ) % {
+                "fiscal_position": invoice.fiscal_position_id.display_name,
+                "company": invoice.company_id.display_name,
+            }
             notedict["invoice"][notedict["inv_origin"]].add(msg)
         return transaction
 
@@ -1081,9 +1074,7 @@ class IntrastatProductComputationLine(models.Model):
         string="Suppl. Unit",
         help="Intrastat Supplementary Unit",
     )
-    weight = fields.Float(
-        string="Weight", digits="Stock Weight", help="Net weight in Kg"
-    )
+    weight = fields.Float(digits="Stock Weight", help="Net weight in Kg")
     suppl_unit_qty = fields.Float(
         string="Suppl. Unit Qty",
         digits="Product Unit of Measure",
@@ -1204,7 +1195,7 @@ class IntrastatProductDeclarationLine(models.Model):
         string="Suppl. Unit",
         help="Intrastat Supplementary Unit",
     )
-    weight = fields.Integer(string="Weight", help="Net weight in Kg")
+    weight = fields.Integer(help="Net weight in Kg")
     suppl_unit_qty = fields.Integer(
         string="Suppl. Unit Qty", help="Supplementary Units Quantity"
     )

@@ -4,7 +4,7 @@
         <field name="name">intrastat.region.form</field>
         <field name="model">intrastat.region</field>
         <field name="arch" type="xml">
-            <form string="Intrastat Region">
+            <form>
                 <group name="main">
                     <field name="code" />
                     <field name="name" />
@@ -19,13 +19,35 @@
         <field name="name">intrastat.region.tree</field>
         <field name="model">intrastat.region</field>
         <field name="arch" type="xml">
-            <tree string="Intrastat Region">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="description" optional="show" />
                 <field name="country_id" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
+        </field>
+    </record>
+    <record id="intrastat_region_view_search" model="ir.ui.view">
+        <field name="name">intrastat.region.search</field>
+        <field name="model">intrastat.region</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    string="Name, Code or Description"
+                    filter_domain="['|', '|', ('code', 'ilike', self), ('name', 'ilike', self), ('description', 'ilike', self)]"
+                />
+                <field name="code" />
+                <field name="country_id" />
+                <group name="groupby">
+                    <filter
+                        name="country_groupby"
+                        string="Country"
+                        context="{'group_by': 'country_id'}"
+                    />
+                </group>
+            </search>
         </field>
     </record>
     <record id="intrastat_region_action" model="ir.actions.act_window">

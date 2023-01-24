@@ -10,8 +10,8 @@ class IntrastatUnit(models.Model):
     _name = "intrastat.unit"
     _description = "Intrastat Supplementary Units"
 
-    name = fields.Char(string="Name", required=True)
-    description = fields.Char(string="Description", required=True)
+    name = fields.Char(required=True)
+    description = fields.Char(required=True)
     uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Regular UoM",

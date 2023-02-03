@@ -21,7 +21,8 @@ class IntrastatTransaction(models.Model):
 
     code = fields.Char(required=True)
     description = fields.Text()
-    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    # intrastat.transaction are shared among companies by default
+    company_id = fields.Many2one("res.company")
     active = fields.Boolean(default=True)
 
     @api.depends("code", "description")

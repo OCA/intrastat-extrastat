@@ -70,9 +70,8 @@ class TestIntrastatProduct(IntrastatProductCommon):
         self.assertEqual(self.declaration.revision + 1, decl_copy.revision)
 
     def test_declaration_manual_lines(self):
-        vals = {"declaration_type": "dispatches"}
+        vals = {"declaration_type": "dispatches", "reporting_level": "extended"}
         self._create_declaration(vals)
-        self.declaration.write({"reporting_level": "standard"})
         computation_line_form = Form(
             self.env["intrastat.product.computation.line"].with_context(
                 default_parent_id=self.declaration.id
@@ -80,6 +79,12 @@ class TestIntrastatProduct(IntrastatProductCommon):
         )
         computation_line_form.src_dest_country_id = self.env.ref("base.fr")
         computation_line_form.transaction_id = self.transaction
+        computation_line_form.hs_code_id = self.hs_code_computer
+        computation_line_form.region_code = "ZZ"
+        computation_line_form.product_origin_country_code = "BE"
+        computation_line_form.transport_id = self.env.ref(
+            "intrastat_product.intrastat_transport_3"
+        )
         computation_line = computation_line_form.save()
         self.assertEqual(computation_line.src_dest_country_code, "FR")
         declaration_line_form = Form(

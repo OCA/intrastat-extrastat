@@ -41,4 +41,4 @@ class AccountFiscalPosition(models.Model):
         "If not set, Odoo uses the default intrastat transaction of the company.",
     )
     # field used to show/hide fields in country-specific modules
-    company_country_code = fields.Char(related="company_id.country_id.code")
+    company_country_code = fields.Char(related="company_id.partner_id.country_id.code")

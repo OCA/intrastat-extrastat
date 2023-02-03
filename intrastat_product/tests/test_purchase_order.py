@@ -45,7 +45,7 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self.declaration.action_gather()
 
         self._check_line_values()
-        self.declaration.generate_declaration()
+        self.declaration.done()
         self._check_line_values(final=True)
 
         # Check the Excel computation file

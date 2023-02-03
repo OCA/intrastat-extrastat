@@ -273,8 +273,8 @@
                         name="product_origin_country_code"
                         attrs="{'invisible': [('reporting_level', '!=', 'extended')], 'required': [('reporting_level', '=', 'extended')]}"
                     />
-                    <field name="vat" />
                     <field name="partner_id" />
+                    <field name="vat" />
                     <field name="invoice_id" />
                 </group>
                 <group string="Declaration" name="declaration">

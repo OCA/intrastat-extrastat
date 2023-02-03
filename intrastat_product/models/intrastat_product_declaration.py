@@ -50,7 +50,7 @@ class IntrastatProductDeclaration(models.Model):
         default=lambda self: self.env.company,
     )
     company_country_code = fields.Char(
-        related="company_id.country_id.code",
+        related="company_id.partner_id.country_id.code",
         string="Company Country Code",
         store=True,
     )
@@ -88,7 +88,6 @@ class IntrastatProductDeclaration(models.Model):
     year_month = fields.Char(
         compute="_compute_year_month",
         string="Period",
-        readonly=True,
         tracking=True,
         store=True,
         help="Year and month of the declaration.",
@@ -600,7 +599,8 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_weight = 0.0
             notedict["inv_origin"] = invoice.name
             for line_nbr, inv_line in enumerate(
-                invoice.invoice_line_ids.filtered(lambda x: not x.display_type), start=1
+                invoice.invoice_line_ids.filtered(lambda x: not x.display_type),
+                start=1,
             ):
                 notedict["invline_origin"] = _("%(invoice)s line %(line_nbr)s") % {
                     "invoice": invoice.name,
@@ -712,6 +712,7 @@ class IntrastatProductDeclaration(models.Model):
                     "region_code": region_code,
                     "region_id": region and region.id or False,
                     "vat": vat,
+                    "partner_id": invoice.commercial_partner_id.id,
                 }
 
                 # extended declaration
@@ -911,6 +912,10 @@ class IntrastatProductDeclaration(models.Model):
                 % self.company_id.partner_id.display_name
             )
 
+    def _generate_xml(self):
+        """Designed to be inherited in localization modules"""
+        return False
+
     def generate_xml(self):
         """generate the INTRASTAT Declaration XML file"""
         self.ensure_one()
@@ -930,9 +935,6 @@ class IntrastatProductDeclaration(models.Model):
                 xml_bytes, "{}_{}".format(self.declaration_type, self.revision)
             )
             self.write({"xml_attachment_id": attach_id})
-            return
-        else:
-            raise UserError(_("No XML File has been generated."))
 
     def delete_xml(self):
         self.ensure_one()
@@ -1035,7 +1037,8 @@ class IntrastatProductComputationLine(models.Model):
         related="company_id.currency_id", string="Company currency"
     )
     company_country_code = fields.Char(
-        related="parent_id.company_id.country_id.code", string="Company Country Code"
+        related="parent_id.company_id.partner_id.country_id.code",
+        string="Company Country Code",
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
@@ -1045,8 +1048,12 @@ class IntrastatProductComputationLine(models.Model):
     invoice_id = fields.Many2one(
         "account.move", related="invoice_line_id.move_id", string="Invoice"
     )
+    # partner_id is not a related field any more, to auto-fill the VAT
+    # number (via onchange) when you create a computation line manually
     partner_id = fields.Many2one(
-        related="invoice_line_id.move_id.commercial_partner_id", string="Partner"
+        "res.partner",
+        string="Partner",
+        domain=[("parent_id", "=", False)],
     )
     declaration_line_id = fields.Many2one(
         "intrastat.product.declaration.line", string="Declaration Line", readonly=True
@@ -1156,6 +1163,11 @@ class IntrastatProductComputationLine(models.Model):
             if this.vat and not is_valid(this.vat):
                 raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)
 
+    @api.onchange("partner_id")
+    def partner_id_change(self):
+        if self.partner_id and self.partner_id.vat:
+            self.vat = self.partner_id.vat
+
 
 class IntrastatProductDeclarationLine(models.Model):
     _name = "intrastat.product.declaration.line"
@@ -1172,7 +1184,8 @@ class IntrastatProductDeclarationLine(models.Model):
         related="company_id.currency_id", string="Company currency"
     )
     company_country_code = fields.Char(
-        related="parent_id.company_id.country_id.code", string="Company Country Code"
+        related="parent_id.company_id.partner_id.country_id.code",
+        string="Company Country Code",
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")

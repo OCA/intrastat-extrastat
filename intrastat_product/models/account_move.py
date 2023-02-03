@@ -211,18 +211,3 @@ class AccountMoveIntrastatLine(models.Model):
             ("id", "not in", moves.mapped("intrastat_line_ids.invoice_line_id").ids),
         ]
         return {"domain": {"invoice_line_id": dom}}
-
-    @api.model
-    def create(self, vals):
-        self._format_vals(vals)
-        return super().create(vals)
-
-    def write(self, vals):
-        self._format_vals(vals)
-        return super().write(vals)
-
-    def _format_vals(self, vals):
-        if "product_origin_country_code" in vals:
-            vals["product_origin_country_code"] = (
-                vals["product_origin_country_code"].upper().strip()
-            )

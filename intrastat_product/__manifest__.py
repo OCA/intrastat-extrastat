@@ -7,7 +7,7 @@
 
 {
     "name": "Intrastat Product",
-    "version": "14.0.2.1.3",
+    "version": "16.0.1.0.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat Product",
@@ -33,7 +33,6 @@
         "views/intrastat_product_declaration.xml",
         "views/res_config_settings.xml",
         "views/res_partner_view.xml",
-        "views/account_fiscal_position.xml",
         "views/account_move.xml",
         "views/sale_order.xml",
         "views/stock_warehouse.xml",
@@ -41,6 +40,7 @@
         "wizards/intrastat_result_view.xml",
         "data/intrastat_transport_mode.xml",
         "data/intrastat_unit.xml",
+        "data/intrastat_transaction.xml",
     ],
     "demo": ["demo/intrastat_demo.xml"],
     "installable": True,

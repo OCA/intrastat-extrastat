@@ -1,6 +1,6 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .common import IntrastatProductCommon
 
@@ -36,5 +36,5 @@ class TestIntrastatCompany(IntrastatProductCommon):
         self.assertEqual("standard", self.demo_company.intrastat)
 
 
-class TestIntrastatProductCase(TestIntrastatCompany, SavepointCase):
+class TestIntrastatProductCase(TestIntrastatCompany, TransactionCase):
     """Test Intrastat Product"""

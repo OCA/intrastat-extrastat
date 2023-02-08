@@ -20,6 +20,7 @@
         "views/res_config_settings.xml",
         "views/intrastat.xml",
         "views/account_fiscal_position.xml",
+        "views/account_fiscal_position_template.xml",
     ],
     "demo": ["demo/intrastat_demo.xml"],
     "installable": True,

@@ -4,7 +4,6 @@
 import logging
 
 from odoo import _, models
-from odoo.tools.translate import translate
 
 from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
     FORMATS,
@@ -22,11 +21,6 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
     _inherit = "report.report_xlsx.abstract"
     _description = "Intrastat declaration"
 
-    def _(self, src):
-        lang = self.env.context.get("lang", "en_US")
-        val = translate(self.env.cr, IR_TRANSLATION_NAME, "report", lang, src) or src
-        return val
-
     def _get_template(self, declaration):
         """
         Return a dictionary that contains columns specifications
@@ -35,14 +29,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
 
         template = {
             "product": {
-                "header": {"type": "string", "value": self._("Product")},
+                "header": {"type": "string", "value": _("Product")},
                 "line": {
                     "value": self._render("line.product_id and line.product_id.name")
                 },
                 "width": 36,
             },
             "product_origin_country_code": {
-                "header": {"type": "string", "value": self._("Product C/O Code")},
+                "header": {"type": "string", "value": _("Product C/O Code")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.product_origin_country_code or ''"),
@@ -50,7 +44,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 10,
             },
             "product_origin_country": {
-                "header": {"type": "string", "value": self._("Product C/O")},
+                "header": {"type": "string", "value": _("Product C/O")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.product_origin_country_id.name or ''"),
@@ -58,7 +52,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 28,
             },
             "hs_code": {
-                "header": {"type": "string", "value": self._("Intrastat Code")},
+                "header": {"type": "string", "value": _("Intrastat Code")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.hs_code_id.local_code"),
@@ -68,7 +62,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "src_dest_country_code": {
                 "header": {
                     "type": "string",
-                    "value": self._("Country Code of Origin/Destination"),
+                    "value": _("Country Code of Origin/Destination"),
                 },
                 "line": {
                     "type": "string",
@@ -79,7 +73,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "src_dest_country": {
                 "header": {
                     "type": "string",
-                    "value": self._("Country of Origin/Destination"),
+                    "value": _("Country of Origin/Destination"),
                 },
                 "line": {
                     "type": "string",
@@ -90,7 +84,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "amount_company_currency": {
                 "header": {
                     "type": "string",
-                    "value": self._("Fiscal Value"),
+                    "value": _("Fiscal Value"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -103,7 +97,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "accessory_cost": {
                 "header": {
                     "type": "string",
-                    "value": self._("Accessory Costs"),
+                    "value": _("Accessory Costs"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -118,20 +112,20 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "transaction_code": {
                 "header": {
                     "type": "string",
-                    "value": self._("Intrastat Transaction code"),
+                    "value": _("Intrastat Transaction code"),
                 },
                 "line": {"value": self._render("line.transaction_id.code")},
                 "width": 10,
             },
             "transaction": {
-                "header": {"type": "string", "value": self._("Intrastat Transaction")},
+                "header": {"type": "string", "value": _("Intrastat Transaction")},
                 "line": {"value": self._render("line.transaction_id.display_name")},
                 "width": 36,
             },
             "weight": {
                 "header": {
                     "type": "string",
-                    "value": self._("Weight"),
+                    "value": _("Weight"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -144,7 +138,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "suppl_unit_qty": {
                 "header": {
                     "type": "string",
-                    "value": self._("Suppl. Unit Qty"),
+                    "value": _("Suppl. Unit Qty"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -157,47 +151,47 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 18,
             },
             "suppl_unit": {
-                "header": {"type": "string", "value": self._("Suppl. Unit")},
+                "header": {"type": "string", "value": _("Suppl. Unit")},
                 "line": {"value": self._render("line.intrastat_unit_id.name or ''")},
                 "width": 14,
             },
             "incoterm": {
-                "header": {"type": "string", "value": self._("Incoterm")},
+                "header": {"type": "string", "value": _("Incoterm")},
                 "line": {"value": self._render("line.incoterm_id.name or ''")},
                 "width": 14,
             },
             "transport_code": {
-                "header": {"type": "string", "value": self._("Transport Mode Code")},
+                "header": {"type": "string", "value": _("Transport Mode Code")},
                 "line": {"value": self._render("line.transport_id.code or ''")},
                 "width": 10,
             },
             "transport": {
-                "header": {"type": "string", "value": self._("Transport Mode")},
+                "header": {"type": "string", "value": _("Transport Mode")},
                 "line": {"value": self._render("line.transport_id.name or ''")},
                 "width": 14,
             },
             "region": {
-                "header": {"type": "string", "value": self._("Intrastat Region")},
+                "header": {"type": "string", "value": _("Intrastat Region")},
                 "line": {"value": self._render("line.region_id.name or ''")},
                 "width": 28,
             },
             "region_code": {
-                "header": {"type": "string", "value": self._("Intrastat Region Code")},
+                "header": {"type": "string", "value": _("Intrastat Region Code")},
                 "line": {"value": self._render("line.region_code or ''")},
                 "width": 10,
             },
             "vat": {
-                "header": {"type": "string", "value": self._("VAT")},
+                "header": {"type": "string", "value": _("VAT")},
                 "line": {"value": self._render("line.vat or ''")},
                 "width": 20,
             },
             "partner_id": {
-                "header": {"type": "string", "value": self._("Partner")},
+                "header": {"type": "string", "value": _("Partner")},
                 "line": {"value": self._render("line.partner_id.display_name or ''")},
                 "width": 28,
             },
             "invoice": {
-                "header": {"type": "string", "value": self._("Invoice")},
+                "header": {"type": "string", "value": _("Invoice")},
                 "line": {"value": self._render("line.invoice_id.name")},
                 "width": 18,
             },

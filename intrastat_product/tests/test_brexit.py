@@ -1,12 +1,12 @@
 # Copyright 2022 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 from .common import IntrastatProductCommon
 
 
-class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
+class TestIntrastatBrexit(IntrastatProductCommon, TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -57,7 +57,7 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
             }
         )
         self.declaration.action_gather()
-        self.declaration.generate_declaration()
+        self.declaration.done()
         cline = self.declaration.computation_line_ids
         dline = self.declaration.declaration_line_ids
         self.assertEqual(cline.src_dest_country_code, "XI")
@@ -84,7 +84,7 @@ class TestIntrastatBrexit(IntrastatProductCommon, SavepointCase):
             }
         )
         self.declaration.action_gather()
-        self.declaration.generate_declaration()
+        self.declaration.done()
         clines = self.declaration.computation_line_ids
         cl_uk = clines.filtered(lambda r: r.product_id == self.product_uk)
         dlines = self.declaration.declaration_line_ids

@@ -15,7 +15,7 @@ class AccountMove(models.Model):
         ondelete="restrict",
         tracking=True,
         check_company=True,
-        help="Intrastat nature of transaction",
+        help="Intrastat Nature of Transaction",
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     intrastat_transport_id = fields.Many2one(
@@ -28,7 +28,7 @@ class AccountMove(models.Model):
         string="Origin/Destination Country",
         compute="_compute_src_dest_country_id",
         store=True,
-        help="Destination country for dispatches. Origin country for " "arrivals.",
+        help="Destination country for dispatches. Origin country for arrivals.",
     )
     src_dest_region_id = fields.Many2one(
         comodel_name="intrastat.region",
@@ -44,7 +44,7 @@ class AccountMove(models.Model):
     intrastat_line_ids = fields.One2many(
         comodel_name="account.move.intrastat.line",
         inverse_name="move_id",
-        string="Intrastat declaration details",
+        string="Intrastat Declaration Details",
     )
 
     @api.depends("partner_shipping_id.country_id", "partner_id.country_id")
@@ -211,18 +211,3 @@ class AccountMoveIntrastatLine(models.Model):
             ("id", "not in", moves.mapped("intrastat_line_ids.invoice_line_id").ids),
         ]
         return {"domain": {"invoice_line_id": dom}}
-
-    @api.model
-    def create(self, vals):
-        self._format_vals(vals)
-        return super().create(vals)
-
-    def write(self, vals):
-        self._format_vals(vals)
-        return super().write(vals)
-
-    def _format_vals(self, vals):
-        if "product_origin_country_code" in vals:
-            vals["product_origin_country_code"] = (
-                vals["product_origin_country_code"].upper().strip()
-            )

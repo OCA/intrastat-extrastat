@@ -50,7 +50,7 @@ class IntrastatProductDeclaration(models.Model):
         default=lambda self: self.env.company,
     )
     company_country_code = fields.Char(
-        related="company_id.country_id.code",
+        related="company_id.partner_id.country_id.code",
         string="Company Country Code",
         store=True,
     )
@@ -88,7 +88,6 @@ class IntrastatProductDeclaration(models.Model):
     year_month = fields.Char(
         compute="_compute_year_month",
         string="Period",
-        readonly=True,
         tracking=True,
         store=True,
         help="Year and month of the declaration.",
@@ -299,29 +298,14 @@ class IntrastatProductDeclaration(models.Model):
     def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         transaction = invoice.intrastat_transaction_id
-        fieldmap = {
-            "out_invoice": "intrastat_out_invoice_transaction_id",
-            "out_refund": "intrastat_out_refund_transaction_id",
-            "in_invoice": "intrastat_in_invoice_transaction_id",
-            "in_refund": "intrastat_in_refund_transaction_id",
+        fp2transaction = {
+            "b2b": self.env.ref("intrastat_product.intrastat_transaction_11"),
+            "b2c": self.env.ref("intrastat_product.intrastat_transaction_12"),
         }
-        if not transaction and invoice.move_type in fieldmap:
-            # as we have searched with intrastat_fiscal_position = True
-            # we should always have a fiscal position on the invoice
-            transaction = invoice.fiscal_position_id[fieldmap[invoice.move_type]]
-        if not transaction and invoice.move_type in fieldmap:
-            transaction = invoice.company_id[fieldmap[invoice.move_type]]
         if not transaction:
-            msg = _(
-                "No <em>Intrastat Transaction Type</em> on invoice. "
-                "No Default Intrastat Transaction Type on "
-                "the fiscal position of the invoice (%(fiscal_position)s), "
-                "nor on the accounting configuration page of the company <i>%(company)s</i>."
-            ) % {
-                "fiscal_position": invoice.fiscal_position_id.display_name,
-                "company": invoice.company_id.display_name,
-            }
-            notedict["invoice"][notedict["inv_origin"]].add(msg)
+            # as we have searched with intrastat_fiscal_position in ('b2b', 'b2c')
+            # we should always have intrastat_fiscal_position in fp2transaction
+            transaction = fp2transaction[invoice.intrastat_fiscal_position]
         return transaction
 
     def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):
@@ -558,7 +542,7 @@ class IntrastatProductDeclaration(models.Model):
             ("date", ">=", start_date),
             ("date", "<=", end_date),
             ("state", "=", "posted"),
-            ("intrastat_fiscal_position", "=", True),
+            ("intrastat_fiscal_position", "in", ("b2b", "b2c")),
             ("company_id", "=", self.company_id.id),
         ]
         if self.declaration_type == "arrivals":
@@ -600,7 +584,10 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_weight = 0.0
             notedict["inv_origin"] = invoice.name
             for line_nbr, inv_line in enumerate(
-                invoice.invoice_line_ids.filtered(lambda x: not x.display_type), start=1
+                invoice.invoice_line_ids.filtered(
+                    lambda x: x.display_type == "product"
+                ),
+                start=1,
             ):
                 notedict["invline_origin"] = _("%(invoice)s line %(line_nbr)s") % {
                     "invoice": invoice.name,
@@ -712,6 +699,7 @@ class IntrastatProductDeclaration(models.Model):
                     "region_code": region_code,
                     "region_id": region and region.id or False,
                     "vat": vat,
+                    "partner_id": invoice.commercial_partner_id.id,
                 }
 
                 # extended declaration
@@ -827,79 +815,20 @@ class IntrastatProductDeclaration(models.Model):
                 "type": "ir.actions.act_window",
             }
 
-    @api.model
-    def _group_line_hashcode_fields(self, computation_line):
-        return {
-            "country": computation_line.src_dest_country_code,
-            "hs_code_id": computation_line.hs_code_id.id or False,
-            "intrastat_unit": computation_line.intrastat_unit_id.id or False,
-            "transaction": computation_line.transaction_id.id or False,
-            "transport": computation_line.transport_id.id or False,
-            "region": computation_line.region_code or False,
-            "product_origin_country": computation_line.product_origin_country_code,
-            "vat": computation_line.vat or False,
-        }
-
-    def group_line_hashcode(self, computation_line):
-        hc_fields = self._group_line_hashcode_fields(computation_line)
-        hashcode = "-".join([str(f) for f in hc_fields.values()])
-        return hashcode
-
-    @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        vals = {
-            "src_dest_country_code": computation_line.src_dest_country_code,
-            "intrastat_unit_id": computation_line.intrastat_unit_id.id,
-            "hs_code_id": computation_line.hs_code_id.id,
-            "transaction_id": computation_line.transaction_id.id,
-            "transport_id": computation_line.transport_id.id,
-            "region_code": computation_line.region_code,
-            "parent_id": computation_line.parent_id.id,
-            "product_origin_country_code": computation_line.product_origin_country_code,
-            "amount_company_currency": 0.0,
-            "vat": computation_line.vat,
-        }
-        for field in fields_to_sum:
-            vals[field] = 0.0
-        return vals
-
-    def _fields_to_sum(self):
-        fields_to_sum = ["weight", "suppl_unit_qty"]
-        return fields_to_sum
-
-    @api.model
-    def _prepare_declaration_line(self, computation_lines):
-        fields_to_sum = self._fields_to_sum()
-        vals = self._prepare_grouped_fields(computation_lines[0], fields_to_sum)
-        for computation_line in computation_lines:
-            for field in fields_to_sum:
-                vals[field] += computation_line[field]
-            vals["amount_company_currency"] += (
-                computation_line["amount_company_currency"]
-                + computation_line["amount_accessory_cost_company_currency"]
-            )
-        # round, otherwise odoo with truncate (6.7 -> 6... instead of 7 !)
-        for field in fields_to_sum:
-            vals[field] = int(round(vals[field]))
-        if not vals["weight"]:
-            vals["weight"] = 1
-        vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
-        return vals
-
     def generate_declaration(self):
         """generate declaration lines from computation lines"""
         self.ensure_one()
         assert not self.declaration_line_ids
         dl_group = {}
         for cl in self.computation_line_ids:
-            hashcode = self.group_line_hashcode(cl)
+            hashcode = cl.group_line_hashcode()
             if hashcode not in dl_group:
                 dl_group[hashcode] = cl
             else:
                 dl_group[hashcode] |= cl
         ipdl = self.declaration_line_ids
         for cl_lines in dl_group.values():
-            vals = self._prepare_declaration_line(cl_lines)
+            vals = cl_lines._prepare_declaration_line()
             declaration_line = ipdl.create(vals)
             cl_lines.write({"declaration_line_id": declaration_line.id})
 
@@ -910,6 +839,10 @@ class IntrastatProductDeclaration(models.Model):
                 _("The VAT number is not set for the partner '%s'.")
                 % self.company_id.partner_id.display_name
             )
+
+    def _generate_xml(self):
+        """Designed to be inherited in localization modules"""
+        return False
 
     def generate_xml(self):
         """generate the INTRASTAT Declaration XML file"""
@@ -930,9 +863,6 @@ class IntrastatProductDeclaration(models.Model):
                 xml_bytes, "{}_{}".format(self.declaration_type, self.revision)
             )
             self.write({"xml_attachment_id": attach_id})
-            return
-        else:
-            raise UserError(_("No XML File has been generated."))
 
     def delete_xml(self):
         self.ensure_one()
@@ -1035,7 +965,8 @@ class IntrastatProductComputationLine(models.Model):
         related="company_id.currency_id", string="Company currency"
     )
     company_country_code = fields.Char(
-        related="parent_id.company_id.country_id.code", string="Company Country Code"
+        related="parent_id.company_id.partner_id.country_id.code",
+        string="Company Country Code",
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
@@ -1045,8 +976,12 @@ class IntrastatProductComputationLine(models.Model):
     invoice_id = fields.Many2one(
         "account.move", related="invoice_line_id.move_id", string="Invoice"
     )
+    # partner_id is not a related field any more, to auto-fill the VAT
+    # number (via onchange) when you create a computation line manually
     partner_id = fields.Many2one(
-        related="invoice_line_id.move_id.commercial_partner_id", string="Partner"
+        "res.partner",
+        string="Partner",
+        domain=[("parent_id", "=", False)],
     )
     declaration_line_id = fields.Many2one(
         "intrastat.product.declaration.line", string="Declaration Line", readonly=True
@@ -1098,6 +1033,9 @@ class IntrastatProductComputationLine(models.Model):
     transaction_id = fields.Many2one(
         "intrastat.transaction",
         string="Intrastat Transaction",
+    )
+    transaction_code = fields.Char(
+        related="transaction_id.code", store=True, string="Transaction Code"
     )
     region_id = fields.Many2one("intrastat.region", string="Intrastat Region")
     # Note that, in l10n_fr_intrastat_product and maybe in other localization modules
@@ -1156,6 +1094,70 @@ class IntrastatProductComputationLine(models.Model):
             if this.vat and not is_valid(this.vat):
                 raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)
 
+    @api.onchange("partner_id")
+    def partner_id_change(self):
+        if self.partner_id and self.partner_id.vat:
+            self.vat = self.partner_id.vat
+
+    def _group_line_hashcode_fields(self):
+        self.ensure_one()
+        return {
+            "country": self.src_dest_country_code,
+            "hs_code_id": self.hs_code_id.id or False,
+            "intrastat_unit": self.intrastat_unit_id.id or False,
+            "transaction": self.transaction_id.id or False,
+            "transport": self.transport_id.id or False,
+            "region": self.region_code or False,
+            "product_origin_country": self.product_origin_country_code,
+            "vat": self.vat or False,
+        }
+
+    def group_line_hashcode(self):
+        self.ensure_one()
+        hc_fields = self._group_line_hashcode_fields()
+        hashcode = "-".join([str(f) for f in hc_fields.values()])
+        return hashcode
+
+    def _prepare_grouped_fields(self, fields_to_sum):
+        self.ensure_one()
+        vals = {
+            "src_dest_country_code": self.src_dest_country_code,
+            "intrastat_unit_id": self.intrastat_unit_id.id,
+            "hs_code_id": self.hs_code_id.id,
+            "transaction_id": self.transaction_id.id,
+            "transport_id": self.transport_id.id,
+            "region_code": self.region_code,
+            "parent_id": self.parent_id.id,
+            "product_origin_country_code": self.product_origin_country_code,
+            "amount_company_currency": 0.0,
+            "vat": self.vat,
+        }
+        for field in fields_to_sum:
+            vals[field] = 0.0
+        return vals
+
+    def _fields_to_sum(self):
+        fields_to_sum = ["weight", "suppl_unit_qty"]
+        return fields_to_sum
+
+    def _prepare_declaration_line(self):
+        fields_to_sum = self._fields_to_sum()
+        vals = self[0]._prepare_grouped_fields(fields_to_sum)
+        for computation_line in self:
+            for field in fields_to_sum:
+                vals[field] += computation_line[field]
+            vals["amount_company_currency"] += (
+                computation_line["amount_company_currency"]
+                + computation_line["amount_accessory_cost_company_currency"]
+            )
+        # round, otherwise odoo with truncate (6.7 -> 6... instead of 7 !)
+        for field in fields_to_sum:
+            vals[field] = int(round(vals[field]))
+        if not vals["weight"]:
+            vals["weight"] = 1
+        vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
+        return vals
+
 
 class IntrastatProductDeclarationLine(models.Model):
     _name = "intrastat.product.declaration.line"
@@ -1172,7 +1174,8 @@ class IntrastatProductDeclarationLine(models.Model):
         related="company_id.currency_id", string="Company currency"
     )
     company_country_code = fields.Char(
-        related="parent_id.company_id.country_id.code", string="Company Country Code"
+        related="parent_id.company_id.partner_id.country_id.code",
+        string="Company Country Code",
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
@@ -1207,6 +1210,9 @@ class IntrastatProductDeclarationLine(models.Model):
     )
     transaction_id = fields.Many2one(
         "intrastat.transaction", string="Intrastat Transaction"
+    )
+    transaction_code = fields.Char(
+        related="transaction_id.code", store=True, string="Transaction Code"
     )
     region_code = fields.Char()
     product_origin_country_code = fields.Char(

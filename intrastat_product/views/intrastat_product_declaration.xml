@@ -273,8 +273,8 @@
                         name="product_origin_country_code"
                         attrs="{'invisible': [('reporting_level', '!=', 'extended')], 'required': [('reporting_level', '=', 'extended')]}"
                     />
-                    <field name="vat" />
                     <field name="partner_id" />
+                    <field name="vat" />
                     <field name="invoice_id" />
                 </group>
                 <group string="Declaration" name="declaration">
@@ -317,7 +317,7 @@
                     optional="show"
                     sum="1"
                 />
-                <field name="transaction_id" />
+                <field name="transaction_code" />
                 <field
                     name="weight"
                     optional="show"
@@ -427,7 +427,7 @@
                     <field name="vat" />
                 </group>
                 <group name="computation" string="Related Transactions">
-                    <field name="computation_line_ids" nolabel="1" />
+                    <field name="computation_line_ids" nolabel="1" colspan="2" />
                 </group>
             </form>
         </field>
@@ -455,7 +455,7 @@
                     optional="show"
                 />
                 <field name="amount_company_currency" sum="1" />
-                <field name="transaction_id" />
+                <field name="transaction_code" />
                 <field
                     name="weight"
                     attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"

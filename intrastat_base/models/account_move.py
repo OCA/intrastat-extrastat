@@ -8,7 +8,7 @@ from odoo import fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    intrastat_fiscal_position = fields.Boolean(
+    intrastat_fiscal_position = fields.Selection(
         related="fiscal_position_id.intrastat",
         store=True,
         string="Intrastat Fiscal Position",

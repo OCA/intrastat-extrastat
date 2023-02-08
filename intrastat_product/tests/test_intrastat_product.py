@@ -5,7 +5,7 @@ from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 from .common import IntrastatProductCommon
@@ -70,9 +70,8 @@ class TestIntrastatProduct(IntrastatProductCommon):
         self.assertEqual(self.declaration.revision + 1, decl_copy.revision)
 
     def test_declaration_manual_lines(self):
-        vals = {"declaration_type": "dispatches"}
+        vals = {"declaration_type": "dispatches", "reporting_level": "extended"}
         self._create_declaration(vals)
-        self.declaration.write({"reporting_level": "standard"})
         computation_line_form = Form(
             self.env["intrastat.product.computation.line"].with_context(
                 default_parent_id=self.declaration.id
@@ -80,6 +79,12 @@ class TestIntrastatProduct(IntrastatProductCommon):
         )
         computation_line_form.src_dest_country_id = self.env.ref("base.fr")
         computation_line_form.transaction_id = self.transaction
+        computation_line_form.hs_code_id = self.hs_code_computer
+        computation_line_form.region_code = "ZZ"
+        computation_line_form.product_origin_country_code = "BE"
+        computation_line_form.transport_id = self.env.ref(
+            "intrastat_product.intrastat_transport_3"
+        )
         computation_line = computation_line_form.save()
         self.assertEqual(computation_line.src_dest_country_code, "FR")
         declaration_line_form = Form(
@@ -101,7 +106,6 @@ class TestIntrastatProduct(IntrastatProductCommon):
         self.demo_company.partner_id.vat = False
         with self.assertRaises(UserError):
             self._create_declaration()
-            self.declaration.flush()
             self.declaration._check_generate_xml()
 
     def test_declaration_state(self):
@@ -125,9 +129,9 @@ class TestIntrastatProduct(IntrastatProductCommon):
     def _test_invoice_report(self, weight):
         """We need to check weight because if intrastat_line_ids already exist
         the weight will be different because weight field in model is integer."""
-        res = self.report_obj._get_report_from_name(
-            "account.report_invoice_with_payments"
-        )._render_qweb_text(self.invoice.ids, False)
+        res = self.report_obj._render(
+            "account.report_invoice_with_payments", self.invoice.ids
+        )
         self.assertRegex(str(res[0]), self.product.hs_code_id.hs_code)
         self.assertRegex(str(res[0]), self.product.origin_country_id.name)
         res = list(self.invoice._get_intrastat_lines_info())
@@ -145,5 +149,5 @@ class TestIntrastatProduct(IntrastatProductCommon):
         self._test_invoice_report(2)
 
 
-class TestIntrastatProductCase(TestIntrastatProduct, SavepointCase):
+class TestIntrastatProductCase(TestIntrastatProduct, TransactionCase):
     """Test Intrastat Product"""

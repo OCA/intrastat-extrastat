@@ -3,7 +3,7 @@
 from freezegun import freeze_time
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .common_purchase import IntrastatPurchaseCommon
 
@@ -19,7 +19,7 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self.purchase.button_confirm()
         self.purchase.picking_ids.action_assign()
         for line in self.purchase.picking_ids.move_line_ids:
-            line.qty_done = line.product_uom_qty
+            line.qty_done = line.reserved_uom_qty
         self.purchase.picking_ids._action_done()
         self.assertEqual("done", self.purchase.picking_ids.state)
 
@@ -45,7 +45,7 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self.declaration.action_gather()
 
         self._check_line_values()
-        self.declaration.generate_declaration()
+        self.declaration.done()
         self._check_line_values(final=True)
 
         # Check the Excel computation file
@@ -57,5 +57,5 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         self.check_xls(file_data[0], True)
 
 
-class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, SavepointCase):
+class TestIntrastatProductPurchaseCase(TestIntrastatProductPurchase, TransactionCase):
     """Test Intrastat Purchase"""

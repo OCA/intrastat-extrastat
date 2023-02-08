@@ -35,38 +35,6 @@ class ResCompany(models.Model):
     intrastat_region_id = fields.Many2one(
         comodel_name="intrastat.region", string="Default Intrastat Region"
     )
-    intrastat_out_invoice_transaction_id = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Customer Invoice",
-        help="Odoo uses the intrastat transaction of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of "
-        "the fiscal position of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of the company.",
-    )
-    intrastat_out_refund_transaction_id = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction for Customer Refunds",
-        help="Odoo uses the intrastat transaction of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of "
-        "the fiscal position of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of the company.",
-    )
-    intrastat_in_invoice_transaction_id = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Supplier Invoices",
-        help="Odoo uses the intrastat transaction of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of "
-        "the fiscal position of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of the company.",
-    )
-    intrastat_in_refund_transaction_id = fields.Many2one(
-        comodel_name="intrastat.transaction",
-        string="Default Intrastat Transaction For Supplier Refunds",
-        help="Odoo uses the intrastat transaction of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of "
-        "the fiscal position of the invoice. "
-        "If not set, Odoo uses the default intrastat transaction of the company.",
-    )
     intrastat_accessory_costs = fields.Boolean(
         string="Include Accessory Costs in Fiscal Value of Product"
     )

@@ -47,9 +47,10 @@ class IntrastatSaleCommon(IntrastatProductCommon):
     @classmethod
     def _init_customer(cls, vals=None):
         values = {
-            "name": "NL Customer",
-            "country_id": cls.env.ref("base.nl").id,
+            "name": "Akretion France",
+            "country_id": cls.env.ref("base.fr").id,
             "property_account_position_id": cls.position.id,
+            "vat": "FR86792377731",
         }
         if vals is not None:
             values.update(vals)
@@ -67,7 +68,6 @@ class IntrastatSaleCommon(IntrastatProductCommon):
             "partner_id": cls.customer.id,
         }
         sale_new = cls.sale_obj.new(vals)
-        sale_new.onchange_partner_id()
         sale_vals = sale_new._convert_to_write(sale_new._cache)
         cls.sale = cls.sale_obj.create(sale_vals)
         with Form(cls.sale) as sale_form:

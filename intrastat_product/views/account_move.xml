@@ -39,7 +39,7 @@
                         <tree editable="bottom">
                             <field
                                 name="invoice_line_id"
-                                domain="[('exclude_from_invoice_tab', '=', False), ('move_id', '=', parent.id), ('display_type', '=', False)]"
+                                domain="[('move_id', '=', parent.id), ('display_type', '=', 'product')]"
                                 options="{'no_create': True, 'no_open': True}"
                             />
                             <field name="product_id" />

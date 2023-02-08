@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from freezegun import freeze_time
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .common_sale import IntrastatSaleCommon
 
@@ -15,7 +15,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.product_uom_qty
+            line.qty_done = line.reserved_uom_qty
         self.sale.picking_ids._action_done()
         self.assertEqual("done", self.sale.picking_ids.state)
 
@@ -36,7 +36,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.product_uom_qty
+            line.qty_done = line.reserved_uom_qty
         self.sale.picking_ids._action_done()
         self.assertEqual("done", self.sale.picking_ids.state)
 
@@ -59,7 +59,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.product_uom_qty
+            line.qty_done = line.reserved_uom_qty
         self.sale.picking_ids._action_done()
         self.assertEqual("done", self.sale.picking_ids.state)
 
@@ -80,7 +80,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.declaration.action_gather()
 
         self._check_line_values()
-        self.declaration.generate_declaration()
+        self.declaration.done()
         self._check_line_values(final=True)
 
         # Check the Excel computation file
@@ -92,5 +92,5 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.check_xls(file_data[0], True)
 
 
-class TestIntrastatProductSaleCase(TestIntrastatProductSale, SavepointCase):
+class TestIntrastatProductSaleCase(TestIntrastatProductSale, TransactionCase):
     """Test Intrastat Sale"""

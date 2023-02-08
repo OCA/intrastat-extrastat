@@ -18,11 +18,13 @@ class IntrastatProductCommon(IntrastatCommon):
 
         vals = {
             "name": "C3PO",
+            "type": "consu",
             "categ_id": cls.categ_robots.id,
             "origin_country_id": cls.env.ref("base.us").id,
             "weight": 300,
             # Computer - C3PO is one of them
             "hs_code_id": cls.hs_code_computer.id,
+            "list_price": 42,
         }
         cls.product_c3po = cls.product_template_obj.create(vals)
 
@@ -35,7 +37,8 @@ class IntrastatProductCommon(IntrastatCommon):
     def _init_fiscal_position(cls):
         vals = {
             "name": "Intrastat Fiscal Position",
-            "intrastat": True,
+            "intrastat": "b2b",
+            "vat_required": True,
         }
         cls.position = cls.position_obj.create(vals)
 

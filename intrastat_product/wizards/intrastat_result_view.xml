@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <form string="Intrastat Result View">
                 <group name="main">
-                    <field name="note" nolabel="1" />
+                    <field name="note" nolabel="1" colspan="2" />
                 </group>
                 <footer>
                     <button string="Ok" class="btn-primary" special="cancel" />

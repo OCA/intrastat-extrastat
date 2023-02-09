@@ -200,36 +200,30 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
 
         return template
 
-    def _get_ws_params(self, wb, data, declaration):
-        template = self._get_template(declaration)
-        if self.env.context.get("computation_lines"):
-            wl = declaration._xls_computation_line_fields()
-            report = "computation"
-        else:
-            wl = declaration._xls_declaration_line_fields()
-            report = "declaration"
-
-        title = self._get_title(declaration, report, title_format="normal")
-        title_short = self._get_title(declaration, report, title_format="short")
-        sheet_name = title_short[:31].replace("/", "-")
-
-        params = {
-            "ws_name": sheet_name,
-            "generate_ws_method": "_intrastat_report",
-            "title": title,
-            "wanted_list": wl,
-            "col_specs": template,
-        }
-        return [params]
-
-    def _get_title(self, declaration, report, title_format="normal"):
-        title = declaration.year_month
-        if title_format == "normal":
-            if report == "computation":
-                title += " : " + _("Computation Lines")
-            else:
-                title += " : " + _("Declaration Lines")
-        return title
+    def _get_ws_params(self, wb, data, declarations):
+        template = self._get_template(declarations)
+        res = []
+        wanted_list_computation = declarations._xls_computation_line_fields()
+        wanted_list_declaration = declarations._xls_declaration_line_fields()
+        for declaration in declarations:
+            dname = declaration.display_name
+            res += [
+                {
+                    "ws_name": "%s %s" % (dname, _("comput.")),
+                    "generate_ws_method": "_intrastat_report_computation",
+                    "title": "%s : %s" % (dname, _("Computation Lines")),
+                    "wanted_list": wanted_list_computation,
+                    "col_specs": template,
+                },
+                {
+                    "ws_name": "%s %s" % (dname, _("decl.")),
+                    "generate_ws_method": "_intrastat_report_declaration",
+                    "title": "%s : %s" % (dname, _("Declaration Lines")),
+                    "wanted_list": wanted_list_declaration,
+                    "col_specs": template,
+                },
+            ]
+        return res
 
     def _report_title(self, ws, row_pos, ws_params, data, declaration):
         return self._write_ws_title(ws, row_pos, ws_params)
@@ -244,8 +238,23 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
         )
         ws.write_string(row_pos, 0, no_entries, FORMATS["format_left_bold"])
 
-    def _intrastat_report(self, workbook, ws, ws_params, data, declaration):
+    def _intrastat_report_computation(self, workbook, ws, ws_params, data, declaration):
+        report = "computation"
+        lines = declaration.computation_line_ids
+        self._intrastat_report(
+            workbook, ws, ws_params, data, declaration, lines, report
+        )
 
+    def _intrastat_report_declaration(self, workbook, ws, ws_params, data, declaration):
+        report = "declaration"
+        lines = declaration.declaration_line_ids
+        self._intrastat_report(
+            workbook, ws, ws_params, data, declaration, lines, report
+        )
+
+    def _intrastat_report(
+        self, workbook, ws, ws_params, data, declaration, lines, report
+    ):
         ws.set_landscape()
         ws.fit_to_pages(1, 0)
         ws.set_header(XLS_HEADERS["xls_headers"]["standard"])
@@ -255,13 +264,6 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
 
         row_pos = 0
         row_pos = self._report_title(ws, row_pos, ws_params, data, declaration)
-
-        if self.env.context.get("computation_lines"):
-            report = "computation"
-            lines = declaration.computation_line_ids
-        else:
-            report = "declaration"
-            lines = declaration.declaration_line_ids
 
         if not lines:
             return self._empty_report(ws, row_pos, ws_params, data, declaration, report)

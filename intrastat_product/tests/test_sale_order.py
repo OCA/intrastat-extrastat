@@ -83,13 +83,9 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         self.declaration.done()
         self._check_line_values(final=True)
 
-        # Check the Excel computation file
+        # Check the Excel file
         file_data = self._create_xls()
         self.check_xls(file_data[0])
-
-        # Check the Excel declaration file
-        file_data = self._create_xls(True)
-        self.check_xls(file_data[0], True)
 
 
 class TestIntrastatProductSaleCase(TestIntrastatProductSale, TransactionCase):

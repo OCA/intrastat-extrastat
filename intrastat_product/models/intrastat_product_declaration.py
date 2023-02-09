@@ -159,9 +159,9 @@ class IntrastatProductDeclaration(models.Model):
         arrivals = company.intrastat_arrivals
         dispatches = company.intrastat_dispatches
         if arrivals != "exempt":
-            res.append(("arrivals", _("Declaration for Arrivals")))
+            res.append(("arrivals", _("Arrivals")))
         if dispatches != "exempt":
-            res.append(("dispatches", _("Declaration for Dispatches")))
+            res.append(("dispatches", _("Dispatches")))
         return res
 
     @api.model
@@ -232,6 +232,18 @@ class IntrastatProductDeclaration(models.Model):
                     or "standard"
                 )
             this.reporting_level = reporting_level
+
+    def name_get(self):
+        res = []
+        type2label = dict(
+            self.fields_get("declaration_type", "selection")["declaration_type"][
+                "selection"
+            ]
+        )
+        for rec in self:
+            name = "%s %s" % (rec.year_month, type2label.get(rec.declaration_type))
+            res.append((rec.id, name))
+        return res
 
     def copy(self, default=None):
         self.ensure_one()
@@ -867,19 +879,6 @@ class IntrastatProductDeclaration(models.Model):
     def delete_xml(self):
         self.ensure_one()
         self.xml_attachment_id and self.xml_attachment_id.unlink()
-
-    def create_xls(self):
-        if self.env.context.get("computation_lines"):
-            report_file = "intrastat_transactions"
-        else:
-            report_file = "intrastat_declaration_lines"
-        return {
-            "type": "ir.actions.report",
-            "report_type": "xlsx",
-            "report_name": "intrastat_product.product_declaration_xls",
-            "context": dict(self.env.context, report_file=report_file),
-            "data": {"dynamic_report": True},
-        }
 
     @api.model
     def _xls_computation_line_fields(self):

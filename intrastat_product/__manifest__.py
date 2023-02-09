@@ -25,6 +25,7 @@
     "data": [
         "security/intrastat_security.xml",
         "security/ir.model.access.csv",
+        "report/report.xml",
         "views/hs_code.xml",
         "views/intrastat_region.xml",
         "views/intrastat_unit.xml",

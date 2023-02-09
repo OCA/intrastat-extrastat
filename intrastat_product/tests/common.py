@@ -99,10 +99,10 @@ class IntrastatProductCommon(IntrastatCommon):
         :return: The Excel file
         :rtype: bytes
         """
-        report = cls.declaration.with_context(
-            active_ids=cls.declaration.ids
-        ).create_xls()
-        report_name = report.get("report_name")
+        report = cls.env.ref(
+            "intrastat_product.intrastat_product_xlsx_report"
+        ).with_context(active_ids=cls.declaration.ids)
+        report_name = report.report_name
         cls.report = cls.report_obj._get_report_from_name(report_name)
         datas = {
             "context": {
@@ -122,7 +122,7 @@ class IntrastatProductCommon(IntrastatCommon):
         ).create_xlsx_report(None, datas)
         return file_data
 
-    def check_xls(self, xls, declaration=False):
+    def check_xls(self, xls):
         """
             Check that the xls content correspond to computation/declaration
             lines values
@@ -133,33 +133,39 @@ class IntrastatProductCommon(IntrastatCommon):
         :type declaration: bool, optional
         """
         book = xlrd.open_workbook(file_contents=xls)
-        sheet = book.sheet_by_index(0)
         # Get the template used to build the Excel file lines
         template = self.xls_declaration._get_template(self.declaration)
         # Get the declaration lines or the computation ones
-        if not declaration:
-            declaration_lines = self.declaration.computation_line_ids
-            line_fields = self.declaration._xls_computation_line_fields()
-        else:
-            declaration_lines = self.declaration.declaration_line_ids
-            line_fields = self.declaration._xls_declaration_line_fields()
-        i = 0
+        to_test = [
+            (
+                book.sheet_by_index(0),
+                self.declaration.computation_line_ids,
+                self.declaration._xls_computation_line_fields(),
+            ),
+            (
+                book.sheet_by_index(1),
+                self.declaration.declaration_line_ids,
+                self.declaration._xls_declaration_line_fields(),
+            ),
+        ]
         # Iterate on each row beginning on third one (two headers)
-        for rx in range(3, sheet.nrows):
-            line = declaration_lines[i]
-            row = sheet.row(rx)
-            j = 0
-            dict_compare = dict()
-            for line_field in line_fields:
-                column_spec = template.get(line_field)
-                dict_compare.update(
-                    {row[j].value: column_spec.get("line").get("value")}
-                )
-                j += 1
-            for key, value in dict_compare.items():
-                value_eval = self.xls_declaration._eval(value, {"line": line})
-                self.assertEqual(key, value_eval)
-            i += 1
+        for (sheet, lines, line_fields) in to_test:
+            i = 0
+            for rx in range(3, sheet.nrows):
+                line = lines[i]
+                row = sheet.row(rx)
+                j = 0
+                dict_compare = dict()
+                for line_field in line_fields:
+                    column_spec = template.get(line_field)
+                    dict_compare.update(
+                        {row[j].value: column_spec.get("line").get("value")}
+                    )
+                    j += 1
+                for key, value in dict_compare.items():
+                    value_eval = self.xls_declaration._eval(value, {"line": line})
+                    self.assertEqual(key, value_eval)
+                i += 1
 
     @classmethod
     def _create_region(cls, vals=None):

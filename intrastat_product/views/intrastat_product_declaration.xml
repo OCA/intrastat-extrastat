@@ -28,6 +28,11 @@
                         states="done"
                         confirm="Are you sure you want to go back to draft?"
                     />
+                    <button
+                        name="%(intrastat_product.intrastat_product_xlsx_report)d"
+                        type="action"
+                        string="Excel Export"
+                    />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -70,12 +75,6 @@
                     </group>
                     <notebook>
                         <page string="Transactions" name="computation_lines">
-                            <button
-                                name="create_xls"
-                                type="object"
-                                string="Excel Export"
-                                context="{'computation_lines': 1}"
-                            />
                             <field
                                 name="computation_line_ids"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
@@ -83,12 +82,6 @@
                             />
                         </page>
                         <page string="Declaration Lines" name="declaration_lines">
-                            <button
-                                name="create_xls"
-                                type="object"
-                                string="Excel Export"
-                                context="{'declaration_lines': 1}"
-                            />
                             <field
                                 name="declaration_line_ids"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"

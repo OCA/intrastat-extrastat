@@ -1,0 +1,255 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_harmonized_system
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-16 13:11+0000\n"
+"PO-Revision-Date: 2021-07-04 21:48+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
+msgid "<span class=\"o_stat_text\">Product Categs</span>"
+msgstr "<span class=\"o_stat_text\">Catégories d'article</span>"
+
+#. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
+msgid "<span class=\"o_stat_text\">Products</span>"
+msgstr "<span class=\"o_stat_text\">Articles</span>"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
+msgid "Archived"
+msgstr "Archivés"
+
+#. module: product_harmonized_system
+#: model:hs.code,description:product_harmonized_system.84715000
+msgid "Automatic data-processing machines (computers)"
+msgstr "Machines de traitement automatique de l'information (ordinateurs)"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_hs_code__local_code
+msgid ""
+"Code used for the national Import/Export declaration. The national code "
+"starts with the 6 digits of the H.S. and often has a few additional digits "
+"to extend the H.S. code."
+msgstr ""
+"Code utilisé pour la déclaration nationale d'import/export. Le code national "
+"commence par les 6 chiffres du système harmonisé et est souvent suivi de "
+"quelques chiffres supplémentaires pour étendre le système harmonisé."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_state_id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_state_id
+msgid "Country State of Origin"
+msgstr ""
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_state_id
+#: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_state_id
+msgid ""
+"Country State of origin of the product.\n"
+"This field is used for the Intrastat declaration, selecting one of the "
+"Northern Ireland counties will set the code 'XI' for products from the "
+"United Kingdom whereas code 'XU' will be used for the other UK counties."
+msgstr ""
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
+msgid "Country of Origin"
+msgstr "Pays d'origine"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_country_id
+#: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_country_id
+msgid "Country of origin of the product i.e. product 'made in ____'."
+msgstr "Pays d'origine de l'article i.e. article 'made in ____'."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__description
+msgid "Description"
+msgstr "Description"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_harmonized_system
+#: model:ir.model,name:product_harmonized_system.model_hs_code
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__hs_code
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__hs_code_id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__hs_code_id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
+msgid "H.S. Code"
+msgstr "Code S.H."
+
+#. module: product_harmonized_system
+#: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_tree
+msgid "H.S. Codes"
+msgstr "Codes S.H."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
+msgid ""
+"Harmonised System Code. If this code is not set on the product itself, it "
+"will be read here, on the related product category."
+msgstr ""
+"Code du système harmonisé. Si ce code n'est pas renseigné directement sur "
+"l'article, il sera lu ici sur la catégorie d'article associée."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_product_product__hs_code_id
+#: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
+msgid ""
+"Harmonised System Code. Nomenclature is available from the World Customs "
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
+msgstr ""
+"Code du système harmonisé. La nomenclature est publiée par l'Organisation "
+"Mondiale des Douanes, cf http://www.wcoomd.org/. Vous pouvez laisser ce "
+"champ vide et renseigner le code S.H. sur la catégorie d'article."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_hs_code__hs_code
+msgid ""
+"Harmonized System code (6 digits). Full list is available from the World "
+"Customs Organisation, see http://www.wcoomd.org"
+msgstr ""
+"Code du système harmonisé (6 chiffres). La liste complète est publiée par "
+"l'Organisation Mondiale des Douanes, cf http://www.wcoomd.org"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__id
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_category_form_view
+msgid "Import/Export Properties"
+msgstr "Propriétés pour l'import/export"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__local_code
+msgid "Local Code"
+msgstr "Code local"
+
+#. module: product_harmonized_system
+#: model:hs.code,description:product_harmonized_system.85340090
+msgid "Printed circuits"
+msgstr "Circuits imprimés"
+
+#. module: product_harmonized_system
+#: model:ir.model,name:product_harmonized_system.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
+msgid "Product Categ Count"
+msgstr "Nombre de catégories d'article"
+
+#. module: product_harmonized_system
+#: model:ir.actions.act_window,name:product_harmonized_system.product_categ_hs_code_action
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_ids
+msgid "Product Categories"
+msgstr "Catégories d'article"
+
+#. module: product_harmonized_system
+#: model:ir.model,name:product_harmonized_system.model_product_category
+msgid "Product Category"
+msgstr "Catégorie d'articles"
+
+#. module: product_harmonized_system
+#: model:ir.model,name:product_harmonized_system.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
+msgid "Product Tmpl Count"
+msgstr "Nombre de modèles d'article"
+
+#. module: product_harmonized_system
+#: model:ir.actions.act_window,name:product_harmonized_system.product_template_hs_code_action
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_ids
+msgid "Products"
+msgstr "Articles"
+
+#. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
+msgid "Search H.S. Codes"
+msgstr "Recherche dans les codes S.H."
+
+#. module: product_harmonized_system
+#: model:ir.model.fields,help:product_harmonized_system.field_hs_code__description
+msgid "Short text description of the H.S. category"
+msgstr "Courte description de la catégorie S.H."
+
+#. module: product_harmonized_system
+#: model:hs.code,description:product_harmonized_system.84717050
+msgid "Storage units"
+msgstr "Unités de stockage"
+
+#. module: product_harmonized_system
+#: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
+msgid "This code already exists for this company !"
+msgstr "Ce code existe déjà pour cette société !"

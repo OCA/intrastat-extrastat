@@ -56,20 +56,6 @@ msgid "Company"
 msgstr "Tvrtka"
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_state_id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_state_id
-msgid "Country State of Origin"
-msgstr "Regija države porijekla"
-
-#. module: product_harmonized_system
-#: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_state_id
-#: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_state_id
-msgid ""
-"Country State of origin of the product.\n"
-"This field is used for the Intrastat declaration, selecting one of the Northern Ireland counties will set the code 'XI' for products from the United Kingdom whereas code 'XU' will be used for the other UK counties."
-msgstr ""
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"
@@ -98,9 +84,6 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -110,14 +93,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
 msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_tree
 msgid "H.S. Codes"
 msgstr ""
 
@@ -133,8 +114,8 @@ msgstr ""
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
 msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
-"Organisation, see http://www.wcoomd.org/. You can leave this field empty and"
-" configure the H.S. code on the product category."
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 
 #. module: product_harmonized_system
@@ -146,9 +127,6 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__id
 msgid "ID"
 msgstr ""
 
@@ -159,9 +137,6 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -186,7 +161,7 @@ msgid "Printed circuits"
 msgstr ""
 
 #. module: product_harmonized_system
-#: model:ir.model,name:product_harmonized_system.model_product_product
+#: model:ir.model,name:product_harmonized_system.model_product_template
 msgid "Product"
 msgstr ""
 
@@ -207,24 +182,19 @@ msgid "Product Category"
 msgstr ""
 
 #. module: product_harmonized_system
-#: model:ir.model,name:product_harmonized_system.model_product_template
-msgid "Product Template"
+#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
+msgid "Product Tmpl Count"
 msgstr ""
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
-msgid "Product Tmpl Count"
+#: model:ir.model,name:product_harmonized_system.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_template_hs_code_action
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_ids
 msgid "Products"
-msgstr ""
-
-#. module: product_harmonized_system
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
-msgid "Search H.S. Codes"
 msgstr ""
 
 #. module: product_harmonized_system
@@ -241,3 +211,6 @@ msgstr ""
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
 msgstr ""
+
+#~ msgid "Country State of Origin"
+#~ msgstr "Regija države porijekla"

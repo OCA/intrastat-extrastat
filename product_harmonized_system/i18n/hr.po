@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-01 10:05+0000\n"
+"PO-Revision-Date: 2023-02-15 19:22+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
@@ -15,32 +15,32 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 msgid "<span class=\"o_stat_text\">Product Categs</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Kategorije proizvoda</span>"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 msgid "<span class=\"o_stat_text\">Products</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Proizvodi</span>"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivan"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
 msgid "Archived"
-msgstr ""
+msgstr "Arhiviran"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84715000
 msgid "Automatic data-processing machines (computers)"
-msgstr ""
+msgstr "Uređaji za automatsku obradu podataka ( kompjuteri)"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__local_code
@@ -49,6 +49,9 @@ msgid ""
 "starts with the 6 digits of the H.S. and often has a few additional digits "
 "to extend the H.S. code."
 msgstr ""
+"Šifra korištena za nacionalnu prijavu Uvoza/Izvoza. Nacionalna šifra počinje "
+"sa 6 znamenaka HS Šifre, i često ima nekoliko dodatnih znamenaka za "
+"proširivanje HS Šifre."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
@@ -65,27 +68,27 @@ msgstr "Država porijekla"
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
-msgstr "Država porijekla proizvoda, nrp: proizvod je 'made in ______'."
+msgstr "Država porijekla proizvoda, npr: proizvod je 'made in ______'."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__description
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_hs_code
@@ -95,12 +98,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
-msgstr ""
+msgstr "HS Šifra"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
 msgid "H.S. Codes"
-msgstr ""
+msgstr "HS Šifre"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
@@ -108,6 +111,8 @@ msgid ""
 "Harmonised System Code. If this code is not set on the product itself, it "
 "will be read here, on the related product category."
 msgstr ""
+"HS Šifra. Ako ova šifra nije postavljena na samom proizvodu, biti će "
+"primjenjena ova, sa povezane kategorije proizvoda."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__hs_code_id
@@ -117,6 +122,9 @@ msgid ""
 "Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
 "configure the H.S. code on the product category."
 msgstr ""
+"HS Šifra. Nomenklatura je dostupna na stranicama World Customs Organisation, "
+"see http://www.wcoomd.org/. Možete ovo polje ostaviti prazno i postaviti HS "
+"Šifru na kategoriji proizvoda."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__hs_code
@@ -124,93 +132,95 @@ msgid ""
 "Harmonized System code (6 digits). Full list is available from the World "
 "Customs Organisation, see http://www.wcoomd.org"
 msgstr ""
+"HS Šifra (6 znamenaka). Puni popis je dostupan na stranicama World Customs "
+"Organisation, provjerite http://www.wcoomd.org"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_category_form_view
 msgid "Import/Export Properties"
-msgstr ""
+msgstr "Uvoz/Izvoz svojstava"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnje ažurirano"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnje ažurirano"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__local_code
 msgid "Local Code"
-msgstr ""
+msgstr "Lokalna šifra"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.85340090
 msgid "Printed circuits"
-msgstr ""
+msgstr "Štampane pločice"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
 msgid "Product Categ Count"
-msgstr ""
+msgstr "Broj kategorija proizvoda"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_categ_hs_code_action
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_ids
 msgid "Product Categories"
-msgstr ""
+msgstr "Kategorije proizvoda"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Kategorija proizvoda"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
 msgid "Product Tmpl Count"
-msgstr ""
+msgstr "Broj predložaka proizvoda"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Varijanta proizvoda"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_template_hs_code_action
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_ids
 msgid "Products"
-msgstr ""
+msgstr "Proizvodi"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__description
 msgid "Short text description of the H.S. category"
-msgstr ""
+msgstr "Kratki opis HS Kategorije"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84717050
 msgid "Storage units"
-msgstr ""
+msgstr "Skladišne jedinice"
 
 #. module: product_harmonized_system
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
-msgstr ""
+msgstr "Ova šifra već postoji u ovoj tvrtci!"
 
 #~ msgid "Country State of Origin"
 #~ msgstr "Regija države porijekla"

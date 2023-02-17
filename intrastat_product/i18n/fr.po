@@ -862,7 +862,7 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Missing product on invoice line with H.S. code %s in invoice %s."
 msgstr ""
-"Unité de mesure manquante sur la ligne où figurent %d article(s) '%s' sur la "
+"Unité de mesure manquante sur la ligne où figurent article(s) '%s' sur la "
 "facture '%s'."
 
 #. module: intrastat_product

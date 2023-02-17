@@ -840,7 +840,7 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:234
 #, python-format
 msgid ""
-"Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
+"Missing unit of measure on the line with product(s) '%s' on invoice '%s'."
 msgstr ""
 
 #. module: intrastat_product

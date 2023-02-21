@@ -424,14 +424,15 @@ class IntrastatProductDeclaration(models.Model):
                     line_qty, pce_uom
                 )
         else:
-            line_notes = [
-                _(
-                    "Conversion from unit of measure '%s' to 'Kg' "
-                    "is not implemented yet. It is needed for product '%s'."
-                )
-                % (source_uom.name, product.display_name)
-            ]
-            self._format_line_note(inv_line, notedict, line_notes)
+            if not (intrastat_unit_id and suppl_unit_qty):
+                line_notes = [
+                    _(
+                        "Conversion from unit of measure '%s' to 'Kg' "
+                        "is not implemented yet. It is needed for product '%s'."
+                    )
+                    % (source_uom.name, product.display_name)
+                ]
+                self._format_line_note(inv_line, notedict, line_notes)
             return weight, suppl_unit_qty
 
         return weight, suppl_unit_qty

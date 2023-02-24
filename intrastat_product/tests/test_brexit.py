@@ -53,6 +53,7 @@ class TestIntrastatBrexit(IntrastatProductCommon, TransactionCase):
         inv_out_xi = self.inv_obj.with_context(default_move_type="out_invoice").create(
             {
                 "partner_id": self.partner_xi.id,
+                "partner_shipping_id": self.partner_xi.id,
                 "fiscal_position_id": self.position.id,
             }
         )

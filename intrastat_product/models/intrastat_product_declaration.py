@@ -596,7 +596,7 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_weight = 0.0
             for line_nbr, inv_line in enumerate(invoice.invoice_line_ids, start=1):
                 self._line_nbr = line_nbr
-                inv_intrastat_line = invoice.intrastat_line_ids.filtered(
+                inv_intrastat_lines = invoice.intrastat_line_ids.filtered(
                     lambda r: r.invoice_line_id == inv_line
                 )
 
@@ -634,85 +634,102 @@ class IntrastatProductDeclaration(models.Model):
                 ):
                     continue
                 partner_country_code = partner_model._get_intrastat_country_code(
-                    country=partner_country, state=invoice.partner_shipping_id.state_id
+                    country=partner_country, state=invoice.partner_shipping_id.state_id,
                 )
 
-                if inv_intrastat_line:
-                    hs_code = inv_intrastat_line.hs_code_id
-                elif inv_line.product_id and self._is_product(inv_line):
-                    hs_code = inv_line.product_id.get_hs_code_recursively()
-                    if not hs_code:
-                        line_notes = [
-                            _("Missing Intrastat Code on product %s. ")
-                            % (inv_line.product_id.name_get()[0][1])
-                        ]
-                        self._format_line_note(inv_line, notedict, line_notes)
-                        continue
-                else:
-                    _logger.info(
-                        "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no product nor Intrastat Code"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
-                    )
-                    continue
-
                 intrastat_transaction = self._get_intrastat_transaction(inv_line)
+                sign = invoice.type in ("in_invoice", "out_refund") and 1 or -1
+                amount_company_currency = sign * inv_line.balance
+                total_inv_product_cc += amount_company_currency
+                region = self._get_region(inv_line)
+                # extended declaration
+                if self._extended:
+                    transport = self._get_transport(inv_line)
 
-                if inv_intrastat_line:
-                    weight = inv_intrastat_line.transaction_weight
-                    suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
+                if inv_intrastat_lines:
+                    # multiple intrastat_lines linked to one invoice lines
+                    for inv_intrastat_line in inv_intrastat_lines:
+                        hs_code = inv_intrastat_line.hs_code_id
+                        weight = inv_intrastat_line.transaction_weight
+                        suppl_unit_qty = inv_intrastat_line.transaction_suppl_unit_qty
+                        total_inv_weight += weight
+                        product_origin_country = (
+                            inv_intrastat_line.product_origin_country_id
+                        )
+                        product_origin_country_code = (
+                            inv_intrastat_line.product_origin_country_code
+                        )
+                        line_vals = {
+                            "parent_id": self.id,
+                            "invoice_line_id": inv_line.id,
+                            "src_dest_country_id": partner_country.id,
+                            "src_dest_country_code": partner_country_code,
+                            "product_id": inv_line.product_id.id,
+                            "hs_code_id": hs_code.id,
+                            "weight": weight,
+                            "suppl_unit_qty": suppl_unit_qty,
+                            "amount_company_currency": amount_company_currency,
+                            "amount_accessory_cost_company_currency": 0.0,
+                            "transaction_id": intrastat_transaction.id,
+                            "product_origin_country_id": product_origin_country.id
+                            or False,
+                            "product_origin_country_code": product_origin_country_code,
+                            "region_id": region and region.id or False,
+                            "transport_id": transport.id,
+                        }
+                        self._update_computation_line_vals(inv_line, line_vals)
+                        if line_vals:
+                            lines_current_invoice.append(line_vals)
+
                 else:
+                    if inv_line.product_id and self._is_product(inv_line):
+                        hs_code = inv_line.product_id.get_hs_code_recursively()
+                        if not hs_code:
+                            line_notes = [
+                                _("Missing Intrastat Code on product %s. ")
+                                % (inv_line.product_id.name_get()[0][1])
+                            ]
+                            self._format_line_note(inv_line, notedict, line_notes)
+                            continue
+                    else:
+                        _logger.info(
+                            "Skipping invoice line %s qty %s "
+                            "of invoice %s. Reason: no product nor Intrastat Code"
+                            % (inv_line.name, inv_line.quantity, invoice.name)
+                        )
+                        continue
+
                     weight, suppl_unit_qty = self._get_weight_and_supplunits(
                         inv_line, hs_code, notedict
                     )
-                total_inv_weight += weight
+                    total_inv_weight += weight
 
-                sign = invoice.type in ("in_invoice", "out_refund") and 1 or -1
-                amount_company_currency = sign * inv_line.balance
-
-                total_inv_product_cc += amount_company_currency
-
-                if inv_intrastat_line:
-                    product_origin_country = (
-                        inv_intrastat_line.product_origin_country_id
-                    )
-                    product_origin_country_code = (
-                        inv_intrastat_line.product_origin_country_code
-                    )
-                else:
                     product_origin_country = inv_line.product_id.origin_country_id
                     product_origin_country_code = self._get_product_origin_country_code(
                         inv_line, product_origin_country
                     )
 
-                region = self._get_region(inv_line)
+                    line_vals = {
+                        "parent_id": self.id,
+                        "invoice_line_id": inv_line.id,
+                        "src_dest_country_id": partner_country.id,
+                        "src_dest_country_code": partner_country_code,
+                        "product_id": inv_line.product_id.id,
+                        "hs_code_id": hs_code.id,
+                        "weight": weight,
+                        "suppl_unit_qty": suppl_unit_qty,
+                        "amount_company_currency": amount_company_currency,
+                        "amount_accessory_cost_company_currency": 0.0,
+                        "transaction_id": intrastat_transaction.id,
+                        "product_origin_country_id": product_origin_country.id or False,
+                        "product_origin_country_code": product_origin_country_code,
+                        "region_id": region and region.id or False,
+                        "transport_id": transport.id,
+                    }
+                    self._update_computation_line_vals(inv_line, line_vals)
 
-                line_vals = {
-                    "parent_id": self.id,
-                    "invoice_line_id": inv_line.id,
-                    "src_dest_country_id": partner_country.id,
-                    "src_dest_country_code": partner_country_code,
-                    "product_id": inv_line.product_id.id,
-                    "hs_code_id": hs_code.id,
-                    "weight": weight,
-                    "suppl_unit_qty": suppl_unit_qty,
-                    "amount_company_currency": amount_company_currency,
-                    "amount_accessory_cost_company_currency": 0.0,
-                    "transaction_id": intrastat_transaction.id,
-                    "product_origin_country_id": product_origin_country.id or False,
-                    "product_origin_country_code": product_origin_country_code,
-                    "region_id": region and region.id or False,
-                }
-
-                # extended declaration
-                if self._extended:
-                    transport = self._get_transport(inv_line)
-                    line_vals.update({"transport_id": transport.id})
-
-                self._update_computation_line_vals(inv_line, line_vals)
-
-                if line_vals:
-                    lines_current_invoice.append(line_vals)
+                    if line_vals:
+                        lines_current_invoice.append(line_vals)
 
             self._handle_invoice_accessory_cost(
                 invoice,

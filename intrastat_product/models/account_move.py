@@ -228,17 +228,6 @@ class AccountMoveIntrastatLine(models.Model):
         "Specify 'QU' when the country is unknown.\n",
     )
 
-    @api.onchange("invoice_line_id")
-    def _onchange_move_id(self):
-        moves = self.mapped("move_id")
-        dom = [
-            ("exclude_from_invoice_tab", "=", False),
-            ("display_type", "=", False),
-            ("id", "in", moves.mapped("invoice_line_ids").ids),
-            ("id", "not in", moves.mapped("intrastat_line_ids.invoice_line_id").ids),
-        ]
-        return {"domain": {"invoice_line_id": dom}}
-
     @api.model
     def create(self, vals):
         self._format_vals(vals)

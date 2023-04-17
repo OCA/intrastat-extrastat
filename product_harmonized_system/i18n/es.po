@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-02-21 14:45+0000\n"
-"Last-Translator: Mat-moran <amadeo.moran@gmail.com>\n"
+"PO-Revision-Date: 2023-04-17 17:33+0000\n"
+"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
@@ -121,7 +121,7 @@ msgid ""
 "Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
 "configure the H.S. code on the product category."
 msgstr ""
-"Harmonised System Code. Nomenclatura disponible en  World Customs "
+"Código de Sistema Harmonizado. Nomenclatura disponible en World Customs "
 "Organisation, ver http://www.wcoomd.org/. Puede dejar este campo vacío y "
 "configurar el código H.S. en la categoría de producto.."
 
@@ -142,7 +142,7 @@ msgstr "ID"
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_category_form_view
 msgid "Import/Export Properties"
-msgstr ""
+msgstr "Propiedades de importación/exportación"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
@@ -162,12 +162,12 @@ msgstr "Última actualización"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__local_code
 msgid "Local Code"
-msgstr ""
+msgstr "Código Local"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.85340090
 msgid "Printed circuits"
-msgstr ""
+msgstr "Circuitos impresos"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_template
@@ -177,7 +177,7 @@ msgstr "Producto"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
 msgid "Product Categ Count"
-msgstr ""
+msgstr "Número de Categorías de Producto"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_categ_hs_code_action
@@ -193,12 +193,12 @@ msgstr "Categoría de producto"
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
 msgid "Product Tmpl Count"
-msgstr ""
+msgstr "Número de Plantillas de Producto"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variantes"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_template_hs_code_action
@@ -219,4 +219,4 @@ msgstr "Unidades de almacenamiento"
 #. module: product_harmonized_system
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
-msgstr "Este código ya existe para esta compañía !"
+msgstr "¡Este código ya existe para esta compañía !"

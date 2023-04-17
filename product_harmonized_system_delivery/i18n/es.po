@@ -1,13 +1,28 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-17 17:33+0000\n"
+"PO-Revision-Date: 2023-04-17 17:33+0000\n"
+"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__hs_code
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__hs_code
 msgid "HS Code"
-msgstr ""
+msgstr "Código HS"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model,name:product_harmonized_system_delivery.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de Producto"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__hs_code
@@ -16,3 +31,5 @@ msgid ""
 "Standardized code for international shipping and goods declaration. At the "
 "moment, only used for the FedEx shipping provider."
 msgstr ""
+"Código estandarizado para envío internacional y declaración de mercancías. "
+"De momento , sólo se usa para el proveedor FedEx."

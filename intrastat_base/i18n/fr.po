@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 09:52+0000\n"
-"PO-Revision-Date: 2023-05-26 16:08+0000\n"
-"Last-Translator: \"Sandrine (ACSONE)\" <sandrine.ravet@acsone.eu>\n"
+"PO-Revision-Date: 2023-06-07 19:08+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Activer cette option pour les frais de port, les frais d'emballage et tous "
 "les services associés à la vente de produits. Cette option est utilisée pour "
-"la DEB et la DES."
+"l'EMEBI et la DES."
 
 #. module: intrastat_base
 #. odoo-python
@@ -67,7 +67,7 @@ msgstr "Position fiscale"
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_template_search
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
 msgid "Intrastat"
-msgstr "DEB/DES"
+msgstr "EMEBI/DES"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
@@ -93,12 +93,12 @@ msgstr "Pièce comptable"
 msgid ""
 "List of Odoo users who will receive a notification to remind them about the "
 "Intrastat declaration."
-msgstr "Liste d'utilisateurs Odoo qui recevront un rappel pour la DEB/DES."
+msgstr "Liste d'utilisateurs Odoo qui recevront un rappel pour l'EMEBI/DES."
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_email_list
 msgid "List of emails of Users Receiving the Intrastat Reminder"
-msgstr "Liste des emails des utilisateurs qui reçoivent le rappel DEB/DES"
+msgstr "Liste des emails des utilisateurs qui reçoivent le rappel EMEBI/DES"
 
 #. module: intrastat_base
 #. odoo-python
@@ -117,7 +117,7 @@ msgstr "Non"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
 msgid "Product"
-msgstr "Produit"
+msgstr "Article"
 
 #. module: intrastat_base
 #: model:product.template,name:intrastat_base.shipping_costs_exclude_product_template
@@ -137,8 +137,8 @@ msgid ""
 "The fiscal position '%s' has intrastat set to B2B, so the option 'VAT "
 "Required' must be enabled."
 msgstr ""
-"La position fiscale '%s' a un intrastat défini comme B2B, donc l'option 'TVA "
-"requise' doit être activée."
+"Sur la position fiscale '%s', le champ 'Intrastat' est configuré en 'B2B', "
+"donc l'option 'TVA requise' doit être activée."
 
 #. module: intrastat_base
 #. odoo-python
@@ -148,8 +148,8 @@ msgid ""
 "The fiscal position '%s' has intrastat set to B2C, so the option 'VAT "
 "Required' mustn't be enabled."
 msgstr ""
-"La position fiscale '%s' a un intrastat défini comme B2C, donc l'option 'TVA "
-"requise' ne doit pas être activée."
+"Sur la position fiscale '%s', le champ 'Intrastat' est configuré en 'B2C', "
+"donc l'option 'TVA requise' ne doit pas être activée."
 
 #. module: intrastat_base
 #. odoo-python
@@ -175,7 +175,7 @@ msgstr "Erreur inconnue"
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_remind_user_ids
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
 msgid "Users Receiving the Intrastat Reminder"
-msgstr "Utilisateurs qui reçoivent le rappel DEB/DES"
+msgstr "Utilisateurs qui reçoivent le rappel EMEBI/DES"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
@@ -187,8 +187,9 @@ msgid ""
 "When set to B2B or B2C, the invoices with this fiscal position will be taken "
 "into account for the generation of the intrastat reports."
 msgstr ""
-"Quand c'est défini comme B2B ou B2C, les factures avec cette position "
-"fiscale seront prises en compte pour la génération des rapports intrastat."
+"Quand ce champ est configuré en 'B2B' ou 'B2C', les factures avec cette "
+"position fiscale seront prises en compte pour la génération des rapports "
+"EMEBI/DES."
 
 #~ msgid "Product Template"
 #~ msgstr "Modèle d'article"

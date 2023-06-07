@@ -23,12 +23,13 @@ class ProductTemplate(models.Model):
                     _(
                         "The option 'Is accessory cost?' should only be "
                         "activated on 'Service' products. You have activated "
-                        "this option for the product '{product_name}' which is "
-                        "configured with type '{product_type}'."
-                    ).format(
-                        product_name=this.display_name,
-                        product_type=this._fields["type"].convert_to_export(
+                        "this option for the product '%(product_name)s' which is "
+                        "configured with type '%(product_type)s'."
+                    )
+                    % {
+                        "product_name": this.display_name,
+                        "product_type": this._fields["type"].convert_to_export(
                             this.type, this
                         ),
-                    )
+                    }
                 )

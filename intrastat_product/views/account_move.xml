@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">intrastat.invoice.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='other_info']//field[@name='invoice_incoterm_id']"
+                position="after"
+            >
+                <field name="intrastat_transaction_id" />
+                <field name="intrastat" invisible="1" />
+                <field
+                    name="intrastat_transport_id"
+                    attrs="{'invisible': [('intrastat', '!=', 'extended')]}"
+                    widget="selection"
+                />
+                <field name="src_dest_country_id" string="Destination Country" />
+                <field name="src_dest_region_id" string="Origin Region" invisible="1" />
+            </xpath>
+            <page id="invoice_tab" position="after">
+                <page
+                    id="intrastat_lines"
+                    string="Intrastat transaction details"
+                    groups="intrastat_product.group_invoice_intrastat_transaction_details"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]}"
+                >
+                    <div>
+                        <button
+                            type="object"
+                            name="compute_intrastat_lines"
+                            string="Compute"
+                            help="(Re)compute the intrastat transaction details from the product master data."
+                            icon="fa-gears"
+                        />
+                    </div>
+                    <field name="intrastat_line_ids">
+                        <tree editable="bottom">
+                            <field
+                                name="invoice_line_id"
+                                domain="[('move_id', '=', parent.id), ('display_type', '=', 'product')]"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="transaction_suppl_unit_qty" />
+                            <field name="hs_code_id" />
+                            <field name="transaction_weight" />
+                            <field name="product_origin_country_id" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

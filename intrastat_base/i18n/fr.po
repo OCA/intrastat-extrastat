@@ -157,12 +157,9 @@ msgstr ""
 #, python-format
 msgid ""
 "The option 'Is accessory cost?' should only be activated on 'Service' "
-"products. You have activated this option for the product '{product_name}' "
-"which is configured with type '{product_type}'."
+"products. You have activated this option for the product '%(product_name)s' "
+"which is configured with type '%(product_type)s'."
 msgstr ""
-"L'option 'Est un frais accessoire ?' ne devrait être activée que sur les "
-"produits de type 'Service'. Vous avez activé cette option pour le produit "
-"'{product_name}' qui est configuré avec le type '{product_type}'."
 
 #. module: intrastat_base
 #. odoo-python
@@ -190,6 +187,16 @@ msgstr ""
 "Quand ce champ est configuré en 'B2B' ou 'B2C', les factures avec cette "
 "position fiscale seront prises en compte pour la génération des rapports "
 "EMEBI/DES."
+
+#, python-format
+#~ msgid ""
+#~ "The option 'Is accessory cost?' should only be activated on 'Service' "
+#~ "products. You have activated this option for the product '{product_name}' "
+#~ "which is configured with type '{product_type}'."
+#~ msgstr ""
+#~ "L'option 'Est un frais accessoire ?' ne devrait être activée que sur les "
+#~ "produits de type 'Service'. Vous avez activé cette option pour le produit "
+#~ "'{product_name}' qui est configuré avec le type '{product_type}'."
 
 #~ msgid "Product Template"
 #~ msgstr "Modèle d'article"

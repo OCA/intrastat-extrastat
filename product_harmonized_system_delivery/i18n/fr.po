@@ -37,8 +37,10 @@ msgstr "Article"
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__country_of_origin
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_template__country_of_origin
 msgid ""
-"Rules of origin determine where goods originate, i.e. not where they have been shipped from, but where they have been produced or manufactured.\n"
-"As such, the ‘origin’ is the 'economic nationality' of goods traded in commerce."
+"Rules of origin determine where goods originate, i.e. not where they have "
+"been shipped from, but where they have been produced or manufactured.\n"
+"As such, the ‘origin’ is the 'economic nationality' of goods traded in "
+"commerce."
 msgstr ""
 "Les règles d'origine déterminent l'origine des marchandises, c'est-à-dire "
 "non pas l'endroit d'où elles ont été expédiées, mais l'endroit où elles ont "

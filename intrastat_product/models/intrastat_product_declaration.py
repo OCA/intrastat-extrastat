@@ -19,7 +19,7 @@ _logger = logging.getLogger(__name__)
 
 class IntrastatProductDeclaration(models.Model):
     _name = "intrastat.product.declaration"
-    _description = "Intrastat Product Report Base Object"
+    _description = "Intrastat Product Declaration"
     _rec_name = "year_month"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "year_month desc, declaration_type, revision"
@@ -951,7 +951,7 @@ class IntrastatProductDeclaration(models.Model):
 
 class IntrastatProductComputationLine(models.Model):
     _name = "intrastat.product.computation.line"
-    _description = "Intrastat Product Computataion Lines"
+    _description = "Intrastat Product Computation Lines"
 
     parent_id = fields.Many2one(
         "intrastat.product.declaration",
@@ -995,8 +995,8 @@ class IntrastatProductComputationLine(models.Model):
         string="Country Code",
         required=True,
         readonly=False,
-        help="2 digit code of country of origin/destination.\n"
-        "Specify 'XI' for UK Northern Ireland.",
+        help="2 letters code of the country of origin/destination.\n"
+        "Specify 'XI' for Northern Ireland.",
     )
     product_id = fields.Many2one(
         "product.product", related="invoice_line_id.product_id"
@@ -1026,7 +1026,7 @@ class IntrastatProductComputationLine(models.Model):
         string="Accessory Costs",
         digits="Account",
         help="Amount in company currency of the accessory costs related to "
-        "this invoice line (by default, these accessory costs are computed "
+        "this invoice line. By default, these accessory costs are computed "
         "at the pro-rata of the amount of each invoice line.",
     )
     transaction_id = fields.Many2one(
@@ -1051,7 +1051,7 @@ class IntrastatProductComputationLine(models.Model):
         size=2,
         required=True,
         readonly=False,
-        help="2 digit ISO code of the country of origin of the product.\n"
+        help="2 letters ISO code of the country of origin of the product.\n"
         "Specify 'QU' when the country of origin is unknown.\n",
     )
     vat = fields.Char(string="VAT Number")
@@ -1187,8 +1187,8 @@ class IntrastatProductDeclarationLine(models.Model):
     src_dest_country_code = fields.Char(
         string="Country Code",
         required=True,
-        help="2 digit code of country of origin/destination.\n"
-        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.",
+        help="2 letters ISO code of the country of origin/destination.\n"
+        "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.",
     )
     hs_code_id = fields.Many2one("hs.code", string="Intrastat Code")
     intrastat_unit_id = fields.Many2one(
@@ -1219,8 +1219,8 @@ class IntrastatProductDeclarationLine(models.Model):
         size=2,
         required=True,
         default="QU",
-        help="2 digit code of country of origin of the product except for the UK.\n"
-        "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+        help="2 letters ISO code of the country of origin of the product except for the UK.\n"
+        "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
         "Specify 'QU' when the country is unknown.\n",
     )
     vat = fields.Char(string="VAT Number")

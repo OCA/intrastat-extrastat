@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 09:52+0000\n"
-"PO-Revision-Date: 2023-06-07 19:08+0000\n"
+"PO-Revision-Date: 2023-06-20 17:08+0000\n"
 "Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -160,6 +160,9 @@ msgid ""
 "products. You have activated this option for the product '%(product_name)s' "
 "which is configured with type '%(product_type)s'."
 msgstr ""
+"L'option 'Est un frais accessoire ?' ne doit être activée que pour les "
+"articles de type 'Service'. Vous avez activé cette option pour l'article "
+"'%(product_name)s' qui est de type '%(product_type)s'."
 
 #. module: intrastat_base
 #. odoo-python

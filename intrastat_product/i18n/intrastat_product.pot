@@ -94,32 +94,32 @@ msgid "12"
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
-"2 digit ISO code of the country of origin of the product.\n"
-"Specify 'QU' when the country of origin is unknown.\n"
+"2 letters ISO code of the country of origin of the product except for the UK.\n"
+"Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
+"Specify 'QU' when the country is unknown.\n"
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
 msgid ""
-"2 digit code of country of origin of the product except for the UK.\n"
-"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
-"Specify 'QU' when the country is unknown.\n"
+"2 letters ISO code of the country of origin of the product.\n"
+"Specify 'QU' when the country of origin is unknown.\n"
 msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
 msgid ""
-"2 digit code of country of origin/destination.\n"
-"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+"2 letters ISO code of the country of origin/destination.\n"
+"Specify 'XI' for Northern Ireland and 'XU' for Great Britain."
 msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
 msgid ""
-"2 digit code of country of origin/destination.\n"
-"Specify 'XI' for UK Northern Ireland."
+"2 letters code of the country of origin/destination.\n"
+"Specify 'XI' for Northern Ireland."
 msgstr ""
 
 #. module: intrastat_product
@@ -197,7 +197,7 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 msgid ""
 "Amount in company currency of the accessory costs related to this invoice "
-"line (by default, these accessory costs are computed at the pro-rata of the "
+"line. By default, these accessory costs are computed at the pro-rata of the "
 "amount of each invoice line."
 msgstr ""
 
@@ -741,15 +741,12 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
-msgid "Intrastat Product Computataion Lines"
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__computation_line_ids
 msgid "Intrastat Product Computation Lines"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
@@ -759,11 +756,6 @@ msgstr ""
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__declaration_line_ids
 msgid "Intrastat Product Declaration Lines"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
-msgid "Intrastat Product Report Base Object"
 msgstr ""
 
 #. module: intrastat_product
@@ -820,17 +812,17 @@ msgid "Intrastat Transaction"
 msgstr ""
 
 #. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "Intrastat Transaction Code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_payment__intrastat_transaction_id
 msgid "Intrastat Transaction Type"
-msgstr ""
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
-#, python-format
-msgid "Intrastat Transaction code"
 msgstr ""
 
 #. module: intrastat_product

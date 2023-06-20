@@ -30,8 +30,8 @@ msgid ""
 "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
 "state == 'draft' and '-draft' or '')"
 msgstr ""
-"intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, "
-"object.state == 'draft' and '-brouillon' or '')"
+"intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, object."
+"state == 'draft' and '-brouillon' or '')"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
@@ -100,44 +100,34 @@ msgid "12"
 msgstr "12"
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
-msgid ""
-"2 digit ISO code of the country of origin of the product.\n"
-"Specify 'QU' when the country of origin is unknown.\n"
-msgstr ""
-"Code ISO à 2 letters du pays d'origine de l'article.\n"
-"Indiquer \"QU\" lorsque le pays d'origine est inconnu.\n"
-
-#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
-"2 digit code of country of origin of the product except for the UK.\n"
-"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+"2 letters ISO code of the country of origin of the product except for the "
+"UK.\n"
+"Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
-"Code à 2 chiffres du pays d'origine de l'article, sauf pour le Royaume-Uni.\n"
-"Indiquez \"XI\" pour l'Irlande du Nord et \"XU\" pour le reste du Royaume-"
-"Uni.\n"
-"Indiquez \"QU\" lorsque le pays est inconnu.\n"
+
+#. module: intrastat_product
+#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
+msgid ""
+"2 letters ISO code of the country of origin of the product.\n"
+"Specify 'QU' when the country of origin is unknown.\n"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
 msgid ""
-"2 digit code of country of origin/destination.\n"
-"Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+"2 letters ISO code of the country of origin/destination.\n"
+"Specify 'XI' for Northern Ireland and 'XU' for Great Britain."
 msgstr ""
-"Code à 2 lettres du pays d'origine/destination.\n"
-"Indiquez \"XI\" pour l'Irlande du Nord et \"XU\" pour le reste du Royaume-"
-"Uni."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
 msgid ""
-"2 digit code of country of origin/destination.\n"
-"Specify 'XI' for UK Northern Ireland."
+"2 letters code of the country of origin/destination.\n"
+"Specify 'XI' for Northern Ireland."
 msgstr ""
-"Code à 2 lettres du pays d'origine/destination.\n"
-"Précisez \"XI\" pour l'Irlande du Nord."
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
@@ -218,12 +208,9 @@ msgstr "Rend possible la saisie des paramètres intrastat sur les factures"
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 msgid ""
 "Amount in company currency of the accessory costs related to this invoice "
-"line (by default, these accessory costs are computed at the pro-rata of the "
+"line. By default, these accessory costs are computed at the pro-rata of the "
 "amount of each invoice line."
 msgstr ""
-"Montant dans la devise de la société des frais accessoires associés à cette "
-"ligne de facture. Par défaut, les frais accessoires sont calculés au pro-"
-"rata du montant de chaque ligne de facture."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
@@ -380,10 +367,10 @@ msgid ""
 "<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
-"La conversion de l'unité de mesure <em>%(source_uom)s</em> vers "
-"<em>%(target_uom)s</em>, qui est configurée sur l'unité supplémentaire "
-"intrastat <i>%(intrastat_unit)s</i> du code S.H. <i>%(hs_code)s</i> n'est "
-"pas encore implémentée"
+"La conversion de l'unité de mesure <em>%(source_uom)s</em> vers <em>"
+"%(target_uom)s</em>, qui est configurée sur l'unité supplémentaire intrastat "
+"<i>%(intrastat_unit)s</i> du code S.H. <i>%(hs_code)s</i> n'est pas encore "
+"implémentée"
 
 #. module: intrastat_product
 #. odoo-python
@@ -779,15 +766,12 @@ msgstr "Nature de la transaction intrastat"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
-msgid "Intrastat Product Computataion Lines"
-msgstr "Lignes de transaction Intrastat"
-
-#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__computation_line_ids
 msgid "Intrastat Product Computation Lines"
 msgstr "Lignes de calcul de la déclaration"
 
 #. module: intrastat_product
+#: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
@@ -798,11 +782,6 @@ msgstr "EMEBI"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__declaration_line_ids
 msgid "Intrastat Product Declaration Lines"
 msgstr "Lignes de l'EMEBI"
-
-#. module: intrastat_product
-#: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
-msgid "Intrastat Product Report Base Object"
-msgstr "Intrastat Product Report Base Object"
 
 #. module: intrastat_product
 #. odoo-python
@@ -858,18 +837,18 @@ msgid "Intrastat Transaction"
 msgstr "Transaction intrastat"
 
 #. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "Intrastat Transaction Code"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_payment__intrastat_transaction_id
 msgid "Intrastat Transaction Type"
 msgstr "Type de transaction intrastat"
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
-#, python-format
-msgid "Intrastat Transaction code"
-msgstr "Code de transaction intrastat"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_transport_mode
@@ -1742,6 +1721,58 @@ msgstr "décl."
 #, python-format
 msgid "for period %s"
 msgstr "pour la période %s"
+
+#~ msgid ""
+#~ "2 digit ISO code of the country of origin of the product.\n"
+#~ "Specify 'QU' when the country of origin is unknown.\n"
+#~ msgstr ""
+#~ "Code ISO à 2 letters du pays d'origine de l'article.\n"
+#~ "Indiquer \"QU\" lorsque le pays d'origine est inconnu.\n"
+
+#~ msgid ""
+#~ "2 digit code of country of origin of the product except for the UK.\n"
+#~ "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
+#~ "Specify 'QU' when the country is unknown.\n"
+#~ msgstr ""
+#~ "Code à 2 chiffres du pays d'origine de l'article, sauf pour le Royaume-"
+#~ "Uni.\n"
+#~ "Indiquez \"XI\" pour l'Irlande du Nord et \"XU\" pour le reste du Royaume-"
+#~ "Uni.\n"
+#~ "Indiquez \"QU\" lorsque le pays est inconnu.\n"
+
+#~ msgid ""
+#~ "2 digit code of country of origin/destination.\n"
+#~ "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
+#~ msgstr ""
+#~ "Code à 2 lettres du pays d'origine/destination.\n"
+#~ "Indiquez \"XI\" pour l'Irlande du Nord et \"XU\" pour le reste du Royaume-"
+#~ "Uni."
+
+#~ msgid ""
+#~ "2 digit code of country of origin/destination.\n"
+#~ "Specify 'XI' for UK Northern Ireland."
+#~ msgstr ""
+#~ "Code à 2 lettres du pays d'origine/destination.\n"
+#~ "Précisez \"XI\" pour l'Irlande du Nord."
+
+#~ msgid ""
+#~ "Amount in company currency of the accessory costs related to this invoice "
+#~ "line (by default, these accessory costs are computed at the pro-rata of "
+#~ "the amount of each invoice line."
+#~ msgstr ""
+#~ "Montant dans la devise de la société des frais accessoires associés à "
+#~ "cette ligne de facture. Par défaut, les frais accessoires sont calculés "
+#~ "au pro-rata du montant de chaque ligne de facture."
+
+#~ msgid "Intrastat Product Computataion Lines"
+#~ msgstr "Lignes de transaction Intrastat"
+
+#~ msgid "Intrastat Product Report Base Object"
+#~ msgstr "Intrastat Product Report Base Object"
+
+#, python-format
+#~ msgid "Intrastat Transaction code"
+#~ msgstr "Code de transaction intrastat"
 
 #, python-format
 #~ msgid ""

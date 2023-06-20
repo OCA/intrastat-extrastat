@@ -112,7 +112,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "transaction_code": {
                 "header": {
                     "type": "string",
-                    "value": _("Intrastat Transaction code"),
+                    "value": _("Intrastat Transaction Code"),
                 },
                 "line": {"value": self._render("line.transaction_id.code")},
                 "width": 10,

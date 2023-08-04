@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-17 17:33+0000\n"
-"PO-Revision-Date: 2023-04-17 17:33+0000\n"
-"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
+"PO-Revision-Date: 2023-08-04 13:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__hs_code
@@ -23,12 +23,12 @@ msgstr "Código HS"
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__country_of_origin
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__country_of_origin
 msgid "Origin of Goods"
-msgstr ""
+msgstr "Origen de las mercancías"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model,name:product_harmonized_system_delivery.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__country_of_origin
@@ -39,6 +39,10 @@ msgid ""
 "As such, the ‘origin’ is the 'economic nationality' of goods traded in "
 "commerce."
 msgstr ""
+"Las normas de origen determinan de dónde proceden los bienes, es decir, no "
+"de dónde se han enviado, sino dónde se han producido o fabricado.\n"
+"Como tal, el \"origen\" es la \"nacionalidad económica\" de los bienes "
+"objeto de comercio."
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__hs_code

@@ -31,11 +31,6 @@ class IntrastatProductDeclaration(models.Model):
             "or change the revision number of this one.",
         )
     ]
-    # TODO:
-    # drop the use of self._note & self._line_nbr when migrating to Odoo 14
-    # refactoring this now may break the localisation modules
-    _note = ""
-    _line_nbr = ""
 
     @api.model
     def default_get(self, fields_list):
@@ -308,7 +303,7 @@ class IntrastatProductDeclaration(models.Model):
                 self._format_line_note(inv_line, notedict, line_notes)
         return country
 
-    def _get_intrastat_transaction(self, inv_line):
+    def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         if invoice.intrastat_transaction_id:
             return invoice.intrastat_transaction_id
@@ -401,7 +396,7 @@ class IntrastatProductDeclaration(models.Model):
 
         return weight, suppl_unit_qty
 
-    def _get_region(self, inv_line):
+    def _get_region(self, inv_line, notedict):
         """
         For supplier invoices/refunds: if the invoice line is linked
         to a stock move, use the destination stock location ;
@@ -443,7 +438,7 @@ class IntrastatProductDeclaration(models.Model):
                 region = self.company_id.intrastat_region_id
         return region
 
-    def _get_transport(self, inv_line):
+    def _get_transport(self, inv_line, notedict):
         transport = (
             inv_line.move_id.intrastat_transport_id
             or self.company_id.intrastat_transport_id
@@ -457,7 +452,7 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return transport
 
-    def _get_incoterm(self, inv_line):
+    def _get_incoterm(self, inv_line, notedict):
         incoterm = inv_line.move_id.invoice_incoterm_id or self.company_id.incoterm_id
         if not incoterm:
             msg = _(
@@ -468,7 +463,7 @@ class IntrastatProductDeclaration(models.Model):
             self._account_config_warning(msg)
         return incoterm
 
-    def _get_product_origin_country(self, inv_line):
+    def _get_product_origin_country(self, inv_line, notedict):
         warnings.warn(
             "Method '_get_product_origin_country' is deprecated, "
             "please use '_get_product_origin_country_code'.",
@@ -476,7 +471,9 @@ class IntrastatProductDeclaration(models.Model):
         )
         return inv_line.product_id.origin_country_id
 
-    def _get_product_origin_country_code(self, inv_line, product_origin_country):
+    def _get_product_origin_country_code(
+        self, inv_line, product_origin_country, notedict
+    ):
         cc = "QU"
         if product_origin_country.code:
             cc = product_origin_country.code
@@ -492,7 +489,7 @@ class IntrastatProductDeclaration(models.Model):
                 )
         return cc
 
-    def _update_computation_line_vals(self, inv_line, line_vals):
+    def _update_computation_line_vals(self, inv_line, line_vals, notedict):
         """ placeholder for localization modules """
 
     def _handle_invoice_accessory_cost(
@@ -594,8 +591,10 @@ class IntrastatProductDeclaration(models.Model):
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
             total_inv_weight = 0.0
-            for line_nbr, inv_line in enumerate(invoice.invoice_line_ids, start=1):
-                self._line_nbr = line_nbr
+            for line_nbr, inv_line in enumerate(
+                invoice.invoice_line_ids.filtered(lambda x: not x.display_type), start=1
+            ):
+                notedict["line_nbr"] = line_nbr
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
                     lambda r: r.invoice_line_id == inv_line
                 )
@@ -656,7 +655,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
                     continue
 
-                intrastat_transaction = self._get_intrastat_transaction(inv_line)
+                intrastat_transaction = self._get_intrastat_transaction(
+                    inv_line, notedict
+                )
 
                 if inv_intrastat_line:
                     weight = inv_intrastat_line.transaction_weight
@@ -682,10 +683,10 @@ class IntrastatProductDeclaration(models.Model):
                 else:
                     product_origin_country = inv_line.product_id.origin_country_id
                     product_origin_country_code = self._get_product_origin_country_code(
-                        inv_line, product_origin_country
+                        inv_line, product_origin_country, notedict
                     )
 
-                region = self._get_region(inv_line)
+                region = self._get_region(inv_line, notedict)
 
                 line_vals = {
                     "parent_id": self.id,
@@ -705,11 +706,11 @@ class IntrastatProductDeclaration(models.Model):
                 }
 
                 # extended declaration
-                if self._extended:
-                    transport = self._get_transport(inv_line)
+                if self.reporting_level == "extended":
+                    transport = self._get_transport(inv_line, notedict)
                     line_vals.update({"transport_id": transport.id})
 
-                self._update_computation_line_vals(inv_line, line_vals)
+                self._update_computation_line_vals(inv_line, line_vals, notedict)
 
                 if line_vals:
                     lines_current_invoice.append(line_vals)
@@ -754,16 +755,6 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         self.message_post(body=_("Generate Lines from Invoices"))
         self._check_generate_lines()
-        self._note = ""
-        if (
-            self.type == "arrivals" and self.company_id.intrastat_arrivals == "extended"
-        ) or (
-            self.type == "dispatches"
-            and self.company_id.intrastat_dispatches == "extended"
-        ):
-            self._extended = True
-        else:
-            self._extended = False
         notedict = {
             "note": "",
             "line_nbr": 0,

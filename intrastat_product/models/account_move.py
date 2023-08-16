@@ -79,11 +79,8 @@ class AccountMove(models.Model):
 
     def _get_intrastat_line_vals(self, line):
         vals = {}
-        notedict = {
-            "note": "",
-            "line_nbr": 0,
-        }
         decl_model = self.env["intrastat.product.declaration"]
+        notedict, key2label = decl_model._prepare_notedict()
         if decl_model._is_product(line):
             hs_code = line.product_id.get_hs_code_recursively()
             if not hs_code:

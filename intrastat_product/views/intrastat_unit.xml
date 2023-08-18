@@ -22,7 +22,7 @@
                 />
                 <group name="main">
                     <field name="name" />
-                    <field name="uom_id" required="1" />
+                    <field name="uom_id" />
                     <field name="description" />
                 </group>
             </form>

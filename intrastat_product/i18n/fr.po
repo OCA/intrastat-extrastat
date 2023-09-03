@@ -1123,8 +1123,8 @@ msgstr "Nombre d'erreurs"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nombre de messages nécessitant une action"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
@@ -1721,6 +1721,9 @@ msgstr "décl."
 #, python-format
 msgid "for period %s"
 msgstr "pour la période %s"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nombre de messages nécessitant une action"
 
 #~ msgid ""
 #~ "2 digit ISO code of the country of origin of the product.\n"

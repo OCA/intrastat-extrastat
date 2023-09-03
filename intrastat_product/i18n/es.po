@@ -30,8 +30,8 @@ msgid ""
 "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
 "state == 'draft' and '-draft' or '')"
 msgstr ""
-"'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, "
-"object.state == 'draft' and '-draft' or '')"
+"'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
+"state == 'draft' and '-draft' or '')"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
@@ -382,10 +382,10 @@ msgid ""
 "<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
-"Conversión de la unidad de medida <em>%(source_uom)s</em> a "
-"<em>%(target_uom)s</em>, que se configura en la unidad suplementaria "
-"Intrastat <i>%(intrastat_unit)s</i > de H.S. código <i>%(hs_code)s</i>, aún "
-"no está implementado"
+"Conversión de la unidad de medida <em>%(source_uom)s</em> a <em>"
+"%(target_uom)s</em>, que se configura en la unidad suplementaria Intrastat "
+"<i>%(intrastat_unit)s</i > de H.S. código <i>%(hs_code)s</i>, aún no está "
+"implementado"
 
 #. module: intrastat_product
 #. odoo-python
@@ -397,8 +397,8 @@ msgid ""
 "whose unit of measure is <i>%(product_uom)s</i>"
 msgstr ""
 "La conversión de la unidad de medida <em>%(source_uom)s</em> a <em>Kg</em> "
-"no se puede realizar automáticamente. Es necesario para el producto "
-"<i>%(product)s</i> cuya unidad de medida es <i>%(product_uom)s</i>"
+"no se puede realizar automáticamente. Es necesario para el producto <i>"
+"%(product)s</i> cuya unidad de medida es <i>%(product_uom)s</i>"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__src_dest_country_id
@@ -1137,8 +1137,8 @@ msgstr "Número de errores"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nº de mensajes que requieren acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
@@ -1736,6 +1736,9 @@ msgstr "declinar."
 #, python-format
 msgid "for period %s"
 msgstr "para periodo %s"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nº de mensajes que requieren acción"
 
 #~ msgid ""
 #~ "2 digit code of country of origin of the product except for the UK.\n"

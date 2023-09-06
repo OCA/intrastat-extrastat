@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-intrastat_base>=16.0dev,<16.1dev',
         'odoo-addon-intrastat_product>=16.0dev,<16.1dev',
+        'odoo-addon-intrastat_product_generic>=16.0dev,<16.1dev',
         'odoo-addon-product_harmonized_system>=16.0dev,<16.1dev',
         'odoo-addon-product_harmonized_system_delivery>=16.0dev,<16.1dev',
         'odoo-addon-product_harmonized_system_stock>=16.0dev,<16.1dev',

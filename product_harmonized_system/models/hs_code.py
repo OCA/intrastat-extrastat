@@ -4,7 +4,8 @@
 # @author Luc de Meyer <info@noviat.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class HSCode(models.Model):
@@ -74,32 +75,41 @@ class HSCode(models.Model):
         for code in self:
             code.product_tmpl_count = len(code.product_tmpl_ids)
 
-    @api.depends("local_code", "description")
+    def _get_name(self):
+        self.ensure_one()
+        name = self.local_code
+        if self.description:
+            name += " " + self.description
+        return len(name) > 55 and name[:55] + "..." or name
+
     def name_get(self):
         res = []
         for this in self:
-            name = this.local_code
-            if this.description:
-                name += " " + this.description
-            name = len(name) > 55 and name[:55] + "..." or name
+            name = this._get_name()
             res.append((this.id, name))
         return res
 
-    _sql_constraints = [
-        (
-            "local_code_company_uniq",
-            "unique(local_code, company_id)",
-            "This code already exists for this company !",
-        )
-    ]
+    @api.constrains("local_code", "company_id")
+    def _check_duplicate_hs_code(self):
+        for rec in self:
+            domain = [("local_code", "=", rec.local_code), ("id", "!=", rec.id)]
+            if rec.company_id:
+                domain += [("company_id", "=", rec.company_id.id)]
+            dup = self.search_count(domain)
+            if dup:
+                msg = (
+                    "There is already an existing H.S. Code with the specified Code: %s."
+                    % rec.local_code
+                )
+                raise ValidationError(_(msg))
 
     @api.model
     def create(self, vals):
         if vals.get("local_code"):
-            vals["local_code"] = vals["local_code"].replace(" ", "")
+            vals["local_code"] = vals["local_code"].strip()
         return super().create(vals)
 
     def write(self, vals):
         if vals.get("local_code"):
-            vals["local_code"] = vals["local_code"].replace(" ", "")
+            vals["local_code"] = vals["local_code"].strip()
         return super().write(vals)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <!-- Menu entry for H.S. Code Heading -->
+    <menuitem
+        id="hs_code_header_menu"
+        action="product_harmonized_system_heading.hs_code_heading_action"
+        parent="stock.menu_product_in_config_stock"
+        sequence="65"
+    />
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="hs_code_heading_form_view" model="ir.ui.view">
+        <field name="name">hs.code.heading.form</field>
+        <field name="model">hs.code.heading</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="general" string="General">
+                        <field name="code" />
+                        <field name="description" />
+                    </group>
+                    <group name="hs_codes" string="Related H.S. Codes">
+                        <field name="hs_code_ids">
+                            <tree>
+                                <field name="hs_code" />
+                                <field name="local_code" />
+                                <field name="description" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="hs_code_heading_tree_view" model="ir.ui.view">
+        <field name="name">hs.code.heading.tree</field>
+        <field name="model">hs.code.heading</field>
+        <field name="arch" type="xml">
+            <tree string="H.S. Code Heading">
+                <field name="code" />
+                <field name="description" />
+                <field name="hs_code_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <record id="hs_code_heading_search_view" model="ir.ui.view">
+        <field name="name">hs.code.heading.search.view</field>
+        <field name="model">hs.code.heading</field>
+        <field name="arch" type="xml">
+            <search string="H.S. Code Heading">
+                <field name="code" />
+                <field name="hs_code_ids" />
+            </search>
+        </field>
+    </record>
+    <record id="hs_code_heading_action" model="ir.actions.act_window">
+        <field name="name">H.S. Code Heading</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hs.code.heading</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

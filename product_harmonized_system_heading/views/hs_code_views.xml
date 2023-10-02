@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="hs_code_view_search" model="ir.ui.view">
+        <field name="name">hs.code.search - product_harmonized_system_heading</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_search" />
+        <field name="arch" type="xml">
+            <field name="local_code" position="after">
+                <field name="hs_code_heading_id" />
+            </field>
+            <filter name="inactive" position="after">
+                <separator />
+                <filter
+                    name="hs_code_heading_groupby"
+                    string="H.S. Code Heading"
+                    domain="[]"
+                    context="{'group_by': 'hs_code_heading_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="hs_code_view_tree" model="ir.ui.view">
+        <field name="name">hs.code.tree - product_harmonized_system_heading</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_tree" />
+        <field name="arch" type="xml">
+            <field name="hs_code" position="before">
+                <field name="hs_code_heading_id" />
+            </field>
+        </field>
+    </record>
+    <record id="hs_code_view_form" model="ir.ui.view">
+        <field name="name">hs.code.form - product_harmonized_system_heading</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='main']/field[@name='local_code']"
+                position="before"
+            >
+                <field name="hs_code_heading_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hs_code_heading_user,access_hs_code_heading_user,model_hs_code_heading,,1,0,0,0
+access_hs_code_heading_manager,access_hs_code_heading_manager,model_hs_code_heading,product_harmonized_system_heading.group_product_harmonized_system_heading_manager,1,1,1,1

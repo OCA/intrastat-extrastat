@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[hs_code_link](hs_code_link/) | 13.0.1.0.1 |  | HS Code Link
+[hs_code_link](hs_code_link/) | 13.0.2.0.0 |  | HS Code Link
 [intrastat_base](intrastat_base/) | 13.0.2.0.0 |  | Base module for Intrastat reporting
 [intrastat_product](intrastat_product/) | 13.0.3.0.4 |  | Base module for Intrastat Product
 [intrastat_product_generic](intrastat_product_generic/) | 13.0.1.0.0 |  | Generic Intrastat Product Declaration

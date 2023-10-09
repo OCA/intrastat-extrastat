@@ -185,8 +185,8 @@ msgstr "Usuarios Recibiendo el Recordatorio Intrastat"
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid ""
-"When set to B2B or B2C, the invoices with this fiscal position will be taken"
-" into account for the generation of the intrastat reports."
+"When set to B2B or B2C, the invoices with this fiscal position will be taken "
+"into account for the generation of the intrastat reports."
 msgstr ""
 "Cuando se configura en B2B o B2C, las facturas con esta posición fiscal se "
 "tendrán en cuenta para la generación de los informes intrastat."

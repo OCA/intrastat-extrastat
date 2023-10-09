@@ -66,7 +66,9 @@ msgstr "Regija države porijekla"
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_state_id
 msgid ""
 "Country State of origin of the product.\n"
-"This field is used for the Intrastat declaration, selecting one of the Northern Ireland counties will set the code 'XI' for products from the United Kingdom whereas code 'XU' will be used for the other UK counties."
+"This field is used for the Intrastat declaration, selecting one of the "
+"Northern Ireland counties will set the code 'XI' for products from the "
+"United Kingdom whereas code 'XU' will be used for the other UK counties."
 msgstr ""
 
 #. module: product_harmonized_system
@@ -133,8 +135,8 @@ msgstr ""
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
 msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
-"Organisation, see http://www.wcoomd.org/. You can leave this field empty and"
-" configure the H.S. code on the product category."
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 
 #. module: product_harmonized_system

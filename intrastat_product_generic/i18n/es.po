@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* intrastat_product_generic
+# 	* intrastat_product_generic
 #
 msgid ""
 msgstr ""

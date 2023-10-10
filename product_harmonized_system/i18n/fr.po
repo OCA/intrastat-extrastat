@@ -103,9 +103,6 @@ msgstr "Description"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -115,14 +112,12 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__hs_code_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
 msgstr "Code S.H."
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_tree
 msgid "H.S. Codes"
 msgstr "Codes S.H."
 
@@ -158,9 +153,6 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__id
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__id
 msgid "ID"
 msgstr "ID"
 
@@ -171,9 +163,6 @@ msgstr "Propriétés pour l'import/export"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_category____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_harmonized_system.field_product_template____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -235,11 +224,6 @@ msgid "Products"
 msgstr "Articles"
 
 #. module: product_harmonized_system
-#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
-msgid "Search H.S. Codes"
-msgstr "Recherche dans les codes S.H."
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__description
 msgid "Short text description of the H.S. category"
 msgstr "Courte description de la catégorie S.H."
@@ -253,3 +237,6 @@ msgstr "Unités de stockage"
 #: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
 msgid "This code already exists for this company !"
 msgstr "Ce code existe déjà pour cette société !"
+
+#~ msgid "Search H.S. Codes"
+#~ msgstr "Recherche dans les codes S.H."

@@ -30,8 +30,8 @@ msgid ""
 "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
 "state == 'draft' and '-draft' or '')"
 msgstr ""
-"'intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, "
-"object.state == 'draft' and '-brouillon' or '')"
+"'intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, object."
+"state == 'draft' and '-brouillon' or '')"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form

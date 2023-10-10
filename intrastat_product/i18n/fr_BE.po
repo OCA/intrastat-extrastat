@@ -24,8 +24,8 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid ""
-"'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, "
-"object.state == 'draft' and '-draft' or '')"
+"'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
+"state == 'draft' and '-draft' or '')"
 msgstr ""
 
 #. module: intrastat_product
@@ -97,7 +97,8 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
-"2 letters ISO code of the country of origin of the product except for the UK.\n"
+"2 letters ISO code of the country of origin of the product except for the "
+"UK.\n"
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
@@ -132,7 +133,8 @@ msgstr ""
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 
 #. module: intrastat_product
@@ -207,8 +209,8 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the"
-" rate of the invoice date."
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 
 #. module: intrastat_product
@@ -316,7 +318,6 @@ msgstr ""
 #. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__computation_line_ids
 #, python-format
 msgid "Computation Lines"
@@ -347,9 +348,9 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid ""
-"Conversion from unit of measure <em>%(source_uom)s</em> to "
-"<em>%(target_uom)s</em>, which is configured on the intrastat supplementary "
-"unit <i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
+"Conversion from unit of measure <em>%(source_uom)s</em> to <em>"
+"%(target_uom)s</em>, which is configured on the intrastat supplementary unit "
+"<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
 
@@ -462,7 +463,6 @@ msgstr ""
 
 #. module: intrastat_product
 #. odoo-python
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
@@ -601,8 +601,7 @@ msgstr ""
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid ""
-"Generate declaration lines, generate XML export and set declaration to "
-"'Done'"
+"Generate declaration lines, generate XML export and set declaration to 'Done'"
 msgstr ""
 
 #. module: intrastat_product
@@ -1127,8 +1126,8 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_account_move__src_dest_region_id
 #: model:ir.model.fields,help:intrastat_product.field_account_payment__src_dest_region_id
 msgid ""
-"Origin region for dispatches, destination region for arrivals. This field is"
-" used for the Intrastat Declaration."
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 
 #. module: intrastat_product
@@ -1314,8 +1313,8 @@ msgstr ""
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
 msgid ""
-"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and"
-" lighters on board of a ship)"
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 
 #. module: intrastat_product
@@ -1579,10 +1578,10 @@ msgstr ""
 #, python-format
 msgid ""
 "VAT number is <em>%(vat)s</em>. If this partner is from Northern Ireland, "
-"his VAT number should be updated to his new VAT number starting with "
-"<em>XI</em> following Brexit. If this partner is from Great Britain, maybe "
-"the fiscal position was wrong on the invoice (the fiscal position was "
-"<i>%(fiscal_position)s</i>)."
+"his VAT number should be updated to his new VAT number starting with <em>XI</"
+"em> following Brexit. If this partner is from Great Britain, maybe the "
+"fiscal position was wrong on the invoice (the fiscal position was <i>"
+"%(fiscal_position)s</i>)."
 msgstr ""
 
 #. module: intrastat_product

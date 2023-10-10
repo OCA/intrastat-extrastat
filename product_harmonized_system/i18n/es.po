@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_harmonized_system
+# 	* product_harmonized_system
 #
 msgid ""
 msgstr ""
@@ -43,7 +43,10 @@ msgstr "Máquinas de procesado de datos automático (ordenadores)"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__local_code
-msgid "Code used for the national Import/Export declaration. The national code starts with the 6 digits of the H.S. and often has a few additional digits to extend the H.S. code."
+msgid ""
+"Code used for the national Import/Export declaration. The national code "
+"starts with the 6 digits of the H.S. and often has a few additional digits "
+"to extend the H.S. code."
 msgstr ""
 "Código utilizado para la declaración Import/Export. El código nacional "
 "empieza con 6 dígitos del H.S. y a menudo tiene un pocos dígitos adicionales "
@@ -104,7 +107,9 @@ msgstr "Códigos HS"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
-msgid "Harmonised System Code. If this code is not set on the product itself, it will be read here, on the related product category."
+msgid ""
+"Harmonised System Code. If this code is not set on the product itself, it "
+"will be read here, on the related product category."
 msgstr ""
 "Código del Sistema Armonizado HS. Si el código no está escrito en el "
 "producto, se leerá aquí, en la categoría de producto relacionada."
@@ -112,7 +117,10 @@ msgstr ""
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__hs_code_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
-msgid "Harmonised System Code. Nomenclature is available from the World Customs Organisation, see http://www.wcoomd.org/. You can leave this field empty and configure the H.S. code on the product category."
+msgid ""
+"Harmonised System Code. Nomenclature is available from the World Customs "
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 "Harmonised System Code. Nomenclatura disponible en  World Customs "
 "Organisation, ver http://www.wcoomd.org/. Puede dejar este campo vacío y "
@@ -120,7 +128,9 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__hs_code
-msgid "Harmonized System code (6 digits). Full list is available from the World Customs Organisation, see http://www.wcoomd.org"
+msgid ""
+"Harmonized System code (6 digits). Full list is available from the World "
+"Customs Organisation, see http://www.wcoomd.org"
 msgstr ""
 "Código Sistema Armonizado (6 dígitos). La lista completa está disponible en  "
 "World Customs Organisation, ver http://www.wcoomd.org"

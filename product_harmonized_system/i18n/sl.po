@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_harmonized_system
+# 	* product_harmonized_system
 #
 msgid ""
 msgstr ""
@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.10\n"
 
 #. module: product_harmonized_system
@@ -44,7 +44,10 @@ msgstr "Naprave za samodejno obdelavo podatkov (računalniki)"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__local_code
-msgid "Code used for the national Import/Export declaration. The national code starts with the 6 digits of the H.S. and often has a few additional digits to extend the H.S. code."
+msgid ""
+"Code used for the national Import/Export declaration. The national code "
+"starts with the 6 digits of the H.S. and often has a few additional digits "
+"to extend the H.S. code."
 msgstr ""
 "Koda za nacionalno uvozno/izvozno deklaracijo. Nacionalna koda se začne s 6 "
 "znaki iz HS in ima pogosto še nekaj dodatnih znakov, ki razširijo HS kodo."
@@ -104,7 +107,9 @@ msgstr "HS kode"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
-msgid "Harmonised System Code. If this code is not set on the product itself, it will be read here, on the related product category."
+msgid ""
+"Harmonised System Code. If this code is not set on the product itself, it "
+"will be read here, on the related product category."
 msgstr ""
 "Koda harmoniziranega sistema. Če ta koda ni nastavljena na samem proizvodu, "
 "se bere od tu, glede na kategorijo proizvoda."
@@ -112,7 +117,10 @@ msgstr ""
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__hs_code_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
-msgid "Harmonised System Code. Nomenclature is available from the World Customs Organisation, see http://www.wcoomd.org/. You can leave this field empty and configure the H.S. code on the product category."
+msgid ""
+"Harmonised System Code. Nomenclature is available from the World Customs "
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 "Koda harmoniziranega sistema. Nomenklatura je na voljo pri World Customs "
 "Organisation, http://www.wcoomd.org/. To polje lahko pustite prazno in "
@@ -120,7 +128,9 @@ msgstr ""
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__hs_code
-msgid "Harmonized System code (6 digits). Full list is available from the World Customs Organisation, see http://www.wcoomd.org"
+msgid ""
+"Harmonized System code (6 digits). Full list is available from the World "
+"Customs Organisation, see http://www.wcoomd.org"
 msgstr ""
 "Koda harmoniziranega sistema (6 znakov). Polni seznam je na voljo pri World "
 "Customs Organisation, http://www.wcoomd.org"

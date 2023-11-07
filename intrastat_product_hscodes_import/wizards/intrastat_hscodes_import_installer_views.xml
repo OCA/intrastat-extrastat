@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="intrastat_hscodes_import_installer_view_form" model="ir.ui.view">
+        <field name="name">intrastat.hscodes.import.installer.view</field>
+        <field name="model">intrastat.hscodes.import.installer</field>
+        <field name="inherit_id" ref="base.res_config_installer" />
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="string">Load Intrastat Codes</attribute>
+            </form>
+            <xpath expr="/form/separator[@colspan='4']" position="after">
+                <group position="inside">
+                    <field name="share_codes" />
+                    <field
+                        name="company_id"
+                        options="{'no_create': True, 'no_open': True}"
+                        domain="[('id', 'in', allowed_company_ids)]"
+                        groups="base.group_multi_company"
+                        attrs="{'required': [('share_codes','=',False)],'invisible': [('share_codes','=',True)]}"
+                    />
+                    <field name="intrastat_file_year" invisible="1" />
+                    <field name="intrastat_file_delimiter" invisible="1" />
+                </group>
+            </xpath>
+            <xpath expr="/form/separator[@colspan='4']" position="attributes">
+                <attribute name="string">Load Intrastat Codes</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_next']" position="attributes">
+                <attribute name="string">Load</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record
+        id="intrastat_hscodes_import_installer_action"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Load Intrastat Codes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">intrastat.hscodes.import.installer</field>
+        <field name="view_id" ref="intrastat_hscodes_import_installer_view_form" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="intrastat_installer_todo" model="ir.actions.todo">
+        <field name="action_id" ref="intrastat_hscodes_import_installer_action" />
+        <field name="sequence">10</field>
+    </record>
+
+</odoo>

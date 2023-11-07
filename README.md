@@ -9,7 +9,7 @@
 
 # intrastat-extrastat
 
-TODO: add repo description.
+This repository contains modules dedicated to manage HS Codes and the base modules for Intrastat/Extrastat.
 
 <!-- /!\ do not modify below this line -->
 

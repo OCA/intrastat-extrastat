@@ -33,6 +33,14 @@ class IntrastatProductDeclaration(models.Model):
         )
     ]
 
+    @api.depends("declaration_line_ids")
+    def _compute_numbers(self):
+        for this in self:
+            this.num_decl_lines = len(this.declaration_line_ids)
+            this.total_amount = sum(
+                this.declaration_line_ids.mapped("amount_company_currency")
+            )
+
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
@@ -130,7 +138,7 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
         tracking=True,
     )
-    total_amount = fields.Integer(
+    total_amount = fields.Float(
         compute="_compute_numbers",
         string="Total Fiscal Amount",
         store=True,

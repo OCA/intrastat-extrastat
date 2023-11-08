@@ -33,7 +33,7 @@ class IntrastatProductDeclaration(models.Model):
         )
     ]
 
-        @api.depends("declaration_line_ids")
+    @api.depends("declaration_line_ids")
     def _compute_numbers(self):
         for this in self:
             this.num_decl_lines = len(this.declaration_line_ids)

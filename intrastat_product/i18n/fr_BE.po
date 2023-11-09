@@ -257,6 +257,16 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_11
+msgid "B2B sale/purchase"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_12
+msgid "B2C sale/purchase (incl. distance sale)"
+msgstr ""
+
+#. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Back to Draft"
 msgstr ""
@@ -550,6 +560,11 @@ msgid "Extended"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_33
+msgid "Financial leasing"
+msgstr ""
+
+#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
@@ -643,6 +658,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__has_message
 msgid "Has Message"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_91
+msgid "Hire, loan, and operational leasing longer than 24 months"
 msgstr ""
 
 #. module: intrastat_product
@@ -1014,6 +1034,12 @@ msgid "Month"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_31
+msgid ""
+"Movements to/from a warehouse (excluding call-off and consignment stock)"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
@@ -1144,6 +1170,11 @@ msgid "Origin/Destination Region"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_99
+msgid "Other"
+msgstr ""
+
+#. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_9
 msgid "Own propulsion"
 msgstr ""
@@ -1261,10 +1292,27 @@ msgid "Related Transactions"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_71
+msgid ""
+"Release of goods for free circulation in a Member State with a subsequent "
+"export to another Member State"
+msgstr ""
+
+#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Replace"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_23
+msgid "Replacement (e.g. under warranty) for goods not being returned"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_22
+msgid "Replacement for returned goods (free of charge)"
 msgstr ""
 
 #. module: intrastat_product
@@ -1277,6 +1325,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_21
+msgid "Return of goods (free of charge)"
 msgstr ""
 
 #. module: intrastat_product
@@ -1385,6 +1438,13 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__suppl_unit_qty
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__suppl_unit_qty
 msgid "Supplementary Units Quantity"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_32
+msgid ""
+"Supply for sale on approval or after trial (including call-off and "
+"consignment stock)"
 msgstr ""
 
 #. module: intrastat_product
@@ -1508,6 +1568,52 @@ msgid "Transactions"
 msgstr ""
 
 #. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_52
+msgid ""
+"Transactions following processing under contract (not involving change of "
+"ownership). Goods not returning to the initial Member State/country of "
+"export."
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_51
+msgid ""
+"Transactions following processing under contract (not involving change of "
+"ownership). Goods returning to the initial Member State/country of export."
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_80
+msgid ""
+"Transactions involving the supply of building materials and technical "
+"equipment under a general construction or civil engineering contract for "
+"which no separate invoicing of the goods is required and an invoice for the "
+"total contract is issued"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_34
+msgid ""
+"Transactions involving transfer of ownership without financial compensation"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_41
+msgid ""
+"Transactions with a view to processing under contract (no change of "
+"ownership). Goods expected to return to the initial Member State/country of "
+"export"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_42
+msgid ""
+"Transactions with a view to processing under contract (no change of "
+"ownership). Goods not expected to return to the initial Member State/country "
+"of export"
+msgstr ""
+
+#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__transport_id
@@ -1528,6 +1634,13 @@ msgstr ""
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transport_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_transport_menu
 msgid "Transport Modes"
+msgstr ""
+
+#. module: intrastat_product
+#: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_72
+msgid ""
+"Transportation of goods from one Member State to another Member State to "
+"place the goods under the export procedure"
 msgstr ""
 
 #. module: intrastat_product

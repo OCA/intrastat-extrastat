@@ -22,7 +22,7 @@ class IntrastatTransaction(models.Model):
     ]
 
     code = fields.Char(required=True)
-    description = fields.Text()
+    description = fields.Text(translate=True)
     # intrastat.transaction are shared among companies by default
     company_id = fields.Many2one("res.company")
     active = fields.Boolean(default=True)

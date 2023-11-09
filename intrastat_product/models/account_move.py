@@ -202,8 +202,7 @@ class AccountMoveIntrastatLine(models.Model):
     def _onchange_move_id(self):
         moves = self.mapped("move_id")
         dom = [
-            ("exclude_from_invoice_tab", "=", False),
-            ("display_type", "=", False),
+            ("display_type", "=", "product"),
             ("id", "in", moves.mapped("invoice_line_ids").ids),
             ("id", "not in", moves.mapped("intrastat_line_ids.invoice_line_id").ids),
         ]

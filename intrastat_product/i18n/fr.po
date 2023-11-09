@@ -700,7 +700,6 @@ msgstr "Si activé, de nouveaux messages nécessitent votre attention."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si activé, des messages ont une erreur d'envoi."
 
@@ -1327,11 +1326,6 @@ msgid "Road Transport"
 msgstr "Transport routier"
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Erreur d'envoi du SMS"
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
 msgstr "Commandes client"
@@ -1721,6 +1715,9 @@ msgstr "décl."
 #, python-format
 msgid "for period %s"
 msgstr "pour la période %s"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erreur d'envoi du SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Nombre de messages nécessitant une action"

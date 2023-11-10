@@ -1163,11 +1163,16 @@ class IntrastatProductComputationLine(models.Model):
                 computation_line["amount_company_currency"]
                 + computation_line["amount_accessory_cost_company_currency"]
             )
-        # round, otherwise odoo with truncate (6.7 -> 6... instead of 7 !)
+        # on computation lines, weight and suppl_unit_qty are floats
+        # on declaration lines, weight and suppl_unit_qty are integer => so we must round()
         for field in fields_to_sum:
             vals[field] = int(round(vals[field]))
+        # the intrastat specs say that, if the value is between 0 and 0.5,
+        # it should be rounded to 1
         if not vals["weight"]:
             vals["weight"] = 1
+        if vals["intrastat_unit_id"] and not vals["suppl_unit_qty"]:
+            vals["suppl_unit_qty"] = 1
         vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
         return vals
 

@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_product_hscodes_import
-#: model:ir.model.fields.selection,name:intrastat_product_hscodes_import.selection__intrastat_hscodes_import_installer__intrastat_file_year__2022
-msgid "2022"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
 msgid "Company"
 msgstr ""
@@ -41,16 +36,6 @@ msgstr ""
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__id
 msgid "ID"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__intrastat_file_delimiter
-msgid "Intrastat File Delimiter"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__intrastat_file_year
-msgid "Intrastat File Year"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import

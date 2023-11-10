@@ -16,7 +16,6 @@
                         name="company_id"
                         options="{'no_create': True, 'no_open': True}"
                         domain="[('id', 'in', allowed_company_ids)]"
-                        groups="base.group_multi_company"
                         attrs="{'required': [('share_codes','=',False)],'invisible': [('share_codes','=',True)]}"
                     />
                 </group>

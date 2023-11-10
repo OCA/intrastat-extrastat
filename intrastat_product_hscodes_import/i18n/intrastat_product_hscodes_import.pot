@@ -19,14 +19,6 @@ msgid "2022"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import
-#: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
-#, python-format
-msgid ""
-"Any Language active on your system is available in intrastat codes files "
-"[%s]"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
 msgid "Company"
 msgstr ""
@@ -90,6 +82,14 @@ msgstr ""
 #: model:ir.actions.act_window,name:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_action
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load Intrastat Codes"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
+#, python-format
+msgid ""
+"None of the languages active on your system are available in intrastat codes"
+" files [%s]"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import

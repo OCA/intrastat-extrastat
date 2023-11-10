@@ -102,7 +102,7 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
         if not lang_found:
             raise UserError(
                 _(
-                    "Any Language active on your system is "
+                    "None of the languages active on your system are "
                     "available in intrastat codes files [%s]"
                 )
                 % ",".join(self._intrastat_file_available_langs())

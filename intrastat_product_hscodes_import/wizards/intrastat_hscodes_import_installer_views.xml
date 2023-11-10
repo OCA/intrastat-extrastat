@@ -19,8 +19,6 @@
                         groups="base.group_multi_company"
                         attrs="{'required': [('share_codes','=',False)],'invisible': [('share_codes','=',True)]}"
                     />
-                    <field name="intrastat_file_year" invisible="1" />
-                    <field name="intrastat_file_delimiter" invisible="1" />
                 </group>
             </xpath>
             <xpath expr="/form/separator[@colspan='4']" position="attributes">

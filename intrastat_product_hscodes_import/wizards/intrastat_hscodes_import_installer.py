@@ -16,8 +16,6 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
     _inherit = "res.config.installer"
     _description = "Intrastat HS Codes Import Installer"
 
-    intrastat_file_year = fields.Selection(selection=[("2022", "2022")], default="2022")
-    intrastat_file_delimiter = fields.Selection(selection=[(";", ";")], default=";")
     share_codes = fields.Boolean(
         default=True,
         help="Set this flag to share the Intrastat Codes between all "
@@ -33,10 +31,6 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
         if self.company_id:
             domain = OR([domain, ("company_id", "=", self.company_id.id)])
         return domain
-
-    @api.model
-    def _intrastat_file_available_langs(self):
-        return ["en", "fr", "fr", "de"]
 
     @api.model
     def _load_code(self, row, hs_codes, hscodes_lookup):
@@ -65,10 +59,12 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
         res = super().execute()
         # get path for intrastat hs codes files
         module = __name__.split("addons.")[1].split(".")[0]
+        module_path = ""
         for adp in odoo.addons.__path__:
             module_path = adp + os.sep + module
             if os.path.isdir(module_path):
                 break
+        module_path += os.sep + "static/data" + os.sep
         # load existing intrastat codes
         hs_codes = self.env["hs.code"].search(self._hscodes_vals_domain())
         hscodes_lookup = {}
@@ -76,23 +72,18 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             hscodes_lookup[c.local_code] = i
         # load csv files from data
         lang_found = False
-        for lang in self._intrastat_file_available_langs():
+        CN_fns = os.listdir(module_path)
+        langs = {x[5:7] for x in CN_fns}
+        for lang in langs:
             lang_recs = self.env["res.lang"].search([("code", "=like", lang + "_%")])
             if not lang_recs:
                 continue
             lang_found = True
-            intrastat_filename = (
-                self.intrastat_file_year + "_" + lang + "_intrastat_codes.csv"
-            )
-            intrastat_file_path = (
-                module_path + os.sep + "static/data" + os.sep + intrastat_filename
-            )
+            CN_fn = [x for x in CN_fns if x[5:7] == lang][0]
             with io.open(
-                intrastat_file_path, mode="r", encoding="Windows-1252"
+                module_path + CN_fn, mode="r", encoding="Windows-1252"
             ) as CN_file:
-                intrastat_codes = csv.DictReader(
-                    CN_file, delimiter=self.intrastat_file_delimiter
-                )
+                intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                 for lang_rec in lang_recs:
                     hs_codes = hs_codes.with_context(lang=lang_rec.code)
                     for row in intrastat_codes:

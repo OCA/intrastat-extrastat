@@ -3,7 +3,7 @@
 
 {
     "name": "Intrastat Product - HS Codes Import",
-    "version": "15.0.1.1.0",
+    "version": "15.0.1.2.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Module used to import HS Codes for Intrastat Product",

@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* intrastat_product_hscodes_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields.selection,name:intrastat_product_hscodes_import.selection__intrastat_hscodes_import_installer__intrastat_file_year__2022
+msgid "2022"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
+msgid "Company"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__id
+msgid "ID"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__intrastat_file_delimiter
+msgid "Intrastat File Delimiter"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__intrastat_file_year
+msgid "Intrastat File Year"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
+msgid "Intrastat HS Codes Import Installer"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
+msgid "Load"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.actions.act_window,name:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_action
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
+msgid "Load Intrastat Codes"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
+#, python-format
+msgid ""
+"None of the languages active on your system are available in intrastat codes"
+" files [%s]"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,help:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
+msgid ""
+"Set this flag to share the Intrastat Codes between all Legal Entities "
+"defined in this Odoo Database.\n"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
+msgid "Share Codes"
+msgstr ""

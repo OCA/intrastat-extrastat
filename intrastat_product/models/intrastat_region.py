@@ -19,4 +19,4 @@ class IntrastatRegion(models.Model):
     country_id = fields.Many2one(comodel_name="res.country", required=True)
     name = fields.Char(translate=True)
     description = fields.Char()
-    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    company_id = fields.Many2one("res.company")

@@ -411,7 +411,7 @@ class IntrastatProductDeclaration(models.Model):
         If none found, get the company's default intrastat region.
 
         """
-        region = False
+        region = self.env["intrastat.region"]
         move_type = inv_line.move_id.move_type
         if move_type in ("in_invoice", "in_refund"):
             po_line = self.env["purchase.order.line"].search(
@@ -691,7 +691,7 @@ class IntrastatProductDeclaration(models.Model):
                     )
 
                 region_code = self._get_region_code(inv_line, notedict)
-                region = False
+                region = self.env["intrastat.region"]
                 if not region_code:
                     region = self._get_region(inv_line, notedict)
 
@@ -709,7 +709,7 @@ class IntrastatProductDeclaration(models.Model):
                     "amount_accessory_cost_company_currency": 0.0,
                     "transaction_id": intrastat_transaction.id,
                     "product_origin_country_id": product_origin_country.id or False,
-                    "region_code": region_code,
+                    "region_code": region_code or region.code,
                     "region_id": region and region.id or False,
                     "partner_id": partner.id,
                 }

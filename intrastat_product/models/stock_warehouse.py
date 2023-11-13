@@ -24,4 +24,4 @@ class StockLocation(models.Model):
         )
         if warehouse:
             return warehouse.region_id
-        return None
+        return self.env["intrastat.region"]

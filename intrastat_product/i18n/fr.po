@@ -25,15 +25,6 @@ msgid "%(invoice)s line %(line_nbr)s"
 msgstr "%(invoice)s ligne %(line_nbr)s"
 
 #. module: intrastat_product
-#: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
-msgid ""
-"'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
-"state == 'draft' and '-draft' or '')"
-msgstr ""
-"'intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, object."
-"state == 'draft' and '-brouillon' or '')"
-
-#. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid ""
 "(Re)compute the intrastat transaction details from the product master data."
@@ -1828,6 +1819,25 @@ msgstr "décl."
 #, python-format
 msgid "for period %s"
 msgstr "pour la période %s"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "intrastat-%(year_month)s-%(declaration_type)s%(draft)s"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
+msgid "object._get_xlsx_report_filename()"
+msgstr ""
+
+#~ msgid ""
+#~ "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
+#~ "state == 'draft' and '-draft' or '')"
+#~ msgstr ""
+#~ "'intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, "
+#~ "object.state == 'draft' and '-brouillon' or '')"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Erreur d'envoi du SMS"

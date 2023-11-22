@@ -89,7 +89,7 @@
                             />
                         </page>
                         <page string="Notes" name="note">
-                            <field name="note" />
+                            <field name="note" widget="html" />
                         </page>
                     </notebook>
                 </sheet>

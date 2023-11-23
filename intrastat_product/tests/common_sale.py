@@ -55,6 +55,9 @@ class IntrastatSaleCommon(IntrastatProductCommon):
         if vals is not None:
             values.update(vals)
         cls.customer = cls.partner_obj.create(values)
+        values.pop("vat")
+        values["property_account_position_id"] = cls.position_b2c.id
+        cls.customer_no_vat = cls.partner_obj.create(values)
 
     @classmethod
     def setUpClass(cls):
@@ -63,9 +66,9 @@ class IntrastatSaleCommon(IntrastatProductCommon):
         cls._init_customer()
 
     @classmethod
-    def _create_sale_order(cls, vals=None):
+    def _create_sale_order(cls, partner, vals=None):
         vals = {
-            "partner_id": cls.customer.id,
+            "partner_id": partner.id,
         }
         sale_new = cls.sale_obj.new(vals)
         sale_vals = sale_new._convert_to_write(sale_new._cache)

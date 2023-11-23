@@ -491,7 +491,7 @@ class IntrastatProductDeclaration(models.Model):
                     notedict["partner"][partner.display_name][msg].add(
                         notedict["inv_origin"]
                     )
-            else:
+            elif inv.fiscal_position_id.intrastat != "b2c":
                 msg = _("Missing <em>VAT Number</em>")
                 notedict["partner"][partner.display_name][msg].add(
                     notedict["inv_origin"]

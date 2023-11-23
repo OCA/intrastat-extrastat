@@ -41,6 +41,11 @@ class IntrastatProductCommon(IntrastatCommon):
             "vat_required": True,
         }
         cls.position = cls.position_obj.create(vals)
+        vals_b2c = {
+            "name": "Intrastat Fiscal Position B2C",
+            "intrastat": "b2c",
+        }
+        cls.position_b2c = cls.position_obj.create(vals_b2c)
 
     @classmethod
     def _init_regions(cls):

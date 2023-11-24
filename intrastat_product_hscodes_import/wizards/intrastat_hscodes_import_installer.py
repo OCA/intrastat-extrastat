@@ -5,10 +5,27 @@ import csv
 import io
 import os
 
+import chardet
+
 import odoo
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.osv.expression import OR
+
+
+def get_encoding(filename):
+    detector = chardet.UniversalDetector()
+    final_chunk = False
+    blk_size = 65536
+    with open(filename, "rb") as fid:
+        while (not final_chunk) and (not detector.done):
+            chunk = fid.read(blk_size)
+            if len(chunk) < blk_size:
+                final_chunk = True
+            detector.feed(chunk)
+    detector.close()
+    encoding = detector.result.get("encoding", None)
+    return encoding
 
 
 class IntrastatHSCodesImportInstaller(models.TransientModel):
@@ -80,8 +97,9 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
                 continue
             lang_found = True
             CN_fn = [x for x in CN_fns if x[5:7] == lang][0]
+            encoding = get_encoding(module_path + CN_fn)
             with io.open(
-                module_path + CN_fn, mode="r", encoding="Windows-1252"
+                module_path + CN_fn, mode="r", encoding=encoding
             ) as CN_file:
                 intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                 for lang_rec in lang_recs:

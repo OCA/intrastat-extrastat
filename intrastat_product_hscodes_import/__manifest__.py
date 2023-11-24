@@ -12,6 +12,11 @@
     "depends": [
         "intrastat_product",
     ],
+    "external_dependencies": {
+        "python": [
+            "chardet>=5.2.0",
+        ]
+    },
     "data": [
         "security/ir.model.access.csv",
         "wizards/intrastat_hscodes_import_installer_views.xml",

@@ -98,9 +98,7 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             lang_found = True
             CN_fn = [x for x in CN_fns if x[5:7] == lang][0]
             encoding = get_encoding(module_path + CN_fn)
-            with io.open(
-                module_path + CN_fn, mode="r", encoding=encoding
-            ) as CN_file:
+            with io.open(module_path + CN_fn, mode="r", encoding=encoding) as CN_file:
                 intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                 for lang_rec in lang_recs:
                     hs_codes = hs_codes.with_context(lang=lang_rec.code)

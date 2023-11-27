@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-09 08:42+0000\n"
-"PO-Revision-Date: 2023-11-27 18:36+0000\n"
+"PO-Revision-Date: 2023-11-27 21:33+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -279,19 +279,12 @@ msgstr "Total de adjuntos"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_11
 msgid "B2B sale/purchase"
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Compra/Venta en firme."
+msgstr "Venta/compra B2B"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_12
 msgid "B2C sale/purchase (incl. distance sale)"
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad real o previsto de "
-"residentes a no residentes a cambio de una compensación financiera o de otro "
-"tipo: Entrega para venta a la vista o de prueba, para consignación o con la "
-"mediación de un agente comisionado."
+msgstr "Compra/venta B2C (incl. venta a distancia)"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
@@ -596,10 +589,7 @@ msgstr "Extendido"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_33
 msgid "Financial leasing"
-msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras ayudas (particulares, organizaciones no "
-"gubernamentales)."
+msgstr "Arrendamiento financiero"
 
 #. module: intrastat_product
 #. odoo-python
@@ -703,9 +693,7 @@ msgstr "Tiene mensaje"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_91
 msgid "Hire, loan, and operational leasing longer than 24 months"
-msgstr ""
-"Suministro de materiales de construcción y maquinaria para trabajos en el "
-"marco de un contrato general de construcción o ingeniería."
+msgstr "Alquiler, préstamo y arrendamiento operativo a más de 24 meses"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__id
@@ -1080,9 +1068,8 @@ msgstr "Mes"
 msgid ""
 "Movements to/from a warehouse (excluding call-off and consignment stock)"
 msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Mercancías suministradas en el marco de programas "
-"de ayuda promovidos o financiados parcial o totalmente por la Unión Europea."
+"Movimientos hacia/desde un almacén (excluidas las existencias a la demanda y "
+"en consignación)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__my_activity_date_deadline
@@ -1219,8 +1206,7 @@ msgstr "Región Orígen/Destino"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_99
 msgid "Other"
-msgstr ""
-"Otras transacciones que no se pueden clasificar bajo otros códigos. Otras."
+msgstr "Otra/o"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_9
@@ -1348,10 +1334,8 @@ msgid ""
 "Release of goods for free circulation in a Member State with a subsequent "
 "export to another Member State"
 msgstr ""
-"Despacho de mercancías a libre práctica en un Estado miembro con una "
-"exportación posterior a otro Estado miembro. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
+"Despacho a libre práctica de mercancías en un Estado miembro con exportación "
+"posterior a otro Estado miembro"
 
 #. module: intrastat_product
 #. odoo-python
@@ -1364,16 +1348,12 @@ msgstr "Reemplazar"
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_23
 msgid "Replacement (e.g. under warranty) for goods not being returned"
 msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución (por ejemplo, bajo garantía) de mercancías "
-"no devueltas."
+"Sustitución (por ejemplo, en garantía) de mercancías que no se devuelven"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_22
 msgid "Replacement for returned goods (free of charge)"
-msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Sustitución de mercancías devueltas."
+msgstr "Sustitución de los productos devueltos (gratuita)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__reporting_level
@@ -1390,9 +1370,7 @@ msgstr "Usuario responsable"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_21
 msgid "Return of goods (free of charge)"
-msgstr ""
-"Devolución y sustitución gratuita de mercancías después del registro de la "
-"transacción original: Devolución de mercancías."
+msgstr "Devolución de mercancías (gratuita)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
@@ -1518,8 +1496,8 @@ msgid ""
 "Supply for sale on approval or after trial (including call-off and "
 "consignment stock)"
 msgstr ""
-"Transacciones que supongan un traspaso de propiedad sin compensación "
-"financiera o en especie: Otras entregas de ayuda gubernamental."
+"Suministro para la venta tras la aprobación o después de la prueba ("
+"incluidas las existencias a la demanda y en consignación)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__company_country_code
@@ -1681,17 +1659,16 @@ msgid ""
 "which no separate invoicing of the goods is required and an invoice for the "
 "total contract is issued"
 msgstr ""
-"Suministro de materiales de construcción y maquinaria para trabajos en el "
-"marco de un contrato general de construcción o ingeniería."
+"Operaciones de suministro de materiales de construcción y equipos técnicos "
+"en el marco de un contrato general de construcción o ingeniería civil para "
+"las que no se exige una facturación separada de los bienes y se emite una "
+"factura por el total del contrato"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_34
 msgid ""
 "Transactions involving transfer of ownership without financial compensation"
-msgstr ""
-"Transacciones que implican transferencia de propiedad sin compensación "
-"económica. Transacciones que implican el cambio previsto de propiedad o "
-"cambio de propiedad sin compensación financiera."
+msgstr "Transacciones de transferencia de propiedad sin compensación económica"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_41
@@ -1700,9 +1677,9 @@ msgid ""
 "ownership). Goods expected to return to the initial Member State/country of "
 "export"
 msgstr ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías destinadas a regresar al Estado "
-"miembro de expedición inicial."
+"Transacciones con vistas a la transformación bajo contrato (sin cambio de "
+"propiedad). Mercancías destinadas a regresar al Estado miembro/país de "
+"exportación inicial"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_42
@@ -1711,9 +1688,9 @@ msgid ""
 "ownership). Goods not expected to return to the initial Member State/country "
 "of export"
 msgstr ""
-"Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa "
-"la propiedad al contratista): Mercancías no destinadas a regresar al Estado "
-"miembro de expedición inicial."
+"Transacciones con vistas a la transformación bajo contrato (sin cambio de "
+"propiedad). Mercancías que no está previsto que regresen al Estado miembro/"
+"país de exportación inicial"
 
 #. module: intrastat_product
 #. odoo-python
@@ -1744,10 +1721,8 @@ msgid ""
 "Transportation of goods from one Member State to another Member State to "
 "place the goods under the export procedure"
 msgstr ""
-"Transporte de mercancías de un miembr Estado a otro Estado miembro para "
-"colocar el mercancías en régimen de exportación. Transacciones con miras al "
-"despacho de aduanas (que no implica cambio de titularidad, relacionados con "
-"mercancías en cuasi-importación o exportación)."
+"Transporte de mercancías de un Estado miembro a otro para incluirlas en el "
+"régimen de exportación"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__declaration_type

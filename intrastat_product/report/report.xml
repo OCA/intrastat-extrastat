@@ -12,9 +12,7 @@
     <field name="report_type">xlsx</field>
     <field name="report_name">intrastat_product.product_declaration_xls</field>
     <field name="report_file">intrastat_product.product_declaration_xls</field>
-    <field
-            name="print_report_name"
-        >'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object.state == 'draft' and '-draft' or '')</field>
+    <field name="print_report_name">object._get_xlsx_report_filename()</field>
     <field name="binding_model_id" ref="model_intrastat_product_declaration" />
 </record>
 

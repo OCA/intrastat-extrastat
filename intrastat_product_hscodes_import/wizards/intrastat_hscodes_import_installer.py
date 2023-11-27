@@ -36,25 +36,25 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
     share_codes = fields.Boolean(
         default=True,
         help="Set this flag to share the Intrastat Codes between all "
-             "Legal Entities defined in this Odoo Database.\n",
+        "Legal Entities defined in this Odoo Database.\n",
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
     )
 
-    @api.onchange('share_codes')
+    @api.onchange("share_codes")
     def _onchange_share_codes(self):
         for record in self:
             if not record.share_codes and record.company_id:
                 record.company_id = False
 
     def _intrastat_file_available_langs(self, available_lang_recs):
-        langs = self.env["res.lang"].search([('active', '=', True)]).mapped('code')
+        langs = self.env["res.lang"].search([("active", "=", True)]).mapped("code")
         res = [x for x in langs if x not in available_lang_recs]
         if res:
             return res
-        return [_('Not installed any language')]
+        return [_("Not installed any language")]
 
     def _hscodes_vals_domain(self):
         domain = [("company_id", "=", False)]
@@ -107,19 +107,25 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             CN_fns = os.listdir(module_path)
             langs = {x[5:7] for x in CN_fns}
             for lang in langs:
-                lang_recs = self.env["res.lang"].search([("code", "=like", lang + "_%")])
-                available_lang_recs += lang_recs.mapped('code')
+                lang_recs = self.env["res.lang"].search(
+                    [("code", "=like", lang + "_%")]
+                )
+                available_lang_recs += lang_recs.mapped("code")
                 if not lang_recs:
                     continue
                 lang_found = True
                 CN_fn = [x for x in CN_fns if x[5:7] == lang][0]
                 encoding = get_encoding(module_path + CN_fn)
-                with io.open(module_path + CN_fn, mode="r", encoding=encoding) as CN_file:
+                with io.open(
+                    module_path + CN_fn, mode="r", encoding=encoding
+                ) as CN_file:
                     intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                     for lang_rec in lang_recs:
                         hs_codes = hs_codes.with_context(lang=lang_rec.code)
                         for row in intrastat_codes:
-                            hs_codes, hscodes_lookup = record._load_code(row, hs_codes, hscodes_lookup)
+                            hs_codes, hscodes_lookup = record._load_code(
+                                row, hs_codes, hscodes_lookup
+                            )
         if not lang_found:
             raise UserError(
                 _(

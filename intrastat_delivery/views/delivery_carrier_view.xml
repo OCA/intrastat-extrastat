@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- © 2023 - FactorLibre - Aritz Olea <aritz.olea@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="delivery-carrier_form_inherit" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.inherit</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='delivery_details']" position="inside">
+                <field name="incoterm" />
+                <field name="intrastat_transport_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

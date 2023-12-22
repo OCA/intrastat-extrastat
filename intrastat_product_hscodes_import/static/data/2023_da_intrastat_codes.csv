@@ -1,6 +1,6 @@
 code;description;unit_id
 01012100;"Heste, racerene avlsdyr";intrastat_unit_pce
-01012910;Heste til slagtning;intrastat_unit_pce
+01012910;"Heste til slagtning";intrastat_unit_pce
 01012990;"Heste, levende (undtagen racerene avlsdyr og heste til slagtning)";intrastat_unit_pce
 01013000;"Æsler, levende";intrastat_unit_pce
 01019000;"Muldyr og mulæsler, levende";intrastat_unit_pce

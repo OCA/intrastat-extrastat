@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-06 14:13+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-12-24 19:41+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: intrastat_product
 #: selection:intrastat.product.declaration,month:0
@@ -216,7 +216,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__computation_line_ids
 #, python-format
 msgid "Computation Lines"
-msgstr "Righe  di calcolo"
+msgstr "Righe di calcolo"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_config_settings

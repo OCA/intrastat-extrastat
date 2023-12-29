@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-class IntrastatCommon(object):
+class IntrastatCommon:
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

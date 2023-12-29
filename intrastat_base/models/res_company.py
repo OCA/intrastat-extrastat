@@ -62,7 +62,7 @@ class ResCompany(models.Model):
             logger.warning("The XML file is invalid against the XML Schema Definition")
             logger.warning(xml_bytes)
             logger.warning(e)
-            usererror = "{}\n\n{}".format(e.__class__.__name__, str(e))
+            usererror = f"{e.__class__.__name__}\n\n{str(e)}"
             raise UserError(usererror) from e
         except Exception as e:
             error = _("Unknown Error")

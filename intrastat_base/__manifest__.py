@@ -5,11 +5,11 @@
 
 {
     "name": "Intrastat Reporting Base",
-    "version": "16.0.1.1.0",
+    "version": "17.0.1.0.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat reporting",
-    "author": "ACSONE SA/NV, Akretion,Noviat,Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV,Akretion,Noviat,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via", "luc-demeyer"],
     "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["base_vat", "account"],
@@ -20,7 +20,6 @@
         "views/res_config_settings.xml",
         "views/intrastat.xml",
         "views/account_fiscal_position.xml",
-        "views/account_fiscal_position_template.xml",
     ],
     "demo": ["demo/intrastat_demo.xml"],
     "installable": True,

@@ -11,16 +11,14 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="account.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='storno']" position="after">
-                <h2>Intrastat</h2>
-                <div class="row mt16 o_settings_container" id="intrastat">
-                    <div class="col-12 col-lg-12 o_setting_box" id="intrastat-settings">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <div class="row">
+            <block id="storno" position="after">
+                <block id="intrastat" title="Intrastat">
+                <setting id="intrastat">
+                        <div class="content-group">
+                            <div class="row mt16">
                                 <label
                                     for="intrastat_remind_user_ids"
-                                    class="col-md-5"
+                                    class="col-lg-5 o_light_label"
                                 />
                                 <field
                                     name="intrastat_remind_user_ids"
@@ -28,9 +26,9 @@
                                 />
                             </div>
                         </div>
-                    </div>
-                </div>
-            </xpath>
+                    </setting>
+                </block>
+            </block>
         </field>
     </record>
 </odoo>

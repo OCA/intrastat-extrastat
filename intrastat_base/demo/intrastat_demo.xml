@@ -63,7 +63,7 @@
     <record id="shipping_costs_exclude" model="product.product">
         <field name="name">Shipping costs</field>
         <field name="default_code">SHIP_S</field>
-        <field name="type">service</field>
+        <field name="detailed_type">service</field>
         <field name="categ_id" ref="product.product_category_all" />
         <field name="list_price">30</field>
         <field name="is_accessory_cost" eval="True" />

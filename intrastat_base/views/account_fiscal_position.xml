@@ -10,7 +10,7 @@
         <field name="model">account.fiscal.position</field>
         <field name="inherit_id" ref="account.view_account_position_form" />
         <field name="arch" type="xml">
-            <field name="vat_required" position="after">
+            <field name="auto_apply" position="after">
                 <field name="intrastat" />
             </field>
         </field>

@@ -27,7 +27,7 @@ class TestIntrastatBase(IntrastatCommon):
 
     def test_accessory(self):
         with self.assertRaises(ValidationError):
-            self.shipping_cost.type = "consu"
+            self.shipping_cost.detailed_type = "consu"
 
     def test_fiscal_position(self):
         with self.assertRaises(ValidationError):

@@ -35,10 +35,9 @@ class ResCompany(models.Model):
     @api.depends("intrastat_remind_user_ids", "intrastat_remind_user_ids.email")
     def _compute_intrastat_email_list(self):
         for this in self:
-            emails = []
-            for user in this.intrastat_remind_user_ids:
-                if user.email:
-                    emails.append(user.email)
+            emails = [
+                user.email for user in this.intrastat_remind_user_ids if user.email
+            ]
             this.intrastat_email_list = ",".join(emails)
 
     @api.constrains("intrastat_remind_user_ids")

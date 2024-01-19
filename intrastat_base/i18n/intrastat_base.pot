@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -52,12 +52,10 @@ msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__intrastat
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_config_root
 #: model_terms:ir.ui.view,arch_db:intrastat_base.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_filter
-#: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_template_search
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
 msgid "Intrastat"
 msgstr ""
@@ -118,11 +116,6 @@ msgid "Shipping costs"
 msgstr ""
 
 #. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_fiscal_position_template
-msgid "Template for Fiscal Position"
-msgstr ""
-
-#. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 #, python-format
@@ -166,7 +159,6 @@ msgstr ""
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
-#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position_template__intrastat
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid ""

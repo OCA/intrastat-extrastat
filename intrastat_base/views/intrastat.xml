@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2011-2022 Akretion France (http://www.akretion.com/)
+  Copyright 2015-2022 Noviat (http://www.noviat.com/)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!-- Menu entries for Intrastat -->
+    <menuitem
+        id="menu_intrastat_base_root"
+        name="Intrastat"
+        parent="account.menu_finance_reports"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_intrastat_config_root"
+        name="Intrastat"
+        parent="account.menu_finance_configuration"
+        sequence="50"
+    />
+</odoo>

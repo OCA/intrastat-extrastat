@@ -14,18 +14,26 @@
                         class="btn-primary"
                     />
                     <button
-                        name="done"
+                        name="draft2confirmed"
                         string="Confirm"
                         type="object"
                         class="btn-primary"
                         states="draft"
-                        help="Generate declaration lines, generate XML export and set declaration to 'Done'"
+                        help="Generate declaration lines"
+                    />
+                    <button
+                        name="confirmed2done"
+                        string="Generate XML File"
+                        type="object"
+                        class="btn-primary"
+                        states="confirmed"
+                        help="Generate XML file and set declaration to 'Done'"
                     />
                     <button
                         name="back2draft"
                         string="Back to Draft"
                         type="object"
-                        states="done"
+                        states="confirmed,done"
                         confirm="Are you sure you want to go back to draft?"
                     />
                     <button
@@ -38,8 +46,7 @@
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <span>Intrastat Product Declaration </span>
-                            <field name="year_month" class="oe_inline" />
+                            <field name="display_name" />
                         </h1>
                     </div>
                     <group name="top-block">
@@ -81,7 +88,11 @@
                                 nolabel="1"
                             />
                         </page>
-                        <page string="Declaration Lines" name="declaration_lines">
+                        <page
+                            string="Declaration Lines"
+                            name="declaration_lines"
+                            states="confirmed,done"
+                        >
                             <field
                                 name="declaration_line_ids"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
@@ -89,7 +100,7 @@
                             />
                         </page>
                         <page string="Notes" name="note">
-                            <field name="note" widget="html" />
+                            <field name="note" />
                         </page>
                     </notebook>
                 </sheet>
@@ -368,6 +379,7 @@
                         name="parent_id"
                         invisible="not context.get('intrastat_product_declaration_line_main_view')"
                     />
+                    <field name="line_number" />
                     <field name="declaration_type" invisible="1" />
                     <field name="reporting_level" invisible="1" />
                     <field name="company_country_code" invisible="1" />
@@ -437,6 +449,12 @@
                 <field name="declaration_type" invisible="1" />
                 <field name="reporting_level" invisible="1" />
                 <field name="company_country_code" invisible="1" />
+                <field
+                    name="line_number"
+                    optional="show"
+                    string="Line"
+                    decoration-bf="1"
+                />
                 <field
                     name="hs_code_id"
                     attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"

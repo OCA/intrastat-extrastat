@@ -46,7 +46,8 @@ class IntrastatProductDeclaration(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         default=lambda self: self.env.company,
     )
     company_country_code = fields.Char(
@@ -55,18 +56,20 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
     )
     state = fields.Selection(
-        selection=[("draft", "Draft"), ("done", "Done")],
+        selection=[("draft", "Draft"), ("confirmed", "Confirmed"), ("done", "Done")],
         readonly=True,
         tracking=True,
         copy=False,
         default="draft",
-        help="State of the declaration. When the state is set to 'Done', "
-        "the parameters become read-only.",
     )
-    note = fields.Text(
-        string="Notes", help="You can add some comments here if you want."
+    note = fields.Html(
+        string="Notes",
     )
-    year = fields.Char(required=True, states={"done": [("readonly", True)]})
+    year = fields.Char(
+        required=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     month = fields.Selection(
         selection=[
             ("01", "01"),
@@ -83,7 +86,8 @@ class IntrastatProductDeclaration(models.Model):
             ("12", "12"),
         ],
         required=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     year_month = fields.Char(
         compute="_compute_year_month",
@@ -96,8 +100,9 @@ class IntrastatProductDeclaration(models.Model):
         selection="_get_declaration_type",
         string="Type",
         required=True,
-        states={"done": [("readonly", True)]},
         tracking=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     action = fields.Selection(
         selection="_get_action",
@@ -115,7 +120,8 @@ class IntrastatProductDeclaration(models.Model):
         comodel_name="intrastat.product.computation.line",
         inverse_name="parent_id",
         string="Intrastat Product Computation Lines",
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     declaration_line_ids = fields.One2many(
         comodel_name="intrastat.product.declaration.line",
@@ -141,8 +147,9 @@ class IntrastatProductDeclaration(models.Model):
     reporting_level = fields.Selection(
         selection="_get_reporting_level",
         compute="_compute_reporting_level",
-        readonly=False,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        store=True,
+        states={"draft": [("readonly", False)]},
     )
     xml_attachment_id = fields.Many2one("ir.attachment", string="XML Attachment")
     xml_attachment_datas = fields.Binary(
@@ -233,6 +240,7 @@ class IntrastatProductDeclaration(models.Model):
                 )
             this.reporting_level = reporting_level
 
+    @api.depends("declaration_type", "year_month")
     def name_get(self):
         res = []
         type2label = dict(
@@ -241,7 +249,11 @@ class IntrastatProductDeclaration(models.Model):
             ]
         )
         for rec in self:
-            name = "%s %s" % (rec.year_month, type2label.get(rec.declaration_type))
+            name = _(
+                "Intrastat Product Declaration %(declaration_type)s %(year_month)s",
+                year_month=rec.year_month,
+                declaration_type=type2label.get(rec.declaration_type),
+            )
             res.append((rec.id, name))
         return res
 
@@ -839,10 +851,16 @@ class IntrastatProductDeclaration(models.Model):
             else:
                 dl_group[hashcode] |= cl
         ipdl = self.declaration_line_ids
+        line_number = 1
         for cl_lines in dl_group.values():
+            # TODO v17: pass line_number as argument of _prepare_declaration_line()
+            # we can't afford to modify the proto of _prepare_declaration_line() in v16
             vals = cl_lines._prepare_declaration_line()
-            declaration_line = ipdl.create(vals)
+            declaration_line = ipdl.with_context(
+                default_line_number=line_number
+            ).create(vals)
             cl_lines.write({"declaration_line_id": declaration_line.id})
+            line_number += 1
 
     def _check_generate_xml(self):
         self.ensure_one()
@@ -960,9 +978,13 @@ class IntrastatProductDeclaration(models.Model):
         )
         return filename
 
-    def done(self):
+    def draft2confirmed(self):
         for decl in self:
             decl.generate_declaration()
+        self.write({"state": "confirmed"})
+
+    def confirmed2done(self):
+        for decl in self:
             decl.generate_xml()
         self.write({"state": "done"})
 
@@ -1017,8 +1039,8 @@ class IntrastatProductComputationLine(models.Model):
     src_dest_country_code = fields.Char(
         compute="_compute_src_dest_country_code",
         string="Country Code",
-        required=True,
         readonly=False,
+        store=True,
         help="2 letters code of the country of origin/destination.\n"
         "Specify 'XI' for Northern Ireland.",
     )
@@ -1075,8 +1097,8 @@ class IntrastatProductComputationLine(models.Model):
         compute="_compute_product_origin_country_code",
         string="Country Code of Origin of the Product",
         size=2,
-        required=True,
         readonly=False,
+        store=True,
         help="2 letters ISO code of the country of origin of the product.\n"
         "Specify 'QU' when the country of origin is unknown.\n",
     )
@@ -1211,6 +1233,9 @@ class IntrastatProductDeclarationLine(models.Model):
         ondelete="cascade",
         readonly=True,
     )
+    # line_number is used by localization modules to point the user to a specific
+    # declaration line in an error messages when generation the XML file
+    line_number = fields.Integer(readonly=True)
     company_id = fields.Many2one(related="parent_id.company_id")
     company_currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company currency"
@@ -1229,7 +1254,6 @@ class IntrastatProductDeclarationLine(models.Model):
     )
     src_dest_country_code = fields.Char(
         string="Country Code",
-        required=True,
         help="2 letters ISO code of the country of origin/destination.\n"
         "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.",
     )
@@ -1260,8 +1284,6 @@ class IntrastatProductDeclarationLine(models.Model):
     product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
         size=2,
-        required=True,
-        default="QU",
         help="2 letters ISO code of the country of origin of the product except for the UK.\n"
         "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
         "Specify 'QU' when the country is unknown.\n",

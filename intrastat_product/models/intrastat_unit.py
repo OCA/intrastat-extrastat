@@ -9,6 +9,7 @@ from odoo import fields, models
 class IntrastatUnit(models.Model):
     _name = "intrastat.unit"
     _description = "Intrastat Supplementary Units"
+    _order = "name"
 
     name = fields.Char(required=True)
     description = fields.Char(required=True)
@@ -19,3 +20,11 @@ class IntrastatUnit(models.Model):
         "to this Intrastat Supplementary Unit.",
     )
     active = fields.Boolean(default=True)
+
+    _sql_constraints = [
+        (
+            "name_uniq",
+            "unique(name)",
+            "An intrastat supplementary unit with the same name already exists!",
+        )
+    ]

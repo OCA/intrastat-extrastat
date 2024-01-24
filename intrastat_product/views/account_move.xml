@@ -13,7 +13,7 @@
                 <field name="intrastat" invisible="1" />
                 <field
                     name="intrastat_transport_id"
-                    attrs="{'invisible': [('intrastat', '!=', 'extended')]}"
+                    invisible="intrastat != 'extended'"
                     widget="selection"
                 />
                 <field name="src_dest_country_id" string="Destination Country" />
@@ -24,7 +24,7 @@
                     id="intrastat_lines"
                     string="Intrastat transaction details"
                     groups="intrastat_product.group_invoice_intrastat_transaction_details"
-                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]}"
+                    invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')"
                 >
                     <div>
                         <button

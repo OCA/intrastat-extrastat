@@ -3,7 +3,7 @@
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Luc de Meyer <info@noviat.com>
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class AccountMove(models.Model):
@@ -73,9 +73,9 @@ class AccountMove(models.Model):
             for line in inv.invoice_line_ids:
                 vals = self._get_intrastat_line_vals(line)
                 if vals:
-                    line_vals.append(vals)
+                    line_vals.append(Command.create(vals))
             if line_vals:
-                inv.intrastat_line_ids = [(0, 0, x) for x in line_vals]
+                inv.intrastat_line_ids = line_vals
 
     def _get_intrastat_line_vals(self, line):
         vals = {}

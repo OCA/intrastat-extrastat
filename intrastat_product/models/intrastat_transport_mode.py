@@ -19,9 +19,6 @@ class IntrastatTransportMode(models.Model):
     description = fields.Char(translate=True)
 
     @api.depends("name", "code")
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for mode in self:
-            name = f"{mode.code}. {mode.name}"
-            res.append((mode.id, name))
-        return res
+            mode.display_name = f"{mode.code}. {mode.name}"

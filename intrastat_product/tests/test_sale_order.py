@@ -13,10 +13,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
     def test_sale_to_invoice_default(self):
         self._create_sale_order(self.customer)
         self.sale.action_confirm()
-        self.sale.picking_ids.action_assign()
-        for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
-        self.sale.picking_ids._action_done()
+        self.sale.picking_ids.button_validate()
         self.assertEqual("done", self.sale.picking_ids.state)
 
         invoice = self.sale._create_invoices()
@@ -34,10 +31,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         # Set intrastat transport mode to rail
         self.sale.intrastat_transport_id = self.transport_rail
         self.sale.action_confirm()
-        self.sale.picking_ids.action_assign()
-        for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
-        self.sale.picking_ids._action_done()
+        self.sale.picking_ids.button_validate()
         self.assertEqual("done", self.sale.picking_ids.state)
 
         invoice = self.sale._create_invoices()
@@ -57,10 +51,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         # Set intrastat transport mode to rail
         self.sale.intrastat_transport_id = self.transport_rail
         self.sale.action_confirm()
-        self.sale.picking_ids.action_assign()
-        for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
-        self.sale.picking_ids._action_done()
+        self.sale.picking_ids.button_validate()
         self.assertEqual("done", self.sale.picking_ids.state)
 
         with freeze_time(date_order):
@@ -96,10 +87,7 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         # Set intrastat transport mode to rail
         self.sale.intrastat_transport_id = self.transport_rail
         self.sale.action_confirm()
-        self.sale.picking_ids.action_assign()
-        for line in self.sale.picking_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
-        self.sale.picking_ids._action_done()
+        self.sale.picking_ids.button_validate()
         self.assertEqual("done", self.sale.picking_ids.state)
 
         with freeze_time(date_order):

@@ -3,17 +3,17 @@
 import logging
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """Prepopulate stored computed fields for faster installation"""
     logger = logging.getLogger(__name__)
     logger.info("Prepopulating stored computed fields")
-    cr.execute(
+    env.cr.execute(
         """
         alter table account_move
         add column if not exists src_dest_country_id integer;
         """
     )
-    cr.execute(
+    env.cr.execute(
         """
         with countries as (
             select am.id as move_id,

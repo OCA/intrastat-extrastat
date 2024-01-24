@@ -9,7 +9,7 @@
                     <button
                         name="action_gather"
                         type="object"
-                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
+                        invisible="state != 'draft' or action == 'nihil'"
                         string="Generate Lines from Invoices"
                         class="btn-primary"
                         groups="account.group_account_user"
@@ -19,7 +19,7 @@
                         string="Confirm"
                         type="object"
                         class="btn-primary"
-                        states="draft"
+                        invisible="state != 'draft'"
                         help="Generate declaration lines"
                         groups="account.group_account_user"
                     />
@@ -28,7 +28,7 @@
                         string="Generate XML File"
                         type="object"
                         class="btn-primary"
-                        states="confirmed"
+                        invisible="state != 'confirmed'"
                         help="Generate XML file and set declaration to 'Done'"
                         groups="account.group_account_user"
                     />
@@ -36,7 +36,7 @@
                         name="back2draft"
                         string="Back to Draft"
                         type="object"
-                        states="confirmed,done"
+                        invisible="state == 'draft'"
                         confirm="Are you sure you want to go back to draft?"
                         groups="account.group_account_user"
                     />
@@ -55,10 +55,13 @@
                     </div>
                     <group name="top-block">
                         <group name="properties-1">
-                            <field name="year" />
-                            <field name="month" />
-                            <field name="declaration_type" />
-                            <field name="reporting_level" />
+                            <field name="year" readonly="state != 'draft'" />
+                            <field name="month" readonly="state != 'draft'" />
+                            <field
+                                name="declaration_type"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="reporting_level" readonly="state != 'draft'" />
                             <field
                                 name="xml_attachment_datas"
                                 filename="xml_attachment_name"
@@ -68,8 +71,8 @@
                             <field name="xml_attachment_id" invisible="1" />
                         </group>
                         <group name="properties-2">
-                            <field name="action" />
-                            <field name="revision" />
+                            <field name="action" readonly="state == 'done'" />
+                            <field name="revision" readonly="state == 'done'" />
                             <field
                                 name="total_amount"
                                 widget="monetary"
@@ -79,6 +82,7 @@
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
+                                readonly="state != 'draft'"
                             />
                             <field name="company_country_code" invisible="1" />
                             <field name="currency_id" invisible="1" />
@@ -88,6 +92,7 @@
                         <page string="Transactions" name="computation_lines">
                             <field
                                 name="computation_line_ids"
+                                readonly="state != 'draft'"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
                                 nolabel="1"
                             />
@@ -95,7 +100,7 @@
                         <page
                             string="Declaration Lines"
                             name="declaration_lines"
-                            states="confirmed,done"
+                            invisible="state == 'draft'"
                         >
                             <field
                                 name="declaration_line_ids"
@@ -165,6 +170,11 @@
                     string="Draft"
                     domain="[('state', '=', 'draft')]"
                 />
+                <filter
+                    name="confirmed"
+                    string="Confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                />
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
                 <group string="Group By" name="group_by">
                     <filter
@@ -176,6 +186,11 @@
                         name="declaration_type_group_by"
                         string="Type"
                         context="{'group_by': 'declaration_type'}"
+                    />
+                    <filter
+                        name="state_group_by"
+                        string="State"
+                        context="{'group_by': 'state'}"
                     />
                 </group>
             </search>
@@ -220,15 +235,17 @@
                     <field name="product_id" />
                     <field
                         name="hs_code_id"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="src_dest_country_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="src_dest_country_code"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="amount_company_currency"
@@ -244,42 +261,45 @@
                     <field name="transaction_id" required="1" />
                     <label
                         for="weight"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <div
                         name="weight"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     >
-                <field name="weight" class="oe_inline" /> Kg
+                <field name="weight" class="oe_inline" /> kg
             </div>
                     <field
                         name="suppl_unit_qty"
-                        attrs="{'required': [('reporting_level', '=', 'extended'), ('intrastat_unit_id', '!=', False)], 'invisible': ['|', ('reporting_level', '!=', 'extended'), ('intrastat_unit_id', '=', False)]}"
+                        required="reporting_level == 'extended' and intrastat_unit_id"
+                        invisible="reporting_level != 'extended' or not intrastat_unit_id"
                     />
                     <field
                         name="intrastat_unit_id"
-                        attrs="{'invisible': ['|', ('reporting_level', '!=', 'extended'), ('intrastat_unit_id', '=', False)]}"
+                        invisible="reporting_level != 'extended' or not intrastat_unit_id"
                     />
                     <field
                         name="transport_id"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field name="incoterm_id" invisible="1" />
-                    <field
-                        name="region_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
-                    />
+                    <field name="region_id" invisible="reporting_level != 'extended'" />
                     <field
                         name="region_code"
-                        attrs="{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="product_origin_country_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="product_origin_country_code"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')], 'required': [('reporting_level', '=', 'extended')]}"
+                        required="reporting_level == 'extended'"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field name="partner_id" />
                     <field name="vat" />
@@ -298,26 +318,26 @@
             <tree>
                 <field
                     name="parent_id"
-                    invisible="not context.get('intrastat_product_computation_line_main_view')"
+                    column_invisible="not context.get('intrastat_product_computation_line_main_view')"
                 />
-                <field name="declaration_type" invisible="1" />
-                <field name="reporting_level" invisible="1" />
-                <field name="company_country_code" invisible="1" />
+                <field name="declaration_type" column_invisible="1" />
+                <field name="reporting_level" column_invisible="1" />
+                <field name="company_country_code" column_invisible="1" />
                 <field name="product_id" optional="show" />
                 <field
                     name="hs_code_id"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="src_dest_country_id"
                     optional="hide"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="src_dest_country_code"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field name="amount_company_currency" sum="1" />
                 <field
@@ -329,44 +349,45 @@
                 <field
                     name="weight"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="suppl_unit_qty"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')], 'invisible': [('intrastat_unit_id', '=', False)]}"
+                    column_invisible="parent.reporting_level != 'extended'"
+                    invisible="not intrastat_unit_id"
                 />
                 <field
                     name="intrastat_unit_id"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="transport_id"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="region_id"
                     optional="hide"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="region_code"
                     optional="show"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="product_origin_country_id"
                     optional="hide"
                     string="Product C/O"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field
                     name="product_origin_country_code"
                     optional="show"
                     string="Product C/O"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                 />
                 <field name="vat" optional="show" />
                 <field name="invoice_id" optional="show" />
@@ -389,11 +410,11 @@
                     <field name="company_country_code" invisible="1" />
                     <field
                         name="hs_code_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="src_dest_country_code"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="amount_company_currency"
@@ -402,36 +423,30 @@
                     />
                     <field name="company_currency_id" invisible="1" />
                     <field name="transaction_id" />
-                    <label
-                        for="weight"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
-                    />
-                    <div
-                        name="weight"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
-                    >
+                    <label for="weight" invisible="reporting_level != 'extended'" />
+                    <div name="weight" invisible="reporting_level != 'extended'">
                 <field name="weight" class="oe_inline" /> Kg
             </div>
                     <field
                         name="suppl_unit_qty"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="intrastat_unit_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="transport_id"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field
                         name="region_code"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field name="incoterm_id" invisible="1" />
                     <field
                         name="product_origin_country_code"
-                        attrs="{'invisible': [('reporting_level', '!=', 'extended')]}"
+                        invisible="reporting_level != 'extended'"
                     />
                     <field name="vat" />
                 </group>
@@ -448,11 +463,11 @@
             <tree>
                 <field
                     name="parent_id"
-                    invisible="not context.get('intrastat_product_declaration_line_main_view')"
+                    column_invisible="not context.get('intrastat_product_declaration_line_main_view')"
                 />
-                <field name="declaration_type" invisible="1" />
-                <field name="reporting_level" invisible="1" />
-                <field name="company_country_code" invisible="1" />
+                <field name="declaration_type" column_invisible="1" />
+                <field name="reporting_level" column_invisible="1" />
+                <field name="company_country_code" column_invisible="1" />
                 <field
                     name="line_number"
                     optional="show"
@@ -461,45 +476,46 @@
                 />
                 <field
                     name="hs_code_id"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
                 <field
                     name="src_dest_country_code"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
                 <field name="amount_company_currency" sum="1" />
                 <field name="transaction_code" />
                 <field
                     name="weight"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
                 <field
                     name="suppl_unit_qty"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
+                    invisible="not intrastat_unit_id"
                     optional="show"
                 />
                 <field
                     name="intrastat_unit_id"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
                 <field
                     name="transport_id"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
                 <field
                     name="region_code"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     optional="show"
                 />
-                <field name="incoterm_id" invisible="1" />
+                <field name="incoterm_id" column_invisible="1" />
                 <field
                     name="product_origin_country_code"
-                    attrs="{'column_invisible': [('parent.reporting_level', '!=', 'extended')]}"
+                    column_invisible="parent.reporting_level != 'extended'"
                     string="Product C/O"
                     optional="show"
                 />

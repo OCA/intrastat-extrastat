@@ -17,10 +17,7 @@ class TestIntrastatProductPurchase(IntrastatPurchaseCommon):
         with freeze_time(date_order):
             self._create_purchase_order()
         self.purchase.button_confirm()
-        self.purchase.picking_ids.action_assign()
-        for line in self.purchase.picking_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
-        self.purchase.picking_ids._action_done()
+        self.purchase.picking_ids.button_validate()
         self.assertEqual("done", self.purchase.picking_ids.state)
 
         with freeze_time(date_order):

@@ -8,7 +8,7 @@
             <field name="incoterm" position="after">
                 <field
                     name="intrastat_transport_id"
-                    attrs="{'invisible': [('intrastat', '!=', 'extended')]}"
+                    invisible="intrastat != 'extended'"
                     widget="selection"
                 />
                 <field name="intrastat" invisible="1" />

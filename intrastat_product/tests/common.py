@@ -154,7 +154,7 @@ class IntrastatProductCommon(IntrastatCommon):
             ),
         ]
         # Iterate on each row beginning on third one (two headers)
-        for (sheet, lines, line_fields) in to_test:
+        for sheet, lines, line_fields in to_test:
             i = 0
             for rx in range(3, sheet.nrows):
                 line = lines[i]

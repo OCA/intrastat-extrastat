@@ -10,7 +10,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from stdnum.vatin import is_valid
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
 from odoo.tools import float_is_zero
 
@@ -46,8 +46,6 @@ class IntrastatProductDeclaration(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         default=lambda self: self.env.company,
     )
     company_country_code = fields.Char(
@@ -65,11 +63,7 @@ class IntrastatProductDeclaration(models.Model):
     note = fields.Html(
         string="Notes",
     )
-    year = fields.Char(
-        required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
+    year = fields.Char(required=True)
     month = fields.Selection(
         selection=[
             ("01", "01"),
@@ -86,8 +80,6 @@ class IntrastatProductDeclaration(models.Model):
             ("12", "12"),
         ],
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     year_month = fields.Char(
         compute="_compute_year_month",
@@ -101,27 +93,21 @@ class IntrastatProductDeclaration(models.Model):
         string="Type",
         required=True,
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     action = fields.Selection(
         selection="_get_action",
         required=True,
         default="replace",
-        states={"done": [("readonly", True)]},
         tracking=True,
     )
     revision = fields.Integer(
         default=1,
-        states={"done": [("readonly", True)]},
         help="Used to keep track of changes",
     )
     computation_line_ids = fields.One2many(
         comodel_name="intrastat.product.computation.line",
         inverse_name="parent_id",
         string="Intrastat Product Computation Lines",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     declaration_line_ids = fields.One2many(
         comodel_name="intrastat.product.declaration.line",
@@ -147,9 +133,8 @@ class IntrastatProductDeclaration(models.Model):
     reporting_level = fields.Selection(
         selection="_get_reporting_level",
         compute="_compute_reporting_level",
-        readonly=True,
+        readonly=False,
         store=True,
-        states={"draft": [("readonly", False)]},
     )
     xml_attachment_id = fields.Many2one("ir.attachment", string="XML Attachment")
     xml_attachment_datas = fields.Binary(
@@ -241,8 +226,7 @@ class IntrastatProductDeclaration(models.Model):
             this.reporting_level = reporting_level
 
     @api.depends("declaration_type", "year_month")
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         type2label = dict(
             self.fields_get("declaration_type", "selection")["declaration_type"][
                 "selection"
@@ -254,8 +238,7 @@ class IntrastatProductDeclaration(models.Model):
                 year_month=rec.year_month,
                 declaration_type=type2label.get(rec.declaration_type),
             )
-            res.append((rec.id, name))
-        return res
+            rec.display_name = name
 
     def copy(self, default=None):
         self.ensure_one()
@@ -639,8 +622,10 @@ class IntrastatProductDeclaration(models.Model):
                 if float_is_zero(inv_line.quantity, precision_digits=qty_prec):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: qty = 0"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
+                        "of invoice %s. Reason: qty = 0",
+                        inv_line.name,
+                        inv_line.quantity,
+                        invoice.name,
                     )
                     continue
 
@@ -652,8 +637,10 @@ class IntrastatProductDeclaration(models.Model):
                     _logger.info(
                         "Skipping invoice line %s qty %s "
                         "of invoice %s. Reason: partner_country = "
-                        "company country"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
+                        "company country",
+                        inv_line.name,
+                        inv_line.quantity,
+                        invoice.name,
                     )
                     continue
 
@@ -670,8 +657,10 @@ class IntrastatProductDeclaration(models.Model):
                 else:
                     _logger.info(
                         "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: no product nor Intrastat Code"
-                        % (inv_line.name, inv_line.quantity, invoice.name)
+                        "of invoice %s. Reason: no product nor Intrastat Code",
+                        inv_line.name,
+                        inv_line.quantity,
+                        invoice.name,
                     )
                     continue
 
@@ -775,10 +764,8 @@ class IntrastatProductDeclaration(models.Model):
                         messages, dict
                     ):  # 2 layers of dict (partner, product)
                         for message, origins in messages.items():
-                            note += "<li>%s <small>(%s)</small></li>" % (
-                                message,
-                                ", ".join(origins),
-                            )
+                            origin_str = ", ".join(origins)
+                            note += f"<li>{message} <small>({origin_str})</small></li>"
                     else:  # 1st layer=dict, 2nd layer=set (invoice)
                         for message in messages:
                             note += "<li>%s</li>" % message
@@ -818,12 +805,11 @@ class IntrastatProductDeclaration(models.Model):
         vals = {"note": self._prepare_html_note(notedict, key2label)}
         if not lines:
             vals["action"] = "nihil"
-            vals["note"] += "<h3>%s</h3><p>%s</p>" % (
-                _("No records found for the selected period !"),
-                _("The declaration Action has been set to <em>nihil</em>."),
-            )
+            nihil_title = _("No records found for the selected period !")
+            nihil_note = _("The declaration Action has been set to <em>nihil</em>.")
+            vals["note"] += f"<h3>{nihil_title}</h3><p>{nihil_note}</p>"
         else:
-            vals["computation_line_ids"] = [(0, 0, x) for x in lines]
+            vals["computation_line_ids"] = [Command.create(x) for x in lines]
 
         self.write(vals)
         if vals["note"]:
@@ -852,12 +838,8 @@ class IntrastatProductDeclaration(models.Model):
         ipdl = self.declaration_line_ids
         line_number = 1
         for cl_lines in dl_group.values():
-            # TODO v17: pass line_number as argument of _prepare_declaration_line()
-            # we can't afford to modify the proto of _prepare_declaration_line() in v16
-            vals = cl_lines._prepare_declaration_line()
-            declaration_line = ipdl.with_context(
-                default_line_number=line_number
-            ).create(vals)
+            vals = cl_lines._prepare_declaration_line(line_number)
+            declaration_line = ipdl.create(vals)
             cl_lines.write({"declaration_line_id": declaration_line.id})
             line_number += 1
 
@@ -1198,7 +1180,7 @@ class IntrastatProductComputationLine(models.Model):
         fields_to_sum = ["weight", "suppl_unit_qty"]
         return fields_to_sum
 
-    def _prepare_declaration_line(self):
+    def _prepare_declaration_line(self, line_number):
         fields_to_sum = self._fields_to_sum()
         vals = self[0]._prepare_grouped_fields(fields_to_sum)
         for computation_line in self:
@@ -1219,6 +1201,7 @@ class IntrastatProductComputationLine(models.Model):
         if vals["intrastat_unit_id"] and not vals["suppl_unit_qty"]:
             vals["suppl_unit_qty"] = 1
         vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
+        vals["line_number"] = line_number
         return vals
 
 

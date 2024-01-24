@@ -28,12 +28,10 @@ class IntrastatTransaction(models.Model):
     active = fields.Boolean(default=True)
 
     @api.depends("code", "description")
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for this in self:
             name = this.code
             if this.description:
                 name += " " + this.description
             name = shorten(name, 55)
-            res.append((this.id, name))
-        return res
+            this.display_name = name

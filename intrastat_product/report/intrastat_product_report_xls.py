@@ -205,20 +205,25 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
         res = []
         wanted_list_computation = declarations._xls_computation_line_fields()
         wanted_list_declaration = declarations._xls_declaration_line_fields()
-        for declaration in declarations:
-            dname = declaration.display_name
+        type2label = dict(
+            self.env["intrastat.product.declaration"].fields_get(
+                "declaration_type", "selection"
+            )["declaration_type"]["selection"]
+        )
+        for decl in declarations:
+            dname = " ".join([decl.year_month, type2label[decl.declaration_type]])
             res += [
                 {
-                    "ws_name": "%s %s" % (dname, _("comput.")),
+                    "ws_name": " ".join([dname, _("comput.")]),
                     "generate_ws_method": "_intrastat_report_computation",
-                    "title": "%s : %s" % (dname, _("Computation Lines")),
+                    "title": " : ".join([dname, _("Computation Lines")]),
                     "wanted_list": wanted_list_computation,
                     "col_specs": template,
                 },
                 {
-                    "ws_name": "%s %s" % (dname, _("decl.")),
+                    "ws_name": " ".join([dname, _("decl.")]),
                     "generate_ws_method": "_intrastat_report_declaration",
-                    "title": "%s : %s" % (dname, _("Declaration Lines")),
+                    "title": " : ".join([dname, _("Declaration Lines")]),
                     "wanted_list": wanted_list_declaration,
                     "col_specs": template,
                 },

@@ -22,6 +22,6 @@ class IntrastatTransportMode(models.Model):
     def name_get(self):
         res = []
         for mode in self:
-            name = "{}. {}".format(mode.code, mode.name)
+            name = f"{mode.code}. {mode.name}"
             res.append((mode.id, name))
         return res

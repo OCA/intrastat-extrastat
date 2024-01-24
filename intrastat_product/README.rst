@@ -17,28 +17,30 @@ Intrastat Product
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fintrastat--extrastat-lightgray.png?logo=github
-    :target: https://github.com/OCA/intrastat-extrastat/tree/16.0/intrastat_product
+    :target: https://github.com/OCA/intrastat-extrastat/tree/17.0/intrastat_product
     :alt: OCA/intrastat-extrastat
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/intrastat-extrastat-16-0/intrastat-extrastat-16-0-intrastat_product
+    :target: https://translation.odoo-community.org/projects/intrastat-extrastat-17-0/intrastat-extrastat-17-0-intrastat_product
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module contains common objects and fields for the Intrastat Product reporting.
+This module contains common objects and fields for the Intrastat Product
+reporting.
 
-It should be used in combination with country-specific Intrastat Product reporting modules
-such as:
+It should be used in combination with country-specific Intrastat Product
+reporting modules such as:
 
-- *l10n_fr_intrastat_product*:
-  the module for the *Déclaration d'Echange de Biens* (DEB) for France
-- *l10n_be_intrastat_product*:
-  the module for the Intrastat Product Declaration for Belgium
+-  *l10n_fr_intrastat_product*: the module for the *Déclaration
+   d'Echange de Biens* (DEB) for France
+-  *l10n_be_intrastat_product*: the module for the Intrastat Product
+   Declaration for Belgium
 
-These country-specific modules can be found in the OCA localization for those countries.
+These country-specific modules can be found in the OCA localization for
+those countries.
 
 **Table of contents**
 
@@ -48,25 +50,27 @@ These country-specific modules can be found in the OCA localization for those co
 Installation
 ============
 
-This module is NOT compatible with the *account_intrastat* module from Odoo Enterprise.
+This module is NOT compatible with the *account_intrastat* module from
+Odoo Enterprise.
 
 Configuration
 =============
 
-By default the intrastat declaration is generated based upon the product record master data.
-Hence unexpected results may occur in case this master data is not accurate,
-e.g. wrong or missing weight, country of origin, ...
+By default the intrastat declaration is generated based upon the product
+record master data. Hence unexpected results may occur in case this
+master data is not accurate, e.g. wrong or missing weight, country of
+origin, ...
 
-|
+This can be corrected by changing the appropriate fields when analysing
+the intrastat declaration but this can be challenging in case of large
+transaction volumes and especially in the specific use case where the
+product weight cannot be encoded correctly on the product records (e.g.
+products with variable weight).
 
-This can be corrected by changing the appropriate fields when analysing the intrastat declaration
-but this can be challenging in case of large transaction volumes and especially in the specific use
-case where the product weight cannot be encoded correctly on the product records (e.g. products with variable weight).
-
-|
-
-It is possible to allow encoding the intrastat transaction details on the purchase/sale invoice
-via the "intrastat_product.group_invoice_intrastat_transaction_detail" usability group.
+It is possible to allow encoding the intrastat transaction details on
+the purchase/sale invoice via the
+"intrastat_product.group_invoice_intrastat_transaction_detail" usability
+group.
 
 Usage
 =====
@@ -76,47 +80,53 @@ localization module(s).
 
 **Coding guidelines for localization module:**
 
-We recommend to start by copying an existing module, e.g. l10n_be_intrastat_product
-and adapt the code for the specific needs of your country.
+We recommend to start by copying an existing module, e.g.
+l10n_be_intrastat_product and adapt the code for the specific needs of
+your country.
 
-* Declaration Object
+-  Declaration Object
 
-  Create a new class as follows:
+   Create a new class as follows:
 
-  .. code-block:: python
+   .. code:: python
 
-     class L10nCcIntrastatProductDeclaration(models.Model):
-         _name = 'l10n.cc.intrastat.product.declaration'
-         _description = "Intrastat Product Declaration for YourCountry"
-         _inherit = ['intrastat.product.declaration', 'mail.thread']
+      class L10nCcIntrastatProductDeclaration(models.Model):
+          _name = 'l10n.cc.intrastat.product.declaration'
+          _description = "Intrastat Product Declaration for YourCountry"
+          _inherit = ['intrastat.product.declaration', 'mail.thread']
 
-  whereby cc = your country code
+   whereby cc = your country code
 
-* Computation & Declaration Lines
+-  Computation & Declaration Lines
 
-  Create also new objects inheriting from the Computation and Declaration Line Objects
-  so that you can add methods or customise the methods from the base modules (make a PR when
-  the customization or new method is required for multiple countries).
+   Create also new objects inheriting from the Computation and
+   Declaration Line Objects so that you can add methods or customise the
+   methods from the base modules (make a PR when the customization or
+   new method is required for multiple countries).
 
-  Adapt also the parent_id fields of the newly created objects
-  (cf. l10n_be_intrastat_product as example).
+   Adapt also the parent_id fields of the newly created objects (cf.
+   l10n_be_intrastat_product as example).
 
-* XML Files: Menu, Action, Views
+-  XML Files: Menu, Action, Views
 
-  Cf. l10n_be_istrastat_product as example, replace "be" by your Country Code.
+   Cf. l10n_be_istrastat_product as example, replace "be" by your
+   Country Code.
 
 **Other functionality added by this module:**
 
-* Compute the Intrastat Lines in an invoice.
-  For this, your user needs to be in the "Technical / Invoice Intrastat Transaction Details" group.
-  Go to the "Intrastat transaction details" tab and press **Compute**
+-  Compute the Intrastat Lines in an invoice. For this, your user needs
+   to be in the "Technical / Invoice Intrastat Transaction Details"
+   group. Go to the "Intrastat transaction details" tab and press
+   **Compute**
 
 Known issues / Roadmap
 ======================
 
-The declaration is based upon the invoices of the corresponding tax declaration period.
+The declaration is based upon the invoices of the corresponding tax
+declaration period.
 
-An option to generate the intrastat declaration based upon the dates of the physical movements of goods is currently not available.
+An option to generate the intrastat declaration based upon the dates of
+the physical movements of goods is currently not available.
 
 Bug Tracker
 ===========
@@ -124,7 +134,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/intrastat-extrastat/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20intrastat_product%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20intrastat_product%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -132,7 +142,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 * brain-tec AG
@@ -140,18 +150,21 @@ Authors
 * Noviat
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alexis de Lattre, Akretion <alexis.delattre@akretion.com>
-* Luc De Meyer, Noviat <info@noviat.com>
-* Denis Roussel <denis.roussel@acsone.eu>
-* Tecnativa <www.tecnativa.com>:
+-  Alexis de Lattre, Akretion <alexis.delattre@akretion.com>
 
-    * João Marques
-    * Víctor Martínez
+-  Luc De Meyer, Noviat <info@noviat.com>
+
+-  Denis Roussel <denis.roussel@acsone.eu>
+
+-  Tecnativa <`www.tecnativa.com <http://www.tecnativa.com>`__>:
+
+      -  João Marques
+      -  Víctor Martínez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -163,6 +176,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/intrastat-extrastat <https://github.com/OCA/intrastat-extrastat/tree/16.0/intrastat_product>`_ project on GitHub.
+This module is part of the `OCA/intrastat-extrastat <https://github.com/OCA/intrastat-extrastat/tree/17.0/intrastat_product>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

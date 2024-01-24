@@ -273,7 +273,7 @@ class IntrastatProductDeclaration(models.Model):
         """Attach the XML file to the report_intrastat_product/service
         object"""
         self.ensure_one()
-        filename = "{}_{}.xml".format(self.year_month, declaration_name)
+        filename = f"{self.year_month}_{declaration_name}.xml"
         attach = self.env["ir.attachment"].create(
             {
                 "name": filename,
@@ -549,9 +549,9 @@ class IntrastatProductDeclaration(models.Model):
                     )
             else:
                 for ac_line_vals in lines_current_invoice:
-                    ac_line_vals[
-                        "amount_accessory_cost_company_currency"
-                    ] = total_inv_accessory_costs_cc / len(lines_current_invoice)
+                    ac_line_vals["amount_accessory_cost_company_currency"] = (
+                        total_inv_accessory_costs_cc / len(lines_current_invoice)
+                    )
 
     def _prepare_invoice_domain(self):
         """
@@ -602,7 +602,6 @@ class IntrastatProductDeclaration(models.Model):
         invoices = self.env["account.move"].search(domain, order=order)
 
         for invoice in invoices:
-
             lines_current_invoice = []
             total_inv_accessory_costs_cc = 0.0  # in company currency
             total_inv_product_cc = 0.0  # in company currency
@@ -890,7 +889,7 @@ class IntrastatProductDeclaration(models.Model):
         xml_bytes = self._generate_xml()
         if xml_bytes:
             attach_id = self._attach_xml_file(
-                xml_bytes, "{}_{}".format(self.declaration_type, self.revision)
+                xml_bytes, f"{self.declaration_type}_{self.revision}"
             )
             self.write({"xml_attachment_id": attach_id})
 

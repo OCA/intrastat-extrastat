@@ -12,6 +12,7 @@
                         attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('action', '=', 'nihil')]}"
                         string="Generate Lines from Invoices"
                         class="btn-primary"
+                        groups="account.group_account_user"
                     />
                     <button
                         name="draft2confirmed"
@@ -20,6 +21,7 @@
                         class="btn-primary"
                         states="draft"
                         help="Generate declaration lines"
+                        groups="account.group_account_user"
                     />
                     <button
                         name="confirmed2done"
@@ -28,6 +30,7 @@
                         class="btn-primary"
                         states="confirmed"
                         help="Generate XML file and set declaration to 'Done'"
+                        groups="account.group_account_user"
                     />
                     <button
                         name="back2draft"
@@ -35,6 +38,7 @@
                         type="object"
                         states="confirmed,done"
                         confirm="Are you sure you want to go back to draft?"
+                        groups="account.group_account_user"
                     />
                     <button
                         name="%(intrastat_product.intrastat_product_xlsx_report)d"

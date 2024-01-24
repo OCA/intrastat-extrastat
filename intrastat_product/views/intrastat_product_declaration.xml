@@ -165,6 +165,11 @@
                     string="Draft"
                     domain="[('state', '=', 'draft')]"
                 />
+                <filter
+                    name="confirmed"
+                    string="Confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                />
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
                 <group string="Group By" name="group_by">
                     <filter
@@ -176,6 +181,11 @@
                         name="declaration_type_group_by"
                         string="Type"
                         context="{'group_by': 'declaration_type'}"
+                    />
+                    <filter
+                        name="state_group_by"
+                        string="State"
+                        context="{'group_by': 'state'}"
                     />
                 </group>
             </search>

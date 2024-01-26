@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-01-26 11:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__hs_code
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__hs_code
 msgid "HS Code"
-msgstr ""
+msgstr "Codice HS"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_product__country_of_origin
 #: model:ir.model.fields,field_description:product_harmonized_system_delivery.field_product_template__country_of_origin
 msgid "Origin of Goods"
-msgstr ""
+msgstr "Origine della merce"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model,name:product_harmonized_system_delivery.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__country_of_origin
@@ -38,6 +40,10 @@ msgid ""
 "Rules of origin determine where goods originate, i.e. not where they have been shipped from, but where they have been produced or manufactured.\n"
 "As such, the ‘origin’ is the 'economic nationality' of goods traded in commerce."
 msgstr ""
+"Le regole dell'origine definiscono da dove si origina la merce, i.e. non da "
+"dove è stata spedita ma dove è stata prodotta o lavorata.\n"
+"In quanto tale, l’“origine” è la “nazionalità economica” dei beni scambiati "
+"nel commercio."
 
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__hs_code
@@ -46,3 +52,5 @@ msgid ""
 "Standardized code for international shipping and goods declaration. At the "
 "moment, only used for the FedEx shipping provider."
 msgstr ""
+"Codice standardizzato per la spedizione internazionale e la dichiarazione di "
+"beni. Al momento, utilizzato solamente per il corriere FedEx."

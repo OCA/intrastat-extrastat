@@ -57,12 +57,6 @@
             <form>
                 <sheet>
                     <field name="active" invisible="1" />
-                    <widget
-                        name="web_ribbon"
-                        text="Archived"
-                        bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
-                    />
                     <div class="oe_button_box" name="button_box">
                         <button
                             class="oe_stat_button"
@@ -91,6 +85,12 @@
                             </div>
                         </button>
                     </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <group name="main">
                         <field name="local_code" />
                         <field name="hs_code" />

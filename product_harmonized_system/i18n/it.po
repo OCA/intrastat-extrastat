@@ -32,6 +32,7 @@ msgid "Active"
 msgstr "Attivo"
 
 #. module: product_harmonized_system
+#: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
 msgid "Archived"
 msgstr "In archivio"
@@ -118,8 +119,8 @@ msgstr ""
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
 msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
-"Organisation, see http://www.wcoomd.org/. You can leave this field empty and"
-" configure the H.S. code on the product category."
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 "Codice Harmonised System. La nomenclatura è fornita dalla World Customs "
 "Organization, vedi http://www.wcoomd.org/. Si può lasciare questo campo "

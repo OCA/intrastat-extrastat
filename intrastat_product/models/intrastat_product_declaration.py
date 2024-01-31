@@ -636,6 +636,9 @@ class IntrastatProductDeclaration(models.Model):
                 partner_country = self._get_partner_country(
                     inv_line, notedict, eu_countries
                 )
+                if notedict["invoice"][notedict["inv_origin"]]:
+                    continue
+
                 # When the country is the same as the company's country must be skipped.
                 if partner_country == self.company_id.country_id:
                     _logger.info(

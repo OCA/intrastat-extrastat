@@ -307,6 +307,15 @@ class IntrastatProductDeclaration(models.Model):
                 notedict["invoice"][notedict["inv_origin"]].add(msg)
         return country
 
+    def _get_product_hs_code(self, inv_line, notedict):
+        hs_code = inv_line.product_id.get_hs_code_recursively()
+        if not hs_code:
+            msg = _("Missing <em>H.S. Code</em>")
+            notedict["product"][inv_line.product_id.display_name][msg].add(
+                notedict["invline_origin"]
+            )
+        return hs_code
+
     def _get_intrastat_transaction(self, inv_line, notedict):
         invoice = inv_line.move_id
         transaction = invoice.intrastat_transaction_id
@@ -652,12 +661,8 @@ class IntrastatProductDeclaration(models.Model):
                 if inv_intrastat_line:
                     hs_code = inv_intrastat_line.hs_code_id
                 elif inv_line.product_id and self._is_product(inv_line):
-                    hs_code = inv_line.product_id.get_hs_code_recursively()
-                    if not hs_code:
-                        msg = _("Missing <em>H.S. Code</em>")
-                        notedict["product"][inv_line.product_id.display_name][msg].add(
-                            notedict["invline_origin"]
-                        )
+                    hs_code = self._get_product_hs_code(inv_line, notedict)
+                    if notedict["invline_origin"] in notedict["product"][inv_line.product_id.display_name]["Missing <em>H.S. Code</em>"]:
                         continue
                 else:
                     _logger.info(
@@ -705,13 +710,13 @@ class IntrastatProductDeclaration(models.Model):
                     "invoice_line_id": inv_line.id,
                     "src_dest_country_id": partner_country.id,
                     "product_id": inv_line.product_id.id,
-                    "hs_code_id": hs_code.id,
+                    "hs_code_id": hs_code and hs_code.id or False,
                     "weight": weight,
                     "suppl_unit_qty": suppl_unit_qty,
                     "amount_company_currency": amount_company_currency,
                     "amount_accessory_cost_company_currency": 0.0,
-                    "transaction_id": intrastat_transaction.id,
-                    "product_origin_country_id": product_origin_country.id or False,
+                    "transaction_id": intrastat_transaction and intrastat_transaction.id or False,
+                    "product_origin_country_id": product_origin_country and product_origin_country.id or False,
                     "region_code": region_code or region.code,
                     "region_id": region and region.id or False,
                     "partner_id": partner.id,
@@ -1196,12 +1201,16 @@ class IntrastatProductComputationLine(models.Model):
             vals[field] = int(round(vals[field]))
         # the intrastat specs say that, if the value is between 0 and 0.5,
         # it should be rounded to 1
+
+        self._get_declaration_weight_suppl_unit(vals)
+        vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
+        return vals
+
+    def _get_declaration_weight_suppl_unit(self, vals):
         if not vals["weight"]:
             vals["weight"] = 1
         if vals["intrastat_unit_id"] and not vals["suppl_unit_qty"]:
             vals["suppl_unit_qty"] = 1
-        vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
-        return vals
 
 
 class IntrastatProductDeclarationLine(models.Model):

@@ -585,6 +585,7 @@ class IntrastatProductDeclaration(models.Model):
     def _gather_invoices_init(self, notedict):
         """placeholder for localization modules"""
 
+    # flake8: noqa: C901
     def _gather_invoices(self, notedict):
         lines = []
         qty_prec = self.env["decimal.precision"].precision_get(
@@ -646,7 +647,7 @@ class IntrastatProductDeclaration(models.Model):
                 partner_country = self._get_partner_country(
                     inv_line, notedict, eu_countries
                 )
-                if notedict["invoice"][notedict["inv_origin"]]:
+                if notedict["inv_origin"] in notedict["invoice"]:
                     continue
 
                 # When the country is the same as the company's country must be skipped.
@@ -665,12 +666,9 @@ class IntrastatProductDeclaration(models.Model):
                     hs_code = inv_intrastat_line.hs_code_id
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = self._get_product_hs_code(inv_line, notedict)
-                    if (
-                        notedict["invline_origin"]
-                        in notedict["product"][inv_line.product_id.display_name][
-                            "Missing <em>H.S. Code</em>"
-                        ]
-                    ):
+                    if notedict["invline_origin"] in notedict["product"].get(
+                        inv_line.product_id.display_name, {}
+                    ).get("Missing <em>H.S. Code</em>", {}):
                         continue
                 else:
                     _logger.info(

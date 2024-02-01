@@ -827,6 +827,11 @@ class IntrastatProductDeclaration(models.Model):
                 "type": "ir.actions.act_window",
             }
 
+    @api.onchange("year", "month", "reporting_level", "declaration_type")
+    def _erase_computation_lines(self):
+        if self.computation_line_ids:
+            self.update({"computation_line_ids": [(5, _, _)]})
+
     def generate_declaration(self):
         """generate declaration lines from computation lines"""
         self.ensure_one()

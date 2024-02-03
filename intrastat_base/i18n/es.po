@@ -58,12 +58,10 @@ msgstr "Posición fiscal"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
-#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position_template__intrastat
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_base_root
 #: model:ir.ui.menu,name:intrastat_base.menu_intrastat_config_root
 #: model_terms:ir.ui.view,arch_db:intrastat_base.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_filter
-#: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_template_search
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
 msgid "Intrastat"
 msgstr "Intrastat"
@@ -126,11 +124,6 @@ msgid "Shipping costs"
 msgstr "Gastos de envío"
 
 #. module: intrastat_base
-#: model:ir.model,name:intrastat_base.model_account_fiscal_position_template
-msgid "Template for Fiscal Position"
-msgstr "Plantilla de Posición Fiscal"
-
-#. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 #, python-format
@@ -181,7 +174,6 @@ msgstr "Usuarios Recibiendo el Recordatorio Intrastat"
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
-#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position_template__intrastat
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid ""
@@ -190,3 +182,6 @@ msgid ""
 msgstr ""
 "Cuando se configura en B2B o B2C, las facturas con esta posición fiscal se "
 "tendrán en cuenta para la generación de los informes intrastat."
+
+#~ msgid "Template for Fiscal Position"
+#~ msgstr "Plantilla de Posición Fiscal"

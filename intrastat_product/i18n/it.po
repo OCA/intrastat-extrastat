@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-08 10:42+0000\n"
+"PO-Revision-Date: 2024-02-08 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -28,6 +28,8 @@ msgstr "%(invoice)s riga %(line_nbr)s"
 msgid ""
 "(Re)compute the intrastat transaction details from the product master data."
 msgstr ""
+"(Ri)calcola i dettagli delle transizioni Intrastat dai dati principali del "
+"prodotto."
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
@@ -97,6 +99,10 @@ msgid ""
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
+"Codice ISO di due lettere della nazione di origine del prodotto tranne che "
+"per UK.\n"
+"Indicare 'XI' per l'Irlanda del Nord e 'XU' per la Gran Bretagna.\n"
+"Indicare 'QU' quando la nazione di origine non è nota.\n"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
@@ -104,6 +110,8 @@ msgid ""
 "2 letters ISO code of the country of origin of the product.\n"
 "Specify 'QU' when the country of origin is unknown.\n"
 msgstr ""
+"Codice ISO di due lettere della nazione di origine del prodotto.\n"
+"Indicare 'QU' quando la nazione di origine non è nota.\n"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
@@ -111,6 +119,8 @@ msgid ""
 "2 letters ISO code of the country of origin/destination.\n"
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain."
 msgstr ""
+"Codice ISO di due lettere della nazione di origine/destinazione.\n"
+"Indicare 'XI' per l'Irlanda del Nord e 'XU' per la Gran Bretagna."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
@@ -118,11 +128,13 @@ msgid ""
 "2 letters code of the country of origin/destination.\n"
 "Specify 'XI' for Northern Ireland."
 msgstr ""
+"Codice di due lettere della nazione di origine/destinazione.\n"
+"Indicare 'XI' per l'Irlanda del Nord."
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "<span>Intrastat Product Declaration </span>"
-msgstr ""
+msgstr "<span>Dichiarazione prodotto Intrastat</span>"
 
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
@@ -130,6 +142,9 @@ msgid ""
 "A declaration of the same type already exists for this month !\n"
 "You should update the existing declaration or change the revision number of this one."
 msgstr ""
+"Una dichiarazine dello stesso tipo esiste già per questo mese.\n"
+"Bisogna aggiornare la dichiarazione esistente o modificare il numero di "
+"revisione di questa."
 
 #. module: intrastat_product
 #. odoo-python
@@ -137,7 +152,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 #, python-format
 msgid "Accessory Costs"
-msgstr ""
+msgstr "Costi accessori"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__action
@@ -189,6 +204,7 @@ msgstr "Trasporto aereo"
 #: model:res.groups,comment:intrastat_product.group_invoice_intrastat_transaction_details
 msgid "Allow to encode Intrastat Transaction Details on Invoices"
 msgstr ""
+"Consente di codificare i dettagli della transizione Intrastat nelle fatture"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
@@ -197,6 +213,9 @@ msgid ""
 "line. By default, these accessory costs are computed at the pro-rata of the "
 "amount of each invoice line."
 msgstr ""
+"Valore nella valuta dell'azienda dei costi accessori relativi a questa riga "
+"di fattura. In modo predefinito, questi costi accessori sono calcolati "
+"proporzinalmente al valore di ogni riga di fattura."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
@@ -206,6 +225,9 @@ msgid ""
 "currency = amount in invoice currency converted to company currency with the"
 " rate of the invoice date."
 msgstr ""
+"Valore nella valuta dell'azienda da scrivere nella dichiarazione. Valore "
+"nella valuta dell'azienda = valore nella valuta della fattura confertito "
+"nella valuta dell'azienda con il tasso di cambio alla data della fattura."
 
 #. module: intrastat_product
 #. odoo-python

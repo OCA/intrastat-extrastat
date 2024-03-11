@@ -65,32 +65,30 @@ class HSCode(models.Model):
 
     @api.depends("product_categ_ids")
     def _compute_product_categ_count(self):
-        rg_res = self.env["product.category"].read_group(
-            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["hs_code_id"]
+        rg_res = self.env["product.category"]._read_group(
+            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["id:count"]
         )
-        mapped_data = {x["hs_code_id"][0]: x["hs_code_id_count"] for x in rg_res}
+        mapped_data = {rec.id: count for (rec, count) in rg_res}
         for code in self:
             code.product_categ_count = mapped_data.get(code.id, 0)
 
     @api.depends("product_tmpl_ids")
     def _compute_product_tmpl_count(self):
-        rg_res = self.env["product.template"].read_group(
-            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["hs_code_id"]
+        rg_res = self.env["product.template"]._read_group(
+            [("hs_code_id", "in", self.ids)], ["hs_code_id"], ["id:count"]
         )
-        mapped_data = {x["hs_code_id"][0]: x["hs_code_id_count"] for x in rg_res}
+        mapped_data = {rec.id: count for (rec, count) in rg_res}
         for code in self:
             code.product_tmpl_count = mapped_data.get(code.id, 0)
 
     @api.depends("local_code", "description")
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for this in self:
             name = this.local_code
             if this.description:
                 name += " " + this.description
             name = shorten(name, 55)
-            res.append((this.id, name))
-        return res
+            this.display_name = name
 
     _sql_constraints = [
         (

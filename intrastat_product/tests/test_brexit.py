@@ -57,7 +57,8 @@ class TestIntrastatBrexit(IntrastatProductCommon, TransactionCase):
             }
         )
         self.declaration.action_gather()
-        self.declaration.done()
+        self.declaration.draft2confirmed()
+        self.declaration.confirmed2done()
         cline = self.declaration.computation_line_ids
         dline = self.declaration.declaration_line_ids
         self.assertEqual(cline.src_dest_country_code, "XI")
@@ -84,7 +85,8 @@ class TestIntrastatBrexit(IntrastatProductCommon, TransactionCase):
             }
         )
         self.declaration.action_gather()
-        self.declaration.done()
+        self.declaration.draft2confirmed()
+        self.declaration.confirmed2done()
         clines = self.declaration.computation_line_ids
         cl_uk = clines.filtered(lambda r: r.product_id == self.product_uk)
         dlines = self.declaration.declaration_line_ids

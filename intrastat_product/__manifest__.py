@@ -7,7 +7,7 @@
 
 {
     "name": "Intrastat Product",
-    "version": "16.0.1.6.1",
+    "version": "16.0.2.0.0",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat Product",

@@ -133,11 +133,6 @@ msgstr ""
 "Especifique \"XI\" para Irlanda del Norte."
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "<span>Intrastat Product Declaration </span>"
-msgstr "<span>Declaración de producto IntrastaT </span>"
-
-#. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
@@ -367,6 +362,12 @@ msgstr "Ajustes de configuración"
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Confirm"
 msgstr "Confirmar"
+
+#. module: intrastat_product
+#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__state__confirmed
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
+msgid "Confirmed"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_partner
@@ -643,11 +644,18 @@ msgstr "Generar Archivo XML de Declaración"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid ""
-"Generate declaration lines, generate XML export and set declaration to 'Done'"
+msgid "Generate XML File"
 msgstr ""
-"Generar líneas de declaración, generar la exportación XML y establecer la "
-"declaración en \"Hecho\""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate XML file and set declaration to 'Done'"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate declaration lines"
+msgstr ""
 
 #. module: intrastat_product
 #. odoo-python
@@ -800,6 +808,13 @@ msgstr "Líneas de cálculo de Intrastat"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
 msgstr "Declaración de producto Intrastat"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Intrastat Product Declaration %(declaration_type)s %(year_month)s"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
@@ -1000,6 +1015,16 @@ msgstr "Últ. actualización por"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización en"
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
+msgid "Line"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__line_number
+msgid "Line Number"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
@@ -1435,17 +1460,9 @@ msgstr "Estándar"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "State"
 msgstr "Estado"
-
-#. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid ""
-"State of the declaration. When the state is set to 'Done', the parameters "
-"become read-only."
-msgstr ""
-"Estado de la declaración. Cuando el estado está como 'Realizado', los "
-"parámetros se convierten a solo lectura."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_state
@@ -1496,8 +1513,8 @@ msgid ""
 "Supply for sale on approval or after trial (including call-off and "
 "consignment stock)"
 msgstr ""
-"Suministro para la venta tras la aprobación o después de la prueba ("
-"incluidas las existencias a la demanda y en consignación)"
+"Suministro para la venta tras la aprobación o después de la prueba "
+"(incluidas las existencias a la demanda y en consignación)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__company_country_code
@@ -1828,11 +1845,6 @@ msgid "Year and month of the declaration."
 msgstr "Año y mes de la declaración."
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__note
-msgid "You can add some comments here if you want."
-msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
-
-#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
@@ -1871,6 +1883,26 @@ msgstr "Intraestado-%(year_month)s-%(declaration_type)s%(draft)s"
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
 msgstr "object._get_xlsx_report_filename()"
+
+#~ msgid "<span>Intrastat Product Declaration </span>"
+#~ msgstr "<span>Declaración de producto IntrastaT </span>"
+
+#~ msgid ""
+#~ "Generate declaration lines, generate XML export and set declaration to "
+#~ "'Done'"
+#~ msgstr ""
+#~ "Generar líneas de declaración, generar la exportación XML y establecer la "
+#~ "declaración en \"Hecho\""
+
+#~ msgid ""
+#~ "State of the declaration. When the state is set to 'Done', the parameters "
+#~ "become read-only."
+#~ msgstr ""
+#~ "Estado de la declaración. Cuando el estado está como 'Realizado', los "
+#~ "parámetros se convierten a solo lectura."
+
+#~ msgid "You can add some comments here if you want."
+#~ msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
 
 #~ msgid ""
 #~ "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."

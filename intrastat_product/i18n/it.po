@@ -94,7 +94,8 @@ msgstr "12"
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
-"2 letters ISO code of the country of origin of the product except for the UK.\n"
+"2 letters ISO code of the country of origin of the product except for the "
+"UK.\n"
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
@@ -131,15 +132,11 @@ msgstr ""
 "Indicare 'XI' per l'Irlanda del Nord."
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "<span>Intrastat Product Declaration </span>"
-msgstr "<span>Dichiarazione prodotto Intrastat</span>"
-
-#. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 "Una dichiarazine dello stesso tipo esiste già per questo mese.\n"
 "Bisogna aggiornare la dichiarazione esistente o modificare il numero di "
@@ -221,8 +218,8 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the"
-" rate of the invoice date."
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 "Valore nella valuta dell'azienda da scrivere nella dichiarazione. Valore "
 "nella valuta dell'azienda = valore nella valuta della fattura confertito "
@@ -345,7 +342,6 @@ msgstr "Valuta azienda"
 #. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__computation_line_ids
 #, python-format
 msgid "Computation Lines"
@@ -367,6 +363,12 @@ msgid "Confirm"
 msgstr "Conferma"
 
 #. module: intrastat_product
+#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__state__confirmed
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
+msgid "Confirmed"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
@@ -376,15 +378,15 @@ msgstr "Contatto"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid ""
-"Conversion from unit of measure <em>%(source_uom)s</em> to "
-"<em>%(target_uom)s</em>, which is configured on the intrastat supplementary "
-"unit <i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
+"Conversion from unit of measure <em>%(source_uom)s</em> to <em>"
+"%(target_uom)s</em>, which is configured on the intrastat supplementary unit "
+"<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
-"La conversione dall'unità di misura <em>%(source_uom)s</em> a "
-"<em>%(target_uom)s</em>, che è configurata nell'unità supplementare "
-"Intrastat <i>%(intrastat_unit)s</i> del codice H.S. <i>%(hs_code)s</i>, non "
-"è ancora implementata"
+"La conversione dall'unità di misura <em>%(source_uom)s</em> a <em>"
+"%(target_uom)s</em>, che è configurata nell'unità supplementare Intrastat <i>"
+"%(intrastat_unit)s</i> del codice H.S. <i>%(hs_code)s</i>, non è ancora "
+"implementata"
 
 #. module: intrastat_product
 #. odoo-python
@@ -396,8 +398,8 @@ msgid ""
 "whose unit of measure is <i>%(product_uom)s</i>"
 msgstr ""
 "La conversione dall'unità di misura <em>%(source_uom)s</em> a <em>Kg</em> "
-"non può essere eseguita automaticamente. È richiesta per il prodotto "
-"<i>%(product)s</i> la cui unità di misuraè <i>%(product_uom)s</i>"
+"non può essere eseguita automaticamente. È richiesta per il prodotto <i>"
+"%(product)s</i> la cui unità di misuraè <i>%(product_uom)s</i>"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__src_dest_country_id
@@ -498,7 +500,6 @@ msgstr "Riga dichiarazione"
 
 #. module: intrastat_product
 #. odoo-python
-#: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 #, python-format
@@ -642,12 +643,18 @@ msgstr "Genera file XML dichiarazione"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid ""
-"Generate declaration lines, generate XML export and set declaration to "
-"'Done'"
+msgid "Generate XML File"
 msgstr ""
-"Genera righe dichiarazione, genera esportazione XML e imposta la "
-"dichiarazione a 'Eseguita'"
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate XML file and set declaration to 'Done'"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate declaration lines"
+msgstr ""
 
 #. module: intrastat_product
 #. odoo-python
@@ -800,6 +807,13 @@ msgstr "Righe calcolo prodotto Intrastat"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
 msgstr "Dichiarazione prodtto Intrastat"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Intrastat Product Declaration %(declaration_type)s %(year_month)s"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
@@ -1002,6 +1016,16 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
+msgid "Line"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__line_number
+msgid "Line Number"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Allegato principale"
@@ -1181,8 +1205,8 @@ msgstr "Paese d'origine"
 #: model:ir.model.fields,help:intrastat_product.field_account_move__src_dest_region_id
 #: model:ir.model.fields,help:intrastat_product.field_account_payment__src_dest_region_id
 msgid ""
-"Origin region for dispatches, destination region for arrivals. This field is"
-" used for the Intrastat Declaration."
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 "Regione di origine per le spedizioni, regione di destinazione per gli "
 "arrivi. Questo campo è utilizzato per la dichiarazione Intrastat."
@@ -1397,8 +1421,8 @@ msgstr "Mare"
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
 msgid ""
-"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and"
-" lighters on board of a ship)"
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 "Trasporto via mare (inclusi vagoni, veicoli a motore, rimorchi, semi-"
 "rimorchi e contenitori a bordo di una nave)"
@@ -1432,17 +1456,9 @@ msgstr "Standard"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "State"
 msgstr "Stato"
-
-#. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid ""
-"State of the declaration. When the state is set to 'Done', the parameters "
-"become read-only."
-msgstr ""
-"Stado della dichiarazione. Quando lo stato è impostato a 'Bozza', i "
-"parametri diventano di sola lettura."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_state
@@ -1682,8 +1698,8 @@ msgstr ""
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_42
 msgid ""
 "Transactions with a view to processing under contract (no change of "
-"ownership). Goods not expected to return to the initial Member State/country"
-" of export"
+"ownership). Goods not expected to return to the initial Member State/country "
+"of export"
 msgstr ""
 "Transizioni con la prospettiva di una elaborazione a contratto (senza cambio "
 "di proprietà). Si prevede che i beni non rientrino allo stato membro/nazione "
@@ -1763,16 +1779,16 @@ msgstr "Partita IVA"
 #, python-format
 msgid ""
 "VAT number is <em>%(vat)s</em>. If this partner is from Northern Ireland, "
-"his VAT number should be updated to his new VAT number starting with "
-"<em>XI</em> following Brexit. If this partner is from Great Britain, maybe "
-"the fiscal position was wrong on the invoice (the fiscal position was "
-"<i>%(fiscal_position)s</i>)."
+"his VAT number should be updated to his new VAT number starting with <em>XI</"
+"em> following Brexit. If this partner is from Great Britain, maybe the "
+"fiscal position was wrong on the invoice (the fiscal position was <i>"
+"%(fiscal_position)s</i>)."
 msgstr ""
-"La P.IVA è <em>%(vat)s</em>. Se il partner è dall'Irlanda del Nord, questa "
-"P.IVA deve essere aggiornata alla sua nuova P.IVA cheinizia con <em>XI</em> "
-"a seguito della Brexit. Se il partner è della Gran Bretagnam, può essere che "
-"la posizione fiscale sia errata nella fattura (la posizione fiscale era "
-"<i>%(fiscal_position)s</i>)."
+"La P.IVA è <em>%(vat)s</em>. Se il partner è dall'Irlanda del Nord, questa P."
+"IVA deve essere aggiornata alla sua nuova P.IVA cheinizia con <em>XI</em> a "
+"seguito della Brexit. Se il partner è della Gran Bretagnam, può essere che "
+"la posizione fiscale sia errata nella fattura (la posizione fiscale era <i>"
+"%(fiscal_position)s</i>)."
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_stock_warehouse
@@ -1825,11 +1841,6 @@ msgid "Year and month of the declaration."
 msgstr "Anno e mese della dichiarazione."
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__note
-msgid "You can add some comments here if you want."
-msgstr "Se si vuole si possono aggiungere dei commenti qui."
-
-#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
@@ -1868,3 +1879,23 @@ msgstr "intrastat-%(year_month)s-%(declaration_type)s%(draft)s"
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
 msgstr "object._get_xlsx_report_filename()"
+
+#~ msgid "<span>Intrastat Product Declaration </span>"
+#~ msgstr "<span>Dichiarazione prodotto Intrastat</span>"
+
+#~ msgid ""
+#~ "Generate declaration lines, generate XML export and set declaration to "
+#~ "'Done'"
+#~ msgstr ""
+#~ "Genera righe dichiarazione, genera esportazione XML e imposta la "
+#~ "dichiarazione a 'Eseguita'"
+
+#~ msgid ""
+#~ "State of the declaration. When the state is set to 'Done', the parameters "
+#~ "become read-only."
+#~ msgstr ""
+#~ "Stado della dichiarazione. Quando lo stato è impostato a 'Bozza', i "
+#~ "parametri diventano di sola lettura."
+
+#~ msgid "You can add some comments here if you want."
+#~ msgstr "Se si vuole si possono aggiungere dei commenti qui."

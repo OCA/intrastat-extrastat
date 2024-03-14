@@ -121,11 +121,6 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "<span>Intrastat Product Declaration </span>"
-msgstr "<span>EMEBI</span>"
-
-#. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
@@ -352,6 +347,12 @@ msgstr "Configuration"
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Confirm"
 msgstr "Confirmer"
+
+#. module: intrastat_product
+#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__state__confirmed
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
+msgid "Confirmed"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_partner
@@ -629,11 +630,18 @@ msgstr "Générer le fichier XML de la déclaration"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid ""
-"Generate declaration lines, generate XML export and set declaration to 'Done'"
+msgid "Generate XML File"
 msgstr ""
-"Générer les lignes de déclaration, générer l'export XML et passer la "
-"déclaration à l'état \"Terminé\""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate XML file and set declaration to 'Done'"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate declaration lines"
+msgstr ""
 
 #. module: intrastat_product
 #. odoo-python
@@ -786,6 +794,13 @@ msgstr "Lignes de calcul de la déclaration"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
 msgstr "EMEBI"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Intrastat Product Declaration %(declaration_type)s %(year_month)s"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
@@ -986,6 +1001,16 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
+msgid "Line"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__line_number
+msgid "Line Number"
+msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
@@ -1415,17 +1440,9 @@ msgstr "Simplifié"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "State"
 msgstr "État"
-
-#. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid ""
-"State of the declaration. When the state is set to 'Done', the parameters "
-"become read-only."
-msgstr ""
-"État de la déclaration. Quand l'état est à 'Terminé', les champs passent en "
-"lecture seule."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__activity_state
@@ -1788,11 +1805,6 @@ msgid "Year and month of the declaration."
 msgstr "Année et mois de la déclaration."
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__note
-msgid "You can add some comments here if you want."
-msgstr "Vous pouvez ajouter des commentaires ici si vous voulez."
-
-#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
@@ -1831,6 +1843,26 @@ msgstr ""
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
 msgstr ""
+
+#~ msgid "<span>Intrastat Product Declaration </span>"
+#~ msgstr "<span>EMEBI</span>"
+
+#~ msgid ""
+#~ "Generate declaration lines, generate XML export and set declaration to "
+#~ "'Done'"
+#~ msgstr ""
+#~ "Générer les lignes de déclaration, générer l'export XML et passer la "
+#~ "déclaration à l'état \"Terminé\""
+
+#~ msgid ""
+#~ "State of the declaration. When the state is set to 'Done', the parameters "
+#~ "become read-only."
+#~ msgstr ""
+#~ "État de la déclaration. Quand l'état est à 'Terminé', les champs passent "
+#~ "en lecture seule."
+
+#~ msgid "You can add some comments here if you want."
+#~ msgstr "Vous pouvez ajouter des commentaires ici si vous voulez."
 
 #~ msgid ""
 #~ "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."

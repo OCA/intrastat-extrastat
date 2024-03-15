@@ -369,9 +369,18 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:f732fa747f85d891f007e5fb0af1290c25ceeeaca0c6e7cc6a3140c8c3ae9127
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/intrastat-extrastat/tree/16.0/product_harmonized_system_delivery"><img alt="OCA/intrastat-extrastat" src="https://img.shields.io/badge/github-OCA%2Fintrastat--extrastat-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/intrastat-extrastat-16-0/intrastat-extrastat-16-0-product_harmonized_system_delivery"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>The OCA module <em>product_harmonized_system</em> adds a many2one field <em>hs_code_id</em> on product templates that points to an <em>H.S. Code</em> object. But the <em>delivery</em> module from the official addons adds a char field <em>hs_code</em> on product templates, which has the same purpose, but we can’t use it because we need structured data for H.S. codes. This module hides the <em>hs_code</em> field added by the <em>delivery</em> module, to avoid confusion.</p>
-<p>Since Odoo v16, the <em>delivery</em> module also adds a many2one field <em>country_of_origin</em>, which is similar to the many2one field <em>origin_country_id</em> of the OCA module <em>product_harmonized_system</em>. This module also hides the <em>country_of_origin</em> field added by the <em>delivery</em> module.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/intrastat-extrastat/tree/17.0/product_harmonized_system_delivery"><img alt="OCA/intrastat-extrastat" src="https://img.shields.io/badge/github-OCA%2Fintrastat--extrastat-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/intrastat-extrastat-17-0/intrastat-extrastat-17-0-product_harmonized_system_delivery"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>The OCA module <em>product_harmonized_system</em> adds a many2one field
+<em>hs_code_id</em> on product templates that points to an <em>H.S. Code</em> object.
+But the <em>delivery</em> module from the official addons adds a char field
+<em>hs_code</em> on product templates, which has the same purpose, but we can’t
+use it because we need structured data for H.S. codes. This module hides
+the <em>hs_code</em> field added by the <em>delivery</em> module, to avoid confusion.</p>
+<p>Since Odoo v16, the <em>delivery</em> module also adds a many2one field
+<em>country_of_origin</em>, which is similar to the many2one field
+<em>origin_country_id</em> of the OCA module <em>product_harmonized_system</em>. This
+module also hides the <em>country_of_origin</em> field added by the <em>delivery</em>
+module.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -389,7 +398,7 @@ ul.auto-toc {
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/intrastat-extrastat/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20product_harmonized_system_delivery%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20product_harmonized_system_delivery%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -416,7 +425,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/alexis-via"><img alt="alexis-via" src="https://github.com/alexis-via.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/luc-demeyer"><img alt="luc-demeyer" src="https://github.com/luc-demeyer.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/intrastat-extrastat/tree/16.0/product_harmonized_system_delivery">OCA/intrastat-extrastat</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/intrastat-extrastat/tree/17.0/product_harmonized_system_delivery">OCA/intrastat-extrastat</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

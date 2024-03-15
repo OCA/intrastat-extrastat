@@ -84,7 +84,7 @@ class HSCode(models.Model):
     @api.depends("local_code", "description")
     def _compute_display_name(self):
         for this in self:
-            name = this.local_code
+            name = this.local_code or ""
             if this.description:
                 name += " " + this.description
             name = shorten(name, 55)

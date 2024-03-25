@@ -33,7 +33,7 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
         return domain
 
     @api.model
-    def _load_code(self, row, hs_codes, hscodes_lookup):
+    def _load_code(self, index, row, hs_codes, hscodes_lookup, lang_code):
         company_id = self.company_id.id or False
         vals = {
             "description": row["description"],
@@ -50,9 +50,9 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             hs_codes[hscode_i].write(vals)
         else:
             vals["local_code"] = intrastat_code
-            hscode_rec = self.env["hs.code"].create(vals)
+            hscode_rec = self.env["hs.code"].with_context(lang=lang_code).create(vals)
             hs_codes |= hscode_rec
-            hscodes_lookup[intrastat_code] = 1
+            hscodes_lookup[intrastat_code] = index
         return hs_codes, hscodes_lookup
 
     def execute(self):
@@ -85,10 +85,13 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             ) as CN_file:
                 intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                 for lang_rec in lang_recs:
+                    if CN_file.tell() != 0:
+                        CN_file.seek(0)
+                        intrastat_codes = csv.DictReader(CN_file, delimiter=";")
                     hs_codes = hs_codes.with_context(lang=lang_rec.code)
-                    for row in intrastat_codes:
+                    for i, row in enumerate(intrastat_codes):
                         hs_codes, hscodes_lookup = self._load_code(
-                            row, hs_codes, hscodes_lookup
+                            i, row, hs_codes, hscodes_lookup, lang_rec.code
                         )
         if not lang_found:
             raise UserError(

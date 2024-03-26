@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32020R1197&from=EN#d1e32-7-1
+         ANNEX I
+         Part C. Classifications
+         Table 1. Nature of transaction breakdown
+    -->
+    <record id="intrastat_transaction_11" model="intrastat.transaction">
+        <field name="code">11</field>
+        <field name="description">B2B sale/purchase</field>
+    </record>
+    <record id="intrastat_transaction_12" model="intrastat.transaction">
+        <field name="code">12</field>
+        <field name="description">B2C sale/purchase (incl. distance sale)</field>
+    </record>
+    <record id="intrastat_transaction_21" model="intrastat.transaction">
+        <field name="code">21</field>
+        <field name="description">Return of goods (free of charge)</field>
+    </record>
+    <record id="intrastat_transaction_22" model="intrastat.transaction">
+        <field name="code">22</field>
+        <field
+            name="description"
+        >Replacement for returned goods (free of charge)</field>
+    </record>
+    <record id="intrastat_transaction_23" model="intrastat.transaction">
+        <field name="code">23</field>
+        <field
+            name="description"
+        >Replacement (e.g. under warranty) for goods not being returned</field>
+    </record>
+    <record id="intrastat_transaction_31" model="intrastat.transaction">
+        <field name="code">31</field>
+        <field
+            name="description"
+        >Movements to/from a warehouse (excluding call-off and consignment stock)</field>
+    </record>
+    <record id="intrastat_transaction_32" model="intrastat.transaction">
+        <field name="code">32</field>
+        <field
+            name="description"
+        >Supply for sale on approval or after trial (including call-off and consignment stock)</field>
+    </record>
+    <record id="intrastat_transaction_33" model="intrastat.transaction">
+        <field name="code">33</field>
+        <field name="description">Financial leasing</field>
+    </record>
+    <record id="intrastat_transaction_34" model="intrastat.transaction">
+        <field name="code">34</field>
+        <field
+            name="description"
+        >Transactions involving transfer of ownership without financial compensation</field>
+    </record>
+    <record id="intrastat_transaction_41" model="intrastat.transaction">
+        <field name="code">41</field>
+        <field
+            name="description"
+        >Transactions with a view to processing under contract (no change of ownership). Goods expected to return to the initial Member State/country of export</field>
+    </record>
+    <record id="intrastat_transaction_42" model="intrastat.transaction">
+        <field name="code">42</field>
+        <field
+            name="description"
+        >Transactions with a view to processing under contract (no change of ownership). Goods not expected to return to the initial Member State/country of export</field>
+    </record>
+    <record id="intrastat_transaction_51" model="intrastat.transaction">
+        <field name="code">51</field>
+        <field
+            name="description"
+        >Transactions following processing under contract (not involving change of ownership). Goods returning to the initial Member State/country of export.</field>
+    </record>
+    <record id="intrastat_transaction_52" model="intrastat.transaction">
+        <field name="code">52</field>
+        <field
+            name="description"
+        >Transactions following processing under contract (not involving change of ownership). Goods not returning to the initial Member State/country of export.</field>
+    </record>
+    <!-- intrastat.transaction that start with "6" are
+         "Particular transactions recorded for national purposes"
+        so they should be supplied by coutry-specific modules -->
+    <record id="intrastat_transaction_71" model="intrastat.transaction">
+        <field name="code">71</field>
+        <field
+            name="description"
+        >Release of goods for free circulation in a Member State with a subsequent export to another Member State</field>
+    </record>
+    <record id="intrastat_transaction_72" model="intrastat.transaction">
+        <field name="code">72</field>
+        <field
+            name="description"
+        >Transportation of goods from one Member State to another Member State to place the goods under the export procedure</field>
+    </record>
+    <record id="intrastat_transaction_80" model="intrastat.transaction">
+        <field name="code">80</field>
+        <field
+            name="description"
+        >Transactions involving the supply of building materials and technical equipment under a general construction or civil engineering contract for which no separate invoicing of the goods is required and an invoice for the total contract is issued</field>
+    </record>
+    <record id="intrastat_transaction_91" model="intrastat.transaction">
+        <field name="code">91</field>
+        <field
+            name="description"
+        >Hire, loan, and operational leasing longer than 24 months</field>
+    </record>
+    <record id="intrastat_transaction_99" model="intrastat.transaction">
+        <field name="code">99</field>
+        <field name="description">Other</field>
+    </record>
+
+</odoo>

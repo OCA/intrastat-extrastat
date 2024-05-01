@@ -724,7 +724,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren de su atención."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes que tienen error de entrega."
 
@@ -1407,11 +1406,6 @@ msgid "Road Transport"
 msgstr "Transporte por carretera"
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de entrega de SMS"
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -1791,3 +1785,6 @@ msgstr "¡Debe establecer el país de la compañía!"
 #, python-format
 msgid "for period %s"
 msgstr "para periodo %s"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega de SMS"

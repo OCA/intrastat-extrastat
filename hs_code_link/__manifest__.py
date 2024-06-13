@@ -8,7 +8,7 @@
         'product_harmonized_system',
         'delivery',
     ],
-    "author": "Camptocamp SA, Odoo Community Association (OCA)",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "http://www.camptocamp.com",
     "license": "AGPL-3",
     "category": "Reporting",

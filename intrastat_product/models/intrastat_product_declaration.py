@@ -380,7 +380,12 @@ class IntrastatProductDeclaration(models.Model):
         elif source_uom.category_id == product.uom_id.category_id:
             # We suppose that, on product.template,
             # the 'weight' field is per uom_id
-            weight = product.weight * source_uom._compute_quantity(
+            # Test if module product_net_weight from OCA/product-attribute is installed
+            if hasattr(product, "net_weight"):
+                product_weight = product.net_weight
+            else:
+                product_weight = product.weight
+            weight = product_weight * source_uom._compute_quantity(
                 line_qty, product.uom_id
             )
         else:

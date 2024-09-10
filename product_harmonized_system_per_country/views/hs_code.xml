@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright (c) 2024 Groupe Voltaire
+  ~ @author Emilie SOUTIRAS  <emilie.soutiras@groupevoltaire.com>
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- Inherit tree view of H.S. code -->
+    <record id="hs_code_tree" model="ir.ui.view">
+        <field name="name">hs.code.tree</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_tree" />
+        <field name="arch" type="xml">
+            <field name="local_code" position="after">
+                <field name="country_id" optional="show" />
+            </field>
+        </field>
+    </record>
+    <!-- Inherit form view for H.S. code -->
+    <record id="hs_code_form" model="ir.ui.view">
+        <field name="name">hs.code.form</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_form" />
+        <field name="arch" type="xml">
+            <field name="local_code" position="after">
+                <field name="country_id" />
+            </field>
+        </field>
+    </record>
+    <record
+        id="product_harmonized_system.product_categ_hs_code_action"
+        model="ir.actions.act_window"
+    >
+        <field name="domain">
+            ['|', ('hs_code_id', '=', active_id),('hs_code_ids', '=', active_id)]
+        </field>
+    </record>
+    <record
+        id="product_harmonized_system.product_template_hs_code_action"
+        model="ir.actions.act_window"
+    >
+        <field name="domain">
+            ['|', ('hs_code_id', '=', active_id),('hs_code_ids', '=', active_id)]
+        </field>
+    </record>
+</odoo>

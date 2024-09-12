@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-intrastat-extrastat"
-version = "17.0.20240409.1"
+version = "17.0.20240912.0"
 dependencies = [
     "odoo-addon-intrastat_base>=17.0dev,<17.1dev",
+    "odoo-addon-intrastat_product>=17.0dev,<17.1dev",
     "odoo-addon-product_harmonized_system>=17.0dev,<17.1dev",
     "odoo-addon-product_harmonized_system_delivery>=17.0dev,<17.1dev",
     "odoo-addon-product_harmonized_system_stock>=17.0dev,<17.1dev",

@@ -30,7 +30,7 @@ class IntrastatTransaction(models.Model):
     @api.depends("code", "description")
     def _compute_display_name(self):
         for this in self:
-            name = this.code
+            name = this.code or ""
             if this.description:
                 name += " " + this.description
             name = shorten(name, 55)

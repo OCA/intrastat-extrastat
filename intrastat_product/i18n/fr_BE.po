@@ -118,11 +118,6 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid "<span>Intrastat Product Declaration </span>"
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
@@ -134,6 +129,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
+#: model_terms:ir.ui.view,arch_db:intrastat_product.view_res_config_settings
 #, python-format
 msgid "Accessory Costs"
 msgstr ""
@@ -213,6 +209,11 @@ msgstr ""
 msgid ""
 "An XML Export already exists for %s. To re-generate it, you must first "
 "delete it."
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_unit_name_uniq
+msgid "An intrastat supplementary unit with the same name already exists!"
 msgstr ""
 
 #. module: intrastat_product
@@ -342,6 +343,12 @@ msgid "Confirm"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__state__confirmed
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
+msgid "Confirmed"
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -351,9 +358,9 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid ""
-"Conversion from unit of measure <em>%(source_uom)s</em> to <em>"
-"%(target_uom)s</em>, which is configured on the intrastat supplementary unit "
-"<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
+"Conversion from unit of measure <em>%(source_uom)s</em> to "
+"<em>%(target_uom)s</em>, which is configured on the intrastat supplementary "
+"unit <i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
 
@@ -608,8 +615,17 @@ msgstr ""
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
-msgid ""
-"Generate declaration lines, generate XML export and set declaration to 'Done'"
+msgid "Generate XML File"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate XML file and set declaration to 'Done'"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
+msgid "Generate declaration lines"
 msgstr ""
 
 #. module: intrastat_product
@@ -694,6 +710,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_res_company__intrastat_accessory_costs
 #: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__intrastat_accessory_costs
+#: model_terms:ir.ui.view,arch_db:intrastat_product.view_res_config_settings
 msgid "Include Accessory Costs in Fiscal Value of Product"
 msgstr ""
 
@@ -762,6 +779,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Intrastat Product Declaration %(declaration_type)s %(year_month)s"
 msgstr ""
 
 #. module: intrastat_product
@@ -920,22 +944,8 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Kg"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_region____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_result_view____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode____last_update
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: intrastat_product
@@ -965,8 +975,13 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_main_attachment_id
-msgid "Main Attachment"
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
+msgid "Line"
+msgstr ""
+
+#. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__line_number
+msgid "Line Number"
 msgstr ""
 
 #. module: intrastat_product
@@ -1384,14 +1399,8 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__state
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "State"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__state
-msgid ""
-"State of the declaration. When the state is set to 'Done', the parameters "
-"become read-only."
 msgstr ""
 
 #. module: intrastat_product
@@ -1680,8 +1689,8 @@ msgid ""
 "VAT number is <em>%(vat)s</em>. If this partner is from Northern Ireland, "
 "his VAT number should be updated to his new VAT number starting with <em>XI</"
 "em> following Brexit. If this partner is from Great Britain, maybe the "
-"fiscal position was wrong on the invoice (the fiscal position was <i>"
-"%(fiscal_position)s</i>)."
+"fiscal position was wrong on the invoice (the fiscal position was "
+"<i>%(fiscal_position)s</i>)."
 msgstr ""
 
 #. module: intrastat_product
@@ -1735,11 +1744,6 @@ msgid "Year and month of the declaration."
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__note
-msgid "You can add some comments here if you want."
-msgstr ""
-
-#. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
@@ -1772,6 +1776,11 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "intrastat-%(year_month)s-%(declaration_type)s%(draft)s"
+msgstr ""
+
+#. module: intrastat_product
+#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
+msgid "kg"
 msgstr ""
 
 #. module: intrastat_product

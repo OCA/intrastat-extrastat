@@ -601,7 +601,7 @@ class IntrastatProductDeclaration(models.Model):
                     "line_nbr": line_nbr,
                 }
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
-                    lambda r: r.invoice_line_id == inv_line
+                    lambda r, inv_line=inv_line: r.invoice_line_id == inv_line
                 )
 
                 if (
@@ -1191,7 +1191,8 @@ class IntrastatProductComputationLine(models.Model):
                 + computation_line["amount_accessory_cost_company_currency"]
             )
         # on computation lines, weight and suppl_unit_qty are floats
-        # on declaration lines, weight and suppl_unit_qty are integer => so we must round()
+        # on declaration lines, weight and suppl_unit_qty
+        # are integer => so we must round()
         for field in fields_to_sum:
             vals[field] = int(round(vals[field]))
         # the intrastat specs say that, if the value is between 0 and 0.5,
@@ -1266,7 +1267,8 @@ class IntrastatProductDeclarationLine(models.Model):
     product_origin_country_code = fields.Char(
         string="Country of Origin of the Product",
         size=2,
-        help="2 letters ISO code of the country of origin of the product except for the UK.\n"
+        help="2 letters ISO code of the country of origin of the product"
+        " except for the UK.\n"
         "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
         "Specify 'QU' when the country is unknown.\n",
     )

@@ -149,7 +149,7 @@ class AccountMoveLine(models.Model):
     def _compute_hs_code_id(self):
         for rec in self:
             intrastat_line = self.move_id.intrastat_line_ids.filtered(
-                lambda r: r.invoice_line_id == rec
+                lambda r, rec=rec: r.invoice_line_id == rec
             )
             rec.hs_code_id = (
                 intrastat_line.hs_code_id or rec.product_id.get_hs_code_recursively()

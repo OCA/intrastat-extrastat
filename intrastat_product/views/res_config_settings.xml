@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!--
+  Copyright 2018-2020 brain-tec AG (Kumar Aberer <kumar.aberer@braintec-group.com>)
+  Copyright 2019-2020 Noviat (www.noviat.com)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_res_config_settings" model="ir.ui.view">
+        <field name="name">intrastat.account.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="intrastat_base.view_intrastat_res_config_settings"
+        />
+        <field name="arch" type="xml">
+                <xpath expr="//setting[@id='intrastat']/div" position="inside">
+                            <div class="row mt16">
+                                <label
+                        for="intrastat_arrivals"
+                        class="col-lg-5 o_light_label"
+                    />
+                                <field name="intrastat_arrivals" />
+                                <field name="country_id" invisible="1" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                        for="intrastat_dispatches"
+                        class="col-lg-5 o_light_label"
+                    />
+                                <field name="intrastat_dispatches" />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                        for="intrastat_transport_id"
+                        class="col-lg-5 o_light_label"
+                    />
+                                <field name="intrastat_transport_id" />
+                            </div>
+                            <div
+                    class="row mt16"
+                    invisible="country_code not in ['BE']"
+                >
+                                <label
+                        for="intrastat_region_id"
+                        class="col-lg-5 o_light_label"
+                    />
+                                <field
+                        name="intrastat_region_id"
+                        domain="[('country_id','=', country_id)]"
+                    />
+                        </div>
+                </xpath>
+                <xpath expr="//setting[@id='intrastat']" position="after">
+                    <setting
+                    id="intrastat-accessory_costs"
+                    string="Accessory Costs"
+                    invisible="country_code in ['BE']"
+                    help="Include Accessory Costs in Fiscal Value of Product"
+                >
+                        <field name="intrastat_accessory_costs" />
+                    </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

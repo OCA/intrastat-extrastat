@@ -11,7 +11,9 @@ class SaleOrder(models.Model):
             order.write(
                 {
                     "incoterm": order.carrier_id.incoterm.id,
-                    "intrastat_transport_id": order.carrier_id.intrastat_transport_id.id,
+                    "intrastat_transport_id": (
+                        order.carrier_id.intrastat_transport_id.id
+                    ),
                 }
             )
         return ret

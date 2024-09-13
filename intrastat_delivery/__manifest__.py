@@ -1,6 +1,6 @@
 {
     "name": "Propagate incoterm from sale delivery to invoice",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Accounting",
     "author": "FactorLibre, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/intrastat-extrastat",

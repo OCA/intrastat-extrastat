@@ -16,7 +16,8 @@
                         name="company_id"
                         options="{'no_create': True, 'no_open': True}"
                         domain="[('id', 'in', allowed_company_ids)]"
-                        attrs="{'required': [('share_codes','=',False)],'invisible': [('share_codes','=',True)]}"
+                        required="not share_codes"
+                        invisible="share_codes"
                     />
                 </group>
             </xpath>

@@ -95,4 +95,5 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
                 )
                 % ",".join(self._intrastat_file_available_langs())
             )
+        res = {"type": "ir.actions.client", "tag": "soft_reload"}
         return res

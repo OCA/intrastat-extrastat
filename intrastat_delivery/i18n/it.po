@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-26 11:35+0000\n"
+"PO-Revision-Date: 2024-09-16 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: intrastat_delivery
 #: model:ir.model.fields,field_description:intrastat_delivery.field_delivery_carrier__incoterm
@@ -33,7 +33,7 @@ msgstr ""
 #. module: intrastat_delivery
 #: model:ir.model.fields,field_description:intrastat_delivery.field_delivery_carrier__intrastat_transport_id
 msgid "Intrastat Transport Mode"
-msgstr "Modo trasprto Intrastat"
+msgstr "Modalità trasporto Intrastat"
 
 #. module: intrastat_delivery
 #: model:ir.model,name:intrastat_delivery.model_sale_order

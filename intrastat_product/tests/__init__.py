@@ -6,3 +6,4 @@ from . import test_brexit
 from . import test_company
 from . import test_purchase_order
 from . import test_sale_order
+from . import test_account_move_reversal

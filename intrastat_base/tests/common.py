@@ -1,13 +1,15 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo.tests.common import TransactionCase
 
 
-class IntrastatCommon(object):
+class IntrastatCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.chart_template_obj = cls.env["account.chart.template"]
+        cls.fp_obj = cls.env["account.fiscal.position"]
         cls.mail_obj = cls.env["mail.mail"]
 
         cls.demo_user = cls.env.ref("base.user_demo")

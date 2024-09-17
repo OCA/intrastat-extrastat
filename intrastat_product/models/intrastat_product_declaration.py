@@ -320,16 +320,26 @@ class IntrastatProductDeclaration(models.Model):
         return country
 
     def _get_intrastat_transaction(self, inv_line, notedict):
+        tr_11 = self.env.ref("intrastat_product.intrastat_transaction_11")
+        tr_12 = self.env.ref("intrastat_product.intrastat_transaction_12")
+        tr_21 = self.env.ref("intrastat_product.intrastat_transaction_21")
+
         invoice = inv_line.move_id
         transaction = invoice.intrastat_transaction_id
-        fp2transaction = {
-            "b2b": self.env.ref("intrastat_product.intrastat_transaction_11"),
-            "b2c": self.env.ref("intrastat_product.intrastat_transaction_12"),
-        }
-        if not transaction:
-            # as we have searched with intrastat_fiscal_position in ('b2b', 'b2c')
-            # we should always have intrastat_fiscal_position in fp2transaction
-            transaction = fp2transaction[invoice.intrastat_fiscal_position]
+        intr_fp = invoice.intrastat_fiscal_position
+        if not transaction and intr_fp:
+            if "arrivals" in self.declaration_type:
+                if "out_refund" == invoice.move_type:
+                    transaction = tr_21
+                elif "in_invoice" == invoice.move_type:
+                    transaction = tr_11
+            elif "dispatches" in self.declaration_type:
+                if "in_refund" == invoice.move_type:
+                    transaction = tr_21
+                elif "out_invoice" == invoice.move_type and "b2c" == intr_fp:
+                    transaction = tr_12
+        if not transaction and intr_fp:
+            transaction = tr_11
         return transaction
 
     def _get_weight_and_supplunits(self, inv_line, hs_code, notedict):

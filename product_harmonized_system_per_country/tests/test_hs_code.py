@@ -14,17 +14,14 @@ class TestHSCodes(IntrastatProductCommon, TransactionCase):
 
     def test_hs_code_ids_product(self):
         hs_code_7050 = self.env.ref("product_harmonized_system.84717050")
-        self.categ_robots.hs_code_ids = [(4, hs_code_7050.id)]
+        self.categ_robots.hs_code_id = hs_code_7050.id
         self.assertEqual(
             self.pdt_c3po.get_hs_code_recursively(),
             self.hs_code_computer,
         )
         country_fr = self.env.ref("base.fr")
         hs_code_7050.country_id = country_fr
-        self.pdt_c3po.hs_code_ids = [
-            (4, self.hs_code_computer.id, 0),
-            (4, hs_code_7050.id, 0),
-        ]
+        hs_code_7050.parent_id = self.hs_code_computer
         self.assertEqual(
             self.pdt_c3po.get_hs_code_recursively(),
             self.hs_code_computer,
@@ -39,15 +36,13 @@ class TestHSCodes(IntrastatProductCommon, TransactionCase):
     def test_hs_code_ids_category(self):
         self.pdt_c3po.hs_code_id = False
         country_fr = self.env.ref("base.fr")
+        self.categ_robots.hs_code_id = self.hs_code_computer
         hs_code_7050 = self.env.ref("product_harmonized_system.84717050")
         hs_code_7050.country_id = country_fr
         hs_code_7049 = hs_code_7050.copy({"local_code": "84717049"})
         self.assertFalse(self.hs_code_computer.country_id)
-        self.categ_robots.hs_code_ids = [
-            (4, self.hs_code_computer.id, 0),
-            (4, hs_code_7050.id, 0),
-            (4, hs_code_7049.id, 0),
-        ]
+        hs_code_7050.parent_id = self.hs_code_computer
+        hs_code_7049.parent_id = self.hs_code_computer
         self.assertEqual(
             self.pdt_c3po.categ_id,
             self.categ_robots,

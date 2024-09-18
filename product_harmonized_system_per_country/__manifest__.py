@@ -10,11 +10,10 @@
     "author": "Emilie SOUTIRAS, Groupe Voltaire, Odoo Community Association (OCA)",
     "maintainers": ["emiliesoutiras"],
     "website": "https://github.com/OCA/intrastat-extrastat",
-    "depends": ["intrastat_product"],
+    "depends": ["delivery", "intrastat_product"],
     "data": [
-        "views/product_category.xml",
-        "views/product_template.xml",
         "views/hs_code.xml",
+        "report/deliveryslip_report.xml",
     ],
     "installable": True,
 }

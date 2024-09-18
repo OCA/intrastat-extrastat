@@ -25,22 +25,17 @@
             <field name="local_code" position="after">
                 <field name="country_id" />
             </field>
-        </field>
-    </record>
-    <record
-        id="product_harmonized_system.product_categ_hs_code_action"
-        model="ir.actions.act_window"
-    >
-        <field name="domain">
-            ['|', ('hs_code_id', '=', active_id),('hs_code_ids', '=', active_id)]
-        </field>
-    </record>
-    <record
-        id="product_harmonized_system.product_template_hs_code_action"
-        model="ir.actions.act_window"
-    >
-        <field name="domain">
-            ['|', ('hs_code_id', '=', active_id),('hs_code_ids', '=', active_id)]
+            <group name="main" position="inside">
+                <field name="parent_id" />
+                <field name="related_hs_code_ids">
+                    <tree>
+
+                        <field name="local_code" />
+                        <field name="hs_code" />
+                        <field name="country_id" />
+                    </tree>
+                </field>
+            </group>
         </field>
     </record>
 </odoo>

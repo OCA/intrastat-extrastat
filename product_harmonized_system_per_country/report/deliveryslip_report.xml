@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Delivery slip -->
+     <template id="report_deliveryslip" inherit_id="stock.report_deliveryslip">
+         <xpath expr="//t[@t-call]" position="before">
+             <t
+                t-set="o"
+                t-value="o.with_context(hs_code_for_country=o.sudo().sale_id.partner_id.country_id.id or False)"
+            />
+         </xpath>
+    </template>
+    <record id="report_delivery_document2" model="ir.ui.view">
+        <field name="name">stock.picking.report.delivery.inherit</field>
+        <field name="inherit_id" ref="delivery.report_delivery_document2" />
+        <field name="priority" eval="1000" />
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-set='has_hs_code']" position="attributes">
+                <attribute name="t-value">
+                     o.move_ids.filtered(lambda l: l.product_id.hs_code)
+                </attribute>
+            </xpath>
+<!--            <xpath expr="//span[@t-field='']" position="replace">-->
+<!--            </xpath>-->
+        </field>
+    </record>
+</odoo>

@@ -29,7 +29,6 @@ class AccountMove(models.Model):
                 res[line.product_id.id]["weight"] += weight
             else:
                 res.pop(line.product_id.id)
-        # sort res :
         if res:
             res = dict(
                 sorted(

@@ -47,11 +47,6 @@ msgid "Intrastat HS Codes Import Installer"
 msgstr "Instalador de importación de códigos Intrastat HS"
 
 #. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -77,8 +72,8 @@ msgstr "Cargar Códigos Intrastat"
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
 #, python-format
 msgid ""
-"None of the languages active on your system are available in intrastat codes"
-" files [%s]"
+"None of the languages active on your system are available in intrastat codes "
+"files [%s]"
 msgstr ""
 "Ninguna de las lenguas activas en su sistema está disponible en los ficheros "
 "de códigos intrastat [%s]"
@@ -96,3 +91,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
 msgid "Share Codes"
 msgstr "Compartir Códigos"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"

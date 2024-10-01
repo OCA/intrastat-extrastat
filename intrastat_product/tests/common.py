@@ -96,33 +96,32 @@ class IntrastatProductCommon(IntrastatCommon):
         cls._init_products()
         cls._init_transaction()
 
-    @classmethod
-    def _create_xls(cls, declaration=False):
+    def _create_xls(self, declaration=False):
         """
             Prepare the Excel report to be tested
 
         :return: The Excel file
         :rtype: bytes
         """
-        report = cls.env.ref(
+        report = self.env.ref(
             "intrastat_product.intrastat_product_xlsx_report"
-        ).with_context(active_ids=cls.declaration.ids)
+        ).with_context(active_ids=self.declaration.ids)
         report_name = report.report_name
-        cls.report = cls.report_obj._get_report_from_name(report_name)
+        self.report = self.report_obj._get_report_from_name(report_name)
         datas = {
             "context": {
-                "active_ids": [cls.declaration.id],
+                "active_ids": [self.declaration.id],
             }
         }
         data = {}
         encoded_data = "report/report_xlsx/" + report_name + "?" + url_encode(data)
         datas["data"] = encoded_data
-        active_model = cls.declaration._name
+        active_model = self.declaration._name
         if not declaration:
             computation_lines = True
         else:
             computation_lines = False
-        file_data = cls.xls_declaration.with_context(
+        file_data = self.xls_declaration.with_context(
             computation_lines=computation_lines, active_model=active_model
         ).create_xlsx_report(None, datas)
         return file_data
@@ -175,7 +174,7 @@ class IntrastatProductCommon(IntrastatCommon):
     @classmethod
     def _create_region(cls, vals=None):
         values = {
-            "code": "2",
+            "code": "WAL",
             "country_id": cls.env.ref("base.be").id,
             "company_id": cls.env.company.id,
             "description": "Belgium Walloon Region",

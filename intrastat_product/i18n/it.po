@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-16 10:06+0000\n"
+"PO-Revision-Date: 2024-10-09 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -993,7 +993,7 @@ msgstr "Kg"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__write_uid
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo Aggiornamento di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__write_date

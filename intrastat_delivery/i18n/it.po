@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* intrastat_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-26 11:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: intrastat_delivery
+#: model:ir.model.fields,field_description:intrastat_delivery.field_delivery_carrier__incoterm
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: intrastat_delivery
+#: model:ir.model.fields,help:intrastat_delivery.field_delivery_carrier__incoterm
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr ""
+"I termini commerciali internazionali (Incoterms) sono una serie di termini "
+"commerciali predefiniti utilizzati nelle transizioni internazionali."
+
+#. module: intrastat_delivery
+#: model:ir.model.fields,field_description:intrastat_delivery.field_delivery_carrier__intrastat_transport_id
+msgid "Intrastat Transport Mode"
+msgstr "Modo trasprto Intrastat"
+
+#. module: intrastat_delivery
+#: model:ir.model,name:intrastat_delivery.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: intrastat_delivery
+#: model:ir.model,name:intrastat_delivery.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Metodi di spedizione"

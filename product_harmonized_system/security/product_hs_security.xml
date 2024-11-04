@@ -3,8 +3,6 @@
     <record id="hs_code_company_rule" model="ir.rule">
         <field name="name">HS Code Company rule</field>
         <field name="model_id" ref="model_hs_code" />
-        <field
-            name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
     </record>
 </odoo>

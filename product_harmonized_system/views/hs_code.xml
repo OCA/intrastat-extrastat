@@ -23,12 +23,12 @@
             </search>
         </field>
     </record>
-    <!-- Tree view for H.S. code -->
+    <!-- List view for H.S. code -->
     <record id="hs_code_view_tree" model="ir.ui.view">
-        <field name="name">hs.code.tree</field>
+        <field name="name">hs.code.list</field>
         <field name="model">hs.code</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="hs_code" />
                 <field name="local_code" />
                 <field name="description" optional="show" />
@@ -37,21 +37,21 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Action used in the form view for HS codes -->
     <record id="product_categ_hs_code_action" model="ir.actions.act_window">
         <field name="name">Product Categories</field>
         <field name="res_model">product.category</field>
-        <field name="view_mode">tree,form</field>
-        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('hs_code_id', '=', id)]</field>
     </record>
     <record id="product_template_hs_code_action" model="ir.actions.act_window">
         <field name="name">Products</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('hs_code_id', '=', active_id)]</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('hs_code_id', '=', id)]</field>
     </record>
     <!-- Form view for H.S. code -->
     <record id="hs_code_view_form" model="ir.ui.view">
@@ -109,7 +109,7 @@
     <record id="hs_code_action" model="ir.actions.act_window">
         <field name="name">H.S. Codes</field>
         <field name="res_model">hs.code</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <!-- The menu entry for H.S. code is now provided by the module
          product_harmonized_system_stock -->

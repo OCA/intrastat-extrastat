@@ -6,5 +6,5 @@ from openupgradelib import openupgrade
 @openupgrade.migrate()
 def migrate(env, version):
     openupgrade.load_data(
-        env.cr, "intrastat_product", "migrations/17.0.1.1.0/noupdate_changes.xml"
+        env, "intrastat_product", "migrations/17.0.1.1.0/noupdate_changes.xml"
     )

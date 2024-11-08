@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-29 10:27+0000\n"
-"PO-Revision-Date: 2023-09-06 14:36+0000\n"
-"Last-Translator: David Halgand <dhalgand@teclib.com>\n"
+"PO-Revision-Date: 2024-11-08 19:06+0000\n"
+"Last-Translator: epanisset <emeric.panisset@camptocamp.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: intrastat_product
 #. odoo-python
@@ -98,6 +98,10 @@ msgid ""
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
+"Code ISO à 2 lettres du pays d'origine du produit, sauf pour le Royaume-Uni."
+"\n"
+"Spécifiez 'XI' pour l'Irlande du Nord et 'XU' pour la Grande-Bretagne.\n"
+"Spécifiez 'QU' lorsque le pays est inconnu.\n"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__product_origin_country_code
@@ -105,6 +109,8 @@ msgid ""
 "2 letters ISO code of the country of origin of the product.\n"
 "Specify 'QU' when the country of origin is unknown.\n"
 msgstr ""
+"Indiquez le code ISO à 2 lettres du pays d'origine du produit.\n"
+"Spécifiez 'QU' lorsque le pays d'origine est inconnu.\n"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
@@ -112,6 +118,8 @@ msgid ""
 "2 letters ISO code of the country of origin/destination.\n"
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain."
 msgstr ""
+"Indiquez le code ISO à 2 lettres du pays d'origine du produit.\n"
+"Spécifiez 'XI' pour Irlande du Nord et 'XU' pour Grande-Bretagne."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
@@ -119,6 +127,8 @@ msgid ""
 "2 letters code of the country of origin/destination.\n"
 "Specify 'XI' for Northern Ireland."
 msgstr ""
+"Indiquez le code ISO à 2 lettres du pays d'origine du produit.\n"
+"Spécifiez 'XI' pour Irlande du Nord."
 
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
@@ -198,6 +208,9 @@ msgid ""
 "line. By default, these accessory costs are computed at the pro-rata of the "
 "amount of each invoice line."
 msgstr ""
+"Montant en devise de l'entreprise des frais accessoires liés à cette ligne "
+"de facture. Par défaut, ces frais accessoires sont calculés au prorata du "
+"montant de chaque ligne de facture."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_company_currency
@@ -225,7 +238,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_unit_name_uniq
 msgid "An intrastat supplementary unit with the same name already exists!"
-msgstr ""
+msgstr "Une unité supplémentaire Intrastat portant le même nom existe déjà !"
 
 #. module: intrastat_product
 #. odoo-python
@@ -264,12 +277,12 @@ msgstr "Nombre de pièces jointes"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_11
 msgid "B2B sale/purchase"
-msgstr ""
+msgstr "B2B achat/vente"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_12
 msgid "B2C sale/purchase (incl. distance sale)"
-msgstr ""
+msgstr "BZC Achat/vente (incl. vente à distance)"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
@@ -358,7 +371,7 @@ msgstr "Confirmer"
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__state__confirmed
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
 msgid "Confirmed"
-msgstr ""
+msgstr "Confirmé"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_res_partner
@@ -583,7 +596,7 @@ msgstr "Détaillée"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_33
 msgid "Financial leasing"
-msgstr ""
+msgstr "Crédit-bail"
 
 #. module: intrastat_product
 #. odoo-python
@@ -637,17 +650,17 @@ msgstr "Générer le fichier XML de la déclaration"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Generate XML File"
-msgstr ""
+msgstr "Générer Fichier XML"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Generate XML file and set declaration to 'Done'"
-msgstr ""
+msgstr "Générer Fichier XML & déclarer comme \"fait\""
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Generate declaration lines"
-msgstr ""
+msgstr "Générer les lignes de déclaration"
 
 #. module: intrastat_product
 #. odoo-python
@@ -693,7 +706,7 @@ msgstr "A un message"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_91
 msgid "Hire, loan, and operational leasing longer than 24 months"
-msgstr ""
+msgstr "Location, prêt et location opérationnelle de plus de 24 mois"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__id
@@ -807,7 +820,7 @@ msgstr "EMEBI"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "Intrastat Product Declaration %(declaration_type)s %(year_month)s"
-msgstr ""
+msgstr "Déclaration Intrastat des produits  %(declaration_type)s %(year_month)s"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration_line
@@ -873,7 +886,7 @@ msgstr "Transaction intrastat"
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #, python-format
 msgid "Intrastat Transaction Code"
-msgstr ""
+msgstr "Code de Transaction Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
@@ -998,12 +1011,12 @@ msgstr "Dernière mise à jour le"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_tree
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__line_number
 msgid "Line Number"
-msgstr ""
+msgstr "Numéro de ligne"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_error
@@ -1067,6 +1080,8 @@ msgstr "Mois"
 msgid ""
 "Movements to/from a warehouse (excluding call-off and consignment stock)"
 msgstr ""
+"Mouvements vers/depuis un entrepôt (à l'exclusion du stock sur appel et du "
+"stock en consignation)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__my_activity_date_deadline
@@ -1153,7 +1168,7 @@ msgstr "Nombre d'erreurs"
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Nombre de messages nécessitant une action"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error_counter
@@ -1203,7 +1218,7 @@ msgstr "Région d'origine/destination"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_99
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #. module: intrastat_product
 #: model:intrastat.transport_mode,name:intrastat_product.intrastat_transport_9
@@ -1332,6 +1347,8 @@ msgid ""
 "Release of goods for free circulation in a Member State with a subsequent "
 "export to another Member State"
 msgstr ""
+"Libre circulation de marchandises avec exportation ultérieure vers un autre "
+"État membre"
 
 #. module: intrastat_product
 #. odoo-python
@@ -1344,11 +1361,12 @@ msgstr "Remplace"
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_23
 msgid "Replacement (e.g. under warranty) for goods not being returned"
 msgstr ""
+"Remplacement (par exemple, sous garantie) sans retour du produit défectueux"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_22
 msgid "Replacement for returned goods (free of charge)"
-msgstr ""
+msgstr "Remplacement (sans frais) des marchandises retournées"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__reporting_level
@@ -1365,7 +1383,7 @@ msgstr "Utilisateur responsable"
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_21
 msgid "Return of goods (free of charge)"
-msgstr ""
+msgstr "Retour de marchandise (sans frais)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__revision
@@ -1481,6 +1499,8 @@ msgid ""
 "Supply for sale on approval or after trial (including call-off and "
 "consignment stock)"
 msgstr ""
+"Fourniture à la vente sous réserve d'agrément ou après essai (y compris les "
+"livraisons sur appel et le stock en consignation)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__company_country_code
@@ -1620,6 +1640,9 @@ msgid ""
 "ownership). Goods not returning to the initial Member State/country of "
 "export."
 msgstr ""
+"Opérations consécutives à un traitement sous contrat (sans changement de "
+"propriétaire), avec une absence de retour des marchandises dans l'État "
+"membre/pays d'origine."
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_51
@@ -1627,6 +1650,9 @@ msgid ""
 "Transactions following processing under contract (not involving change of "
 "ownership). Goods returning to the initial Member State/country of export."
 msgstr ""
+"Opérations consécutives à un traitement sous contrat (sans changement de "
+"propriétaire), avec retour des marchandises dans l'État membre/pays "
+"d'origine."
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_80
@@ -1636,12 +1662,16 @@ msgid ""
 "which no separate invoicing of the goods is required and an invoice for the "
 "total contract is issued"
 msgstr ""
+"Opérations portant sur la fourniture de matériaux et d'équipements "
+"techniques dans le cadre d'un marché global de construction ou de génie "
+"civil, sans facturation séparée des biens et avec émission d'une facture "
+"unique pour l'ensemble du marché"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_34
 msgid ""
 "Transactions involving transfer of ownership without financial compensation"
-msgstr ""
+msgstr "Opérations comportant une cession de propriété à titre gratuit"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_41
@@ -1650,6 +1680,9 @@ msgid ""
 "ownership). Goods expected to return to the initial Member State/country of "
 "export"
 msgstr ""
+"Opérations en vue d'un traitement sous contrat (sans changement de "
+"propriétaire), avec un retour prévu des marchandises dans l'État membre/pays "
+"d'origine"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_42
@@ -1658,6 +1691,9 @@ msgid ""
 "ownership). Goods not expected to return to the initial Member State/country "
 "of export"
 msgstr ""
+"Opérations en vue d'un traitement sous contrat (sans changement de "
+"propriétaire), sans retour prévu des marchandises dans l'État membre/pays "
+"d'origine"
 
 #. module: intrastat_product
 #. odoo-python
@@ -1688,6 +1724,8 @@ msgid ""
 "Transportation of goods from one Member State to another Member State to "
 "place the goods under the export procedure"
 msgstr ""
+"Transfert de biens entre États membres pour mise en œuvre d'une procédure "
+"d'exportation"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__declaration_type
@@ -1825,17 +1863,17 @@ msgstr "pour la période %s"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid "intrastat-%(year_month)s-%(declaration_type)s%(draft)s"
-msgstr ""
+msgstr "intrastat-%(year_month)s-%(declaration_type)s%(draft)s"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 msgid "kg"
-msgstr ""
+msgstr "kg"
 
 #. module: intrastat_product
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
-msgstr ""
+msgstr "object._get_xlsx_report_filename()"
 
 #~ msgid "<span>Intrastat Product Declaration </span>"
 #~ msgstr "<span>EMEBI</span>"

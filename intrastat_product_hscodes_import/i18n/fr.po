@@ -6,64 +6,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-11-08 19:06+0000\n"
+"Last-Translator: epanisset <emeric.panisset@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
 msgid "Intrastat HS Codes Import Installer"
-msgstr ""
+msgstr "Installation du logiciel Intrastat avec codes SH"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière modification par"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: intrastat_product_hscodes_import
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load"
-msgstr ""
+msgstr "Charger"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.actions.act_window,name:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_action
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load Intrastat Codes"
-msgstr ""
+msgstr "Charger Codes Intrastat"
 
 #. module: intrastat_product_hscodes_import
 #. odoo-python
@@ -73,6 +75,8 @@ msgid ""
 "None of the languages active on your system are available in intrastat codes"
 " files [%s]"
 msgstr ""
+"Aucune des langues actives sur votre système n'est disponible dans les "
+"fichiers de codes Intrastat [ %s]"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,help:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
@@ -80,8 +84,10 @@ msgid ""
 "Set this flag to share the Intrastat Codes between all Legal Entities "
 "defined in this Odoo Database.\n"
 msgstr ""
+"Cocher cette case pour que les codes Intrastat soient partagés par toutes "
+"les entités légales de cette base de données Odoo.\n"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
 msgid "Share Codes"
-msgstr ""
+msgstr "Partager codes"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-08 10:43+0000\n"
+"PO-Revision-Date: 2024-11-26 20:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
@@ -99,12 +99,12 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
-msgstr "Codice H.S."
+msgstr "Codice S.A."
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
 msgid "H.S. Codes"
-msgstr "Codici H.S."
+msgstr "Codici S.A."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
@@ -206,7 +206,7 @@ msgstr "Prodotti"
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__description
 msgid "Short text description of the H.S. category"
-msgstr "Breve descrizione testuale della categoria H.S."
+msgstr "Breve descrizione testuale della categoria S.A."
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84717050

@@ -13,7 +13,7 @@
         <field name="arch" type="xml">
             <block id="storno" position="after">
                 <block id="intrastat" title="Intrastat">
-                <setting id="intrastat">
+                    <setting id="intrastat">
                         <div class="content-group">
                             <div class="row mt16">
                                 <label

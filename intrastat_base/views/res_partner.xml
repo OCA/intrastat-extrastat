@@ -27,9 +27,8 @@
         <field name="inherit_id" ref="base.view_partner_address_form" />
         <field name="arch" type="xml">
             <field name="country_id" position="attributes">
-                    <attribute name="required">1</attribute>
+                <attribute name="required">1</attribute>
             </field>
         </field>
     </record>
-
 </odoo>

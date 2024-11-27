@@ -66,6 +66,6 @@ class ResCompany(models.Model):
         except Exception as e:
             error = _("Unknown Error")
             tb = "".join(format_exception(*exc_info()))
-            error += "\n%s" % tb
+            error += f"\n{tb}"
             logger.warning(error)
             raise UserError(error) from e

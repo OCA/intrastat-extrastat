@@ -52,7 +52,8 @@ class ResCompany(models.Model):
     @api.model
     def _intrastat_check_xml_schema(self, xml_bytes, xsd_file):
         """Validate the XML file against the XSD"""
-        xsd_etree_obj = etree.parse(tools.file_open(xsd_file, mode="rb"))
+        with tools.file_open(xsd_file, mode="rb") as f:
+            xsd_etree_obj = etree.parse(f)
         official_schema = etree.XMLSchema(xsd_etree_obj)
         try:
             t = etree.parse(BytesIO(xml_bytes))

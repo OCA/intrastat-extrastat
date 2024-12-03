@@ -51,10 +51,13 @@ msgstr ""
 #. module: product_harmonized_system_delivery
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_product__hs_code
 #: model:ir.model.fields,help:product_harmonized_system_delivery.field_product_template__hs_code
-msgid ""
-"Standardized code for international shipping and goods declaration. At the "
-"moment, only used for the FedEx shipping provider."
+msgid "Standardized code for international shipping and goods declaration."
 msgstr ""
-"Code standardisé pour les expéditions internationales et les déclarations de "
-"marchandises. Pour l'instant, il n'est utilisé que par le prestataire de "
-"services d'expédition FedEx."
+
+#~ msgid ""
+#~ "Standardized code for international shipping and goods declaration. At "
+#~ "the moment, only used for the FedEx shipping provider."
+#~ msgstr ""
+#~ "Code standardisé pour les expéditions internationales et les déclarations "
+#~ "de marchandises. Pour l'instant, il n'est utilisé que par le prestataire "
+#~ "de services d'expédition FedEx."

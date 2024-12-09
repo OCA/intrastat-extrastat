@@ -5,14 +5,14 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
-            <field name="incoterm" position="after">
+            <group name="sale_shipping" position="inside">
                 <field
                     name="intrastat_transport_id"
                     invisible="intrastat != 'extended'"
                     widget="selection"
                 />
                 <field name="intrastat" invisible="1" />
-            </field>
+            </group>
         </field>
     </record>
 </odoo>

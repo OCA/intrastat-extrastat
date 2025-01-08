@@ -29,6 +29,12 @@ class TestHSCodes(IntrastatProductCommon, TransactionCase):
         )
         self.assertEqual(
             self.pdt_c3po.with_context(
+                hs_code_for_country=False
+            ).get_hs_code_recursively(),
+            self.hs_code_computer,
+        )
+        self.assertEqual(
+            self.pdt_c3po.with_context(
                 hs_code_for_country=country_fr.id
             ).get_hs_code_recursively(),
             hs_code_7050,
@@ -116,6 +122,10 @@ class TestInvoiceReportHSCode(IntrastatProductCommon, TransactionCase):
         self.assertEqual(res[0]["hs_code_id"], self.hs_code_7050)
         self.assertEqual(res[0]["origin_country_id"], self.product.origin_country_id)
         self.assertEqual(res[0]["weight"], weight)
+        # test empty country on partner
+        self.partner.country_id = False
+        res = list(self.invoice._get_intrastat_lines_info())
+        self.assertEqual(len(res), 1)
 
     def test_invoice_report_hs_codes(self):
         self.assertTrue(self.sale_order)

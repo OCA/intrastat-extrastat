@@ -9,9 +9,9 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     def _get_intrastat_lines_info(self):
-        destination_country = self.partner_id.country_id or False
+        destination_country_id = self.partner_id.country_id.id or False
         self.env.context = dict(self.env.context)
-        self.env.context.update({"hs_code_for_country": destination_country.id})
+        self.env.context.update({"hs_code_for_country": destination_country_id})
         res = {}
         for line in (
             self.invoice_line_ids.filtered(

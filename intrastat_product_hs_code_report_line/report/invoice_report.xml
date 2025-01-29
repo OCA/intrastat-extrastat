@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_invoice_document_inherit"
+        inherit_id="intrastat_product.report_invoice_document_intrastat_product"
+        priority="150"
+    >
+        <xpath
+            expr="//t[@t-if='o.partner_id.invoice_intrastat_detail']"
+            position="replace"
+        >
+        </xpath>
+        <xpath
+            expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_quantity']"
+            position="before"
+        >
+                <t t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode">
+                    <th>HS Code</th>
+                </t>
+        </xpath>
+        <xpath expr="//span[@t-field='line.quantity']/parent::td" position="before">
+            <t t-set="hscode" t-value="" />
+            <t
+                t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode and line.product_id"
+            >
+                <td>
+                    <span
+                        t-esc="line.product_id.hs_code_id and line.product_id.hs_code_id.local_code or '' "
+                    />
+                </td>
+            </t>
+        </xpath>
+    </template>
+</odoo>

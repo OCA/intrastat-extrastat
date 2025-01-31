@@ -13,52 +13,40 @@
             ref="intrastat_base.view_intrastat_res_config_settings"
         />
         <field name="arch" type="xml">
-                <xpath expr="//setting[@id='intrastat']/div" position="inside">
-                            <div class="row mt16">
-                                <label
-                        for="intrastat_arrivals"
-                        class="col-lg-5 o_light_label"
-                    />
-                                <field name="intrastat_arrivals" />
-                                <field name="country_id" invisible="1" />
-                            </div>
-                            <div class="row mt16">
-                                <label
-                        for="intrastat_dispatches"
-                        class="col-lg-5 o_light_label"
-                    />
-                                <field name="intrastat_dispatches" />
-                            </div>
-                            <div class="row mt16">
-                                <label
+            <xpath expr="//setting[@id='intrastat']/div" position="inside">
+                <div class="row mt16">
+                    <label for="intrastat_arrivals" class="col-lg-5 o_light_label" />
+                    <field name="intrastat_arrivals" />
+                    <field name="country_id" invisible="1" />
+                </div>
+                <div class="row mt16">
+                    <label for="intrastat_dispatches" class="col-lg-5 o_light_label" />
+                    <field name="intrastat_dispatches" />
+                </div>
+                <div class="row mt16">
+                    <label
                         for="intrastat_transport_id"
                         class="col-lg-5 o_light_label"
                     />
-                                <field name="intrastat_transport_id" />
-                            </div>
-                            <div
-                    class="row mt16"
-                    invisible="country_code not in ['BE']"
-                >
-                                <label
-                        for="intrastat_region_id"
-                        class="col-lg-5 o_light_label"
-                    />
-                                <field
+                    <field name="intrastat_transport_id" />
+                </div>
+                <div class="row mt16" invisible="country_code not in ['BE']">
+                    <label for="intrastat_region_id" class="col-lg-5 o_light_label" />
+                    <field
                         name="intrastat_region_id"
                         domain="[('country_id','=', country_id)]"
                     />
-                        </div>
-                </xpath>
-                <xpath expr="//setting[@id='intrastat']" position="after">
-                    <setting
+                </div>
+            </xpath>
+            <xpath expr="//setting[@id='intrastat']" position="after">
+                <setting
                     id="intrastat-accessory_costs"
                     string="Accessory Costs"
                     invisible="country_code in ['BE']"
                     help="Include Accessory Costs in Fiscal Value of Product"
                 >
-                        <field name="intrastat_accessory_costs" />
-                    </setting>
+                    <field name="intrastat_accessory_costs" />
+                </setting>
             </xpath>
         </field>
     </record>

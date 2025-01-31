@@ -106,5 +106,4 @@
         <field name="code">99</field>
         <field name="description">Other</field>
     </record>
-
 </odoo>

@@ -762,9 +762,9 @@ class IntrastatProductDeclaration(models.Model):
         note = ""
         for key, entries in notedict.items():
             if not key.endswith("_origin") and entries:
-                note += "<h3>%s</h3><ul>" % key2label[key]
+                note += f"<h3>{key2label[key]}</h3><ul>"
                 for obj_name, messages in entries.items():
-                    note += "<li>%s<ul>" % obj_name
+                    note += f"<li>{obj_name}<ul>"
                     if isinstance(
                         messages, dict
                     ):  # 2 layers of dict (partner, product)
@@ -773,7 +773,7 @@ class IntrastatProductDeclaration(models.Model):
                             note += f"<li>{message} <small>({origin_str})</small></li>"
                     else:  # 1st layer=dict, 2nd layer=set (invoice)
                         for message in messages:
-                            note += "<li>%s</li>" % message
+                            note += f"<li>{message}</li>"
                     note += "</ul>"
                 note += "</ul>"
         return note
@@ -950,12 +950,10 @@ class IntrastatProductDeclaration(models.Model):
         )[self.declaration_type]
         draft_label = ""
         if self.state == "draft":
-            draft_label = (
-                "-%s"
-                % dict(self.fields_get("state", "selection")["state"]["selection"])[
-                    self.state
-                ]
+            state2label = dict(
+                self.fields_get("state", "selection")["state"]["selection"]
             )
+            draft_label = f"-{state2label[self.state]}"
         filename = _(
             "intrastat-%(year_month)s-%(declaration_type)s%(draft)s",
             year_month=self.year_month,

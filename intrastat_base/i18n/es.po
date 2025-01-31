@@ -30,14 +30,12 @@ msgstr ""
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
-#, python-format
 msgid "B2B"
 msgstr "B2B"
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
-#, python-format
 msgid "B2C"
 msgstr "B2C"
 
@@ -69,7 +67,6 @@ msgstr "Intrastat"
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__intrastat_fiscal_position
-#: model:ir.model.fields,field_description:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid "Intrastat Fiscal Position"
 msgstr "Posición fiscal Intrastat"
 
@@ -102,14 +99,12 @@ msgstr "Lista de emails de Usuarios que recibirán un recordatorio Intrastat"
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/res_company.py:0
-#, python-format
 msgid "Missing e-mail address on user '%s'."
 msgstr "Falta la dirección de correo electrónico del usuario '%s'."
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
-#, python-format
 msgid "No"
 msgstr "No"
 
@@ -126,7 +121,6 @@ msgstr "Gastos de envío"
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
-#, python-format
 msgid ""
 "The fiscal position '%s' has intrastat set to B2B, so the option 'VAT "
 "Required' must be enabled."
@@ -137,7 +131,6 @@ msgstr ""
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
-#, python-format
 msgid ""
 "The fiscal position '%s' has intrastat set to B2C, so the option 'VAT "
 "Required' mustn't be enabled."
@@ -148,7 +141,6 @@ msgstr ""
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/product_template.py:0
-#, python-format
 msgid ""
 "The option 'Is accessory cost?' should only be activated on 'Service' "
 "products. You have activated this option for the product '%(product_name)s' "
@@ -161,7 +153,6 @@ msgstr ""
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/res_company.py:0
-#, python-format
 msgid "Unknown Error"
 msgstr "Error Desconocido"
 
@@ -175,7 +166,6 @@ msgstr "Usuarios Recibiendo el Recordatorio Intrastat"
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
-#: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid ""
 "When set to B2B or B2C, the invoices with this fiscal position will be taken "
 "into account for the generation of the intrastat reports."

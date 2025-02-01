@@ -5,9 +5,12 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <field name="property_account_position_id" position="after">
-                <field name="invoice_intrastat_detail" />
-            </field>
+            <group name="fiscal_information" position="inside">
+                <field
+                    name="invoice_intrastat_detail"
+                    groups="intrastat_product.group_invoice_intrastat_transaction_details"
+                />
+            </group>
         </field>
     </record>
 </odoo>

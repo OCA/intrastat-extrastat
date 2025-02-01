@@ -14,9 +14,9 @@
         parent="intrastat_base.menu_intrastat_config_root"
         sequence="10"
     />
-    <!-- Inherit tree view of H.S. code -->
+    <!-- Inherit list view of H.S. code -->
     <record id="hs_code_tree" model="ir.ui.view">
-        <field name="name">intrastat.hs.code.tree</field>
+        <field name="name">intrastat.hs.code.list</field>
         <field name="model">hs.code</field>
         <field name="inherit_id" ref="product_harmonized_system.hs_code_view_tree" />
         <field name="arch" type="xml">

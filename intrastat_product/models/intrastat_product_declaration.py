@@ -60,9 +60,7 @@ class IntrastatProductDeclaration(models.Model):
         copy=False,
         default="draft",
     )
-    note = fields.Html(
-        string="Notes",
-    )
+    note = fields.Html(string="Notes")
     year = fields.Char(required=True)
     month = fields.Selection(
         selection=[
@@ -107,12 +105,12 @@ class IntrastatProductDeclaration(models.Model):
     computation_line_ids = fields.One2many(
         comodel_name="intrastat.product.computation.line",
         inverse_name="parent_id",
-        string="Intrastat Product Computation Lines",
+        string="Computation Lines",
     )
     declaration_line_ids = fields.One2many(
         comodel_name="intrastat.product.declaration.line",
         inverse_name="parent_id",
-        string="Intrastat Product Declaration Lines",
+        string="Declaration Lines",
         readonly=True,
     )
     num_decl_lines = fields.Integer(
@@ -185,17 +183,14 @@ class IntrastatProductDeclaration(models.Model):
 
     @api.depends("declaration_line_ids.amount_company_currency")
     def _compute_numbers(self):
-        rg_res = self.env["intrastat.product.declaration.line"].read_group(
+        rg_res = self.env["intrastat.product.declaration.line"]._read_group(
             [("parent_id", "in", self.ids)],
-            ["parent_id", "amount_company_currency:sum"],
-            ["parent_id"],
+            groupby=["parent_id"],
+            aggregates=["amount_company_currency:sum", "__count"],
         )
         mapped_data = {
-            x["parent_id"][0]: {
-                "num_decl_lines": x["parent_id_count"],
-                "total_amount": x["amount_company_currency"],
-            }
-            for x in rg_res
+            decl.id: {"num_decl_lines": line_count, "total_amount": total_amount}
+            for (decl, total_amount, line_count) in rg_res
         }
         for this in self:
             this.num_decl_lines = mapped_data.get(this.id, {}).get("num_decl_lines", 0)
@@ -565,10 +560,7 @@ class IntrastatProductDeclaration(models.Model):
         return domain
 
     def _is_product(self, invoice_line):
-        if invoice_line.product_id and invoice_line.product_id.type in (
-            "product",
-            "consu",
-        ):
+        if invoice_line.product_id and invoice_line.product_id.type == "consu":
             return True
         else:
             return False

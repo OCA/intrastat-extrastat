@@ -36,7 +36,7 @@
                         />
                     </div>
                     <field name="intrastat_line_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field
                                 name="invoice_line_id"
                                 domain="[('move_id', '=', parent.id), ('display_type', '=', 'product')]"
@@ -48,7 +48,7 @@
                             <field name="hs_code_id" />
                             <field name="transaction_weight" />
                             <field name="product_origin_country_id" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </page>

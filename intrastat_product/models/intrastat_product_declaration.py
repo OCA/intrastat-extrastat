@@ -88,6 +88,10 @@ class IntrastatProductDeclaration(models.Model):
     )
     declaration_type = fields.Selection(
         selection="_get_declaration_type",
+        compute="_compute_declaration_type",
+        store=True,
+        readonly=False,
+        precompute=True,
         string="Type",
         required=True,
         tracking=True,
@@ -171,6 +175,45 @@ class IntrastatProductDeclaration(models.Model):
         for this in self:
             if this.year and this.month:
                 this.year_month = "-".join([this.year, this.month])
+
+    @api.depends("company_id", "year", "month")
+    def _compute_declaration_type(self):
+        for this in self:
+            company = this.company_id
+            declaration_type = False
+            if company:
+                if (
+                    company.intrastat_arrivals == "exempt"
+                    and company.intrastat_dispatches != "exempt"
+                ):
+                    declaration_type = "dispatches"
+                elif (
+                    company.intrastat_dispatches == "exempt"
+                    and company.intrastat_arrivals != "exempt"
+                ):
+                    declaration_type = "arrivals"
+                elif (
+                    company.intrastat_dispatches != "exempt"
+                    and company.intrastat_arrivals != "exempt"
+                    and this.year
+                    and this.month
+                ):
+                    existing_decls = self.search(
+                        [
+                            ("year", "=", this.year),
+                            ("month", "=", this.month),
+                            ("company_id", "=", company.id),
+                        ]
+                    )
+                    if len(existing_decls) == 1:
+                        declaration_type = (
+                            existing_decls.declaration_type == "arrivals"
+                            and "dispatches"
+                            or "arrivals"
+                        )
+                    elif not existing_decls:
+                        declaration_type = "dispatches"
+            this.declaration_type = declaration_type
 
     @api.constrains("company_id")
     def _check_company_country(self):

@@ -9,3 +9,4 @@ from . import intrastat_transport_mode
 from . import intrastat_unit
 from . import sale_order
 from . import stock_warehouse
+from . import stock_location

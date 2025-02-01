@@ -31,14 +31,14 @@
         </field>
     </record>
     <record id="intrastat_transaction_tree" model="ir.ui.view">
-        <field name="name">intrastat.transaction_tree</field>
+        <field name="name">intrastat.transaction_list</field>
         <field name="model">intrastat.transaction</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="description" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="intrastat_transaction_mode_search" model="ir.ui.view">
@@ -69,7 +69,7 @@
     <record id="intrastat_transaction_action" model="ir.actions.act_window">
         <field name="name">Transaction Types</field>
         <field name="res_model">intrastat.transaction</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="intrastat_transaction_menu"

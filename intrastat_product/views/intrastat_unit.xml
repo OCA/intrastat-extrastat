@@ -29,14 +29,14 @@
         </field>
     </record>
     <record id="intrastat_unit_tree" model="ir.ui.view">
-        <field name="name">intrastat.unit.tree</field>
+        <field name="name">intrastat.unit.list</field>
         <field name="model">intrastat.unit</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="uom_id" />
                 <field name="description" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="intrastat_unit_search" model="ir.ui.view">
@@ -66,7 +66,7 @@
     <record id="intrastat_unit_action" model="ir.actions.act_window">
         <field name="name">Supplementary Units</field>
         <field name="res_model">intrastat.unit</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="intrastat_unit_menu"

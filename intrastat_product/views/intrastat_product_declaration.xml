@@ -95,6 +95,7 @@
                                 readonly="state != 'draft'"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
                                 nolabel="1"
+                                colspan="2"
                             />
                         </page>
                         <page
@@ -106,6 +107,7 @@
                                 name="declaration_line_ids"
                                 context="{'declaration_type': declaration_type, 'reporting_level': reporting_level}"
                                 nolabel="1"
+                                colspan="2"
                             />
                         </page>
                         <page string="Notes" name="note">
@@ -113,19 +115,15 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
     <record id="intrastat_product_declaration_view_tree" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.tree</field>
+        <field name="name">intrastat.product.declaration.list</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="year_month" decoration-bf="1" />
                 <field
                     name="declaration_type"
@@ -145,7 +143,7 @@
                     decoration-info="state == 'draft'"
                     widget="badge"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="intrastat_product_declaration_view_search" model="ir.ui.view">
@@ -312,10 +310,10 @@
         </field>
     </record>
     <record id="intrastat_product_computation_line_view_tree" model="ir.ui.view">
-        <field name="name">intrastat.product.computation.line.tree</field>
+        <field name="name">intrastat.product.computation.line.list</field>
         <field name="model">intrastat.product.computation.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field
                     name="parent_id"
                     column_invisible="not context.get('intrastat_product_computation_line_main_view')"
@@ -391,7 +389,7 @@
                 />
                 <field name="vat" optional="show" />
                 <field name="invoice_id" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="intrastat_product_declaration_line_view_form" model="ir.ui.view">
@@ -457,10 +455,10 @@
         </field>
     </record>
     <record id="intrastat_product_declaration_line_view_tree" model="ir.ui.view">
-        <field name="name">intrastat.product.declaration.line.tree</field>
+        <field name="name">intrastat.product.declaration.line.list</field>
         <field name="model">intrastat.product.declaration.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field
                     name="parent_id"
                     column_invisible="not context.get('intrastat_product_declaration_line_main_view')"
@@ -520,7 +518,7 @@
                     optional="show"
                 />
                 <field name="vat" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

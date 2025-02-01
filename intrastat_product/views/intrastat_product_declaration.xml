@@ -123,7 +123,7 @@
         <field name="name">intrastat.product.declaration.list</field>
         <field name="model">intrastat.product.declaration</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-info="state == 'draft'">
                 <field name="year_month" decoration-bf="1" />
                 <field
                     name="declaration_type"

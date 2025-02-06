@@ -603,7 +603,10 @@ class IntrastatProductDeclaration(models.Model):
         return domain
 
     def _is_product(self, invoice_line):
-        if invoice_line.product_id and invoice_line.product_id.type == "consu":
+        if (
+            invoice_line.product_id
+            and invoice_line.product_id.intrastat_type == "product"
+        ):
             return True
         else:
             return False

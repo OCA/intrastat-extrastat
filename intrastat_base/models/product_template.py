@@ -16,9 +16,14 @@ class ProductTemplate(models.Model):
         ],
         compute="_compute_intrastat_type",
         store=True,
+        precompute=True,
         help="Type of product used for the intrastat declarations.",
     )
     is_accessory_cost = fields.Boolean(
+        compute="_compute_is_accessory_cost",
+        store=True,
+        precompute=True,
+        readonly=False,
         help="Activate this option for shipping costs, packaging "
         "costs and all services related to the sale of products. "
         "This option is used for Intrastat reports.",
@@ -37,6 +42,12 @@ class ProductTemplate(models.Model):
                             intrastat_type = "product"
                             break
             this.intrastat_type = intrastat_type
+
+    @api.depends("intrastat_type")
+    def _compute_is_accessory_cost(self):
+        for this in self:
+            if this.intrastat_type != "service":
+                this.is_accessory_cost = False
 
     @api.constrains("intrastat_type", "is_accessory_cost")
     def _check_accessory_cost(self):

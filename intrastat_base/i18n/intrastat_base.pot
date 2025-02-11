@@ -65,6 +65,12 @@ msgid "Intrastat Fiscal Position"
 msgstr ""
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_product_product__intrastat_type
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__intrastat_type
+msgid "Intrastat Type"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
 msgid "Is Accessory Cost"
@@ -102,7 +108,13 @@ msgstr ""
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
+#: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__product
 msgid "Product"
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__service
+msgid "Service"
 msgstr ""
 
 #. module: intrastat_base
@@ -130,9 +142,15 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_base/models/product_template.py:0
 msgid ""
-"The option 'Is accessory cost?' should only be activated on 'Service' "
-"products. You have activated this option for the product '%(product_name)s' "
-"which is configured with type '%(product_type)s'."
+"The option 'Is accessory cost?' can only be activated on 'Service' products."
+" You have activated this option for the product '%(product_name)s' which is "
+"not a service product."
+msgstr ""
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_product_product__intrastat_type
+#: model:ir.model.fields,help:intrastat_base.field_product_template__intrastat_type
+msgid "Type of product used for the intrastat declarations."
 msgstr ""
 
 #. module: intrastat_base

@@ -71,6 +71,12 @@ msgid "Intrastat Fiscal Position"
 msgstr "Posición fiscal Intrastat"
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_product_product__intrastat_type
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__intrastat_type
+msgid "Intrastat Type"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
 msgid "Is Accessory Cost"
@@ -110,8 +116,14 @@ msgstr "No"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
+#: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__product
 msgid "Product"
 msgstr "Producto"
+
+#. module: intrastat_base
+#: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__service
+msgid "Service"
+msgstr ""
 
 #. module: intrastat_base
 #: model:product.template,name:intrastat_base.shipping_costs_exclude_product_template
@@ -142,13 +154,16 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_base/models/product_template.py:0
 msgid ""
-"The option 'Is accessory cost?' should only be activated on 'Service' "
-"products. You have activated this option for the product '%(product_name)s' "
-"which is configured with type '%(product_type)s'."
+"The option 'Is accessory cost?' can only be activated on 'Service' products. "
+"You have activated this option for the product '%(product_name)s' which is "
+"not a service product."
 msgstr ""
-"La opción '¿El costo del accesorio?' solo debe activarse en productos de "
-"'Servicio'. Ha activado esta opción para el producto '%(product_name)s' que "
-"está configurado con el tipo '%(product_type)s'."
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_product_product__intrastat_type
+#: model:ir.model.fields,help:intrastat_base.field_product_template__intrastat_type
+msgid "Type of product used for the intrastat declarations."
+msgstr ""
 
 #. module: intrastat_base
 #. odoo-python
@@ -172,6 +187,15 @@ msgid ""
 msgstr ""
 "Cuando se configura en B2B o B2C, las facturas con esta posición fiscal se "
 "tendrán en cuenta para la generación de los informes intrastat."
+
+#~ msgid ""
+#~ "The option 'Is accessory cost?' should only be activated on 'Service' "
+#~ "products. You have activated this option for the product "
+#~ "'%(product_name)s' which is configured with type '%(product_type)s'."
+#~ msgstr ""
+#~ "La opción '¿El costo del accesorio?' solo debe activarse en productos de "
+#~ "'Servicio'. Ha activado esta opción para el producto '%(product_name)s' "
+#~ "que está configurado con el tipo '%(product_type)s'."
 
 #~ msgid "Template for Fiscal Position"
 #~ msgstr "Plantilla de Posición Fiscal"

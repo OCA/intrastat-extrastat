@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-04 11:38+0000\n"
+"PO-Revision-Date: 2025-02-12 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
@@ -74,7 +74,7 @@ msgstr "Posizione fiscale Intrastat"
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__intrastat_type
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__intrastat_type
 msgid "Intrastat Type"
-msgstr ""
+msgstr "Tipologia Intrastat"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
@@ -123,7 +123,7 @@ msgstr "Prodotto"
 #. module: intrastat_base
 #: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__service
 msgid "Service"
-msgstr ""
+msgstr "Servizio"
 
 #. module: intrastat_base
 #: model:product.template,name:intrastat_base.shipping_costs_exclude_product_template
@@ -158,12 +158,15 @@ msgid ""
 "You have activated this option for the product '%(product_name)s' which is "
 "not a service product."
 msgstr ""
+"L'opzione 'È un costo accessorio?' può essere attivata solo sui prodotti "
+"'Servizio'. Hai attivato questa opzione per il prodotto '%(product_name)s' "
+"che non è un prodotto di servizio."
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__intrastat_type
 #: model:ir.model.fields,help:intrastat_base.field_product_template__intrastat_type
 msgid "Type of product used for the intrastat declarations."
-msgstr ""
+msgstr "Tipologia di prodotto utilizzata per le dichiarazioni Intrastat."
 
 #. module: intrastat_base
 #. odoo-python

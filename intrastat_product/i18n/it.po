@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-26 20:06+0000\n"
+"PO-Revision-Date: 2025-05-29 16:26+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: intrastat_product
 #. odoo-python
@@ -255,7 +255,7 @@ msgstr "In archivio"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Are you sure you want to go back to draft?"
-msgstr "Si è sicuri di voler tornare a bozza?"
+msgstr "Si è sicuri di voler reimpostare a bozza?"
 
 #. module: intrastat_product
 #. odoo-python
@@ -284,7 +284,7 @@ msgstr "B2B vendite/acquisti (inc. vendite a distanza)"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "Back to Draft"
-msgstr "Ritorna a bozza"
+msgstr "Reimposta a bozza"
 
 #. module: intrastat_product
 #. odoo-python
@@ -678,7 +678,7 @@ msgstr "Codici S.A."
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.report_invoice_document_intrastat_product
 msgid "HS Code"
-msgstr "Codice HS"
+msgstr "Codice S.A."
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__has_message
@@ -1038,7 +1038,7 @@ msgstr "Mese"
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_31
 msgid ""
 "Movements to/from a warehouse (excluding call-off and consignment stock)"
-msgstr "Movimenti a/da un magazzino (escluso call-off e consignment stock)"
+msgstr "Movimenti a/da un magazzino (escluso a chiamata e conto deposito)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__my_activity_date_deadline
@@ -1345,7 +1345,7 @@ msgstr "Trasporto su strada"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Errore consegna SMS"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
@@ -1445,8 +1445,8 @@ msgid ""
 "Supply for sale on approval or after trial (including call-off and "
 "consignment stock)"
 msgstr ""
-"Fornitura per la vendita previa approvazione o dopo la prova (inclusi call-"
-"off e conto deposito)"
+"Fornitura per la vendita previa approvazione o dopo la prova (inclusi a "
+"chiamata e conto deposito)"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__company_country_code

@@ -3,9 +3,12 @@
 import xlrd
 from werkzeug.urls import url_encode
 
+from odoo.tests import tagged
+
 from odoo.addons.intrastat_base.tests.common import IntrastatCommon
 
 
+@tagged("post_install", "-at_install")
 class IntrastatProductCommon(IntrastatCommon):
     @classmethod
     def _init_products(cls):
@@ -72,6 +75,15 @@ class IntrastatProductCommon(IntrastatCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
         cls.region_obj = cls.env["intrastat.region"]
         cls.transaction_obj = cls.env["intrastat.transaction"]
         cls.transport_mode_obj = cls.env["intrastat.transport_mode"]

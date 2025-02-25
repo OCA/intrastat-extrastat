@@ -16,6 +16,7 @@
         >
                 <t t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode">
                     <th>HS Code</th>
+                    <th>Country</th>
                 </t>
         </xpath>
         <xpath expr="//span[@t-field='line.quantity']/parent::td" position="before">
@@ -26,6 +27,11 @@
                 <td>
                     <span
                         t-esc="line.product_id.hs_code_id and line.product_id.hs_code_id.local_code or '' "
+                    />
+                </td>
+                <td>
+                    <span
+                        t-esc="line.product_id.origin_country_id and line.product_id.origin_country_id.name or '' "
                     />
                 </td>
             </t>

@@ -352,9 +352,9 @@ msgstr ""
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
 msgid ""
-"Conversion from unit of measure <em>%(source_uom)s</em> to <em>"
-"%(target_uom)s</em>, which is configured on the intrastat supplementary unit "
-"<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
+"Conversion from unit of measure <em>%(source_uom)s</em> to "
+"<em>%(target_uom)s</em>, which is configured on the intrastat supplementary "
+"unit <i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
 
@@ -768,9 +768,11 @@ msgid "Intrastat Product Computation Lines"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.actions.act_window,name:intrastat_product.intrastat_product_intrastat_product_declaration_action
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
+#: model:ir.ui.menu,name:intrastat_product.intrastat_product_intrastat_product_declaration_menu
 msgid "Intrastat Product Declaration"
 msgstr ""
 
@@ -1701,8 +1703,8 @@ msgid ""
 "VAT number is <em>%(vat)s</em>. If this partner is from Northern Ireland, "
 "his VAT number should be updated to his new VAT number starting with <em>XI</"
 "em> following Brexit. If this partner is from Great Britain, maybe the "
-"fiscal position was wrong on the invoice (the fiscal position was <i>"
-"%(fiscal_position)s</i>)."
+"fiscal position was wrong on the invoice (the fiscal position was "
+"<i>%(fiscal_position)s</i>)."
 msgstr ""
 
 #. module: intrastat_product

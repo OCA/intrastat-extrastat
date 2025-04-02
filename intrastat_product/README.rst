@@ -149,6 +149,7 @@ Contributors
 
     * João Marques
     * Víctor Martínez
+    * Juan Carlos Oñate
 
 Maintainers
 ~~~~~~~~~~~

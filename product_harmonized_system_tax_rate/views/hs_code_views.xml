@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hs_code_view_form" model="ir.ui.view">
+        <field name="name">hs.code.form</field>
+        <field name="model">hs.code</field>
+        <field name="inherit_id" ref="product_harmonized_system.hs_code_view_form" />
+        <field name="arch" type="xml">
+            <group name="main" position="after">
+                <label for="tax_rate_ids" />
+                <field name="tax_rate_ids">
+                    <list editable="bottom">
+                        <field name="origin_country_id" />
+                        <field name="tax_rate" />
+                    </list>
+                </field>
+            </group>
+        </field>
+    </record>
+</odoo>

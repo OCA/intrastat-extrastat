@@ -13,7 +13,7 @@
             <search>
                 <field
                     name="local_code"
-                    filter_domain="['|', ('local_code', 'like', self), ('description', 'ilike', self)]"
+                    filter_domain="['|', '|', ('local_code', 'like', self), ('description', 'ilike', self), ('long_description', 'ilike', self)]"
                 />
                 <filter
                     string="Archived"
@@ -32,6 +32,7 @@
                 <field name="hs_code" />
                 <field name="local_code" />
                 <field name="description" optional="show" />
+                <field name="long_description" optional="hide" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -99,6 +100,7 @@
                         <field name="local_code" />
                         <field name="hs_code" />
                         <field name="description" />
+                        <field name="long_description" />
                         <field name="company_id" groups="base.group_multi_company" />
                     </group>
                 </sheet>

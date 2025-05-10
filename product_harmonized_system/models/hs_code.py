@@ -27,6 +27,13 @@ class HSCode(models.Model):
     description = fields.Char(
         translate=True, help="Short text description of the H.S. category"
     )
+    long_description = fields.Text(
+        string="Alt. Description",
+        translate=True,
+        help="Alternative text description of the H.S. category. "
+        "This can be, for example, the official description of this category "
+        "as defined in the Harmonized System nomenclature.",
+    )
     local_code = fields.Char(
         required=True,
         help="Code used for the national Import/Export declaration. "

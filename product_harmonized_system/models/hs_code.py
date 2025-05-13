@@ -25,13 +25,13 @@ class HSCode(models.Model):
         "http://www.wcoomd.org",
     )
     description = fields.Char(
-        translate=True, help="Short text description of the H.S. category"
+        translate=True, help="Short text description of the H.S. Code"
     )
     long_description = fields.Text(
         string="Alt. Description",
         translate=True,
-        help="Alternative text description of the H.S. category. "
-        "This can be, for example, the official description of this category "
+        help="Alternative text description of the H.S. Code. "
+        "This can be, for example, the official description of this code "
         "as defined in the Harmonized System nomenclature.",
     )
     local_code = fields.Char(

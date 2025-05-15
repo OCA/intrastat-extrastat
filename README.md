@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [product_harmonized_system](product_harmonized_system/) | 18.0.1.1.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) [![luc-demeyer](https://github.com/luc-demeyer.png?size=30px)](https://github.com/luc-demeyer) | Base module for Product Import/Export reports
 [product_harmonized_system_delivery](product_harmonized_system_delivery/) | 18.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) [![luc-demeyer](https://github.com/luc-demeyer.png?size=30px)](https://github.com/luc-demeyer) | Hide native hs_code field provided by the delivery module
 [product_harmonized_system_stock](product_harmonized_system_stock/) | 18.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) [![luc-demeyer](https://github.com/luc-demeyer.png?size=30px)](https://github.com/luc-demeyer) | Adds a menu entry for H.S. codes
+[product_harmonized_system_tax_rate](product_harmonized_system_tax_rate/) | 18.0.1.0.0 | [![nayatec](https://github.com/nayatec.png?size=30px)](https://github.com/nayatec) [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) | Add a notion of tax rate linked to an H.S. Code and Country.
 
 [//]: # (end addons)
 

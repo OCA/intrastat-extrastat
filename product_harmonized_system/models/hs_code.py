@@ -28,9 +28,9 @@ class HSCode(models.Model):
         translate=True, help="Short text description of the H.S. Code"
     )
     long_description = fields.Text(
-        string="Alt. Description",
+        string="Detailed Description",
         translate=True,
-        help="Alternative text description of the H.S. Code. "
+        help="Detailed text description of the H.S. Code. "
         "This can be, for example, the official description of this code "
         "as defined in the Harmonized System nomenclature.",
     )

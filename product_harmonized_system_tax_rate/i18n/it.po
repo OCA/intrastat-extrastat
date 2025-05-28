@@ -6,50 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-05-28 09:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__origin_country_id
 msgid "Country of Origin"
-msgstr ""
+msgstr "Paese di origine"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
-msgstr ""
+msgstr "Paese di origine del prodotto es: prodotto 'made in _____'."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model,name:product_harmonized_system_tax_rate.model_hs_code
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "H.S. Code"
-msgstr ""
+msgstr "Codice S.A."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.actions.act_window,name:product_harmonized_system_tax_rate.action_hs_code_tax_rate
@@ -59,18 +61,18 @@ msgstr ""
 #: model:ir.ui.menu,name:product_harmonized_system_tax_rate.hs_code_tax_rate_menu
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.view_hs_code_tax_rate_form
 msgid "H.S. Code Tax Rate"
-msgstr ""
+msgstr "Aliquota imposta codice S.A."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate_id
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate_id
 msgid "H.S. Code Tax Rate Id"
-msgstr ""
+msgstr "ID aliquota imposta codice S.A."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.constraint,message:product_harmonized_system_tax_rate.constraint_hs_code_tax_rate_hs_code_origin_country_uniq
 msgid "H.S. Code/Country of Origin must be unique"
-msgstr ""
+msgstr "Il codice S.A. / paese d'origine deve essere univoco"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__hs_code_id
@@ -78,57 +80,59 @@ msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
 "Organisation, see http://www.wcoomd.org/."
 msgstr ""
+"Codice sistema armonizzato. La nomenclatura è disponibile dalla World "
+"Customs Organisation, vedere http://www.wcoomd.org/."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Origin Country"
-msgstr ""
+msgstr "Paese d'origine"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model,name:product_harmonized_system_tax_rate.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Search H.S. Code Tax Rates"
-msgstr ""
+msgstr "Cerca aliquota imposta codice S.A"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate
 msgid "Tax Rate %"
-msgstr ""
+msgstr "% aliquota imposta"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code__tax_rate_ids
 msgid "Tax Rates"
-msgstr ""
+msgstr "Aliquote imposta"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate
 msgid "Tax rate percentage for this H.S. Code / Country of Origin."
-msgstr ""
+msgstr "Percentuale aliquota imposta per questo codice S.A. / paese d'origine."
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.view_hs_code_tax_rate_list
 msgid "hs.code.tax.rate"
-msgstr ""
+msgstr "hs.code.tax.rate"

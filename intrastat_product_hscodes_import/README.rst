@@ -42,23 +42,20 @@ and German.
 Usage
 =====
 
-When you install this module, an installer wizard will appear on the
-screen and you will be able to load the datas.
+The wizard to load the data can be found in the *Intrastat* section on
+the *Invoicing* configuration page as Load Intrastat Codes.
 
-In this installer wizard, you can decide to import datas for a single
-company or for all the companies.
+Known issues / Roadmap
+======================
 
-If you skipped the installer wizard, you can relaunch it and for that,
-you need to:
+We should seek a unified system, ideally an API, to download the codes
+directly without manual file downloads.
 
-1. Go to Settings > Technical > Actions > Configuration Wizards
-2. You need to set the action "Load Intrastat Codes" as Todo
-3. You need to launch the action "Load Intrastat Codes"
-4. Execute the installer wizard
+There is unification at the European level here:
+https://circabc.europa.eu/ui/group/0e5f18c2-4b2f-42e9-aed4-dfe50ae1263b/library/6e7dc94f-70e4-44ed-9560-b9794979cb87?p=1&n=10&sort=modified_DESC
 
-|image1|
-
-.. |image1| image:: https://raw.githubusercontent.com/OCA/intrastat-extrastat/18.0/intrastat_product_hscodes_import/static/description/installer_todo_example.png
+In the future, the process should be automated to update files without
+manual intervention in the module.
 
 Bug Tracker
 ===========
@@ -85,6 +82,14 @@ Contributors
 
   - Jérémy Didderen
   - Luc De Meyer
+
+- Tecnativa <`www.tecnativa.com\\> <http://www.tecnativa.com\>>`__
+
+  - Juan Carlos Oñate
+
+- ForgeFlow <`www.forgeflow.com\\> <http://www.forgeflow.com\>>`__
+
+  - Jordi Masvidal
 
 Maintainers
 -----------

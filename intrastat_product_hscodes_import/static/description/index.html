@@ -378,33 +378,32 @@ and German.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>When you install this module, an installer wizard will appear on the
-screen and you will be able to load the datas.</p>
-<p>In this installer wizard, you can decide to import datas for a single
-company or for all the companies.</p>
-<p>If you skipped the installer wizard, you can relaunch it and for that,
-you need to:</p>
-<ol class="arabic simple">
-<li>Go to Settings &gt; Technical &gt; Actions &gt; Configuration Wizards</li>
-<li>You need to set the action “Load Intrastat Codes” as Todo</li>
-<li>You need to launch the action “Load Intrastat Codes”</li>
-<li>Execute the installer wizard</li>
-</ol>
-<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/intrastat-extrastat/18.0/intrastat_product_hscodes_import/static/description/installer_todo_example.png" /></p>
+<p>The wizard to load the data can be found in the <em>Intrastat</em> section on
+the <em>Invoicing</em> configuration page as Load Intrastat Codes.</p>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
+<p>We should seek a unified system, ideally an API, to download the codes
+directly without manual file downloads.</p>
+<p>There is unification at the European level here:
+<a class="reference external" href="https://circabc.europa.eu/ui/group/0e5f18c2-4b2f-42e9-aed4-dfe50ae1263b/library/6e7dc94f-70e4-44ed-9560-b9794979cb87?p=1&amp;n=10&amp;sort=modified_DESC">https://circabc.europa.eu/ui/group/0e5f18c2-4b2f-42e9-aed4-dfe50ae1263b/library/6e7dc94f-70e4-44ed-9560-b9794979cb87?p=1&amp;n=10&amp;sort=modified_DESC</a></p>
+<p>In the future, the process should be automated to update files without
+manual intervention in the module.</p>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/intrastat-extrastat/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -412,25 +411,33 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-3">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Authors</a></h2>
 <ul class="simple">
 <li>Noviat</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-5">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
 <ul class="simple">
 <li>Noviat &lt;<a class="reference external" href="http://www.noviat.com&gt;">www.noviat.com\&gt;</a><ul>
 <li>Jérémy Didderen</li>
 <li>Luc De Meyer</li>
 </ul>
 </li>
+<li>Tecnativa &lt;<a class="reference external" href="http://www.tecnativa.com&gt;">www.tecnativa.com\&gt;</a><ul>
+<li>Juan Carlos Oñate</li>
+</ul>
+</li>
+<li>ForgeFlow &lt;<a class="reference external" href="http://www.forgeflow.com&gt;">www.forgeflow.com\&gt;</a><ul>
+<li>Jordi Masvidal</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

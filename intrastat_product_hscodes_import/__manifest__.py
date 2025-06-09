@@ -16,5 +16,6 @@
         "security/ir.model.access.csv",
         "wizards/intrastat_hscodes_import_installer_views.xml",
     ],
+    "external_dependencies": {"python": ["openpyxl"]},
     "installable": True,
 }

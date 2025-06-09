@@ -6,15 +6,8 @@
         <field name="arch" type="xml">
             <form string="Load Intrastat Codes">
                 <separator string="Load Intrastat Codes" colspan="4" />
-                <group position="inside">
-                    <field name="share_codes" />
-                    <field
-                        name="company_id"
-                        options="{'no_create': True, 'no_open': True}"
-                        domain="[('id', 'in', allowed_company_ids)]"
-                        required="not share_codes"
-                        invisible="share_codes"
-                    />
+                <group>
+                    <field name="language_id" />
                 </group>
                 <footer>
                     <button

@@ -41,11 +41,6 @@ class HSCode(models.Model):
         "has a few additional digits to extend the H.S. code.",
     )
     active = fields.Boolean(default=True)
-    company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        default=lambda self: self._default_company_id(),
-    )
     product_categ_ids = fields.One2many(
         comodel_name="product.category",
         inverse_name="hs_code_id",
@@ -60,10 +55,6 @@ class HSCode(models.Model):
     )
     product_categ_count = fields.Integer(compute="_compute_product_categ_count")
     product_tmpl_count = fields.Integer(compute="_compute_product_tmpl_count")
-
-    @api.model
-    def _default_company_id(self):
-        return False
 
     @api.depends("local_code")
     def _compute_hs_code(self):
@@ -96,14 +87,6 @@ class HSCode(models.Model):
                 name += " " + this.description
             name = shorten(name, 55)
             this.display_name = name
-
-    _sql_constraints = [
-        (
-            "local_code_company_uniq",
-            "unique(local_code, company_id)",
-            "This code already exists for this company !",
-        )
-    ]
 
     @api.model_create_multi
     def create(self, vals_list):

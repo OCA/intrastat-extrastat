@@ -10,7 +10,7 @@
 
 {
     "name": "Product Harmonized System Codes",
-    "version": "18.0.1.2.0",
+    "version": "18.0.2.0.0",
     "category": "Reporting",
     "license": "AGPL-3",
     "summary": "Base module for Product Import/Export reports",
@@ -20,7 +20,6 @@
     "depends": ["product"],
     "excludes": ["account_intrastat"],
     "data": [
-        "security/product_hs_security.xml",
         "security/ir.model.access.csv",
         "views/hs_code.xml",
         "views/product_category.xml",

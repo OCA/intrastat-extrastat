@@ -36,25 +36,14 @@ class HSCode(models.Model):
 
     def filter_per_country(self):
         country_id = self.env.context.get("hs_code_for_country", False)
-        active_companies = self.env.context.get("allowed_company_ids")
-        company_ids = [active_companies[0]] if active_companies else []
-        company_ids += [False]
         if country_id:
             self._compute_related_hs_code()
             res = self.related_hs_code_ids.filtered(
                 lambda hs: (not hs.country_id or hs.country_id.id == country_id)
-                and (hs.company_id.id in company_ids)
             )
-            res = (
-                res.sorted()
-                .sorted(key="company_id", reverse=True)
-                .sorted(key="country_id", reverse=True)
-            )
+            res = res.sorted().sorted(key="country_id", reverse=True)
         else:
-            res = self.related_hs_code_ids.filtered(
-                lambda hs: (hs.company_id.id in company_ids)
-            )
-            res = res.sorted(key="company_id", reverse=True)
+            res = self.related_hs_code_ids
         if res:
             res = res[0]
         return res

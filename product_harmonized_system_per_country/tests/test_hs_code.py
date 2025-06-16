@@ -34,6 +34,36 @@ class TestHSCodes(IntrastatProductCommon, TransactionCase):
             self.hs_code_computer,
         )
         self.assertEqual(
+            self.product_c3po.with_context(hs_code_for_country=False).hs_code,
+            self.hs_code_computer,
+        )
+        self.assertEqual(
+            self.pdt_c3po.with_context(
+                hs_code_for_country=country_fr.id
+            ).get_hs_code_recursively(),
+            hs_code_7050,
+        )
+        self.assertEqual(
+            self.product_c3po.with_context(hs_code_for_country=country_fr.id).hs_code,
+            hs_code_7050,
+        )
+
+    def test_hs_code_double_product(self):
+        hs_code_7050 = self.env.ref("product_harmonized_system.84717050")
+        self.categ_robots.hs_code_id = hs_code_7050.id
+        self.assertEqual(
+            self.pdt_c3po.get_hs_code_recursively(),
+            self.hs_code_computer,
+        )
+        country_fr = self.env.ref("base.fr")
+        hs_code_7050.country_id = country_fr
+        hs_code_7050.parent_id = self.hs_code_computer
+        hs_code_7050.copy()
+        self.assertEqual(
+            self.hs_code_double.country_id,
+            country_fr,
+        )
+        self.assertEqual(
             self.pdt_c3po.with_context(
                 hs_code_for_country=country_fr.id
             ).get_hs_code_recursively(),

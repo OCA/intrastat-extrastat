@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
-msgid "Company"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
 msgid "Created by"
 msgstr ""
@@ -40,7 +35,12 @@ msgstr ""
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
-msgid "Intrastat HS Codes Import Installer"
+msgid "Intrastat Nomenclature Codes Import Installer"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__language_id
+msgid "Language"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import
@@ -73,19 +73,5 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
 #, python-format
-msgid ""
-"None of the languages active on your system are available in intrastat codes"
-" files [%s]"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,help:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
-msgid ""
-"Set this flag to share the Intrastat Codes between all Legal Entities "
-"defined in this Odoo Database.\n"
-msgstr ""
-
-#. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
-msgid "Share Codes"
+msgid "Unit not found: '%s'"
 msgstr ""

@@ -48,11 +48,6 @@ msgid ""
 msgstr ""
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
-msgid "Company"
-msgstr ""
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"
@@ -202,9 +197,4 @@ msgstr ""
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84717050
 msgid "Storage units"
-msgstr ""
-
-#. module: product_harmonized_system
-#: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
-msgid "This code already exists for this company !"
 msgstr ""

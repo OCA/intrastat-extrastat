@@ -56,6 +56,21 @@ If you skipped the installer wizard, you can relaunch it and for that, you need 
 
 .. figure:: https://raw.githubusercontent.com/OCA/intrastat-extrastat/16.0/intrastat_product_hscodes_import/static/description/installer_todo_example.png
 
+Known issues / Roadmap
+======================
+
+xlrd is fixed at version 1.2 in Odoo. In the future, in v18,
+we plan to switch from xlrd to openpyxl.
+
+Also, we should seek a unified system, ideally an API, to download the
+codes directly without manual file downloads.
+
+There is unification at the European level here:
+https://circabc.europa.eu/ui/group/0e5f18c2-4b2f-42e9-aed4-dfe50ae1263b/library/6e7dc94f-70e4-44ed-9560-b9794979cb87?p=1&n=10&sort=modified_DESC
+
+In the future, the process should be automated to update files without
+manual intervention in the module.
+
 Bug Tracker
 ===========
 
@@ -80,6 +95,8 @@ Contributors
 - Noviat <www.noviat.com>
   - Jérémy Didderen
   - Luc De Meyer
+- Tecnativa <www.tecnativa.com>:
+    - Juan Carlos Oñate
 
 Maintainers
 ~~~~~~~~~~~

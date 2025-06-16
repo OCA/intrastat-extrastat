@@ -54,11 +54,6 @@ msgstr ""
 "para extender el código H.S."
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
-msgid "Company"
-msgstr "Compañía"
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"
@@ -217,7 +212,8 @@ msgstr "Descripciones cortas de las categorías H.S."
 msgid "Storage units"
 msgstr "Unidades de almacenamiento"
 
-#. module: product_harmonized_system
-#: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
-msgid "This code already exists for this company !"
-msgstr "¡Este código ya existe para esta compañía !"
+#~ msgid "Company"
+#~ msgstr "Compañía"
+
+#~ msgid "This code already exists for this company !"
+#~ msgstr "¡Este código ya existe para esta compañía !"

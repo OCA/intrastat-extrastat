@@ -54,11 +54,6 @@ msgstr ""
 "sahiptir. kod."
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
-msgid "Company"
-msgstr "Şirket"
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"
@@ -119,8 +114,8 @@ msgstr ""
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__hs_code_id
 msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
-"Organisation, see http://www.wcoomd.org/. You can leave this field empty and"
-" configure the H.S. code on the product category."
+"Organisation, see http://www.wcoomd.org/. You can leave this field empty and "
+"configure the H.S. code on the product category."
 msgstr ""
 "Harmonize Sistem Kodu. İsimlendirme Dünya Gümrük Örgütü'nde mevcuttur, bkz. "
 "http://www.wcoomd.org/. Bu alanı boş bırakıp ürün kategorisindeki H.S. "
@@ -217,7 +212,8 @@ msgstr "H.S. kategorisinin kısa metin açıklaması"
 msgid "Storage units"
 msgstr "Depolama birimleri"
 
-#. module: product_harmonized_system
-#: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
-msgid "This code already exists for this company !"
-msgstr "Bu kod bu şirket için zaten mevcut !"
+#~ msgid "Company"
+#~ msgstr "Şirket"
+
+#~ msgid "This code already exists for this company !"
+#~ msgstr "Bu kod bu şirket için zaten mevcut !"

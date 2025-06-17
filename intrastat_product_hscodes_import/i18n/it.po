@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-26 11:35+0000\n"
+"PO-Revision-Date: 2025-06-17 09:26+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
@@ -39,12 +39,12 @@ msgstr "ID"
 #. module: intrastat_product_hscodes_import
 #: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
 msgid "Intrastat Nomenclature Codes Import Installer"
-msgstr ""
+msgstr "Installatore impostazione codici nomenclatura intrastat"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__language_id
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer____last_update
@@ -77,7 +77,7 @@ msgstr "Carica codici Intrastat"
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
 #, python-format
 msgid "Unit not found: '%s'"
-msgstr ""
+msgstr "Unità non trovata: '%s'"
 
 #~ msgid "Company"
 #~ msgstr "Azienda"

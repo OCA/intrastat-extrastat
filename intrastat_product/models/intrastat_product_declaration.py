@@ -8,7 +8,6 @@ from collections import defaultdict
 from datetime import date
 
 from dateutil.relativedelta import relativedelta
-from stdnum.vatin import is_valid
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
@@ -1164,9 +1163,18 @@ class IntrastatProductComputationLine(models.Model):
 
     @api.constrains("vat")
     def _check_vat(self):
+        partner_obj = self.env["res.partner"]
         for this in self:
-            if this.vat and not is_valid(this.vat):
-                raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)
+            if not this.vat:
+                continue
+            country = this.partner_id.commercial_partner_id.country_id
+            if not partner_obj._run_vat_test(this.vat, country):
+                msg = partner_obj._build_vat_error_message(
+                    country and country.code.lower() or None,
+                    this.vat,
+                    _("partner [%s]") % this.partner_id.name,
+                )
+                raise ValidationError(msg)
 
     @api.depends("partner_id")
     def _compute_vat(self):

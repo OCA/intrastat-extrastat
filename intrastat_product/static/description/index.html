@@ -375,8 +375,8 @@ reporting.</p>
 <p>It should be used in combination with country-specific Intrastat Product
 reporting modules such as:</p>
 <ul class="simple">
-<li><em>l10n_fr_intrastat_product</em>: the module for the <em>Déclaration d’Echange
-de Biens</em> (DEB) for France</li>
+<li><em>l10n_fr_intrastat_product</em>: the module for the <em>Déclaration
+d’Echange de Biens</em> (DEB) for France</li>
 <li><em>l10n_be_intrastat_product</em>: the module for the Intrastat Product
 Declaration for Belgium</li>
 </ul>
@@ -436,7 +436,7 @@ your country.</p>
 <li><p class="first">Declaration Object</p>
 <p>Create a new class as follows:</p>
 <pre class="code python literal-block">
-<span class="k">class</span> <span class="nc">L10nCcIntrastatProductDeclaration</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span><span class="w">
+<span class="k">class</span><span class="w"> </span><span class="nc">L10nCcIntrastatProductDeclaration</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span><span class="w">
 </span>    <span class="n">_name</span> <span class="o">=</span> <span class="s1">'l10n.cc.intrastat.product.declaration'</span><span class="w">
 </span>    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Intrastat Product Declaration for YourCountry&quot;</span><span class="w">
 </span>    <span class="n">_inherit</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'intrastat.product.declaration'</span><span class="p">,</span> <span class="s1">'mail.thread'</span><span class="p">]</span>
@@ -446,14 +446,14 @@ your country.</p>
 <li><p class="first">Computation &amp; Declaration Lines</p>
 <p>Create also new objects inheriting from the Computation and
 Declaration Line Objects so that you can add methods or customise the
-methods from the base modules (make a PR when the customization or new
-method is required for multiple countries).</p>
+methods from the base modules (make a PR when the customization or
+new method is required for multiple countries).</p>
 <p>Adapt also the parent_id fields of the newly created objects (cf.
 l10n_be_intrastat_product as example).</p>
 </li>
 <li><p class="first">XML Files: Menu, Action, Views</p>
-<p>Cf. l10n_be_istrastat_product as example, replace “be” by your Country
-Code.</p>
+<p>Cf. l10n_be_istrastat_product as example, replace “be” by your
+Country Code.</p>
 </li>
 </ul>
 <p><strong>Other functionality added by this module:</strong></p>
@@ -499,7 +499,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </li>
 <li><p class="first">Denis Roussel &lt;<a class="reference external" href="mailto:denis.roussel&#64;acsone.eu">denis.roussel&#64;acsone.eu</a>&gt;</p>
 </li>
-<li><p class="first">Tecnativa &lt;<a class="reference external" href="http://www.tecnativa.com&gt;">www.tecnativa.com\&gt;</a>:</p>
+<li><p class="first">Tecnativa &lt;<a class="reference external" href="http://www.tecnativa.com">www.tecnativa.com</a>&gt;:</p>
 <blockquote>
 <ul class="simple">
 <li>João Marques</li>

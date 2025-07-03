@@ -7,7 +7,7 @@
 
 {
     "name": "Intrastat Product",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Intrastat",
     "license": "AGPL-3",
     "summary": "Base module for Intrastat Product",
@@ -22,7 +22,6 @@
         "report_xlsx_helper",
     ],
     "excludes": ["account_intrastat"],
-    "external_dependencies": {"python": ["python-stdnum>=1.16"]},
     "data": [
         "security/intrastat_security.xml",
         "security/ir.model.access.csv",

@@ -720,7 +720,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -1343,11 +1342,6 @@ msgid "Road Transport"
 msgstr "Trasporto su strada"
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
 msgstr "Ordine di vendita"
@@ -1458,12 +1452,6 @@ msgid ""
 msgstr ""
 "Il codice ISO nazione in due caratteri. \n"
 "Si può utilizzare per ricerche rapide."
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-msgid "The VAT number '%s' is invalid."
-msgstr "La P.IVA '%s' non è valida."
 
 #. module: intrastat_product
 #. odoo-python
@@ -1804,3 +1792,15 @@ msgstr "kg"
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
 msgstr "object._get_xlsx_report_filename()"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "partner [%s]"
+msgstr ""
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
+
+#~ msgid "The VAT number '%s' is invalid."
+#~ msgstr "La P.IVA '%s' non è valida."

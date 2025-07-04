@@ -721,7 +721,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren de su atención."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, hay mensajes que tienen error de entrega."
 
@@ -1347,11 +1346,6 @@ msgid "Road Transport"
 msgstr "Transporte por carretera"
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de entrega de SMS"
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -1462,12 +1456,6 @@ msgid ""
 msgstr ""
 "Código ISO del país en dos caracteres.\n"
 "Puedes utilizar este campo para la búsqueda rápida."
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-msgid "The VAT number '%s' is invalid."
-msgstr "El NIF '%s' no es válido."
 
 #. module: intrastat_product
 #. odoo-python
@@ -1808,6 +1796,18 @@ msgstr ""
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
 msgstr "object._get_xlsx_report_filename()"
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "partner [%s]"
+msgstr ""
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega de SMS"
+
+#~ msgid "The VAT number '%s' is invalid."
+#~ msgstr "El NIF '%s' no es válido."
 
 #~ msgid "<span>Intrastat Product Declaration </span>"
 #~ msgstr "<span>Declaración de producto IntrastaT </span>"

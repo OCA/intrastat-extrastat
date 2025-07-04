@@ -1461,13 +1461,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 #, python-format
-msgid "The VAT number '%s' is invalid."
-msgstr ""
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-#, python-format
 msgid "The VAT number is not set for the partner '%s'."
 msgstr ""
 
@@ -1785,4 +1778,11 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "partner [%s]"
 msgstr ""

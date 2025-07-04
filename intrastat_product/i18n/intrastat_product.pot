@@ -683,7 +683,6 @@ msgstr ""
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_error
-#: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1299,11 +1298,6 @@ msgid "Road Transport"
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_sale_order
 msgid "Sales Order"
 msgstr ""
@@ -1401,12 +1395,6 @@ msgstr ""
 msgid ""
 "The ISO country code in two chars. \n"
 "You can use this field for quick search."
-msgstr ""
-
-#. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-msgid "The VAT number '%s' is invalid."
 msgstr ""
 
 #. module: intrastat_product
@@ -1715,4 +1703,10 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
 msgid "object._get_xlsx_report_filename()"
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "partner [%s]"
 msgstr ""

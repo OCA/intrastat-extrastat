@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="intrastat_hscodes_import_installer_view_form" model="ir.ui.view">
         <field name="name">intrastat.hscodes.import.installer.view</field>
         <field name="model">intrastat.hscodes.import.installer</field>
@@ -46,5 +45,4 @@
         <field name="action_id" ref="intrastat_hscodes_import_installer_action" />
         <field name="sequence">10</field>
     </record>
-
 </odoo>

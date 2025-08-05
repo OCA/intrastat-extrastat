@@ -12,7 +12,6 @@ from odoo.osv.expression import OR
 
 class IntrastatHSCodesImportInstaller(models.TransientModel):
     _name = "intrastat.hscodes.import.installer"
-    _inherit = "res.config.installer"
     _description = "Intrastat HS Codes Import Installer"
 
     share_codes = fields.Boolean(
@@ -54,8 +53,7 @@ class IntrastatHSCodesImportInstaller(models.TransientModel):
             hscodes_lookup[intrastat_code] = 1
         return hs_codes, hscodes_lookup
 
-    def execute(self):
-        res = super().execute()
+    def do_import(self):
         # get path for intrastat hs codes files
         module = __name__.split("addons.")[1].split(".")[0]
         module_path = ""

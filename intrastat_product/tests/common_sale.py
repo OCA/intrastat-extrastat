@@ -67,9 +67,9 @@ class IntrastatSaleCommon(IntrastatProductCommon):
 
     @classmethod
     def _create_sale_order(cls, partner, vals=None):
-        vals = {
-            "partner_id": partner.id,
-        }
+        if vals is None:
+            vals = {}
+        vals["partner_id"] = partner.id
         sale_new = cls.sale_obj.new(vals)
         sale_vals = sale_new._convert_to_write(sale_new._cache)
         cls.sale = cls.sale_obj.create(sale_vals)

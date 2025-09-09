@@ -9,3 +9,12 @@ from that sales order.
 
 It is recommended to set TRUE the "Show incoterms in orders and invoices" value at
 "Settings / Sales".
+
+Incoterm selection priority:
+
+When assigning the Incoterm to a sales order, the following priority is applied:
+
+1. First, the Incoterm set on the partner is used.
+2. If not defined, the Incoterm from the shipping method is used.
+3. If still not defined, the general settings Incoterm is used.
+4. If none of the above are set, the Incoterm field remains empty.

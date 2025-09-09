@@ -11,6 +11,7 @@
         "sale_stock",
         "delivery",
         "intrastat_product",
+        "sale_partner_incoterm",
     ],
     "data": ["views/delivery_carrier_view.xml"],
     "installable": True,

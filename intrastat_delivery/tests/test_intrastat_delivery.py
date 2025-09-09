@@ -24,6 +24,12 @@ class TestIntrastatDelivery(AccountTestInvoicingCommon):
         cls.incoterm = cls.env["account.incoterms"].create(
             {"name": "Incoterm", "code": "INC"}
         )
+        cls.incoterm_partner = cls.env["account.incoterms"].create(
+            {"name": "Partner INC", "code": "PIN"}
+        )
+        cls.incoterm_company = cls.env["account.incoterms"].create(
+            {"name": "Company INC", "code": "CIN"}
+        )
         cls.intrastat_transport_mode = cls.env["intrastat.transport_mode"].create(
             {"name": "Incoterm", "code": "INC", "description": "DESC"}
         )
@@ -40,11 +46,7 @@ class TestIntrastatDelivery(AccountTestInvoicingCommon):
             {
                 "partner_id": cls.partner_a.id,
                 "order_line": [
-                    Command.create(
-                        {
-                            "product_id": cls.product_1.id,
-                        }
-                    ),
+                    Command.create({"product_id": cls.product_1.id}),
                 ],
             }
         )
@@ -63,7 +65,7 @@ class TestIntrastatDelivery(AccountTestInvoicingCommon):
             self.order.intrastat_transport_id, self.env["intrastat.transport_mode"]
         )
         self.order.set_delivery_line(self.carrier, 0)
-        self.assertEqual(self.order.incoterm, self.env["account.incoterms"])
+        self.assertEqual(self.order.incoterm, self.incoterm)
         self.assertEqual(
             self.order.intrastat_transport_id, self.env["intrastat.transport_mode"]
         )
@@ -87,3 +89,45 @@ class TestIntrastatDelivery(AccountTestInvoicingCommon):
         invoice = self.order.invoice_ids[0]
         self.assertEqual(invoice.invoice_incoterm_id, self.incoterm)
         self.assertEqual(invoice.intrastat_transport_id, self.intrastat_transport_mode)
+
+    def test_02_priority_partner_over_carrier_and_company(self):
+        self.partner_a.sale_incoterm_id = self.incoterm_partner
+        self.env.company.incoterm_id = self.incoterm_company
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_a.id,
+                "carrier_id": self.carrier.id,
+                "order_line": [Command.create({"product_id": self.product_1.id})],
+            }
+        )
+        self.assertEqual(order.incoterm, self.incoterm_partner)
+        order.action_confirm()
+        self.assertEqual(order.incoterm, self.incoterm_partner)
+
+    def test_03_priority_carrier_when_no_partner(self):
+        self.partner_a.sale_incoterm_id = False
+        self.env.company.incoterm_id = self.incoterm_company
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_a.id,
+                "carrier_id": self.carrier.id,
+                "order_line": [Command.create({"product_id": self.product_1.id})],
+            }
+        )
+        self.assertEqual(order.incoterm, self.incoterm)
+        order.action_confirm()
+        self.assertEqual(order.incoterm, self.incoterm)
+        self.assertEqual(order.intrastat_transport_id, self.intrastat_transport_mode)
+
+    def test_04_priority_company_when_no_partner_nor_carrier(self):
+        self.partner_a.sale_incoterm_id = False
+        self.env.company.incoterm_id = self.incoterm_company
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_a.id,
+                "order_line": [Command.create({"product_id": self.product_1.id})],
+            }
+        )
+        self.assertEqual(order.incoterm, self.incoterm_company)
+        order.action_confirm()
+        self.assertEqual(order.incoterm, self.incoterm_company)

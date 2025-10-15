@@ -22,5 +22,5 @@ class ProductTemplate(models.Model):
     origin_country_id = fields.Many2one(
         comodel_name="res.country",
         string="Country of Origin",
-        help="Country of origin of the product i.e. product " "'made in ____'.",
+        help="Country of origin of the product i.e. product 'made in ____'.",
     )

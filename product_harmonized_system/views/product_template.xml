@@ -26,7 +26,7 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
-            <filter name="categ_id" position="after">
+            <xpath expr="//filter[@name='group_by_categ_id']" position="after">
                 <filter
                     string="H.S. Code"
                     name="hs_code_groupby"
@@ -37,7 +37,7 @@
                     name="origin_country_groupby"
                     context="{'group_by': 'origin_country_id'}"
                 />
-            </filter>
+            </xpath>
         </field>
     </record>
 </odoo>

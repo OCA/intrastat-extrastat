@@ -97,13 +97,10 @@ class HSCode(models.Model):
             name = shorten(name, 55)
             this.display_name = name
 
-    _sql_constraints = [
-        (
-            "local_code_company_uniq",
-            "unique(local_code, company_id)",
-            "This code already exists for this company !",
-        )
-    ]
+    _local_code_company_uniq = models.Constraint(
+        "unique(local_code, company_id)",
+        "This code already exists for this company !",
+    )
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -28,6 +28,7 @@ class AccountMove(models.Model):
         string="Origin/Destination Country",
         compute="_compute_src_dest_country_id",
         store=True,
+        readonly=False,
         help="Destination country for dispatches. Origin country for arrivals.",
     )
     src_dest_region_id = fields.Many2one(

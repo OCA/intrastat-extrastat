@@ -96,6 +96,31 @@ class TestIntrastatProduct(IntrastatProductCommon):
         declaration_line = declaration_line_form.save()
         self.assertEqual(declaration_line.src_dest_country_code, "FR")
 
+        # Test Greece country code conversion
+        computation_line_form = Form(
+            self.env["intrastat.product.computation.line"].with_context(
+                default_parent_id=self.declaration.id
+            )
+        )
+        computation_line_form.src_dest_country_id = self.env.ref("base.gr")
+        computation_line_form.transaction_id = self.transaction
+        computation_line_form.hs_code_id = self.hs_code_computer
+        computation_line_form.region_code = "ZZ"
+        computation_line_form.product_origin_country_code = "BE"
+        computation_line_form.transport_id = self.env.ref(
+            "intrastat_product.intrastat_transport_3"
+        )
+        computation_line = computation_line_form.save()
+        self.assertEqual(computation_line.src_dest_country_code, "EL")
+        declaration_line_form = Form(
+            self.env["intrastat.product.declaration.line"].with_context(
+                default_parent_id=self.declaration.id
+            )
+        )
+        declaration_line_form.src_dest_country_code = "EL"
+        declaration_line = declaration_line_form.save()
+        self.assertEqual(declaration_line.src_dest_country_code, "EL")
+
     def test_declaration_no_country(self):
         self.demo_company.country_id = False
         with self.assertRaises(ValidationError):

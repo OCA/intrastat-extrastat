@@ -786,9 +786,11 @@ msgid "Intrastat Product Computation Lines"
 msgstr "Líneas de cálculo de Intrastat"
 
 #. module: intrastat_product
+#: model:ir.actions.act_window,name:intrastat_product.intrastat_product_intrastat_product_declaration_action
 #: model:ir.model,name:intrastat_product.model_intrastat_product_declaration
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__parent_id
+#: model:ir.ui.menu,name:intrastat_product.intrastat_product_intrastat_product_declaration_menu
 msgid "Intrastat Product Declaration"
 msgstr "Declaración de producto Intrastat"
 

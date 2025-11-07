@@ -883,7 +883,6 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         self.xml_attachment_id and self.xml_attachment_id.unlink()
 
-    @api.model
     def _xls_computation_line_fields(self):
         """
         Update list in custom module to add/drop columns or change order
@@ -909,7 +908,6 @@ class IntrastatProductDeclaration(models.Model):
             "invoice",
         ]
 
-    @api.model
     def _xls_declaration_line_fields(self):
         """
         Update list in custom module to add/drop columns or change order

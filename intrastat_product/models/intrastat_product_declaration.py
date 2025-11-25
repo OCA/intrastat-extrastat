@@ -806,6 +806,7 @@ class IntrastatProductDeclaration(models.Model):
                 if (
                     not line_vals["amount_company_currency"]
                     and not line_vals["amount_accessory_cost_company_currency"]
+                    and not self.company_id.intrastat_include_zero_price_lines
                 ):
                     inv_line = self.env["account.move.line"].browse(
                         line_vals["invoice_line_id"]

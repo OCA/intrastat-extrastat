@@ -58,6 +58,19 @@
                         />
                             </div>
                         </div>
+                <div class="col-12 o_setting_box">
+                    <div class="o_setting_left_pane">
+                            <field name="intrastat_include_zero_price_lines" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                            <div class="row">
+                                <label
+                                for="intrastat_include_zero_price_lines"
+                                class="col-12"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         </field>
     </record>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2010-2024 Akretion (http://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <!-- Product category form view -->
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">hs_code.product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <group name="first" position="after">
+                <group name="hs_code">
+                    <group name="hs_code_l2" string="Import/Export Properties">
+                        <field name="hs_code_id" />
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

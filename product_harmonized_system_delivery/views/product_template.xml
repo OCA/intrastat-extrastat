@@ -11,6 +11,9 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock_delivery.product_template_hs_code" />
         <field name="arch" type="xml">
+            <xpath expr="//group[@name='traceability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
             <field name="hs_code" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>

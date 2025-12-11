@@ -635,8 +635,11 @@ class IntrastatProductDeclaration(models.Model):
         self._gather_invoices_init(notedict)
         domain = self._prepare_invoice_domain()
         order = "journal_id, name"
-        invoices = self.env["account.move"].search(domain, order=order)
-
+        invoices = (
+            self.env["account.move"]
+            .with_context(prefetch_fields=False)
+            .search(domain, order=order)
+        )
         for invoice in invoices:
             lines_current_invoice = []
             total_inv_accessory_costs_cc = 0.0  # in company currency

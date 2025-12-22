@@ -9,7 +9,7 @@ from traceback import format_exception
 
 from lxml import etree
 
-from odoo import _, api, fields, models, tools
+from odoo import api, fields, models, tools
 from odoo.exceptions import UserError, ValidationError
 
 logger = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ class ResCompany(models.Model):
             for user in this.intrastat_remind_user_ids:
                 if not user.email:
                     raise ValidationError(
-                        _("Missing e-mail address on user '%s'.") % (user.name)
+                        self.env._("Missing e-mail address on user '%s'.", user.name)
                     )
 
     @api.model
@@ -65,7 +65,7 @@ class ResCompany(models.Model):
             usererror = f"{e.__class__.__name__}\n\n{str(e)}"
             raise UserError(usererror) from e
         except Exception as e:
-            error = _("Unknown Error")
+            error = self.env._("Unknown Error")
             tb = "".join(format_exception(*exc_info()))
             error += f"\n{tb}"
             logger.warning(error)

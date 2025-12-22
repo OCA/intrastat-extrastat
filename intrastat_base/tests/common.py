@@ -13,4 +13,12 @@ class IntrastatCommon:
         cls.demo_user = cls.env.ref("base.user_demo")
         cls.demo_company = cls.env.ref("base.main_company")
 
-        cls.shipping_cost = cls.env.ref("intrastat_base.shipping_costs_exclude")
+        cls.shipping_cost = cls.env["product.product"].create(
+            {
+                "name": "Shipping costs TEST",
+                "default_code": "TEST_SHIP",
+                "type": "service",
+                "is_accessory_cost": True,
+                "categ_id": cls.env.ref("product.product_category_services"),
+            }
+        )

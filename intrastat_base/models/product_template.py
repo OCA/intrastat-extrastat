@@ -2,7 +2,7 @@
 # @author: <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -54,7 +54,7 @@ class ProductTemplate(models.Model):
         for this in self:
             if this.is_accessory_cost and this.intrastat_type != "service":
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The option 'Is accessory cost?' can only be "
                         "activated on 'Service' products. You have activated "
                         "this option for the product '%(product_name)s' which is "

@@ -1,4 +1,5 @@
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 from .common import IntrastatCommon
 
@@ -13,7 +14,7 @@ class TestIntrastatBase(IntrastatCommon):
     def test_company(self):
         # add 'Demo user' to intrastat_remind_user_ids
         self.demo_company.write(
-            {"intrastat_remind_user_ids": [(6, False, [self.demo_user.id])]}
+            {"intrastat_remind_user_ids": [Command.set([self.demo_user.id])]}
         )
         # then check if intrastat_email_list contains the email of the user
         self.assertEqual(self.demo_company.intrastat_email_list, self.demo_user.email)
@@ -22,7 +23,7 @@ class TestIntrastatBase(IntrastatCommon):
         self.demo_user.email = False
         with self.assertRaises(ValidationError):
             self.demo_company.write(
-                {"intrastat_remind_user_ids": [(6, False, [self.demo_user.id])]}
+                {"intrastat_remind_user_ids": [Command.set([self.demo_user.id])]}
             )
 
     def test_accessory(self):

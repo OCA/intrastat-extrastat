@@ -196,7 +196,7 @@ class AccountMoveIntrastatLine(models.Model):
     product_origin_country_id = fields.Many2one(
         comodel_name="res.country",
         string="Country of Origin of the Product",
-        help="Country of origin of the product i.e. product " "'made in ____'.",
+        help="Country of origin of the product i.e. product 'made in ____'.",
     )
 
     @api.onchange("invoice_line_id")

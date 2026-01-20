@@ -20,7 +20,14 @@ class TestIntrastatProduct(IntrastatProductCommon):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",
-                "hs_code_id": cls.env.ref("product_harmonized_system.84715000").id,
+                "hs_code_id": cls.env["hs.code"]
+                .create(
+                    {
+                        "description": "Test HS Code",
+                        "local_code": "84715000",
+                    }
+                )
+                .id,
                 "origin_country_id": cls.env.ref("base.de").id,
                 "weight": 1.25,
             }
@@ -82,9 +89,7 @@ class TestIntrastatProduct(IntrastatProductCommon):
         computation_line_form.hs_code_id = self.hs_code_computer
         computation_line_form.region_code = "ZZ"
         computation_line_form.product_origin_country_code = "BE"
-        computation_line_form.transport_id = self.env.ref(
-            "intrastat_product.intrastat_transport_3"
-        )
+        computation_line_form.transport_id = self.transport_road
         computation_line = computation_line_form.save()
         self.assertEqual(computation_line.src_dest_country_code, "FR")
         declaration_line_form = Form(
@@ -107,9 +112,7 @@ class TestIntrastatProduct(IntrastatProductCommon):
         computation_line_form.hs_code_id = self.hs_code_computer
         computation_line_form.region_code = "ZZ"
         computation_line_form.product_origin_country_code = "BE"
-        computation_line_form.transport_id = self.env.ref(
-            "intrastat_product.intrastat_transport_3"
-        )
+        computation_line_form.transport_id = self.transport_road
         computation_line = computation_line_form.save()
         self.assertEqual(computation_line.src_dest_country_code, "EL")
         declaration_line_form = Form(

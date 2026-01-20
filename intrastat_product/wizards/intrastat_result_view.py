@@ -10,5 +10,5 @@ class IntrastatResultView(models.TransientModel):
     _description = "Pop-up to show errors on intrastat report generation"
 
     note = fields.Html(
-        string="Notes", readonly=True, default=lambda self: self._context.get("note")
+        string="Notes", readonly=True, default=lambda self: self.env.context.get("note")
     )

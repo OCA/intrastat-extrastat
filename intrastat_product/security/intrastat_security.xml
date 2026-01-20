@@ -6,7 +6,6 @@
             <field
                 name="comment"
             >Allow to encode Intrastat Transaction Details on Invoices</field>
-            <field name="category_id" ref="base.module_category_hidden" />
         </record>
     </data>
     <data noupdate="1">

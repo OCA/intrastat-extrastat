@@ -10,9 +10,11 @@ class IntrastatTransportMode(models.Model):
     _name = "intrastat.transport_mode"
     _description = "Intrastat Transport Mode"
     _order = "code"
-    _sql_constraints = [
-        ("intrastat_transport_code_unique", "UNIQUE(code)", "Code must be unique.")
-    ]
+
+    _code_uniq = models.Constraint(
+        "UNIQUE(code)",
+        "Code must be unique.",
+    )
 
     code = fields.Char(required=True)
     name = fields.Char(required=True, translate=True)

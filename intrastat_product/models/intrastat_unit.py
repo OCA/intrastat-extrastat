@@ -21,10 +21,7 @@ class IntrastatUnit(models.Model):
     )
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        (
-            "name_uniq",
-            "unique(name)",
-            "An intrastat supplementary unit with the same name already exists!",
-        )
-    ]
+    _name_uniq = models.Constraint(
+        "unique(name)",
+        "An intrastat supplementary unit with the same name already exists!",
+    )

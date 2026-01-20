@@ -1,9 +1,14 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import xlrd
+import io
+import logging
+
+from openpyxl import load_workbook
 from werkzeug.urls import url_encode
 
 from odoo.addons.intrastat_base.tests.common import IntrastatCommon
+
+logger = logging.getLogger(__name__)
 
 
 class IntrastatProductCommon(IntrastatCommon):
@@ -18,7 +23,6 @@ class IntrastatProductCommon(IntrastatCommon):
 
         vals = {
             "name": "C3PO",
-            "type": "consu",
             "categ_id": cls.categ_robots.id,
             "origin_country_id": cls.env.ref("base.us").id,
             "weight": 300,
@@ -32,6 +36,9 @@ class IntrastatProductCommon(IntrastatCommon):
     def _init_company(cls):
         # Default transport for company is Road
         cls.demo_company.intrastat_transport_id = cls.transport_road
+        # Set company partner country and VAT
+        cls.demo_company.partner_id.country_id = cls.env.ref("base.be").id
+        cls.demo_company.partner_id.vat = "BE0477472701"
 
     @classmethod
     def _init_fiscal_position(cls):
@@ -76,19 +83,55 @@ class IntrastatProductCommon(IntrastatCommon):
         cls.transaction_obj = cls.env["intrastat.transaction"]
         cls.transport_mode_obj = cls.env["intrastat.transport_mode"]
         cls.partner_obj = cls.env["res.partner"]
-        cls.category_saleable = cls.env.ref("product.product_category_1")
         cls.category_obj = cls.env["product.category"]
+        cls.category_saleable = cls.category_obj.create(
+            {
+                "name": "Saleable",
+            }
+        )
         cls.product_template_obj = cls.env["product.template"]
         cls.declaration_obj = cls.env["intrastat.product.declaration"]
         cls.position_obj = cls.env["account.fiscal.position"]
-        cls.hs_code_computer = cls.env.ref("product_harmonized_system.84715000")
+        cls.hs_code_computer = cls.env["hs.code"].create(
+            {
+                "local_code": "84715000",
+                "description": "Computer",
+                "intrastat_unit_id": cls.env.ref(
+                    "intrastat_product.intrastat_unit_pce"
+                ).id,
+            }
+        )
+        logger.info(
+            "Intrastat test HS code setup: id=%s local_code=%s intrastat_unit=%s "
+            "intrastat_unit_uom=%s",
+            cls.hs_code_computer.id,
+            cls.hs_code_computer.local_code,
+            cls.hs_code_computer.intrastat_unit_id.display_name,
+            cls.hs_code_computer.intrastat_unit_id.uom_id.display_name,
+        )
         cls.report_obj = cls.env["ir.actions.report"]
         cls.xls_declaration = cls.env[
             "report.intrastat_product.product_declaration_xls"
         ]
 
-        cls.transport_rail = cls.env.ref("intrastat_product.intrastat_transport_2")
-        cls.transport_road = cls.env.ref("intrastat_product.intrastat_transport_3")
+        cls.transport_rail = cls.env.ref(
+            "intrastat_product.intrastat_transport_2", raise_if_not_found=False
+        ) or cls.env["intrastat.transport_mode"].create(
+            {
+                "code": "2",
+                "name": "Rail",
+                "description": "Railway transport",
+            }
+        )
+        cls.transport_road = cls.env.ref(
+            "intrastat_product.intrastat_transport_3", raise_if_not_found=False
+        ) or cls.env["intrastat.transport_mode"].create(
+            {
+                "code": "3",
+                "name": "Road",
+                "description": "Road Transport",
+            }
+        )
 
         cls._init_regions()
         cls._init_company()
@@ -136,18 +179,18 @@ class IntrastatProductCommon(IntrastatCommon):
         :param declaration: By default, check computation lines, either declaration ones
         :type declaration: bool, optional
         """
-        book = xlrd.open_workbook(file_contents=xls)
+        book = load_workbook(io.BytesIO(xls), data_only=True)
         # Get the template used to build the Excel file lines
         template = self.xls_declaration._get_template(self.declaration)
         # Get the declaration lines or the computation ones
         to_test = [
             (
-                book.sheet_by_index(0),
+                book.worksheets[0],
                 self.declaration.computation_line_ids,
                 self.declaration._xls_computation_line_fields(),
             ),
             (
-                book.sheet_by_index(1),
+                book.worksheets[1],
                 self.declaration.declaration_line_ids,
                 self.declaration._xls_declaration_line_fields(),
             ),
@@ -155,9 +198,8 @@ class IntrastatProductCommon(IntrastatCommon):
         # Iterate on each row beginning on third one (two headers)
         for sheet, lines, line_fields in to_test:
             i = 0
-            for rx in range(3, sheet.nrows):
+            for row in sheet.iter_rows(min_row=4, max_row=sheet.max_row):
                 line = lines[i]
-                row = sheet.row(rx)
                 j = 0
                 dict_compare = dict()
                 for line_field in line_fields:

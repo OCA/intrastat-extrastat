@@ -56,7 +56,7 @@
                     name="inactive"
                     domain="[('active', '=', False)]"
                 />
-                <group string="Group By" name="groupby">
+                <group>
                     <filter
                         name="company_groupby"
                         string="Company"

@@ -13,13 +13,11 @@ class IntrastatTransaction(models.Model):
     _description = "Intrastat Transaction"
     _rec_name = "code"
     _order = "code"
-    _sql_constraints = [
-        (
-            "intrastat_transaction_code_unique",
-            "UNIQUE(code, company_id)",
-            "Code must be unique.",
-        )
-    ]
+
+    _intrastat_transaction_code_unique = models.Constraint(
+        "UNIQUE(code, company_id)",
+        "Code must be unique.",
+    )
 
     code = fields.Char(required=True)
     description = fields.Text(translate=True)

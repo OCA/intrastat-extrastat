@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, models
+from odoo import models
 
 from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
     FORMATS,
@@ -29,14 +29,14 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
 
         template = {
             "product": {
-                "header": {"type": "string", "value": _("Product")},
+                "header": {"type": "string", "value": self.env._("Product")},
                 "line": {
                     "value": self._render("line.product_id and line.product_id.name")
                 },
                 "width": 36,
             },
             "product_origin_country_code": {
-                "header": {"type": "string", "value": _("Product C/O Code")},
+                "header": {"type": "string", "value": self.env._("Product C/O Code")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.product_origin_country_code or ''"),
@@ -44,7 +44,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 10,
             },
             "product_origin_country": {
-                "header": {"type": "string", "value": _("Product C/O")},
+                "header": {"type": "string", "value": self.env._("Product C/O")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.product_origin_country_id.name or ''"),
@@ -52,7 +52,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 28,
             },
             "hs_code": {
-                "header": {"type": "string", "value": _("Intrastat Code")},
+                "header": {"type": "string", "value": self.env._("Intrastat Code")},
                 "line": {
                     "type": "string",
                     "value": self._render("line.hs_code_id.local_code"),
@@ -62,7 +62,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "src_dest_country_code": {
                 "header": {
                     "type": "string",
-                    "value": _("Country Code of Origin/Destination"),
+                    "value": self.env._("Country Code of Origin/Destination"),
                 },
                 "line": {
                     "type": "string",
@@ -73,7 +73,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "src_dest_country": {
                 "header": {
                     "type": "string",
-                    "value": _("Country of Origin/Destination"),
+                    "value": self.env._("Country of Origin/Destination"),
                 },
                 "line": {
                     "type": "string",
@@ -84,7 +84,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "amount_company_currency": {
                 "header": {
                     "type": "string",
-                    "value": _("Fiscal Value"),
+                    "value": self.env._("Fiscal Value"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -97,7 +97,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "accessory_cost": {
                 "header": {
                     "type": "string",
-                    "value": _("Accessory Costs"),
+                    "value": self.env._("Accessory Costs"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -112,20 +112,23 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "transaction_code": {
                 "header": {
                     "type": "string",
-                    "value": _("Intrastat Transaction Code"),
+                    "value": self.env._("Intrastat Transaction Code"),
                 },
                 "line": {"value": self._render("line.transaction_id.code")},
                 "width": 10,
             },
             "transaction": {
-                "header": {"type": "string", "value": _("Intrastat Transaction")},
+                "header": {
+                    "type": "string",
+                    "value": self.env._("Intrastat Transaction"),
+                },
                 "line": {"value": self._render("line.transaction_id.display_name")},
                 "width": 36,
             },
             "weight": {
                 "header": {
                     "type": "string",
-                    "value": _("Weight"),
+                    "value": self.env._("Weight"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -138,7 +141,7 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             "suppl_unit_qty": {
                 "header": {
                     "type": "string",
-                    "value": _("Suppl. Unit Qty"),
+                    "value": self.env._("Suppl. Unit Qty"),
                     "format": FORMATS["format_theader_yellow_right"],
                 },
                 "line": {
@@ -151,47 +154,53 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
                 "width": 18,
             },
             "suppl_unit": {
-                "header": {"type": "string", "value": _("Suppl. Unit")},
+                "header": {"type": "string", "value": self.env._("Suppl. Unit")},
                 "line": {"value": self._render("line.intrastat_unit_id.name or ''")},
                 "width": 14,
             },
             "incoterm": {
-                "header": {"type": "string", "value": _("Incoterm")},
+                "header": {"type": "string", "value": self.env._("Incoterm")},
                 "line": {"value": self._render("line.incoterm_id.name or ''")},
                 "width": 14,
             },
             "transport_code": {
-                "header": {"type": "string", "value": _("Transport Mode Code")},
+                "header": {
+                    "type": "string",
+                    "value": self.env._("Transport Mode Code"),
+                },
                 "line": {"value": self._render("line.transport_id.code or ''")},
                 "width": 10,
             },
             "transport": {
-                "header": {"type": "string", "value": _("Transport Mode")},
+                "header": {"type": "string", "value": self.env._("Transport Mode")},
                 "line": {"value": self._render("line.transport_id.name or ''")},
                 "width": 14,
             },
             "region": {
-                "header": {"type": "string", "value": _("Intrastat Region")},
+                "header": {"type": "string", "value": self.env._("Intrastat Region")},
                 "line": {"value": self._render("line.region_id.name or ''")},
                 "width": 28,
             },
             "region_code": {
-                "header": {"type": "string", "value": _("Intrastat Region Code")},
+                "header": {
+                    "type": "string",
+                    "value": self.env._("Intrastat Region Code"),
+                },
                 "line": {"value": self._render("line.region_code or ''")},
                 "width": 10,
             },
             "vat": {
-                "header": {"type": "string", "value": _("VAT")},
+                "header": {"type": "string", "value": self.env._("VAT")},
                 "line": {"value": self._render("line.vat or ''")},
                 "width": 20,
             },
             "partner_id": {
-                "header": {"type": "string", "value": _("Partner")},
+                "header": {"type": "string", "value": self.env._("Partner")},
                 "line": {"value": self._render("line.partner_id.display_name or ''")},
                 "width": 28,
             },
             "invoice": {
-                "header": {"type": "string", "value": _("Invoice")},
+                "header": {"type": "string", "value": self.env._("Invoice")},
                 "line": {"value": self._render("line.invoice_id.name")},
                 "width": 18,
             },
@@ -214,16 +223,16 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
             dname = " ".join([decl.year_month, type2label[decl.declaration_type]])
             res += [
                 {
-                    "ws_name": " ".join([dname, _("comput.")]),
+                    "ws_name": " ".join([dname, self.env._("comput.")]),
                     "generate_ws_method": "_intrastat_report_computation",
-                    "title": " : ".join([dname, _("Computation Lines")]),
+                    "title": " : ".join([dname, self.env._("Computation Lines")]),
                     "wanted_list": wanted_list_computation,
                     "col_specs": template,
                 },
                 {
-                    "ws_name": " ".join([dname, _("decl.")]),
+                    "ws_name": " ".join([dname, self.env._("decl.")]),
                     "generate_ws_method": "_intrastat_report_declaration",
-                    "title": " : ".join([dname, _("Declaration Lines")]),
+                    "title": " : ".join([dname, self.env._("Declaration Lines")]),
                     "wanted_list": wanted_list_declaration,
                     "col_specs": template,
                 },
@@ -235,11 +244,15 @@ class IntrastatProductDeclarationXlsx(models.AbstractModel):
 
     def _empty_report(self, ws, row_pos, ws_params, data, declaration, report):
         if report == "computation":
-            lines = _("Computation Lines")
+            lines = self.env._("Computation Lines")
         else:
-            lines = _("Declaration Lines")
+            lines = self.env._("Declaration Lines")
         no_entries = (
-            _("No") + " " + lines + " " + _("for period %s") % declaration.year_month
+            self.env._("No")
+            + " "
+            + lines
+            + " "
+            + self.env._("for period %s", declaration.year_month)
         )
         ws.write_string(row_pos, 0, no_entries, FORMATS["format_left_bold"])
 

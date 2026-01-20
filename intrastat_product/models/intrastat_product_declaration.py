@@ -9,7 +9,7 @@ from datetime import date
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import RedirectWarning, UserError, ValidationError
 from odoo.tools import float_is_zero
 
@@ -33,15 +33,13 @@ class IntrastatProductDeclaration(models.Model):
     _rec_name = "year_month"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "year_month desc, declaration_type, revision"
-    _sql_constraints = [
-        (
-            "date_uniq",
-            "unique(year_month, company_id, declaration_type, revision)",
-            "A declaration of the same type already exists for this month !"
-            "\nYou should update the existing declaration "
-            "or change the revision number of this one.",
-        )
-    ]
+
+    _date_uniq = models.Constraint(
+        "unique(year_month, company_id, declaration_type, revision)",
+        "A declaration of the same type already exists for this month !"
+        "\nYou should update the existing declaration "
+        "or change the revision number of this one.",
+    )
 
     @api.model
     def default_get(self, fields_list):
@@ -163,21 +161,24 @@ class IntrastatProductDeclaration(models.Model):
         arrivals = company.intrastat_arrivals
         dispatches = company.intrastat_dispatches
         if arrivals != "exempt":
-            res.append(("arrivals", _("Arrivals")))
+            res.append(("arrivals", self.env._("Arrivals")))
         if dispatches != "exempt":
-            res.append(("dispatches", _("Dispatches")))
+            res.append(("dispatches", self.env._("Dispatches")))
         return res
 
     @api.model
     def _get_reporting_level(self):
-        return [("standard", _("Standard")), ("extended", _("Extended"))]
+        return [
+            ("standard", self.env._("Standard")),
+            ("extended", self.env._("Extended")),
+        ]
 
     @api.model
     def _get_action(self):
         return [
-            ("replace", _("Replace")),
-            ("append", _("Append")),
-            ("nihil", _("Nihil")),
+            ("replace", self.env._("Replace")),
+            ("append", self.env._("Append")),
+            ("nihil", self.env._("Nihil")),
         ]
 
     @api.depends("year", "month")
@@ -230,8 +231,10 @@ class IntrastatProductDeclaration(models.Model):
         for this in self:
             if not this.company_id.country_id:
                 raise ValidationError(
-                    _("You must set the country on company '%s'.")
-                    % this.company_id.display_name
+                    self.env._(
+                        "You must set the country on company '%s'.",
+                        this.company_id.display_name,
+                    )
                 )
 
     @api.depends("declaration_line_ids.amount_company_currency")
@@ -253,7 +256,7 @@ class IntrastatProductDeclaration(models.Model):
     def _check_year(self):
         for this in self:
             if len(this.year) != 4 or this.year[0] != "2":
-                raise ValidationError(_("Invalid Year!"))
+                raise ValidationError(self.env._("Invalid Year!"))
 
     @api.depends("declaration_type", "company_id")
     def _compute_reporting_level(self):
@@ -281,7 +284,7 @@ class IntrastatProductDeclaration(models.Model):
             ]
         )
         for rec in self:
-            name = _(
+            name = self.env._(
                 "Intrastat Product Declaration %(declaration_type)s %(year_month)s",
                 year_month=rec.year_month,
                 declaration_type=type2label.get(rec.declaration_type),
@@ -297,7 +300,7 @@ class IntrastatProductDeclaration(models.Model):
     def _account_config_warning(self, msg):
         action = self.env.ref("account.action_account_config")
         raise RedirectWarning(
-            msg, action.id, _("Go to Accounting Configuration Settings screen")
+            msg, action.id, self.env._("Go to Accounting Configuration Settings screen")
         )
 
     def _attach_xml_file(self, xml_bytes, declaration_name):
@@ -318,9 +321,11 @@ class IntrastatProductDeclaration(models.Model):
     def unlink(self):
         for this in self:
             if this.state == "done":
-                raise UserError(
-                    _("Cannot delete the declaration %s because it is in Done state.")
-                    % this.display_name
+                raise UserError(  # pylint: disable=no-raise-unlink
+                    self.env._(
+                        "Cannot delete the declaration %s because it is in Done state.",
+                        this.display_name,
+                    )
                 )
         return super().unlink()
 
@@ -334,18 +339,16 @@ class IntrastatProductDeclaration(models.Model):
                 error_partner = inv.partner_id
             else:
                 error_partner = inv.company_id.partner_id
-            msg = _("Missing <em>Country</em>")
+            msg = self.env._("Missing <em>Country</em>")
             notedict["partner"][error_partner.display_name][msg].add(
                 notedict["inv_origin"]
             )
         else:
             if country not in eu_countries and country.code != "GB":
-                msg = (
-                    _(
-                        "The source/destination country "
-                        "is <em>%s</em> which is not part of the European Union"
-                    )
-                    % country.name
+                msg = self.env._(
+                    "The source/destination country is <em>%s</em> which is not "
+                    "part of the European Union",
+                    country.name,
                 )
                 notedict["invoice"][notedict["inv_origin"]].add(msg)
         return country
@@ -368,47 +371,46 @@ class IntrastatProductDeclaration(models.Model):
         product = inv_line.product_id
         intrastat_unit_id = hs_code.intrastat_unit_id
         source_uom = inv_line.product_uom_id
-        weight_uom_categ = self.env.ref("uom.product_uom_categ_kgm")
         kg_uom = self.env.ref("uom.product_uom_kgm")
         self.env["decimal.precision"].precision_get("Stock Weight")
         weight = suppl_unit_qty = 0.0
 
         if not source_uom:
-            msg = _("Missing unit of measure")
+            msg = self.env._("Missing unit of measure")
             notedict["invoice"][notedict["invline_origin"]].add(msg)
             return weight, suppl_unit_qty
 
         if intrastat_unit_id:
             target_uom = intrastat_unit_id.uom_id
             if not target_uom:
-                msg = _("Missing link to a <em>regular unit of measure</em>")
+                msg = self.env._("Missing link to a <em>regular unit of measure</em>")
                 notedict["intrastat_unit"][intrastat_unit_id.display_name][msg].add(
                     notedict["invline_origin"]
                 )
                 return weight, suppl_unit_qty
-            if target_uom.category_id == source_uom.category_id:
+            if source_uom._has_common_reference(target_uom):
                 suppl_unit_qty = source_uom._compute_quantity(line_qty, target_uom)
             else:
-                msg = _(
+                msg = self.env._(
                     "Conversion from unit of measure <em>%(source_uom)s</em> to "
                     "<em>%(target_uom)s</em>, which is configured on the intrastat "
-                    "supplementary unit <i>%(intrastat_unit)s</i> "
-                    "of H.S. code <i>%(hs_code)s</i>, "
-                    "is not implemented yet"
-                ) % {
-                    "source_uom": source_uom.name,
-                    "target_uom": target_uom.name,
-                    "intrastat_unit": intrastat_unit_id.display_name,
-                    "hs_code": hs_code.display_name,
-                }
+                    "supplementary unit <i>%(intrastat_unit)s</i> of H.S. code "
+                    "<i>%(hs_code)s</i>, is not implemented yet",
+                    {
+                        "source_uom": source_uom.name,
+                        "target_uom": target_uom.name,
+                        "intrastat_unit": intrastat_unit_id.display_name,
+                        "hs_code": hs_code.display_name,
+                    },
+                )
                 notedict["invoice"][notedict["invline_origin"]].add(msg)
                 return weight, suppl_unit_qty
 
         if source_uom == kg_uom:
             weight = line_qty
-        elif source_uom.category_id == weight_uom_categ:
+        elif source_uom._has_common_reference(kg_uom):
             weight = source_uom._compute_quantity(line_qty, kg_uom)
-        elif source_uom.category_id == product.uom_id.category_id:
+        elif source_uom._has_common_reference(product.uom_id):
             # We suppose that, on product.template,
             # the 'weight' field is per uom_id
             # Test if module product_net_weight from OCA/product-attribute is installed
@@ -420,16 +422,15 @@ class IntrastatProductDeclaration(models.Model):
                 line_qty, product.uom_id
             )
         else:
-            msg = _(
+            msg = self.env._(
                 "Conversion from unit of measure <em>%(source_uom)s</em> to "
                 "<em>Kg</em> cannot be done automatically. It is needed for product "
                 "<i>%(product)s</i> whose unit of measure is "
-                "<i>%(product_uom)s</i>"
-            ) % {
-                "source_uom": source_uom.name,
-                "product": product.display_name,
-                "product_uom": product.uom_id.display_name,
-            }
+                "<i>%(product_uom)s</i>",
+                source_uom=source_uom.name,
+                product=product.display_name,
+                product_uom=product.uom_id.display_name,
+            )
             notedict["invoice"][notedict["inv_origin"]].add(msg)
         return weight, suppl_unit_qty
 
@@ -486,7 +487,7 @@ class IntrastatProductDeclaration(models.Model):
             or self.company_id.intrastat_transport_id
         )
         if not transport:
-            msg = _(
+            msg = self.env._(
                 "The default Intrastat Transport Mode of the Company is not set, "
                 "please configure it first."
             )
@@ -496,7 +497,7 @@ class IntrastatProductDeclaration(models.Model):
     def _get_incoterm(self, inv_line, notedict):
         incoterm = inv_line.move_id.invoice_incoterm_id or self.company_id.incoterm_id
         if not incoterm:
-            msg = _(
+            msg = self.env._(
                 "The default Incoterm of the Company is not set, "
                 "please configure it first."
             )
@@ -507,7 +508,7 @@ class IntrastatProductDeclaration(models.Model):
         product = inv_line.product_id
         origin_country = product.origin_country_id
         if not origin_country:
-            msg = _("Missing <em>Country of Origin</em>")
+            msg = self.env._("Missing <em>Country of Origin</em>")
             notedict["product"][product.display_name][msg].add(
                 notedict["invline_origin"]
             )
@@ -525,22 +526,23 @@ class IntrastatProductDeclaration(models.Model):
         if self.declaration_type == "dispatches":
             if vat:
                 if vat.startswith("GB"):
-                    msg = _(
-                        "VAT number is <em>%(vat)s</em>. If this partner "
-                        "is from Northern Ireland, his VAT number should be "
-                        "updated to his new VAT number starting with <em>XI</em> "
-                        "following Brexit. If this partner is from Great Britain, "
-                        "maybe the fiscal position was wrong on the invoice "
-                        "(the fiscal position was <i>%(fiscal_position)s</i>)."
-                    ) % {
-                        "vat": vat,
-                        "fiscal_position": inv.fiscal_position_id.display_name,
-                    }
+                    msg = self.env._(
+                        "VAT number is <em>%(vat)s</em>. If this partner is from "
+                        "Northern Ireland, his VAT number should be updated to his "
+                        "new VAT number starting with <em>XI</em> following Brexit. "
+                        "If this partner is from Great Britain, maybe the fiscal "
+                        "position was wrong on the invoice (the fiscal position was "
+                        "<i>%(fiscal_position)s</i>).",
+                        {
+                            "vat": vat,
+                            "fiscal_position": inv.fiscal_position_id.display_name,
+                        },
+                    )
                     notedict["partner"][partner.display_name][msg].add(
                         notedict["inv_origin"]
                     )
             elif inv.fiscal_position_id.intrastat != "b2c":
-                msg = _("Missing <em>VAT Number</em>")
+                msg = self.env._("Missing <em>VAT Number</em>")
                 notedict["partner"][partner.display_name][msg].add(
                     notedict["inv_origin"]
                 )
@@ -652,10 +654,11 @@ class IntrastatProductDeclaration(models.Model):
                 ),
                 start=1,
             ):
-                notedict["invline_origin"] = _("%(invoice)s line %(line_nbr)s") % {
-                    "invoice": invoice.name,
-                    "line_nbr": line_nbr,
-                }
+                notedict["invline_origin"] = self.env._(
+                    "%(invoice)s line %(line_nbr)s",
+                    invoice=invoice.name,
+                    line_nbr=line_nbr,
+                )
                 inv_intrastat_line = invoice.intrastat_line_ids.filtered(
                     lambda r, inv_line=inv_line: r.invoice_line_id == inv_line
                 )
@@ -705,7 +708,7 @@ class IntrastatProductDeclaration(models.Model):
                 elif inv_line.product_id and self._is_product(inv_line):
                     hs_code = inv_line.product_id.get_hs_code_recursively()
                     if not hs_code:
-                        msg = _("Missing <em>H.S. Code</em>")
+                        msg = self.env._("Missing <em>H.S. Code</em>")
                         notedict["product"][inv_line.product_id.display_name][msg].add(
                             notedict["invline_origin"]
                         )
@@ -843,16 +846,16 @@ class IntrastatProductDeclaration(models.Model):
             "invline_origin": "",
         }
         key2label = {
-            "partner": _("Partners"),
-            "product": _("Products"),
-            "intrastat_unit": _("Intrastat Supplementary Units"),
-            "invoice": _("Invoices/Refunds"),
+            "partner": self.env._("Partners"),
+            "product": self.env._("Products"),
+            "intrastat_unit": self.env._("Intrastat Supplementary Units"),
+            "invoice": self.env._("Invoices/Refunds"),
         }
         return notedict, key2label
 
     def action_gather(self):
         self.ensure_one()
-        self.message_post(body=_("Generate Lines from Invoices"))
+        self.message_post(body=self.env._("Generate Lines from Invoices"))
         notedict, key2label = self._prepare_notedict()
         self.computation_line_ids.unlink()
         self.declaration_line_ids.unlink()
@@ -861,8 +864,10 @@ class IntrastatProductDeclaration(models.Model):
         vals = {"note": self._prepare_html_note(notedict, key2label)}
         if not lines:
             vals["action"] = "nihil"
-            nihil_title = _("No records found for the selected period !")
-            nihil_note = _("The declaration Action has been set to <em>nihil</em>.")
+            nihil_title = self.env._("No records found for the selected period !")
+            nihil_note = self.env._(
+                "The declaration Action has been set to <em>nihil</em>."
+            )
             vals["note"] += f"<h3>{nihil_title}</h3><p>{nihil_note}</p>"
         else:
             vals["computation_line_ids"] = [Command.create(x) for x in lines]
@@ -871,12 +876,12 @@ class IntrastatProductDeclaration(models.Model):
         if vals["note"]:
             result_view = self.env.ref("intrastat_product.intrastat_result_view_form")
             return {
-                "name": _("Generate lines from invoices: results"),
+                "name": self.env._("Generate lines from invoices: results"),
                 "view_mode": "form",
                 "res_model": "intrastat.result.view",
                 "view_id": result_view.id,
                 "target": "new",
-                "context": dict(self._context, note=vals["note"]),
+                "context": dict(self.env.context, note=vals["note"]),
                 "type": "ir.actions.act_window",
             }
 
@@ -903,8 +908,10 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         if not self.company_id.partner_id.vat:
             raise UserError(
-                _("The VAT number is not set for the partner '%s'.")
-                % self.company_id.partner_id.display_name
+                self.env._(
+                    "The VAT number is not set for the partner '%s'.",
+                    self.company_id.partner_id.display_name,
+                )
             )
 
     def _generate_xml(self):
@@ -916,13 +923,13 @@ class IntrastatProductDeclaration(models.Model):
         self.ensure_one()
         if self.xml_attachment_id:
             raise UserError(
-                _(
-                    "An XML Export already exists for %s. "
-                    "To re-generate it, you must first delete it."
+                self.env._(
+                    "An XML Export already exists for %s. To re-generate it, "
+                    "you must first delete it.",
+                    self.display_name,
                 )
-                % self.display_name
             )
-        self.message_post(body=_("Generate XML Declaration File"))
+        self.message_post(body=self.env._("Generate XML Declaration File"))
         self._check_generate_xml()
         xml_bytes = self._generate_xml()
         if xml_bytes:
@@ -1003,7 +1010,7 @@ class IntrastatProductDeclaration(models.Model):
                 self.fields_get("state", "selection")["state"]["selection"]
             )
             draft_label = f"-{state2label[self.state]}"
-        filename = _(
+        filename = self.env._(
             "intrastat-%(year_month)s-%(declaration_type)s%(draft)s",
             year_month=self.year_month,
             declaration_type=declaration_type_label,
@@ -1176,11 +1183,11 @@ class IntrastatProductComputationLine(models.Model):
             if not this.vat:
                 continue
             country = this.partner_id.commercial_partner_id.country_id
-            if not partner_obj._run_vat_test(this.vat, country):
+            if not partner_obj._run_vat_checks(country, this.vat):
                 msg = partner_obj._build_vat_error_message(
                     country and country.code.lower() or None,
                     this.vat,
-                    _("partner [%s]") % this.partner_id.name,
+                    self.env._("partner [%s]", this.partner_id.name),
                 )
                 raise ValidationError(msg)
 

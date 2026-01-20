@@ -18,7 +18,6 @@ class IntrastatProductCommon(IntrastatCommon):
 
         vals = {
             "name": "C3PO",
-            "type": "consu",
             "categ_id": cls.categ_robots.id,
             "origin_country_id": cls.env.ref("base.us").id,
             "weight": 300,
@@ -32,6 +31,9 @@ class IntrastatProductCommon(IntrastatCommon):
     def _init_company(cls):
         # Default transport for company is Road
         cls.demo_company.intrastat_transport_id = cls.transport_road
+        # Set company partner country and VAT
+        cls.demo_company.partner_id.country_id = cls.env.ref("base.be").id
+        cls.demo_company.partner_id.vat = "BE0477472701"
 
     @classmethod
     def _init_fiscal_position(cls):
@@ -76,19 +78,44 @@ class IntrastatProductCommon(IntrastatCommon):
         cls.transaction_obj = cls.env["intrastat.transaction"]
         cls.transport_mode_obj = cls.env["intrastat.transport_mode"]
         cls.partner_obj = cls.env["res.partner"]
-        cls.category_saleable = cls.env.ref("product.product_category_1")
         cls.category_obj = cls.env["product.category"]
+        cls.category_saleable = cls.category_obj.create(
+            {
+                "name": "Saleable",
+            }
+        )
         cls.product_template_obj = cls.env["product.template"]
         cls.declaration_obj = cls.env["intrastat.product.declaration"]
         cls.position_obj = cls.env["account.fiscal.position"]
-        cls.hs_code_computer = cls.env.ref("product_harmonized_system.84715000")
+        cls.hs_code_computer = cls.env["hs.code"].create(
+            {
+                "local_code": "84715000",
+                "description": "Computer",
+            }
+        )
         cls.report_obj = cls.env["ir.actions.report"]
         cls.xls_declaration = cls.env[
             "report.intrastat_product.product_declaration_xls"
         ]
 
-        cls.transport_rail = cls.env.ref("intrastat_product.intrastat_transport_2")
-        cls.transport_road = cls.env.ref("intrastat_product.intrastat_transport_3")
+        cls.transport_rail = cls.env.ref(
+            "intrastat_product.intrastat_transport_2", raise_if_not_found=False
+        ) or cls.env["intrastat.transport_mode"].create(
+            {
+                "code": "2",
+                "name": "Rail",
+                "description": "Railway transport",
+            }
+        )
+        cls.transport_road = cls.env.ref(
+            "intrastat_product.intrastat_transport_3", raise_if_not_found=False
+        ) or cls.env["intrastat.transport_mode"].create(
+            {
+                "code": "3",
+                "name": "Road",
+                "description": "Road Transport",
+            }
+        )
 
         cls._init_regions()
         cls._init_company()

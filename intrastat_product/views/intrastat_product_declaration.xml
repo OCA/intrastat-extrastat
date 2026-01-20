@@ -174,7 +174,7 @@
                     domain="[('state', '=', 'confirmed')]"
                 />
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
-                <group string="Group By" name="group_by">
+                <group>
                     <filter
                         name="date_group_by"
                         string="Date"

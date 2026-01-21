@@ -2,7 +2,7 @@ import os
 
 from openpyxl import load_workbook
 
-from odoo import _, fields, models, tools
+from odoo import fields, models, tools
 from odoo.exceptions import MissingError, UserError
 
 UOM_MAPPING = {
@@ -80,7 +80,7 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
                 iu = uom_map[raw_code]
                 iu_unit_id = self._get_mapped_uom_id(iu)
                 if not iu_unit_id:
-                    raise UserError(_("Unit not found: '%s'") % iu)
+                    raise UserError(self.env._("Unit not found: '%s'", iu))
                 vals["intrastat_unit_id"] = iu_unit_id
             vals_list.append(vals)
         if vals_list:
@@ -104,12 +104,14 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
             f"intrastat_product_hscodes_import/data/countries/{filename}"
         )
         if not file_path:
-            raise MissingError(f"Missing language file for code '{short_code}'")
+            raise MissingError(
+                self.env._("Missing language file for code '%s'", short_code)
+            )
         sheet, header = self._read_excel_sheet(file_path)
         indent_index = header.index("Indent")
         description_index = header.index("Description")
         goods_code_index = header.index("Goods code")
-        all_codes = code_obj.search_read([], ["id", "local_code"])
+        all_codes = code_obj.search_read([], ["id", "local_code"])  # pylint: disable=W8163
         code_map = {
             rec["local_code"].replace(" ", "")[:8]: rec["id"] for rec in all_codes
         }

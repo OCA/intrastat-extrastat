@@ -2,8 +2,9 @@ import os
 
 from openpyxl import load_workbook
 
-from odoo import _, fields, models, tools
+from odoo import fields, models, tools
 from odoo.exceptions import MissingError, UserError
+from odoo.fields import Domain
 
 UOM_MAPPING = {
     "p/st": "intrastat_unit_pce",
@@ -26,7 +27,7 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
 
     @tools.ormcache("name")
     def _get_intrastat_unit(self, name):
-        return self.env["intrastat.unit"].search([("name", "=", name)], limit=1).id
+        return self.env["intrastat.unit"].search(Domain("name", "=", name), limit=1).id
 
     def _read_excel_sheet(self, file_path, sheet_index=0):
         workbook = load_workbook(filename=file_path)
@@ -67,7 +68,7 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
         for row in codes_sheet.iter_rows(min_row=2, values_only=True):
             raw_code = str(row[goods_code_index]).strip().replace(" ", "")
             code_value = raw_code[:8]
-            existing = code_obj.search([("local_code", "=", code_value)], limit=1)
+            existing = code_obj.search(Domain("local_code", "=", code_value), limit=1)
             if existing:
                 continue
             if not code_value or not code_value.isdigit():
@@ -80,7 +81,7 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
                 iu = uom_map[raw_code]
                 iu_unit_id = self._get_mapped_uom_id(iu)
                 if not iu_unit_id:
-                    raise UserError(_("Unit not found: '%s'") % iu)
+                    raise UserError(self.env._("Unit not found: '%s'", iu))
                 vals["intrastat_unit_id"] = iu_unit_id
             vals_list.append(vals)
         if vals_list:
@@ -104,12 +105,14 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
             f"intrastat_product_hscodes_import/data/countries/{filename}"
         )
         if not file_path:
-            raise MissingError(f"Missing language file for code '{short_code}'")
+            raise MissingError(
+                self.env._("Missing language file for code '%s'", short_code)
+            )
         sheet, header = self._read_excel_sheet(file_path)
         indent_index = header.index("Indent")
         description_index = header.index("Description")
         goods_code_index = header.index("Goods code")
-        all_codes = code_obj.search_read([], ["id", "local_code"])
+        all_codes = code_obj.search_read(Domain.TRUE, ["id", "local_code"])
         code_map = {
             rec["local_code"].replace(" ", "")[:8]: rec["id"] for rec in all_codes
         }

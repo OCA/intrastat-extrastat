@@ -1020,6 +1020,16 @@ class IntrastatProductDeclaration(models.Model):
         for decl in self:
             decl.generate_xml()
         self.write({"state": "done"})
+        if len(self) == 1 and self.xml_attachment_name:
+            action = {
+                "name": self.xml_attachment_name,
+                "type": "ir.actions.act_url",
+                "url": f"web/content/?model={self._name}&id={self.id}&"
+                f"filename_field=xml_attachment_name&field=xml_attachment_datas&"
+                f"download=true&filename={self.xml_attachment_name}",
+                "target": "new",
+            }
+            return action
 
     def back2draft(self):
         for decl in self:

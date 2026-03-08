@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-07 19:45+0000\n"
+"PO-Revision-Date: 2026-03-08 07:26+0000\n"
 "Last-Translator: painkin <pasi.inkinen@iodo.fi>\n"
 "Language-Team: none\n"
 "Language: fi\n"
@@ -23,6 +23,9 @@ msgid ""
 "Activate this option for shipping costs, packaging costs and all services "
 "related to the sale of products. This option is used for Intrastat reports."
 msgstr ""
+"Aktivoi tämä vaihtoehto toimituskuluille, pakkauskuluille ja kaikille "
+"tuotteiden myyntiin liittyville palveluille. Tätä vaihtoehtoa käytetään "
+"Intrastat-raporteissa."
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position_template__intrastat
@@ -30,6 +33,7 @@ msgid ""
 "Check this if you want to generate intrastat declarations withthe created "
 "fiscal position"
 msgstr ""
+"Valitse tämä, jos haluat luoda Intrastat-ilmoituksia luodulla verokannalla"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_company
@@ -60,7 +64,7 @@ msgstr "Näyttönimi"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Verokannat"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__id
@@ -88,7 +92,7 @@ msgstr "Intrastat"
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,field_description:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid "Intrastat Fiscal Position"
-msgstr ""
+msgstr "Intrastat verokanta"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
@@ -167,7 +171,7 @@ msgstr "Toimituskulut"
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position_template
 msgid "Template for Fiscal Position"
-msgstr ""
+msgstr "Verokannan malli"
 
 #. module: intrastat_base
 #: code:addons/intrastat_base/models/product_template.py:0

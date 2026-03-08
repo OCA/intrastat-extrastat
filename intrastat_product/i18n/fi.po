@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-08 07:32+0000\n"
+"PO-Revision-Date: 2026-03-08 10:45+0000\n"
 "Last-Translator: painkin <pasi.inkinen@iodo.fi>\n"
 "Language-Team: none\n"
 "Language: fi\n"
@@ -141,12 +141,12 @@ msgstr "Lisävarustekustannukset"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__action
 msgid "Action"
-msgstr ""
+msgstr "Toiminto"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Toimenpidettä tarvitaan"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__active

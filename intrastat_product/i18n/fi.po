@@ -6,79 +6,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-08 07:32+0000\n"
+"Last-Translator: painkin <pasi.inkinen@iodo.fi>\n"
 "Language-Team: none\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid ""
 "(Re)compute the intrastat transaction details from the product master data."
-msgstr ""
+msgstr "Laske (uudelleen) Intrastat-tapahtuman tiedot tuoteperustiedoista."
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
 msgid "01"
-msgstr ""
+msgstr "01"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__02
 msgid "02"
-msgstr ""
+msgstr "02"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__03
 msgid "03"
-msgstr ""
+msgstr "03"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__04
 msgid "04"
-msgstr ""
+msgstr "04"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__05
 msgid "05"
-msgstr ""
+msgstr "05"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__06
 msgid "06"
-msgstr ""
+msgstr "06"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__07
 msgid "07"
-msgstr ""
+msgstr "07"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__08
 msgid "08"
-msgstr ""
+msgstr "08"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__09
 msgid "09"
-msgstr ""
+msgstr "09"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__10
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__11
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: intrastat_product
 #: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__12
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__product_origin_country_code
@@ -89,6 +91,11 @@ msgid ""
 "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
+"Tuotteen alkuperämaan kaksinumeroinen koodi, lukuun ottamatta Yhdistynyttä "
+"kuningaskuntaa.\n"
+"Merkitkää 'XI' Yhdistyneen kuningaskunnan Pohjois-Irlannin osalta ja 'XU' "
+"muun Yhdistyneen kuningaskunnan osalta.\n"
+"Merkitkää 'QU', jos maa on tuntematon.\n"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__src_dest_country_code
@@ -96,6 +103,9 @@ msgid ""
 "2 digit code of country of origin/destination.\n"
 "Specify 'XI' for UK Northern Ireland and 'XU' for rest of the UK."
 msgstr ""
+"Alkuperä-/määränpäämaan kaksinumeroinen koodi.\n"
+"Merkitkää 'XI' Yhdistyneen kuningaskunnan Pohjois-Irlannin osalta ja 'XU' "
+"muun Yhdistyneen kuningaskunnan osalta."
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__src_dest_country_code
@@ -103,11 +113,13 @@ msgid ""
 "2 digit code of country of origin/destination.\n"
 "Specify 'XI' for UK Northern Ireland."
 msgstr ""
+"Alkuperä-/määränpäämaan kaksinumeroinen koodi.\n"
+"Merkitkää 'XI', jos kyseessä on Yhdistynyt kuningaskunta tai Pohjois-Irlanti."
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
 msgid "<span>Intrastat Product Declaration </span>"
-msgstr ""
+msgstr "<span>Intrastat-tuoteilmoitus</span>"
 
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
@@ -115,13 +127,16 @@ msgid ""
 "A declaration of the same type already exists for this month !\n"
 "You should update the existing declaration or change the revision number of this one."
 msgstr ""
+"Samantyyppinen ilmoitus on jo olemassa tälle kuukaudelle!\n"
+"Sinun tulisi päivittää olemassa oleva ilmoitus tai muuttaa tämän "
+"versionumeroa."
 
 #. module: intrastat_product
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
 #, python-format
 msgid "Accessory Costs"
-msgstr ""
+msgstr "Lisävarustekustannukset"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__action

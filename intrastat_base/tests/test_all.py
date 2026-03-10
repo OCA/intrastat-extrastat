@@ -47,10 +47,6 @@ CSV_DATA = {
 class TestIntrastatBase(IntrastatCommon):
     """Tests for this module"""
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
     def test_company(self):
         # add 'Demo user' to intrastat_remind_user_ids
         self.demo_company.write(
@@ -69,6 +65,7 @@ class TestIntrastatBase(IntrastatCommon):
     def test_accessory(self):
         with self.assertRaises(ValidationError):
             self.shipping_cost.type = "consu"
+            self.shipping_cost.is_accessory_cost = True
 
     def test_fiscal_position(self):
         with self.assertRaises(ValidationError):

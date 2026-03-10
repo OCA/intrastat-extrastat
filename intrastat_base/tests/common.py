@@ -1,17 +1,24 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import new_test_user
 
-class IntrastatCommon:
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class IntrastatCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.chart_template_obj = cls.env["account.chart.template"]
         cls.mail_obj = cls.env["mail.mail"]
 
-        cls.demo_user = cls.env.ref("base.user_demo")
-        cls.demo_company = cls.env.ref("base.main_company")
+        cls.demo_user = new_test_user(
+            cls.env,
+            login="test-user",
+            email="test@test.com",
+        )
+        cls.demo_company = cls.company
 
         cls.shipping_cost = cls.env["product.product"].create(
             {
@@ -19,6 +26,6 @@ class IntrastatCommon:
                 "default_code": "TEST_SHIP",
                 "type": "service",
                 "is_accessory_cost": True,
-                "categ_id": cls.env.ref("product.product_category_services"),
+                "categ_id": cls.env.ref("product.product_category_services").id,
             }
         )

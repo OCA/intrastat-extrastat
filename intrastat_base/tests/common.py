@@ -1,12 +1,13 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class IntrastatCommon:
+
+class IntrastatCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.chart_template_obj = cls.env["account.chart.template"]
         cls.mail_obj = cls.env["mail.mail"]
 

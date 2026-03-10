@@ -6,10 +6,6 @@ from .common import IntrastatCommon
 class TestIntrastatBase(IntrastatCommon):
     """Tests for this module"""
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
     def test_company(self):
         # add 'Demo user' to intrastat_remind_user_ids
         self.demo_company.write(

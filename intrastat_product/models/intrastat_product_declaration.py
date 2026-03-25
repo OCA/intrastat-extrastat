@@ -133,9 +133,10 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
         tracking=True,
     )
-    total_amount = fields.Integer(
+    total_amount = fields.Float(
         compute="_compute_numbers",
         string="Total Fiscal Amount",
+        digits="Account",
         store=True,
         help="Total fiscal amount in company currency of the declaration.",
     )
@@ -1314,12 +1315,13 @@ class IntrastatProductDeclarationLine(models.Model):
         string="Suppl. Unit",
         help="Intrastat Supplementary Unit",
     )
-    weight = fields.Integer(help="Net weight in Kg")
+    weight = fields.Float(digits="Stock Weight", help="Net weight in Kg")
     suppl_unit_qty = fields.Integer(
         string="Suppl. Unit Qty", help="Supplementary Units Quantity"
     )
-    amount_company_currency = fields.Integer(
+    amount_company_currency = fields.Float(
         string="Fiscal Value",
+        digits="Account",
         help="Amount in company currency to write in the declaration. "
         "Amount in company currency = amount in invoice currency "
         "converted to company currency with the rate of the invoice date.",

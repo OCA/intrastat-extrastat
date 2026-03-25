@@ -40,8 +40,10 @@ class ResCompany(models.Model):
     )
     intrastat_include_zero_price_lines = fields.Boolean(
         string="Include Intrastat Lines with Zero Price",
-        help="If checked, Intrastat lines with zero price will be added to the declaration,"
-        "zero price lines are normally for repairing and maintenance operations.",
+        help="If checked, Intrastat lines with zero price will be added to the "
+        "declaration with transaction code 23 (warranty replacement) and the "
+        "product's sale price as fiscal value. "
+        "Zero price lines are normally for repairing and maintenance operations.",
         default=False,
     )
 

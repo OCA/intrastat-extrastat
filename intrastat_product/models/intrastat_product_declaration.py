@@ -133,10 +133,9 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
         tracking=True,
     )
-    total_amount = fields.Float(
+    total_amount = fields.Monetary(
         compute="_compute_numbers",
         string="Total Fiscal Amount",
-        digits="Account",
         store=True,
         help="Total fiscal amount in company currency of the declaration.",
     )
@@ -1104,17 +1103,17 @@ class IntrastatProductComputationLine(models.Model):
         digits="Product Unit of Measure",
         help="Supplementary Units Quantity",
     )
-    amount_company_currency = fields.Float(
+    amount_company_currency = fields.Monetary(
         string="Fiscal Value",
-        digits="Account",
+        currency_field="company_currency_id",
         required=True,
         help="Amount in company currency to write in the declaration. "
         "Amount in company currency = amount in invoice currency "
         "converted to company currency with the rate of the invoice date.",
     )
-    amount_accessory_cost_company_currency = fields.Float(
+    amount_accessory_cost_company_currency = fields.Monetary(
         string="Accessory Costs",
-        digits="Account",
+        currency_field="company_currency_id",
         help="Amount in company currency of the accessory costs related to "
         "this invoice line. By default, these accessory costs are computed "
         "at the pro-rata of the amount of each invoice line.",
@@ -1258,18 +1257,8 @@ class IntrastatProductComputationLine(models.Model):
                 computation_line["amount_company_currency"]
                 + computation_line["amount_accessory_cost_company_currency"]
             )
-        # on computation lines, weight and suppl_unit_qty are floats
-        # on declaration lines, weight and suppl_unit_qty
-        # are integer => so we must round()
-        for field in fields_to_sum:
-            vals[field] = int(round(vals[field]))
-        # the intrastat specs say that, if the value is between 0 and 0.5,
-        # it should be rounded to 1
-        if not vals["weight"]:
-            vals["weight"] = 1
         if vals["intrastat_unit_id"] and not vals["suppl_unit_qty"]:
             vals["suppl_unit_qty"] = 1
-        vals["amount_company_currency"] = int(round(vals["amount_company_currency"]))
         vals["line_number"] = line_number
         return vals
 
@@ -1319,9 +1308,9 @@ class IntrastatProductDeclarationLine(models.Model):
     suppl_unit_qty = fields.Integer(
         string="Suppl. Unit Qty", help="Supplementary Units Quantity"
     )
-    amount_company_currency = fields.Float(
+    amount_company_currency = fields.Monetary(
         string="Fiscal Value",
-        digits="Account",
+        currency_field="company_currency_id",
         help="Amount in company currency to write in the declaration. "
         "Amount in company currency = amount in invoice currency "
         "converted to company currency with the rate of the invoice date.",

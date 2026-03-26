@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -177,8 +182,8 @@ msgstr "Utenti che ricevono il promemoria Intrastat"
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_payment__intrastat_fiscal_position
 msgid ""
-"When set to B2B or B2C, the invoices with this fiscal position will be taken"
-" into account for the generation of the intrastat reports."
+"When set to B2B or B2C, the invoices with this fiscal position will be taken "
+"into account for the generation of the intrastat reports."
 msgstr ""
 "Quando impostata a B2B o B2C, le fatture con questa posizione fiscale "
 "verranno prese in considerazione per la generazione dei resoconti Intrastat."

@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""

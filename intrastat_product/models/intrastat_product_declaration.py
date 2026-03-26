@@ -371,7 +371,7 @@ class IntrastatProductDeclaration(models.Model):
         source_uom = inv_line.product_uom_id
         weight_uom_categ = self.env.ref("uom.product_uom_categ_kgm")
         kg_uom = self.env.ref("uom.product_uom_kgm")
-        self.env["decimal.precision"].precision_get("Stock Weight")
+        weight_prec = self.env["decimal.precision"].precision_get("Stock Weight")
         weight = suppl_unit_qty = 0.0
 
         if not source_uom:
@@ -415,8 +415,20 @@ class IntrastatProductDeclaration(models.Model):
             # Test if module product_net_weight from OCA/product-attribute is installed
             if hasattr(product, "net_weight"):
                 product_weight = product.net_weight
+                if float_is_zero(product_weight, precision_digits=weight_prec):
+                    msg = _(
+                        "Net weight is not set on product '%s'.", product.display_name
+                    )
+                    notedict["product"][product.display_name][msg].add(
+                        notedict["invline_origin"]
+                    )
             else:
                 product_weight = product.weight
+                if float_is_zero(product_weight, precision_digits=weight_prec):
+                    msg = _("Weight is not set on product '%s'.", product.display_name)
+                    notedict["product"][product.display_name][msg].add(
+                        notedict["invline_origin"]
+                    )
             weight = product_weight * source_uom._compute_quantity(
                 line_qty, product.uom_id
             )

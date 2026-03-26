@@ -131,10 +131,9 @@ class IntrastatProductDeclaration(models.Model):
         store=True,
         tracking=True,
     )
-    total_amount = fields.Float(
+    total_amount = fields.Monetary(
         compute="_compute_numbers",
         string="Total Fiscal Amount",
-        digits="Account",
         store=True,
         help="Total fiscal amount in company currency of the declaration.",
     )
@@ -1055,17 +1054,17 @@ class IntrastatProductComputationLine(models.Model):
         digits="Product Unit of Measure",
         help="Supplementary Units Quantity",
     )
-    amount_company_currency = fields.Float(
+    amount_company_currency = fields.Monetary(
         string="Fiscal Value",
-        digits="Account",
+        currency_field="company_currency_id",
         required=True,
         help="Amount in company currency to write in the declaration. "
         "Amount in company currency = amount in invoice currency "
         "converted to company currency with the rate of the invoice date.",
     )
-    amount_accessory_cost_company_currency = fields.Float(
+    amount_accessory_cost_company_currency = fields.Monetary(
         string="Accessory Costs",
-        digits="Account",
+        currency_field="company_currency_id",
         help="Amount in company currency of the accessory costs related to "
         "this invoice line. By default, these accessory costs are computed "
         "at the pro-rata of the amount of each invoice line.",
@@ -1260,9 +1259,9 @@ class IntrastatProductDeclarationLine(models.Model):
     suppl_unit_qty = fields.Integer(
         string="Suppl. Unit Qty", help="Supplementary Units Quantity"
     )
-    amount_company_currency = fields.Float(
+    amount_company_currency = fields.Monetary(
         string="Fiscal Value",
-        digits="Account",
+        currency_field="company_currency_id",
         help="Amount in company currency to write in the declaration. "
         "Amount in company currency = amount in invoice currency "
         "converted to company currency with the rate of the invoice date.",

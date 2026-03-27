@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Modèle de plan comptable"
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -190,8 +195,8 @@ msgstr ""
 
 #~ msgid ""
 #~ "The option 'Is accessory cost?' should only be activated on 'Service' "
-#~ "products. You have activated this option for the product "
-#~ "'%(product_name)s' which is configured with type '%(product_type)s'."
+#~ "products. You have activated this option for the product '%"
+#~ "(product_name)s' which is configured with type '%(product_type)s'."
 #~ msgstr ""
 #~ "L'option 'Est un frais accessoire ?' ne doit être activée que pour les "
 #~ "articles de type 'Service'. Vous avez activé cette option pour l'article "
@@ -222,9 +227,6 @@ msgstr ""
 
 #~ msgid "Units"
 #~ msgstr "Unités"
-
-#~ msgid "Account Chart Template"
-#~ msgstr "Modèle de plan comptable"
 
 #~ msgid "Cannot delete the declaration %s because it is in Done state"
 #~ msgstr ""

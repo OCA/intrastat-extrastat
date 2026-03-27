@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -100,7 +105,8 @@ msgstr ""
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_email_list
 msgid "List of emails of Users Receiving the Intrastat Reminder"
-msgstr "Seznam e-poštnih naslovov uporabnikov, ki prejemajo opomnik o Intrastat"
+msgstr ""
+"Seznam e-poštnih naslovov uporabnikov, ki prejemajo opomnik o Intrastat"
 
 #. module: intrastat_base
 #. odoo-python
@@ -154,8 +160,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_base/models/product_template.py:0
 msgid ""
-"The option 'Is accessory cost?' can only be activated on 'Service' products."
-" You have activated this option for the product '%(product_name)s' which is "
+"The option 'Is accessory cost?' can only be activated on 'Service' products. "
+"You have activated this option for the product '%(product_name)s' which is "
 "not a service product."
 msgstr ""
 "Možnost 'Je dodatni strošek?' je mogoče aktivirati samo za 'Storitvene' "
@@ -185,8 +191,8 @@ msgstr "Uporabniki prejemniki opomnika Intrastat"
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
 msgid ""
-"When set to B2B or B2C, the invoices with this fiscal position will be taken"
-" into account for the generation of the intrastat reports."
+"When set to B2B or B2C, the invoices with this fiscal position will be taken "
+"into account for the generation of the intrastat reports."
 msgstr ""
 "Ko je nastavljeno na B2B ali B2C, se računi s tem davčnim položajem "
 "upoštevajo pri pripravi poročil Intrastat."

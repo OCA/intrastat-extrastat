@@ -73,11 +73,7 @@
                         <group name="properties-2">
                             <field name="action" readonly="state == 'done'" />
                             <field name="revision" readonly="state == 'done'" />
-                            <field
-                                name="total_amount"
-                                widget="monetary"
-                                options="{'currency_field': 'currency_id'}"
-                            />
+                            <field name="total_amount" />
                             <field name="num_decl_lines" />
                             <field
                                 name="company_id"
@@ -247,16 +243,8 @@
                         required="reporting_level == 'extended'"
                         invisible="reporting_level != 'extended'"
                     />
-                    <field
-                        name="amount_company_currency"
-                        widget="monetary"
-                        options="{'currency_field': 'company_currency_id'}"
-                    />
-                    <field
-                        name="amount_accessory_cost_company_currency"
-                        widget="monetary"
-                        options="{'currency_field': 'company_currency_id'}"
-                    />
+                    <field name="amount_company_currency" />
+                    <field name="amount_accessory_cost_company_currency" />
                     <field name="company_currency_id" invisible="1" />
                     <field name="transaction_id" required="1" />
                     <label
@@ -416,11 +404,7 @@
                         name="src_dest_country_code"
                         invisible="reporting_level != 'extended'"
                     />
-                    <field
-                        name="amount_company_currency"
-                        widget="monetary"
-                        options="{'currency_field': 'company_currency_id'}"
-                    />
+                    <field name="amount_company_currency" />
                     <field name="company_currency_id" invisible="1" />
                     <field name="transaction_id" />
                     <label for="weight" invisible="reporting_level != 'extended'" />

@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: intrastat_base
+#: model:ir.model,name:intrastat_base.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Modèle de plan comptable"
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,help:intrastat_base.field_product_template__is_accessory_cost
 msgid ""
@@ -27,6 +32,11 @@ msgstr ""
 "Activer cette option pour les frais de port, les frais d'emballage et tous "
 "les services associés à la vente de produits. Cette option est utilisée pour "
 "l'EMEBI et la DES."
+
+#. module: intrastat_base
+#: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__vat_required
+msgid "Apply only if partner has a VAT number."
+msgstr ""
 
 #. module: intrastat_base
 #. odoo-python
@@ -51,9 +61,29 @@ msgid "Config Settings"
 msgstr "Configuration"
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Position fiscale"
+
+#. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:intrastat_base.field_account_move__id
+#: model:ir.model.fields,field_description:intrastat_base.field_product_template__id
+#: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
+#: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
@@ -125,11 +155,6 @@ msgid "Service"
 msgstr ""
 
 #. module: intrastat_base
-#: model:product.template,name:intrastat_base.shipping_costs_exclude_product_template
-msgid "Shipping costs"
-msgstr "Frais de port"
-
-#. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid ""
@@ -177,6 +202,11 @@ msgid "Users Receiving the Intrastat Reminder"
 msgstr "Utilisateurs qui reçoivent le rappel EMEBI/DES"
 
 #. module: intrastat_base
+#: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__vat_required
+msgid "VAT required"
+msgstr ""
+
+#. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__intrastat
 #: model:ir.model.fields,help:intrastat_base.field_account_move__intrastat_fiscal_position
@@ -188,10 +218,25 @@ msgstr ""
 "position fiscale seront prises en compte pour la génération des rapports "
 "EMEBI/DES."
 
+#. module: intrastat_base
+#. odoo-python
+#: code:addons/intrastat_base/models/account_fiscal_position.py:0
+msgid "b2c"
+msgstr ""
+
+#. module: intrastat_base
+#. odoo-python
+#: code:addons/intrastat_base/models/account_fiscal_position.py:0
+msgid "no"
+msgstr ""
+
+#~ msgid "Shipping costs"
+#~ msgstr "Frais de port"
+
 #~ msgid ""
 #~ "The option 'Is accessory cost?' should only be activated on 'Service' "
-#~ "products. You have activated this option for the product "
-#~ "'%(product_name)s' which is configured with type '%(product_type)s'."
+#~ "products. You have activated this option for the product '%"
+#~ "(product_name)s' which is configured with type '%(product_type)s'."
 #~ msgstr ""
 #~ "L'option 'Est un frais accessoire ?' ne doit être activée que pour les "
 #~ "articles de type 'Service'. Vous avez activé cette option pour l'article "
@@ -223,9 +268,6 @@ msgstr ""
 #~ msgid "Units"
 #~ msgstr "Unités"
 
-#~ msgid "Account Chart Template"
-#~ msgstr "Modèle de plan comptable"
-
 #~ msgid "Cannot delete the declaration %s because it is in Done state"
 #~ msgstr ""
 #~ "Impossible de supprimer la déclaration %s parce qu'elle est à l'état "
@@ -239,12 +281,6 @@ msgstr ""
 
 #~ msgid "Created on"
 #~ msgstr "Créé le"
-
-#~ msgid "Display Name"
-#~ msgstr "Afficher le nom"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Intrastat Result View"
 #~ msgstr "Résultat DEB"

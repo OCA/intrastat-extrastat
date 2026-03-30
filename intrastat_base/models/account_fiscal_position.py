@@ -11,6 +11,7 @@ class AccountFiscalPosition(models.Model):
 
     intrastat = fields.Selection(
         "_intrastat_selection",
+        default="no",
         help="When set to B2B or B2C, the invoices with this fiscal position will "
         "be taken into account for the generation of the intrastat reports.",
     )

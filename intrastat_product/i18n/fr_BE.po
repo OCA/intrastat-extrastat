@@ -28,66 +28,6 @@ msgid ""
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
-msgid "01"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__02
-msgid "02"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__03
-msgid "03"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__04
-msgid "04"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__05
-msgid "05"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__06
-msgid "06"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__07
-msgid "07"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__08
-msgid "08"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__09
-msgid "09"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__10
-msgid "10"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__11
-msgid "11"
-msgstr ""
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__12
-msgid "12"
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
 "2 letters ISO code of the country of origin of the product except for the "

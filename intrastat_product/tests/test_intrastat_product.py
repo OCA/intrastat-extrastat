@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from psycopg2 import IntegrityError
 
+from odoo import Command
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
@@ -157,6 +158,80 @@ class TestIntrastatProduct(IntrastatProductCommon):
     def test_invoice_report_with_intrastat_lines(self):
         self.invoice.compute_intrastat_lines()
         self._test_invoice_report(2)
+
+    def test_zero_price_lines_transaction_23(self):
+        """Zero price lines included in Intrastat must use transaction 23
+        and the product's sale price as fiscal value."""
+        self.demo_company.intrastat_include_zero_price_lines = True
+        product_c3po = self.product_c3po.product_variant_ids[0]
+        list_price = product_c3po.list_price
+        self.assertTrue(list_price, "Product must have a list_price for this test")
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner.id,
+                "fiscal_position_id": self.position.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": product_c3po.id,
+                            "quantity": 3,
+                            "price_unit": 0.0,
+                            "name": "Warranty replacement",
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        declaration = self.declaration_obj.create(
+            {
+                "company_id": self.demo_company.id,
+                "declaration_type": "dispatches",
+            }
+        )
+        declaration.action_gather()
+        zero_lines = declaration.computation_line_ids.filtered(
+            lambda l: l.invoice_line_id.move_id == invoice
+        )
+        self.assertEqual(len(zero_lines), 1)
+        tr_23 = self.env.ref("intrastat_product.intrastat_transaction_23")
+        self.assertEqual(zero_lines.transaction_id, tr_23)
+        self.assertEqual(zero_lines.amount_company_currency, list_price * 3)
+
+    def test_zero_price_lines_excluded_by_default(self):
+        """Zero price lines must be excluded when config is disabled."""
+        self.demo_company.intrastat_include_zero_price_lines = False
+        product_c3po = self.product_c3po.product_variant_ids[0]
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner.id,
+                "fiscal_position_id": self.position.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": product_c3po.id,
+                            "quantity": 1,
+                            "price_unit": 0.0,
+                            "name": "Warranty replacement",
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        declaration = self.declaration_obj.create(
+            {
+                "company_id": self.demo_company.id,
+                "declaration_type": "dispatches",
+            }
+        )
+        declaration.action_gather()
+        zero_lines = declaration.computation_line_ids.filtered(
+            lambda l: l.invoice_line_id.move_id == invoice
+        )
+        self.assertFalse(zero_lines)
 
 
 class TestIntrastatProductCase(TestIntrastatProduct, TransactionCase):

@@ -32,69 +32,10 @@ msgstr ""
 "o proizvodih."
 
 #. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__01
-msgid "01"
-msgstr "01"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__02
-msgid "02"
-msgstr "02"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__03
-msgid "03"
-msgstr "03"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__04
-msgid "04"
-msgstr "04"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__05
-msgid "05"
-msgstr "05"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__06
-msgid "06"
-msgstr "06"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__07
-msgid "07"
-msgstr "07"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__08
-msgid "08"
-msgstr "08"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__09
-msgid "09"
-msgstr "09"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__10
-msgid "10"
-msgstr "10"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__11
-msgid "11"
-msgstr "11"
-
-#. module: intrastat_product
-#: model:ir.model.fields.selection,name:intrastat_product.selection__intrastat_product_declaration__month__12
-msgid "12"
-msgstr "12"
-
-#. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__product_origin_country_code
 msgid ""
-"2 letters ISO code of the country of origin of the product except for the UK.\n"
+"2 letters ISO code of the country of origin of the product except for the "
+"UK.\n"
 "Specify 'XI' for Northern Ireland and 'XU' for Great Britain.\n"
 "Specify 'QU' when the country is unknown.\n"
 msgstr ""
@@ -133,7 +74,8 @@ msgstr ""
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_product_declaration_date_uniq
 msgid ""
 "A declaration of the same type already exists for this month !\n"
-"You should update the existing declaration or change the revision number of this one."
+"You should update the existing declaration or change the revision number of "
+"this one."
 msgstr ""
 "V tem mesecu že obstaja deklaracija istega tipa!\n"
 "Posodobite obstoječo deklaracijo ali spremenite številko revizije na tej."
@@ -213,8 +155,8 @@ msgstr ""
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_declaration_line__amount_company_currency
 msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the"
-" rate of the invoice date."
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 "Znesek, ki se zapiše v deklaracijo, v valuti družbe. Znesek v valuti družbe "
 "= Znesek v valuti na računu pretvorjen v valuto družbe po menjalnem tečaju "
@@ -373,9 +315,9 @@ msgstr "Stik"
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 msgid ""
-"Conversion from unit of measure <em>%(source_uom)s</em> to "
-"<em>%(target_uom)s</em>, which is configured on the intrastat supplementary "
-"unit <i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
+"Conversion from unit of measure <em>%(source_uom)s</em> to <em>%"
+"(target_uom)s</em>, which is configured on the intrastat supplementary unit "
+"<i>%(intrastat_unit)s</i> of H.S. code <i>%(hs_code)s</i>, is not "
 "implemented yet"
 msgstr ""
 "Pretvorba iz merske enote <em>%(source_uom)s</em> v <em>%(target_uom)s</em>, "
@@ -1147,8 +1089,8 @@ msgstr "Država izvora"
 #: model:ir.model.fields,help:intrastat_product.field_account_bank_statement_line__src_dest_region_id
 #: model:ir.model.fields,help:intrastat_product.field_account_move__src_dest_region_id
 msgid ""
-"Origin region for dispatches, destination region for arrivals. This field is"
-" used for the Intrastat Declaration."
+"Origin region for dispatches, destination region for arrivals. This field is "
+"used for the Intrastat Declaration."
 msgstr ""
 "Regija izvora za odpošiljanja, ciljna regija za prihode. To polje se "
 "uporablja pri deklaraciji intrastat."
@@ -1353,8 +1295,8 @@ msgstr "Morje"
 #. module: intrastat_product
 #: model:intrastat.transport_mode,description:intrastat_product.intrastat_transport_1
 msgid ""
-"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and"
-" lighters on board of a ship)"
+"Sea Transport (including wagons, motor vehicles, trailers, semi-trailers and "
+"lighters on board of a ship)"
 msgstr ""
 "Pomorski transport (vključno vagoni, motorna vozila, prikolice, pol "
 "prikolice na krovu ladje)"
@@ -1611,12 +1553,12 @@ msgstr ""
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_42
 msgid ""
 "Transactions with a view to processing under contract (no change of "
-"ownership). Goods not expected to return to the initial Member State/country"
-" of export"
+"ownership). Goods not expected to return to the initial Member State/country "
+"of export"
 msgstr ""
-"Transakcije z namenom predelave v okviru pogodbe (brez spremembe lastništva)"
-". Blago, za katerega se ne pričakuje, da se bo vrnilo v prvotno državo "
-"članico/državo izvoza"
+"Transakcije z namenom predelave v okviru pogodbe (brez spremembe "
+"lastništva). Blago, za katerega se ne pričakuje, da se bo vrnilo v prvotno "
+"državo članico/državo izvoza"
 
 #. module: intrastat_product
 #. odoo-python
@@ -1688,10 +1630,10 @@ msgstr "ID za DDV"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 msgid ""
 "VAT number is <em>%(vat)s</em>. If this partner is from Northern Ireland, "
-"his VAT number should be updated to his new VAT number starting with "
-"<em>XI</em> following Brexit. If this partner is from Great Britain, maybe "
-"the fiscal position was wrong on the invoice (the fiscal position was "
-"<i>%(fiscal_position)s</i>)."
+"his VAT number should be updated to his new VAT number starting with <em>XI</"
+"em> following Brexit. If this partner is from Great Britain, maybe the "
+"fiscal position was wrong on the invoice (the fiscal position was <i>%"
+"(fiscal_position)s</i>)."
 msgstr ""
 "DDV številka je <em>%(vat)s</em>. Če je ta partner iz Severne Irske, je "
 "treba njegovo DDV številko po brexitu posodobiti na novo DDV številko, ki se "
@@ -1793,3 +1735,39 @@ msgstr "object._get_xlsx_report_filename()"
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 msgid "partner [%s]"
 msgstr "partner [%s]"
+
+#~ msgid "01"
+#~ msgstr "01"
+
+#~ msgid "02"
+#~ msgstr "02"
+
+#~ msgid "03"
+#~ msgstr "03"
+
+#~ msgid "04"
+#~ msgstr "04"
+
+#~ msgid "05"
+#~ msgstr "05"
+
+#~ msgid "06"
+#~ msgstr "06"
+
+#~ msgid "07"
+#~ msgstr "07"
+
+#~ msgid "08"
+#~ msgstr "08"
+
+#~ msgid "09"
+#~ msgstr "09"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "11"
+#~ msgstr "11"
+
+#~ msgid "12"
+#~ msgstr "12"

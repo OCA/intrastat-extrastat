@@ -8,12 +8,13 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         ret = super()._action_confirm()
         for order in self:
-            order.write(
-                {
-                    "incoterm": order.carrier_id.incoterm.id,
-                    "intrastat_transport_id": order.carrier_id.intrastat_transport_id.id,
-                }
-            )
+            if order.carrier_id and order.carrier_id.incoterm:
+                order.write(
+                    {
+                        "incoterm": order.carrier_id.incoterm.id,
+                        "intrastat_transport_id": order.carrier_id.intrastat_transport_id.id,
+                    }
+                )
         return ret
 
     def _prepare_invoice(self):

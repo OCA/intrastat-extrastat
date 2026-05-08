@@ -441,6 +441,9 @@ class IntrastatProductDeclaration(models.Model):
             weight = product_weight * source_uom._compute_quantity(
                 line_qty, product.uom_id
             )
+            if not weight:
+                msg = _("Missing weight on product %s.") % product.display_name
+                notedict["invoice"][notedict["inv_origin"]].add(msg)
         else:
             msg = _(
                 "Conversion from unit of measure <em>%(source_uom)s</em> to "

@@ -1013,6 +1013,13 @@ msgid "Missing unit of measure"
 msgstr "Unità di misura mancante"
 
 #. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Missing weight on product %s."
+msgstr ""
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__month
 msgid "Month"
 msgstr "Mese"

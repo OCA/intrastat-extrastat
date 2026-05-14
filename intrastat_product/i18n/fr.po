@@ -1072,6 +1072,13 @@ msgid "Missing unit of measure"
 msgstr "Unité de mesure manquante"
 
 #. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+#, python-format
+msgid "Missing weight on product %s."
+msgstr "Poids manquant sur l'article %s."
+
+#. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__month
 msgid "Month"
 msgstr "Mois"
@@ -1867,8 +1874,8 @@ msgstr ""
 #~ msgstr "Vous pouvez ajouter des commentaires ici si vous voulez."
 
 #~ msgid ""
-#~ "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, object."
-#~ "state == 'draft' and '-draft' or '')"
+#~ "'intrastat-%s-%s%s' % (object.year_month, object.declaration_type, "
+#~ "object.state == 'draft' and '-draft' or '')"
 #~ msgstr ""
 #~ "'intrastat-%s-%s%s ' % (object.year_month, object.declaration_type, "
 #~ "object.state == 'draft' and '-brouillon' or '')"
@@ -2015,10 +2022,6 @@ msgstr ""
 #, python-format
 #~ msgid "Missing unit of measure."
 #~ msgstr "Unité de mesure manquante."
-
-#, python-format
-#~ msgid "Missing weight on product %s."
-#~ msgstr "Poids manquant sur l'article %s."
 
 #, python-format
 #~ msgid "No XML File has been generated."

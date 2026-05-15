@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -213,7 +213,7 @@ msgstr ""
 #. module: intrastat_product
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_region_intrastat_region_code_unique
 #: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_transaction_intrastat_transaction_code_unique
-#: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_transport_mode_intrastat_transport_code_unique
+#: model:ir.model.constraint,message:intrastat_product.constraint_intrastat_transport_mode_code_uniq
 msgid "Code must be unique."
 msgstr ""
 
@@ -447,7 +447,10 @@ msgid "Dispatches"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_hs_code__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__display_name
@@ -456,6 +459,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__display_name
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_res_company__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_sale_order__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_stock_location__display_name
+#: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -562,13 +572,6 @@ msgid "Go to Accounting Configuration Settings screen"
 msgstr ""
 
 #. module: intrastat_product
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_search
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_transaction_mode_search
-#: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_unit_search
-msgid "Group By"
-msgstr ""
-
-#. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_hs_code
 msgid "H.S. Code"
 msgstr ""
@@ -594,7 +597,10 @@ msgid "Hire, loan, and operational leasing longer than 24 months"
 msgstr ""
 
 #. module: intrastat_product
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move__id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__id
+#: model:ir.model.fields,field_description:intrastat_product.field_account_move_line__id
+#: model:ir.model.fields,field_description:intrastat_product.field_hs_code__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__id
@@ -603,6 +609,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transaction__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_transport_mode__id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_unit__id
+#: model:ir.model.fields,field_description:intrastat_product.field_report_intrastat_product_product_declaration_xls__id
+#: model:ir.model.fields,field_description:intrastat_product.field_res_company__id
+#: model:ir.model.fields,field_description:intrastat_product.field_res_config_settings__id
+#: model:ir.model.fields,field_description:intrastat_product.field_res_partner__id
+#: model:ir.model.fields,field_description:intrastat_product.field_sale_order__id
+#: model:ir.model.fields,field_description:intrastat_product.field_stock_location__id
+#: model:ir.model.fields,field_description:intrastat_product.field_stock_warehouse__id
 msgid "ID"
 msgstr ""
 
@@ -931,6 +944,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
 msgid "Missing unit of measure"
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "Missing weight on product %s."
 msgstr ""
 
 #. module: intrastat_product
@@ -1615,6 +1634,12 @@ msgstr ""
 
 #. module: intrastat_product
 #. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "append"
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 msgid "comput."
 msgstr ""
@@ -1623,6 +1648,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 msgid "decl."
+msgstr ""
+
+#. module: intrastat_product
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "extended"
 msgstr ""
 
 #. module: intrastat_product
@@ -1643,12 +1674,12 @@ msgid "kg"
 msgstr ""
 
 #. module: intrastat_product
-#: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
-msgid "object._get_xlsx_report_filename()"
+#. odoo-python
+#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
+msgid "nihil"
 msgstr ""
 
 #. module: intrastat_product
-#. odoo-python
-#: code:addons/intrastat_product/models/intrastat_product_declaration.py:0
-msgid "partner [%s]"
+#: model:ir.actions.report,print_report_name:intrastat_product.intrastat_product_xlsx_report
+msgid "object._get_xlsx_report_filename()"
 msgstr ""

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,11 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__company_id
-msgid "Company"
-msgstr ""
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
@@ -40,7 +35,12 @@ msgstr ""
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
-msgid "Intrastat HS Codes Import Installer"
+msgid "Intrastat Nomenclature Import Installer"
+msgstr ""
+
+#. module: intrastat_product_hscodes_import
+#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__language_id
+msgid "Language"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import
@@ -60,6 +60,7 @@ msgstr ""
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.actions.act_window,name:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_action
+#: model:ir.ui.menu,name:intrastat_product_hscodes_import.intrastat_code_import_menu
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load Intrastat Codes"
 msgstr ""
@@ -67,20 +68,16 @@ msgstr ""
 #. module: intrastat_product_hscodes_import
 #. odoo-python
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
-#, python-format
-msgid ""
-"None of the languages active on your system are available in intrastat codes"
-" files [%s]"
+msgid "Missing language file for code '%s'"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,help:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
-msgid ""
-"Set this flag to share the Intrastat Codes between all Legal Entities "
-"defined in this Odoo Database.\n"
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
+msgid "Skip"
 msgstr ""
 
 #. module: intrastat_product_hscodes_import
-#: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__share_codes
-msgid "Share Codes"
+#. odoo-python
+#: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
+msgid "Unit not found: '%s'"
 msgstr ""

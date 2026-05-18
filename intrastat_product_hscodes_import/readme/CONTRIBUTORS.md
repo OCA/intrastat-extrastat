@@ -1,0 +1,7 @@
+- Noviat \<www.noviat.com\>
+  - Jérémy Didderen
+  - Luc De Meyer
+- Tecnativa \<www.tecnativa.com\>
+    - Juan Carlos Oñate
+- ForgeFlow \<www.forgeflow.com\>
+    - Jordi Masvidal

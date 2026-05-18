@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="intrastat_hscodes_import_installer_view_form" model="ir.ui.view">
+        <field name="name">intrastat.hscodes.import.installer.view</field>
+        <field name="model">intrastat.hscodes.import.installer</field>
+        <field name="arch" type="xml">
+            <form string="Load Intrastat Codes">
+                <separator string="Load Intrastat Codes" colspan="4" />
+                <group>
+                    <field name="language_id" />
+                </group>
+                <footer>
+                    <button
+                        name="do_import"
+                        type="object"
+                        string="Load"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Skip"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record
+        id="intrastat_hscodes_import_installer_action"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Load Intrastat Codes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">intrastat.hscodes.import.installer</field>
+        <field name="view_id" ref="intrastat_hscodes_import_installer_view_form" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="intrastat_installer_todo" model="ir.actions.todo">
+        <field name="action_id" ref="intrastat_hscodes_import_installer_action" />
+        <field name="sequence">10</field>
+    </record>
+
+    <menuitem
+        id="intrastat_code_import_menu"
+        action="intrastat_hscodes_import_installer_action"
+        parent="intrastat_base.menu_intrastat_config_root"
+        sequence="5"
+    />
+</odoo>

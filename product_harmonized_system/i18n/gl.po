@@ -6,39 +6,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 16:15+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 msgid "<span class=\"o_stat_text\">Product Categs</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Categorías de produto</span>"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 msgid "<span class=\"o_stat_text\">Products</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Produtos</span>"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_form
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.hs_code_view_search
 msgid "Archived"
-msgstr ""
+msgstr "Arquivado"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84715000
 msgid "Automatic data-processing machines (computers)"
-msgstr ""
+msgstr "Máquinas de procesado de datos automático (computadores)"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__local_code
@@ -47,38 +49,41 @@ msgid ""
 "starts with the 6 digits of the H.S. and often has a few additional digits "
 "to extend the H.S. code."
 msgstr ""
+"Código utilizado para a declaración Import/Export. O código nacional empeza "
+"con 6 díxitos do H.S. e a miúdo ten uns poucos díxitos adicionais para "
+"estender o código H.S."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of Origin"
-msgstr ""
+msgstr "País de Orixe"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,help:product_harmonized_system.field_product_template__origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
-msgstr ""
+msgstr "País de orixe do produto p.e. produto ‘fabricado en_____’."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__description
 msgid "Description"
-msgstr ""
+msgstr "Descrición"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_hs_code
@@ -88,12 +93,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
 msgid "H.S. Code"
-msgstr ""
+msgstr "Código HS"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.hs_code_action
 msgid "H.S. Codes"
-msgstr ""
+msgstr "Códigos HS"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_category__hs_code_id
@@ -101,6 +106,8 @@ msgid ""
 "Harmonised System Code. If this code is not set on the product itself, it "
 "will be read here, on the related product category."
 msgstr ""
+"Código do Sistema Harmonizado HS. Se o código non está escrito no produto, "
+"lerase aquí, na categoría de produto relacionada."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_product_product__hs_code_id
@@ -110,6 +117,9 @@ msgid ""
 "Organisation, see http://www.wcoomd.org/. You can leave this field empty and"
 " configure the H.S. code on the product category."
 msgstr ""
+"Código de Sistema Harmonizado. Nomenclatura dispoñible en World Customs "
+"Organisation, ver http://www.wcoomd.org/. Pode deixar este campo baleiro e "
+"configurar o código H.S. na categoría de produto.."
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__hs_code
@@ -117,85 +127,87 @@ msgid ""
 "Harmonized System code (6 digits). Full list is available from the World "
 "Customs Organisation, see http://www.wcoomd.org"
 msgstr ""
+"Sistema de códigos harmonizado (6 díxitos). Lista completa dispoñible da "
+"World Customs Organisation, ver http://www.wcoomd.org"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_harmonized_system
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_category_form_view
 msgid "Import/Export Properties"
-msgstr ""
+msgstr "Propiedades de importación/exportación"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__local_code
 msgid "Local Code"
-msgstr ""
+msgstr "Código Local"
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.85340090
 msgid "Printed circuits"
-msgstr ""
+msgstr "Circuítos impresos"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_count
 msgid "Product Categ Count"
-msgstr ""
+msgstr "Número de Categorías de Produto"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_categ_hs_code_action
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_categ_ids
 msgid "Product Categories"
-msgstr ""
+msgstr "Categorías de produto"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de produto"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_count
 msgid "Product Tmpl Count"
-msgstr ""
+msgstr "Número de Persoais de Produto"
 
 #. module: product_harmonized_system
 #: model:ir.model,name:product_harmonized_system.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variantes"
 
 #. module: product_harmonized_system
 #: model:ir.actions.act_window,name:product_harmonized_system.product_template_hs_code_action
 #: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__product_tmpl_ids
 msgid "Products"
-msgstr ""
+msgstr "Produtos"
 
 #. module: product_harmonized_system
 #: model:ir.model.fields,help:product_harmonized_system.field_hs_code__description
 msgid "Short text description of the H.S. category"
-msgstr ""
+msgstr "Descricións curtas das categorías H.S."
 
 #. module: product_harmonized_system
 #: model:hs.code,description:product_harmonized_system.84717050
 msgid "Storage units"
-msgstr ""
+msgstr "Unidades de almacenamento"

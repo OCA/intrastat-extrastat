@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-08 10:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,72 +15,73 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model,name:intrastat_product_hscodes_import.model_intrastat_hscodes_import_installer
 msgid "Intrastat Nomenclature Import Installer"
-msgstr ""
+msgstr "Namestitveni program za uvoz po nomenklaturi Intrastat"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__language_id
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.model.fields,field_description:intrastat_product_hscodes_import.field_intrastat_hscodes_import_installer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: intrastat_product_hscodes_import
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load"
-msgstr ""
+msgstr "Nalaganje"
 
 #. module: intrastat_product_hscodes_import
 #: model:ir.actions.act_window,name:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_action
 #: model:ir.ui.menu,name:intrastat_product_hscodes_import.intrastat_code_import_menu
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Load Intrastat Codes"
-msgstr ""
+msgstr "Naloži kode intrastat"
 
 #. module: intrastat_product_hscodes_import
 #. odoo-python
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
 msgid "Missing language file for code '%s'"
-msgstr ""
+msgstr "Manjka jezikovna datoteka za kodo '%s'"
 
 #. module: intrastat_product_hscodes_import
 #: model_terms:ir.ui.view,arch_db:intrastat_product_hscodes_import.intrastat_hscodes_import_installer_view_form
 msgid "Skip"
-msgstr ""
+msgstr "Preskoči"
 
 #. module: intrastat_product_hscodes_import
 #. odoo-python
 #: code:addons/intrastat_product_hscodes_import/wizards/intrastat_hscodes_import_installer.py:0
 msgid "Unit not found: '%s'"
-msgstr ""
+msgstr "Enota ni bila najdena: '%s'"

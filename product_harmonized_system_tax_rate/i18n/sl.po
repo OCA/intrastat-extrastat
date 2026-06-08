@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-08 07:46+0000\n"
+"PO-Revision-Date: 2026-06-08 10:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -62,18 +62,18 @@ msgstr "HS koda"
 #: model:ir.ui.menu,name:product_harmonized_system_tax_rate.hs_code_tax_rate_menu
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.view_hs_code_tax_rate_form
 msgid "H.S. Code Tax Rate"
-msgstr ""
+msgstr "Davčna stopnja HS kode"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate_id
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate_id
 msgid "H.S. Code Tax Rate Id"
-msgstr ""
+msgstr "ID davčne stopnje HS kode"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.constraint,message:product_harmonized_system_tax_rate.constraint_hs_code_tax_rate_hs_code_origin_country_uniq
 msgid "H.S. Code/Country of Origin must be unique"
-msgstr ""
+msgstr "HS koda/država izvora morata biti enolična"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__hs_code_id
@@ -81,6 +81,8 @@ msgid ""
 "Harmonised System Code. Nomenclature is available from the World Customs "
 "Organisation, see http://www.wcoomd.org/."
 msgstr ""
+"Harmonizirana sistemska koda. Nomenklatura je na voljo pri Svetovni carinski "
+"organizaciji, glejte http://www.wcoomd.org/."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__id
@@ -110,26 +112,26 @@ msgstr "Proizvod"
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Search H.S. Code Tax Rates"
-msgstr ""
+msgstr "Išči davčne stopnje HS kode"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate
 msgid "Tax Rate %"
-msgstr ""
+msgstr "Davčna stopnja %"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code__tax_rate_ids
 msgid "Tax Rates"
-msgstr ""
+msgstr "Davčne stopnje"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_product_product__hs_code_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_product_template__hs_code_tax_rate
 msgid "Tax rate percentage for this H.S. Code / Country of Origin."
-msgstr ""
+msgstr "Odstotek davčne stopnje za to HS kodo / državo izvora."
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.view_hs_code_tax_rate_list

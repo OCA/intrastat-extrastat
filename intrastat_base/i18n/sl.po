@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-08 10:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Predloga kontnega plana"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__is_accessory_cost
@@ -27,33 +29,35 @@ msgid ""
 "Activate this option for shipping costs, packaging costs and all services "
 "related to the sale of products. This option is used for Intrastat reports."
 msgstr ""
+"Aktivirajte to opcijo za stroške odpreme, stroške pakiranja in vse storitve "
+"vezane na prodajo proizvodov. Ta opcija se uporablja za Intrastat poročila."
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_fiscal_position__vat_required
 msgid "Apply only if partner has a VAT number."
-msgstr ""
+msgstr "Uporabi le, če ima partner ID za DDV."
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid "B2B"
-msgstr ""
+msgstr "B2B"
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid "B2C"
-msgstr ""
+msgstr "B2C"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__display_name
@@ -63,12 +67,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__display_name
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Fiskalni položaj"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_chart_template__id
@@ -78,7 +82,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__id
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__intrastat
@@ -88,30 +92,30 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_account_position_filter
 #: model_terms:ir.ui.view,arch_db:intrastat_base.view_intrastat_res_config_settings
 msgid "Intrastat"
-msgstr ""
+msgstr "Intrastat"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
 #: model:ir.model.fields,field_description:intrastat_base.field_account_move__intrastat_fiscal_position
 msgid "Intrastat Fiscal Position"
-msgstr ""
+msgstr "Intrastat fiskalni položaj"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__intrastat_type
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__intrastat_type
 msgid "Intrastat Type"
-msgstr ""
+msgstr "Intrastat tip"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_product_product__is_accessory_cost
 #: model:ir.model.fields,field_description:intrastat_base.field_product_template__is_accessory_cost
 msgid "Is Accessory Cost"
-msgstr ""
+msgstr "Je strošek dodatka"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Temeljnica"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_res_company__intrastat_remind_user_ids
@@ -120,34 +124,36 @@ msgid ""
 "List of Odoo users who will receive a notification to remind them about the "
 "Intrastat declaration."
 msgstr ""
+"Seznam Odoo uporabnikov, ki bodo prejeli obvestilo kot opomnik glede "
+"Intrastat deklaracije."
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_email_list
 msgid "List of emails of Users Receiving the Intrastat Reminder"
-msgstr ""
+msgstr "Seznam e-poštnih naslovov uporabnikov, ki prejemajo opomnik o Intrastat"
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/res_company.py:0
 msgid "Missing e-mail address on user '%s'."
-msgstr ""
+msgstr "Pri uporabniku '%s' manjka e-poštni naslov."
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #. module: intrastat_base
 #: model:ir.model,name:intrastat_base.model_product_template
 #: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__product
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: intrastat_base
 #: model:ir.model.fields.selection,name:intrastat_base.selection__product_template__intrastat_type__service
 msgid "Service"
-msgstr ""
+msgstr "Storitev"
 
 #. module: intrastat_base
 #. odoo-python
@@ -156,6 +162,8 @@ msgid ""
 "The fiscal position '%s' has intrastat set to B2B, so the option 'VAT "
 "Required' must be enabled."
 msgstr ""
+"Fiskalni položaj '%s' ima intrastat nastavljen na B2B, zato mora biti "
+"omogočena možnost 'DDV obvezen'."
 
 #. module: intrastat_base
 #. odoo-python
@@ -164,6 +172,8 @@ msgid ""
 "The fiscal position '%s' has intrastat set to B2C, so the option 'VAT "
 "Required' mustn't be enabled."
 msgstr ""
+"Fiskalni položaj '%s' ima intrastat nastavljen na B2C, zato možnost 'DDV "
+"obvezen' ne sme biti omogočena."
 
 #. module: intrastat_base
 #. odoo-python
@@ -173,29 +183,32 @@ msgid ""
 " You have activated this option for the product '%(product_name)s' which is "
 "not a service product."
 msgstr ""
+"Možnost 'Je dodatni strošek?' je mogoče aktivirati samo za 'Storitvene' "
+"proizvode. To možnost ste aktivirali za proizvod '%(product_name)s', ki ni "
+"storitveni proizvod."
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_product_product__intrastat_type
 #: model:ir.model.fields,help:intrastat_base.field_product_template__intrastat_type
 msgid "Type of product used for the intrastat declarations."
-msgstr ""
+msgstr "Vrsta proizvoda, uporabljena za intrastat deklaracije."
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/res_company.py:0
 msgid "Unknown Error"
-msgstr ""
+msgstr "Neznana napaka"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_res_company__intrastat_remind_user_ids
 #: model:ir.model.fields,field_description:intrastat_base.field_res_config_settings__intrastat_remind_user_ids
 msgid "Users Receiving the Intrastat Reminder"
-msgstr ""
+msgstr "Uporabniki prejemniki opomnika Intrastat"
 
 #. module: intrastat_base
 #: model:ir.model.fields,field_description:intrastat_base.field_account_fiscal_position__vat_required
 msgid "VAT required"
-msgstr ""
+msgstr "ID za DDV zahtevan"
 
 #. module: intrastat_base
 #: model:ir.model.fields,help:intrastat_base.field_account_bank_statement_line__intrastat_fiscal_position
@@ -205,15 +218,17 @@ msgid ""
 "When set to B2B or B2C, the invoices with this fiscal position will be taken"
 " into account for the generation of the intrastat reports."
 msgstr ""
+"Ko je nastavljeno na B2B ali B2C, se računi s tem davčnim položajem "
+"upoštevajo pri pripravi poročil Intrastat."
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid "b2c"
-msgstr ""
+msgstr "b2c"
 
 #. module: intrastat_base
 #. odoo-python
 #: code:addons/intrastat_base/models/account_fiscal_position.py:0
 msgid "no"
-msgstr ""
+msgstr "ne"

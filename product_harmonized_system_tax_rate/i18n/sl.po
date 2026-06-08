@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-08 07:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,43 +15,44 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__origin_country_id
 msgid "Country of Origin"
-msgstr ""
+msgstr "Država izvora"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,help:product_harmonized_system_tax_rate.field_hs_code_tax_rate__origin_country_id
 msgid "Country of origin of the product i.e. product 'made in ____'."
-msgstr ""
+msgstr "Država izvora proizvoda, npr. 'izdelano v ____'."
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model,name:product_harmonized_system_tax_rate.model_hs_code
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__hs_code_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "H.S. Code"
-msgstr ""
+msgstr "HS koda"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.actions.act_window,name:product_harmonized_system_tax_rate.action_hs_code_tax_rate
@@ -83,27 +85,27 @@ msgstr ""
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model.fields,field_description:product_harmonized_system_tax_rate.field_hs_code_tax_rate__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
 msgid "Origin Country"
-msgstr ""
+msgstr "Država izvora"
 
 #. module: product_harmonized_system_tax_rate
 #: model:ir.model,name:product_harmonized_system_tax_rate.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.hs_code_tax_rate_view_search
@@ -132,4 +134,4 @@ msgstr ""
 #. module: product_harmonized_system_tax_rate
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system_tax_rate.view_hs_code_tax_rate_list
 msgid "hs.code.tax.rate"
-msgstr ""
+msgstr "hs.code.tax.rate"

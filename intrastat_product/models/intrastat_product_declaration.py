@@ -806,25 +806,55 @@ class IntrastatProductDeclaration(models.Model):
             )
 
             for line_vals in lines_current_invoice:
-                if (
-                    not line_vals["amount_company_currency"]
-                    and not line_vals["amount_accessory_cost_company_currency"]
-                ):
-                    inv_line = self.env["account.move.line"].browse(
-                        line_vals["invoice_line_id"]
-                    )
-                    _logger.info(
-                        "Skipping invoice line %s qty %s "
-                        "of invoice %s. Reason: price_subtotal = 0 "
-                        "and accessory costs = 0",
-                        inv_line.name,
-                        inv_line.quantity,
-                        inv_line.move_id.name,
-                    )
+                if not self._should_include_zero_price_line(line_vals):
                     continue
                 lines.append(line_vals)
 
         return lines
+
+    def _should_include_zero_price_line(self, line_vals):
+        """Check if a zero-price line should be included in the declaration.
+
+        Returns True if the line should be included, False if it should be
+        skipped. When included, updates line values with transaction 23
+        and the product's sale price.
+        """
+        if (
+            line_vals["amount_company_currency"]
+            or line_vals["amount_accessory_cost_company_currency"]
+        ):
+            return True
+        if not self.company_id.intrastat_include_zero_price_lines:
+            inv_line = self.env["account.move.line"].browse(
+                line_vals["invoice_line_id"]
+            )
+            _logger.info(
+                "Skipping invoice line %s qty %s "
+                "of invoice %s. Reason: price_subtotal = 0 "
+                "and accessory costs = 0",
+                inv_line.name,
+                inv_line.quantity,
+                inv_line.move_id.name,
+            )
+            return False
+        self._update_zero_price_line_vals(line_vals)
+        return True
+
+    def _update_zero_price_line_vals(self, line_vals):
+        """Update zero-price line values for Intrastat declaration.
+
+        When zero-price lines are included (e.g. warranty replacements),
+        they must use transaction code 23 and the product's sale price
+        as fiscal value, per EU Intrastat regulation.
+        """
+        tr_23 = self.env.ref("intrastat_product.intrastat_transaction_23")
+        line_vals["transaction_id"] = tr_23.id
+        inv_line = self.env["account.move.line"].browse(line_vals["invoice_line_id"])
+        product = inv_line.product_id
+        if product and product.list_price:
+            line_vals["amount_company_currency"] = (
+                product.list_price * inv_line.quantity
+            )
 
     def _prepare_html_note(self, notedict, key2label):
         note = ""

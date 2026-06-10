@@ -26,3 +26,6 @@ class ResConfigSettings(models.TransientModel):
     )
     country_id = fields.Many2one(related="company_id.country_id")
     # country_code is defined in the 'account' module
+    intrastat_include_zero_price_lines = fields.Boolean(
+        related="company_id.intrastat_include_zero_price_lines", readonly=False
+    )

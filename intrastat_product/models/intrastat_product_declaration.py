@@ -594,6 +594,20 @@ class IntrastatProductDeclaration(models.Model):
                         total_inv_accessory_costs_cc / len(lines_current_invoice)
                     )
 
+    def _invoice_domain_move_types(self):
+        """
+        This method returns the types to be used in _prepare_invoice_domain(); it is
+        important that it exists so that other modules (l10n_es_intrastat_report)
+        can modify it for Spanish declarations.
+        """
+        self.ensure_one()
+        move_types = ()
+        if self.declaration_type == "arrivals":
+            move_types = ("in_invoice", "in_refund")
+        elif self.declaration_type == "dispatches":
+            move_types = ("out_invoice", "out_refund")
+        return move_types
+
     def _prepare_invoice_domain(self):
         """
         Complete this method in the localization module
@@ -604,18 +618,14 @@ class IntrastatProductDeclaration(models.Model):
         """
         start_date = date(int(self.year), int(self.month), 1)
         end_date = start_date + relativedelta(day=1, months=+1, days=-1)
-        domain = (
+        return (
             Domain("date", ">=", start_date)
             & Domain("date", "<=", end_date)
             & Domain("state", "=", "posted")
             & Domain("intrastat_fiscal_position", "in", ("b2b", "b2c"))
             & Domain("company_id", "=", self.company_id.id)
+            & Domain("move_type", "in", self._invoice_domain_move_types())
         )
-        if self.declaration_type == "arrivals":
-            domain &= Domain("move_type", "in", ("in_invoice", "in_refund"))
-        elif self.declaration_type == "dispatches":
-            domain &= Domain("move_type", "in", ("out_invoice", "out_refund"))
-        return domain
 
     def _is_product(self, invoice_line):
         if (

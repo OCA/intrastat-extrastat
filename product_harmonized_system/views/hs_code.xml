@@ -33,11 +33,6 @@
                 <field name="local_code" />
                 <field name="description" optional="show" />
                 <field name="long_description" optional="hide" />
-                <field
-                    name="company_id"
-                    groups="base.group_multi_company"
-                    optional="show"
-                />
             </list>
         </field>
     </record>
@@ -101,7 +96,6 @@
                         <field name="hs_code" />
                         <field name="description" />
                         <field name="long_description" />
-                        <field name="company_id" groups="base.group_multi_company" />
                     </group>
                 </sheet>
             </form>

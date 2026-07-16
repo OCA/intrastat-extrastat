@@ -55,11 +55,6 @@ msgstr ""
 "proširivanje HS Šifre."
 
 #. module: product_harmonized_system
-#: model:ir.model.fields,field_description:product_harmonized_system.field_hs_code__company_id
-msgid "Company"
-msgstr "Tvrtka"
-
-#. module: product_harmonized_system
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_product__origin_country_id
 #: model:ir.model.fields,field_description:product_harmonized_system.field_product_template__origin_country_id
 #: model_terms:ir.ui.view,arch_db:product_harmonized_system.product_template_search_view
@@ -227,10 +222,11 @@ msgstr ""
 msgid "Storage units"
 msgstr "Skladišne jedinice"
 
-#. module: product_harmonized_system
-#: model:ir.model.constraint,message:product_harmonized_system.constraint_hs_code_local_code_company_uniq
-msgid "This code already exists for this company !"
-msgstr "Ova šifra već postoji u ovoj tvrtci!"
+#~ msgid "Company"
+#~ msgstr "Tvrtka"
+
+#~ msgid "This code already exists for this company !"
+#~ msgstr "Ova šifra već postoji u ovoj tvrtci!"
 
 #~ msgid "Short text description of the H.S. category"
 #~ msgstr "Kratki opis HS Kategorije"

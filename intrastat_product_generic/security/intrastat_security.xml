@@ -3,7 +3,11 @@
     <record id="group_intrastat_product_generic" model="res.groups">
         <field name="name">Generic Intrastat Product Declaration</field>
     </record>
+    <!-- 19.0: res.users.groups_id se elimino y se dividio en group_ids
+         (grupos asignados explicitamente) y all_group_ids (asignados mas
+         implicados). Aqui se ASIGNA un grupo a un usuario, que es asignacion
+         explicita, asi que corresponde group_ids. -->
     <record id="base.user_admin" model="res.users">
-        <field eval="[(4, ref('group_intrastat_product_generic'))]" name="groups_id" />
+        <field eval="[(4, ref('group_intrastat_product_generic'))]" name="group_ids" />
     </record>
 </odoo>

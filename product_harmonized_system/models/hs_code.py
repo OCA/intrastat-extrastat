@@ -88,6 +88,14 @@ class HSCode(models.Model):
             name = shorten(name, 55)
             this.display_name = name
 
+    _sql_constraints = [
+        (
+            "local_code_uniq",
+            "unique(local_code)",
+            "An H.S. code with this local code already exists !",
+        )
+    ]
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

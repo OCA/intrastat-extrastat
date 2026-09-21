@@ -12,7 +12,7 @@
     "maintainers": ["alexis-via", "luc-demeyer"],
     "website": "https://github.com/OCA/intrastat-extrastat",
     "depends": ["product_harmonized_system", "stock"],
-    "data": ["views/hs_code_menu.xml"],
+    "data": ["views/hs_code_menu.xml", "security/ir.model.access.csv"],
     "installable": True,
     "auto_install": True,
 }

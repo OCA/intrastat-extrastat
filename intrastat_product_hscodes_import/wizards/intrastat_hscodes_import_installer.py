@@ -101,13 +101,14 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
     def _import_country_specific_descriptions(self, code_obj):
         short_code = self.language_id.code.split("_")[0]
         filename = f"{short_code}.xlsx"
-        file_path = tools.misc.file_path(
-            f"intrastat_product_hscodes_import/data/countries/{filename}"
-        )
-        if not file_path:
+        try:
+            file_path = tools.misc.file_path(
+                f"intrastat_product_hscodes_import/data/countries/{filename}"
+            )
+        except FileNotFoundError as e:
             raise MissingError(
                 self.env._("Missing language file for code '%s'", short_code)
-            )
+            ) from e
         sheet, header = self._read_excel_sheet(file_path)
         indent_index = header.index("Indent")
         description_index = header.index("Description")

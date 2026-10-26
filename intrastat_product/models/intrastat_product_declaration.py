@@ -564,6 +564,11 @@ class IntrastatProductDeclaration(models.Model):
                     notedict["partner"][partner.display_name][msg].add(
                         notedict["inv_origin"]
                     )
+                elif not is_valid(vat):
+                    msg = _("The VAT number '%s' is invalid.") % vat
+                    notedict["partner"][partner.display_name][msg].add(
+                        notedict["inv_origin"]
+                    )
             elif inv.fiscal_position_id.intrastat != "b2c":
                 msg = _("Missing <em>VAT Number</em>")
                 notedict["partner"][partner.display_name][msg].add(
@@ -1194,12 +1199,6 @@ class IntrastatProductComputationLine(models.Model):
             )
             code = PRODUCT_ORIGIN_COUNTRY_CODE_MAPPING.get(code, code)
             this.product_origin_country_code = code
-
-    @api.constrains("vat")
-    def _check_vat(self):
-        for this in self:
-            if this.vat and not is_valid(this.vat):
-                raise ValidationError(_("The VAT number '%s' is invalid.") % this.vat)
 
     @api.depends("partner_id")
     def _compute_vat(self):

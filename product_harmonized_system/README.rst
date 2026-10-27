@@ -21,13 +21,13 @@ Product Harmonized System Codes
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fintrastat--extrastat-lightgray.png?logo=github
-    :target: https://github.com/OCA/intrastat-extrastat/tree/19.0/product_harmonized_system
+    :target: https://github.com/OCA/intrastat-extrastat/tree/20.0/product_harmonized_system
     :alt: OCA/intrastat-extrastat
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/intrastat-extrastat-19-0/intrastat-extrastat-19-0-product_harmonized_system
+    :target: https://translation.odoo-community.org/projects/intrastat-extrastat-20-0/intrastat-extrastat-20-0-product_harmonized_system
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/intrastat-extrastat&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -80,7 +80,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/intrastat-extrastat/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20product_harmonized_system%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/intrastat-extrastat/issues/new?body=module:%20product_harmonized_system%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -101,6 +101,9 @@ Contributors
 - Luc De Meyer, Noviat <info@noviat.com>
 - Kumar Aberer, brain-tec AG <kumar.aberer@braintec-group.com>
 - Nhan Tran <nhant@trobz.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Carlos Dauden
 
 Maintainers
 -----------
@@ -126,6 +129,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| |maintainer-luc-demeyer| 
 
-This module is part of the `OCA/intrastat-extrastat <https://github.com/OCA/intrastat-extrastat/tree/19.0/product_harmonized_system>`_ project on GitHub.
+This module is part of the `OCA/intrastat-extrastat <https://github.com/OCA/intrastat-extrastat/tree/20.0/product_harmonized_system>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

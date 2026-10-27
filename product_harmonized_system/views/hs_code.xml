@@ -72,7 +72,7 @@
                         <button
                             class="oe_stat_button"
                             name="%(product_categ_hs_code_action)d"
-                            icon="fa-th-list"
+                            icon="view_list"
                             type="action"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -85,7 +85,7 @@
                         <button
                             class="oe_stat_button"
                             name="%(product_template_hs_code_action)d"
-                            icon="fa-th-list"
+                            icon="view_list"
                             type="action"
                         >
                             <div class="o_field_widget o_stat_info">

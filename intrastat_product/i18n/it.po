@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-05-19 13:46+0000\n"
+"PO-Revision-Date: 2026-11-09 13:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr "%(invoice)s riga %(line_nbr)s"
 msgid ""
 "(Re)compute the intrastat transaction details from the product master data."
 msgstr ""
-"(Ri)calcola i dettagli delle transizioni Intrastat dai dati principali del "
+"(Ri)calcola i dettagli delle transazioni Intrastat dai dati principali del "
 "prodotto."
 
 #. module: intrastat_product
@@ -139,7 +139,7 @@ msgstr "Trasporto aereo"
 #: model:res.groups,comment:intrastat_product.group_invoice_intrastat_transaction_details
 msgid "Allow to encode Intrastat Transaction Details on Invoices"
 msgstr ""
-"Consente di codificare i dettagli della transizione Intrastat nelle fatture"
+"Consente di codificare i dettagli della transazione Intrastat nelle fatture"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_intrastat_product_computation_line__amount_accessory_cost_company_currency
@@ -717,7 +717,7 @@ msgstr "Dettagli dichiarazione Intrastat"
 #: model:ir.model.fields,help:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
 #: model:ir.model.fields,help:intrastat_product.field_account_move__intrastat_transaction_id
 msgid "Intrastat Nature of Transaction"
-msgstr "Natura della transizione Intrastat"
+msgstr "Natura della transazione Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_product_computation_line
@@ -791,19 +791,19 @@ msgstr "Unità supplementari Intrastat"
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_declaration_line__transaction_id
 msgid "Intrastat Transaction"
-msgstr "Transizione Intrastat"
+msgstr "Transazione Intrastat"
 
 #. module: intrastat_product
 #. odoo-python
 #: code:addons/intrastat_product/report/intrastat_product_report_xls.py:0
 msgid "Intrastat Transaction Code"
-msgstr "Codice transizione Intrastat"
+msgstr "Codice transazione Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_bank_statement_line__intrastat_transaction_id
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move__intrastat_transaction_id
 msgid "Intrastat Transaction Type"
-msgstr "Tipo transizione Intrastat"
+msgstr "Tipo transazione Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model,name:intrastat_product.model_intrastat_transport_mode
@@ -830,7 +830,7 @@ msgstr "Informazioni Intrastat"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.view_move_form
 msgid "Intrastat transaction details"
-msgstr "Dettagli transizione Intrastat"
+msgstr "Dettagli transazione Intrastat"
 
 #. module: intrastat_product
 #. odoo-python
@@ -854,7 +854,7 @@ msgstr "Fattura"
 #. module: intrastat_product
 #: model:res.groups,name:intrastat_product.group_invoice_intrastat_transaction_details
 msgid "Invoice Intrastat Transaction Details"
-msgstr "Dettagli transizione fattura Intrastat"
+msgstr "Dettagli transazione fattura Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__invoice_line_id
@@ -1230,7 +1230,7 @@ msgstr "UdM regolare"
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_line_view_form
 msgid "Related Transactions"
-msgstr "Transizioni relative"
+msgstr "Transazioni relative"
 
 #. module: intrastat_product
 #: model:intrastat.transaction,description:intrastat_product.intrastat_transaction_71
@@ -1468,7 +1468,7 @@ msgstr "Totale valore fiscale nella valuta aziendale della dichiarazione."
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_computation_line_view_form
 msgid "Transaction"
-msgstr "Transizione"
+msgstr "Transazione"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_intrastat_product_computation_line__transaction_code
@@ -1479,28 +1479,28 @@ msgstr "Codice transazione"
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__transaction_suppl_unit_qty
 msgid "Transaction Suppl Unit Qty"
-msgstr "Q.tà unità supplmentare transizione"
+msgstr "Q.tà unità supplementare transazione"
 
 #. module: intrastat_product
 #: model:ir.actions.act_window,name:intrastat_product.intrastat_transaction_action
 #: model:ir.ui.menu,name:intrastat_product.intrastat_transaction_menu
 msgid "Transaction Types"
-msgstr "Tipi transizione"
+msgstr "Tipi transazione"
 
 #. module: intrastat_product
 #: model:ir.model.fields,field_description:intrastat_product.field_account_move_intrastat_line__transaction_weight
 msgid "Transaction Weight"
-msgstr "Peso transizione"
+msgstr "Peso transazione"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__transaction_suppl_unit_qty
 msgid "Transaction quantity in Intrastat Supplementary Unit"
-msgstr "Quantità transizione nell'unità supplementare Intrastat"
+msgstr "Quantità transazione nell'unità supplementare Intrastat"
 
 #. module: intrastat_product
 #: model:ir.model.fields,help:intrastat_product.field_account_move_intrastat_line__transaction_weight
 msgid "Transaction weight in Kg: Quantity x Product Weight"
-msgstr "Peso transizione in kg: quantità x peso prodotto"
+msgstr "Peso transazione in kg: quantità x peso prodotto"
 
 #. module: intrastat_product
 #: model_terms:ir.ui.view,arch_db:intrastat_product.intrastat_product_declaration_view_form
@@ -1514,7 +1514,7 @@ msgid ""
 "ownership). Goods not returning to the initial Member State/country of "
 "export."
 msgstr ""
-"Transizioni successive all'elaborazione a contratto (senza coinvolgere il "
+"Transazioni successive all'elaborazione a contratto (senza coinvolgere il "
 "cambio di proprietà). I beni che non rientrano nello stato membro/nazione di "
 "esportazione."
 
@@ -1524,7 +1524,7 @@ msgid ""
 "Transactions following processing under contract (not involving change of "
 "ownership). Goods returning to the initial Member State/country of export."
 msgstr ""
-"Transizioni successive all'elaborazione a contratto (senza coinvolgere il "
+"Transazioni successive all'elaborazione a contratto (senza coinvolgere il "
 "cambio di proprietà). I beni che rientrano nello stato membro/nazione di "
 "esportazione."
 
@@ -1536,8 +1536,8 @@ msgid ""
 "which no separate invoicing of the goods is required and an invoice for the "
 "total contract is issued"
 msgstr ""
-"Transizioni che comprendono la fornitura di materiali da costruzione e "
-"attrezzature tecniche di un contratto di costruzini generali o ingegneria "
+"Transazioni che comprendono la fornitura di materiali da costruzione e "
+"attrezzature tecniche di un contratto di costruzioni generali o ingegneria "
 "civile per il quale non è richiesta la fatturazione separata dei beni e "
 "viene generata una fattura totale per il contratto"
 
@@ -1546,7 +1546,7 @@ msgstr ""
 msgid ""
 "Transactions involving transfer of ownership without financial compensation"
 msgstr ""
-"transizioni che coinvolgono il trasferimento della proprietà senza "
+"Transazioni che coinvolgono il trasferimento della proprietà senza "
 "compensazione finanziaria"
 
 #. module: intrastat_product
@@ -1556,7 +1556,7 @@ msgid ""
 "ownership). Goods expected to return to the initial Member State/country of "
 "export"
 msgstr ""
-"Transizioni con la prospettiva di una elaborazione a contratto (senza cambio "
+"Transazioni con la prospettiva di una elaborazione a contratto (senza cambio "
 "di proprietà). Si prevede che i beni rientrino allo stato membro/nazione "
 "iniziale di esportazione"
 
@@ -1567,7 +1567,7 @@ msgid ""
 "ownership). Goods not expected to return to the initial Member State/country "
 "of export"
 msgstr ""
-"Transizioni con la prospettiva di una elaborazione a contratto (senza cambio "
+"Transazioni con la prospettiva di una elaborazione a contratto (senza cambio "
 "di proprietà). Si prevede che i beni non rientrino allo stato membro/nazione "
 "iniziale di esportazione"
 

@@ -43,7 +43,6 @@ class HSCode(models.Model):
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         default=lambda self: self._default_company_id(),
     )
     product_categ_ids = fields.One2many(

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 15:39+0000\n"
 "PO-Revision-Date: 2025-02-25 15:39+0000\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: intrastat_product_hs_code_report_line
-#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.custom_account_fiscal_position_view_form
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.account_fiscal_position_view_form
 msgid "Configuration"
 msgstr ""
 
 #. module: intrastat_product_hs_code_report_line
-#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.report_invoice_document_inherit
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.report_invoice_document
 msgid "Country"
 msgstr "Pays"
 
@@ -31,33 +31,18 @@ msgid "Display Hscode"
 msgstr ""
 
 #. module: intrastat_product_hs_code_report_line
-#: model:ir.model.fields,field_description:intrastat_product_hs_code_report_line.field_account_fiscal_position__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: intrastat_product_hs_code_report_line
 #: model:ir.model,name:intrastat_product_hs_code_report_line.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr ""
 
 #. module: intrastat_product_hs_code_report_line
-#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.report_invoice_document_inherit
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.report_invoice_document
 msgid "HS Code"
 msgstr ""
 
 #. module: intrastat_product_hs_code_report_line
-#: model:ir.model.fields,field_description:intrastat_product_hs_code_report_line.field_account_fiscal_position__id
-msgid "ID"
-msgstr ""
-
-#. module: intrastat_product_hs_code_report_line
-#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.custom_account_fiscal_position_view_form
+#: model_terms:ir.ui.view,arch_db:intrastat_product_hs_code_report_line.account_fiscal_position_view_form
 msgid "Invoice"
-msgstr ""
-
-#. module: intrastat_product_hs_code_report_line
-#: model:ir.model.fields,field_description:intrastat_product_hs_code_report_line.field_account_fiscal_position____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: intrastat_product_hs_code_report_line

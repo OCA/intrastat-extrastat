@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
-        id="report_invoice_document_inherit"
+        id="report_invoice_document"
         inherit_id="intrastat_product.report_invoice_document_intrastat_product"
         priority="150"
     >
         <xpath
             expr="//t[@t-if='o.partner_id.invoice_intrastat_detail']"
-            position="replace"
-        />
-        <xpath
-            expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_quantity']"
-            position="before"
+            position="attributes"
         >
-            <t t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode">
-                <th>HS Code</th>
-                <th>Country</th>
+            <attribute
+                name="t-if"
+            >o.partner_id.invoice_intrastat_detail and not o.fiscal_position_id.display_hscode</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <t t-if="o.fiscal_position_id.display_hscode">
+                <th name="th_hs_code">HS Code</th>
+                <th name="th_origin_country">Country</th>
             </t>
         </xpath>
-        <xpath expr="//span[@t-field='line.quantity']/parent::td" position="before">
-            <t t-set="hscode" t-value="" />
-            <t
-                t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode and line.product_id"
-            >
-                <td>
+        <xpath expr="//td[@name='td_quantity']" position="before">
+            <t t-if="o.fiscal_position_id.display_hscode">
+                <td name="td_hs_code">
                     <span
-                        t-esc="line.product_id.hs_code_id and line.product_id.hs_code_id.local_code or '' "
+                        t-out="line.product_id.get_hs_code_recursively().local_code"
                     />
                 </td>
-                <td>
-                    <span
-                        t-esc="line.product_id.origin_country_id and line.product_id.origin_country_id.name or '' "
-                    />
+                <td name="td_origin_country">
+                    <span t-out="line.product_id.origin_country_id.name" />
                 </td>
             </t>
         </xpath>

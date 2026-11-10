@@ -8,16 +8,15 @@
         <xpath
             expr="//t[@t-if='o.partner_id.invoice_intrastat_detail']"
             position="replace"
-        >
-        </xpath>
+        />
         <xpath
             expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_quantity']"
             position="before"
         >
-                <t t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode">
-                    <th>HS Code</th>
-                    <th>Country</th>
-                </t>
+            <t t-if="o.fiscal_position_id and o.fiscal_position_id.display_hscode">
+                <th>HS Code</th>
+                <th>Country</th>
+            </t>
         </xpath>
         <xpath expr="//span[@t-field='line.quantity']/parent::td" position="before">
             <t t-set="hscode" t-value="" />

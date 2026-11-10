@@ -1,0 +1,2 @@
+- Mathieu Delva \<<mathieu.delva@akretion.com>\>
+- Guillaume Masson \<<guillaume.masson@akretion.com>\>

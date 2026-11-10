@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_invoice_document"
+        inherit_id="intrastat_product.report_invoice_document_intrastat_product"
+        priority="150"
+    >
+        <xpath
+            expr="//t[@t-if='o.partner_id.invoice_intrastat_detail']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >o.partner_id.invoice_intrastat_detail and not o.fiscal_position_id.display_hscode</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <t t-if="o.fiscal_position_id.display_hscode">
+                <th name="th_hs_code">HS Code</th>
+                <th name="th_origin_country">Country</th>
+            </t>
+        </xpath>
+        <xpath expr="//td[@name='td_quantity']" position="before">
+            <t t-if="o.fiscal_position_id.display_hscode">
+                <td name="td_hs_code">
+                    <span
+                        t-out="line.product_id.get_hs_code_recursively().local_code"
+                    />
+                </td>
+                <td name="td_origin_country">
+                    <span t-out="line.product_id.origin_country_id.name" />
+                </td>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -170,7 +170,6 @@ class AccountMoveIntrastatLine(models.Model):
     )
     invoice_line_id = fields.Many2one(
         comodel_name="account.move.line",
-        string="Invoice Line",
         ondelete="cascade",
         required=True,
     )

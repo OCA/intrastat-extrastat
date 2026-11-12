@@ -23,7 +23,7 @@ class IntrastatNomenclatureCodesImportInstaller(models.TransientModel):
     _name = "intrastat.hscodes.import.installer"
     _description = "Intrastat Nomenclature Import Installer"
 
-    language_id = fields.Many2one("res.lang", string="Language")
+    language_id = fields.Many2one("res.lang")
 
     @tools.ormcache("name")
     def _get_intrastat_unit(self, name):

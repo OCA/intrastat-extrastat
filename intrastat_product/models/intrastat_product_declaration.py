@@ -52,7 +52,6 @@ class IntrastatProductDeclaration(models.Model):
 
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -1067,9 +1066,7 @@ class IntrastatProductComputationLine(models.Model):
     )
     declaration_type = fields.Selection(related="parent_id.declaration_type")
     reporting_level = fields.Selection(related="parent_id.reporting_level")
-    invoice_line_id = fields.Many2one(
-        "account.move.line", string="Invoice Line", readonly=True
-    )
+    invoice_line_id = fields.Many2one("account.move.line", readonly=True)
     invoice_id = fields.Many2one(
         "account.move", related="invoice_line_id.move_id", string="Invoice"
     )
@@ -1077,11 +1074,10 @@ class IntrastatProductComputationLine(models.Model):
     # number (via onchange) when you create a computation line manually
     partner_id = fields.Many2one(
         "res.partner",
-        string="Partner",
         domain=[("parent_id", "=", False)],
     )
     declaration_line_id = fields.Many2one(
-        "intrastat.product.declaration.line", string="Declaration Line", readonly=True
+        "intrastat.product.declaration.line", readonly=True
     )
     src_dest_country_id = fields.Many2one(
         "res.country",
@@ -1162,7 +1158,7 @@ class IntrastatProductComputationLine(models.Model):
     )
 
     # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    incoterm_id = fields.Many2one("account.incoterms")
     transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")
 
     @api.depends("region_id")
@@ -1339,5 +1335,5 @@ class IntrastatProductDeclarationLine(models.Model):
     )
     vat = fields.Char(string="VAT Number")
     # extended declaration
-    incoterm_id = fields.Many2one("account.incoterms", string="Incoterm")
+    incoterm_id = fields.Many2one("account.incoterms")
     transport_id = fields.Many2one("intrastat.transport_mode", string="Transport Mode")

@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_hs_code_group_system,Full access on hs.code to Settings group,hs.code,base.group_system,crud,
+access_hs_code_read,Read access on hs.code to everybody,hs.code,base.group_user,r,
+hs_code_company_rule,HS Code Company rule,hs.code,,crud,"[('company_id', 'in', company_ids + [False])]"

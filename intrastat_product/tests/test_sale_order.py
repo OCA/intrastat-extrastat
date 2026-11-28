@@ -88,6 +88,49 @@ class TestIntrastatProductSale(IntrastatSaleCommon):
         file_data = self._create_xls()
         self.check_xls(file_data[0])
 
+    def test_sale_declaration_invalid_vat(self):
+        """An invalid partner VAT must not abort the declaration computation.
+
+        The gather must complete and the invalid VAT must be reported in the
+        note as a non-blocking warning.
+        """
+        invalid_vat = "518900207"
+        customer_invalid_vat = self.partner_obj.with_context(
+            no_vat_validation=True
+        ).create(
+            {
+                "name": "Invalid VAT Customer",
+                "country_id": self.env.ref("base.fr").id,
+                "property_account_position_id": self.position.id,
+                "vat": invalid_vat,
+            }
+        )
+        date_order = "2021-09-01"
+        declaration_date = "2021-10-01"
+        with freeze_time(date_order):
+            self._create_sale_order(customer_invalid_vat)
+        self.sale.action_confirm()
+        self.sale.picking_ids.action_assign()
+        for line in self.sale.picking_ids.move_line_ids:
+            line.qty_done = line.reserved_uom_qty
+        self.sale.picking_ids._action_done()
+
+        with freeze_time(date_order):
+            invoice = self.sale._create_invoices()
+            invoice.action_post()
+
+        vals = {
+            "declaration_type": "dispatches",
+        }
+        with freeze_time(declaration_date):
+            self._create_declaration(vals)
+        # Must not raise despite the invalid VAT
+        self.declaration.action_gather()
+        # Computation completed and produced lines
+        self.assertTrue(self.declaration.computation_line_ids)
+        # The invalid VAT is surfaced in the note instead of blocking
+        self.assertIn(invalid_vat, self.declaration.note)
+
     def test_sale_declaration_b2c_no_vat(self):
         date_order = "2021-09-01"
         declaration_date = "2021-10-01"
